@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4023C53E-F99F-4816-8A8B-2B1DEFF2F2C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CprsDAL</RootNamespace>
+    <AssemblyName>CprsDAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdhocSearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AnnLockData.cs" />
+    <Compile Include="AnnualProcessData.cs" />
+    <Compile Include="ArtbaData.cs" />
+    <Compile Include="AuthorizedUserAuditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuthorizedUsersData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AveCostData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BFdata.cs" />
+    <Compile Include="C700SearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CallSchedulerCountsData.cs" />
+    <Compile Include="CaseMgmtRprtData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CCMailData.cs" />
+    <Compile Include="CeaccessData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CeauditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CecommentData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CeflagsData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CehelpData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CejobsData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CemarkData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CenturionFailedVerifData.cs" />
+    <Compile Include="CeProjectAccessData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CeProjectAuditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CesampleData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CprflagsData.cs" />
+    <Compile Include="CsdaccessData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CurrentUsersData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DcpDupData.cs" />
+    <Compile Include="DistributionData.cs" />
+    <Compile Include="DodgeInitCaseReviewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DodgeInitialData.cs" />
+    <Compile Include="DodgeSlipData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FedRatioCalData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlagReportData.cs" />
+    <Compile Include="GeneralData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GlobalInsightData.cs" />
+    <Compile Include="HistoryData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImpAnnualProcessData.cs" />
+    <Compile Include="ImpFlagReviewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImpMarkCaseReviewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImpMonProcessData.cs" />
+    <Compile Include="ImpReferralData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImprovSearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImpTabReviewData.cs" />
+    <Compile Include="ImpUnlockCaseData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InteractiveSearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LotlockData.cs" />
+    <Compile Include="LSFdata.cs" />
+    <Compile Include="MarkCaseReviewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MfCompareData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MfInitialData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MfInitialSearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MFInitRevData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonthlyAuditReviewData.cs" />
+    <Compile Include="MonthlyProcessData.cs" />
+    <Compile Include="MonthlyVipsData.cs" />
+    <Compile Include="MySectorsData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddrAuditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NewtcSelData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPCActiveLoadData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPCAttemptsData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPCSpecialsData.cs" />
+    <Compile Include="NPSpecCasesData.cs" />
+    <Compile Include="PrinterData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectAccessData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjectAuditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjMarkData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferralData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RespAddrData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RespAuditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RespondentData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RespondentSearchData.cs" />
+    <Compile Include="ResponseRateData.cs" />
+    <Compile Include="RevisionsData.cs" />
+    <Compile Include="SampleData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SampleSearchData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SchedcallData.cs" />
+    <Compile Include="SchedDayData.cs" />
+    <Compile Include="SocData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SourceData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpecBEAData.cs" />
+    <Compile Include="SpecGeoData.cs" />
+    <Compile Include="SpecialTCData.cs" />
+    <Compile Include="SpecManufacturingAnnData.cs" />
+    <Compile Include="SpecProjectValueData.cs" />
+    <Compile Include="SpecStrtData.cs" />
+    <Compile Include="SpecTimelenData.cs" />
+    <Compile Include="SubprojectData.cs" />
+    <Compile Include="SystemAuditData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TabAnnualBeaData.cs" />
+    <Compile Include="TabAnnualTabsData.cs" />
+    <Compile Include="TableMonReleaseData.cs" />
+    <Compile Include="TablePressReleaseData.cs" />
+    <Compile Include="TableSeasonalFactorData.cs" />
+    <Compile Include="TableSpecialPrivateData.cs" />
+    <Compile Include="TableStandardErrorsData.cs" />
+    <Compile Include="TabLockData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TabMonToMonData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TCDescriptionReviewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TFUData.cs" />
+    <Compile Include="TimeExternalData.cs" />
+    <Compile Include="TimeInternalData.cs" />
+    <Compile Include="TotalVipData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TsarSeriesData.cs" />
+    <Compile Include="UnavailableDaysData.cs" />
+    <Compile Include="UnlockData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInfoData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VipBenchmarkAnnData.cs" />
+    <Compile Include="VipBenchmarkExportData.cs" />
+    <Compile Include="VipBenchmarkOutputData.cs" />
+    <Compile Include="VipBenchmarkProcessData.cs" />
+    <Compile Include="VipBenchmarkTrenderData.cs" />
+    <Compile Include="VipReviewData.cs" />
+    <Compile Include="WorksheetData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CprsBLL\CprsBLL.csproj">
+      <Project>{5FBD22CE-D7E7-4725-88AC-19DCD41D09DA}</Project>
+      <Name>CprsBLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
