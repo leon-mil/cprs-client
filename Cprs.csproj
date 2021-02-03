@@ -1,0 +1,1825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83A2D3EB-3963-4A06-A234-EC86821DB773}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cprs</RootNamespace>
+    <AssemblyName>Cprs</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>V:\CPRS II\Test-Release\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>23AA29A0269F99B2178B16BCD722A8872BCF0428</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Cprs_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DGVPrinter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="frmActiveSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmActiveSel.Designer.cs">
+      <DependentUpon>frmActiveSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddCCMailPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddCCMailPopup.Designer.cs">
+      <DependentUpon>frmAddCCMailPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddCommentPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddCommentPopup.Designer.cs">
+      <DependentUpon>frmAddCommentPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddMonthlyAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddMonthlyAuditPopup.designer.cs">
+      <DependentUpon>frmAddMonthlyAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddPrinterPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddPrinterPopup.designer.cs">
+      <DependentUpon>frmAddPrinterPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddReferralPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddReferralPopup.Designer.cs">
+      <DependentUpon>frmAddReferralPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddTCDescriptionPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTCDescriptionPopup.designer.cs">
+      <DependentUpon>frmAddTCDescriptionPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdHoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdHoc.Designer.cs">
+      <DependentUpon>frmAdHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAnnualProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAnnualProcess.designer.cs">
+      <DependentUpon>frmAnnualProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmArtbaAnn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmArtbaAnn.Designer.cs">
+      <DependentUpon>frmArtbaAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmArtbaMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmArtbaMon.Designer.cs">
+      <DependentUpon>frmArtbaMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAuthUserAnnAddPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthUserAnnAddPopup.designer.cs">
+      <DependentUpon>frmAuthUserAnnAddPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAuthUserAnnAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthUserAnnAuditPopup.designer.cs">
+      <DependentUpon>frmAuthUserAnnAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAuthUserAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthUserAuditPopup.designer.cs">
+      <DependentUpon>frmAuthUserAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAuthUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthUsers.Designer.cs">
+      <DependentUpon>frmAuthUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAvecost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAvecost.designer.cs">
+      <DependentUpon>frmAvecost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAvecostCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAvecostCases.designer.cs">
+      <DependentUpon>frmAvecostCases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBenAnnual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBenAnnual.designer.cs">
+      <DependentUpon>frmBenAnnual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBenExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBenExport.designer.cs">
+      <DependentUpon>frmBenExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBenOutputData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBenOutputData.designer.cs">
+      <DependentUpon>frmBenOutputData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBenRunBCF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBenRunBCF.designer.cs">
+      <DependentUpon>frmBenRunBCF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBenTrender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBenTrender.designer.cs">
+      <DependentUpon>frmBenTrender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBF.Designer.cs">
+      <DependentUpon>frmBF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmC700.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmC700.Designer.cs">
+      <DependentUpon>frmC700.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmC700flagSelPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmC700flagSelPopup.Designer.cs">
+      <DependentUpon>frmC700flagSelPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmC700Srch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmC700Srch.designer.cs">
+      <DependentUpon>frmC700Srch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCalendarPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalendarPopup.designer.cs">
+      <DependentUpon>frmCalendarPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCallSchedulerCounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCallSchedulerCounts.designer.cs">
+      <DependentUpon>frmCallSchedulerCounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCaseManagementReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCaseManagementReport.Designer.cs">
+      <DependentUpon>frmCaseManagementReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCCMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCCMail.Designer.cs">
+      <DependentUpon>frmCCMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeAddReferralPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeAddReferralPopup.designer.cs">
+      <DependentUpon>frmCeAddReferralPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCecommentPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCecommentPopup.designer.cs">
+      <DependentUpon>frmCecommentPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeflagSelPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeflagSelPopup.designer.cs">
+      <DependentUpon>frmCeflagSelPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCehelpsPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCehelpsPopup.Designer.cs">
+      <DependentUpon>frmCehelpsPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeHistoryPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeHistoryPopup.Designer.cs">
+      <DependentUpon>frmCeHistoryPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeMarkcasesPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeMarkcasesPopup.designer.cs">
+      <DependentUpon>frmCeMarkcasesPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCemarkPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCemarkPopup.designer.cs">
+      <DependentUpon>frmCemarkPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCenturionFailedVerif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCenturionFailedVerif.designer.cs">
+      <DependentUpon>frmCenturionFailedVerif.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeProjectAccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeProjectAccess.Designer.cs">
+      <DependentUpon>frmCeProjectAccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeProjectAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeProjectAudit.Designer.cs">
+      <DependentUpon>frmCeProjectAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeProjectAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeProjectAuditPopup.Designer.cs">
+      <DependentUpon>frmCeProjectAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCeUpdReferralPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCeUpdReferralPopup.designer.cs">
+      <DependentUpon>frmCeUpdReferralPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangeRespidPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangeRespidPopup.Designer.cs">
+      <DependentUpon>frmChangeRespidPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCprsParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCprsParent.Designer.cs">
+      <DependentUpon>frmCprsParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCurrentUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCurrentUsers.designer.cs">
+      <DependentUpon>frmCurrentUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDatabaseSelectionPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDatabaseSelectionPopup.Designer.cs">
+      <DependentUpon>frmDatabaseSelectionPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDCPDUP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDCPDUP.designer.cs">
+      <DependentUpon>frmDCPDUP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDCPInitPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDCPInitPopup.Designer.cs">
+      <DependentUpon>frmDCPInitPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDistribution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDistribution.Designer.cs">
+      <DependentUpon>frmDistribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDodgeInital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDodgeInital.designer.cs">
+      <DependentUpon>frmDodgeInital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDodgeInitialReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDodgeInitialReview.designer.cs">
+      <DependentUpon>frmDodgeInitialReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmError.designer.cs">
+      <DependentUpon>frmError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFlagTypeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFlagTypeReport.designer.cs">
+      <DependentUpon>frmFlagTypeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGlobalInsightAnn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGlobalInsightAnn.designer.cs">
+      <DependentUpon>frmGlobalInsightAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGlobalInsightMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGlobalInsightMon.designer.cs">
+      <DependentUpon>frmGlobalInsightMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHelp.designer.cs">
+      <DependentUpon>frmHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHelpPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHelpPopup.designer.cs">
+      <DependentUpon>frmHelpPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHistory.designer.cs">
+      <DependentUpon>frmHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHome.Designer.cs">
+      <DependentUpon>frmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIdPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIdPopup.designer.cs">
+      <DependentUpon>frmIdPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpAnnualProc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpAnnualProc.designer.cs">
+      <DependentUpon>frmImpAnnualProc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpFlagsReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpFlagsReview.Designer.cs">
+      <DependentUpon>frmImpFlagsReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpMarkCaseReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpMarkCaseReview.Designer.cs">
+      <DependentUpon>frmImpMarkCaseReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpMonthProc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpMonthProc.Designer.cs">
+      <DependentUpon>frmImpMonthProc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpReferral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpReferral.designer.cs">
+      <DependentUpon>frmImpReferral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpReferralReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpReferralReview.designer.cs">
+      <DependentUpon>frmImpReferralReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImprovements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImprovements.designer.cs">
+      <DependentUpon>frmImprovements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImprovementSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImprovementSearch.designer.cs">
+      <DependentUpon>frmImprovementSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpTabReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpTabReview.designer.cs">
+      <DependentUpon>frmImpTabReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpUnlockCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpUnlockCase.Designer.cs">
+      <DependentUpon>frmImpUnlockCase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLSF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLSF.Designer.cs">
+      <DependentUpon>frmLSF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMarkCaseReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMarkCaseReview.designer.cs">
+      <DependentUpon>frmMarkCaseReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMarkCasesPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMarkCasesPopup.Designer.cs">
+      <DependentUpon>frmMarkCasesPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMarkPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMarkPopup.Designer.cs">
+      <DependentUpon>frmMarkPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaster.Designer.cs">
+      <DependentUpon>frmMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMfComparePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMfComparePopup.Designer.cs">
+      <DependentUpon>frmMfComparePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMfInitial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMfInitial.designer.cs">
+      <DependentUpon>frmMfInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMfInitialReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMfInitialReview.designer.cs">
+      <DependentUpon>frmMfInitialReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMFInitPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMFInitPopup.Designer.cs">
+      <DependentUpon>frmMFInitPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMfParentPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMfParentPopup.Designer.cs">
+      <DependentUpon>frmMfParentPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMonthlyAuditReviewPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMonthlyAuditReviewPopup.designer.cs">
+      <DependentUpon>frmMonthlyAuditReviewPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMonthlyProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMonthlyProcess.designer.cs">
+      <DependentUpon>frmMonthlyProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMonthlyProcessPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMonthlyProcessPopup.designer.cs">
+      <DependentUpon>frmMonthlyProcessPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMySectors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMySectors.designer.cs">
+      <DependentUpon>frmMySectors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMySectorsPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMySectorsPopup.designer.cs">
+      <DependentUpon>frmMySectorsPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmName.Designer.cs">
+      <DependentUpon>frmName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewAuthUserPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewAuthUserPopup.Designer.cs">
+      <DependentUpon>frmNewAuthUserPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewtcSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewtcSel.Designer.cs">
+      <DependentUpon>frmNewtcSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCActiveLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCActiveLoad.Designer.cs">
+      <DependentUpon>frmNPCActiveLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCAttemptCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCAttemptCases.Designer.cs">
+      <DependentUpon>frmNPCAttemptCases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCAttempts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCAttempts.designer.cs">
+      <DependentUpon>frmNPCAttempts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCSpecialColtecSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCSpecialColtecSel.designer.cs">
+      <DependentUpon>frmNPCSpecialColtecSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCSpecialInstPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCSpecialInstPopup.designer.cs">
+      <DependentUpon>frmNPCSpecialInstPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCSpecialPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCSpecialPopup.designer.cs">
+      <DependentUpon>frmNPCSpecialPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPCSpecials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPCSpecials.designer.cs">
+      <DependentUpon>frmNPCSpecials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPNonResSpecialCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPNonResSpecialCases.designer.cs">
+      <DependentUpon>frmNPNonResSpecialCases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNPNonResSpecialNA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNPNonResSpecialNA.designer.cs">
+      <DependentUpon>frmNPNonResSpecialNA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmParentIdPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParentIdPopup.Designer.cs">
+      <DependentUpon>frmParentIdPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrinters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrinters.designer.cs">
+      <DependentUpon>frmPrinters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProjectAccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjectAccess.Designer.cs">
+      <DependentUpon>frmProjectAccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProjectAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjectAudit.Designer.cs">
+      <DependentUpon>frmProjectAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProjectAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjectAuditPopup.Designer.cs">
+      <DependentUpon>frmProjectAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReferral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReferral.Designer.cs">
+      <DependentUpon>frmReferral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReferralReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReferralReview.Designer.cs">
+      <DependentUpon>frmReferralReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReschedulePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReschedulePopup.designer.cs">
+      <DependentUpon>frmReschedulePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespAddrUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespAddrUpdate.designer.cs">
+      <DependentUpon>frmRespAddrUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespCentpwdPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespCentpwdPopup.designer.cs">
+      <DependentUpon>frmRespCentpwdPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpFlgPrintSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpFlgPrintSel.Designer.cs">
+      <DependentUpon>frmImpFlgPrintSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespComment.designer.cs">
+      <DependentUpon>frmRespComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespidEditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespidEditPopup.designer.cs">
+      <DependentUpon>frmRespidEditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespidPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespidPopup.designer.cs">
+      <DependentUpon>frmRespidPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespondent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespondent.Designer.cs">
+      <DependentUpon>frmRespondent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmResponseRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmResponseRate.designer.cs">
+      <DependentUpon>frmResponseRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRespPrintSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespPrintSel.Designer.cs">
+      <DependentUpon>frmRespPrintSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRevCompMsgbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRevCompMsgbox.designer.cs">
+      <DependentUpon>frmRevCompMsgbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReviewScheduler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReviewScheduler.designer.cs">
+      <DependentUpon>frmReviewScheduler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRevision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRevision.designer.cs">
+      <DependentUpon>frmRevision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRspAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRspAudit.Designer.cs">
+      <DependentUpon>frmRspAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRspAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRspAuditPopup.designer.cs">
+      <DependentUpon>frmRspAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSample.designer.cs">
+      <DependentUpon>frmSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSchedHistPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchedHistPopup.designer.cs">
+      <DependentUpon>frmSchedHistPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSlipDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSlipDisplay.designer.cs">
+      <DependentUpon>frmSlipDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSource.Designer.cs">
+      <DependentUpon>frmSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSourceAddrPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSourceAddrPopup.designer.cs">
+      <DependentUpon>frmSourceAddrPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecBEACDAnn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecBEACDAnn.designer.cs">
+      <DependentUpon>frmSpecBEACDAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecBEACDMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecBEACDMon.designer.cs">
+      <DependentUpon>frmSpecBEACDMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecBEASLAnn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecBEASLAnn.designer.cs">
+      <DependentUpon>frmSpecBEASLAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecBEASLMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecBEASLMon.designer.cs">
+      <DependentUpon>frmSpecBEASLMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecGeogPriv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecGeogPriv.designer.cs">
+      <DependentUpon>frmSpecGeogPriv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecGeogPub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecGeogPub.designer.cs">
+      <DependentUpon>frmSpecGeogPub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecialPriorityTC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialPriorityTC.designer.cs">
+      <DependentUpon>frmSpecialPriorityTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecManufacturingAnn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecManufacturingAnn.designer.cs">
+      <DependentUpon>frmSpecManufacturingAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecProjectValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecProjectValue.designer.cs">
+      <DependentUpon>frmSpecProjectValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecStrt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecStrt.designer.cs">
+      <DependentUpon>frmSpecStrt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecStrtProj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecStrtProj.designer.cs">
+      <DependentUpon>frmSpecStrtProj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecStrtSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecStrtSum.designer.cs">
+      <DependentUpon>frmSpecStrtSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecTCAuditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecTCAuditPopup.designer.cs">
+      <DependentUpon>frmSpecTCAuditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecTCEditPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecTCEditPopup.designer.cs">
+      <DependentUpon>frmSpecTCEditPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecTimeLen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecTimeLen.designer.cs">
+      <DependentUpon>frmSpecTimeLen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecTimeLenDist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecTimeLenDist.designer.cs">
+      <DependentUpon>frmSpecTimeLenDist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecTimeLenDistCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecTimeLenDistCases.designer.cs">
+      <DependentUpon>frmSpecTimeLenDistCases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecTimeLenWorksheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecTimeLenWorksheet.designer.cs">
+      <DependentUpon>frmSpecTimeLenWorksheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmStatusSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStatusSel.Designer.cs">
+      <DependentUpon>frmStatusSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSurveySel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSurveySel.Designer.cs">
+      <DependentUpon>frmSurveySel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSystemAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSystemAudit.Designer.cs">
+      <DependentUpon>frmSystemAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualBea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualBea.designer.cs">
+      <DependentUpon>frmTabAnnualBea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaRev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaRev.designer.cs">
+      <DependentUpon>frmTabAnnualBeaRev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaTCUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaTCUpdate.designer.cs">
+      <DependentUpon>frmTabAnnualBeaTCUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaUtilities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaUtilities.designer.cs">
+      <DependentUpon>frmTabAnnualBeaUtilities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaWorksheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualBeaWorksheet.designer.cs">
+      <DependentUpon>frmTabAnnualBeaWorksheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualPrintPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualPrintPopup.designer.cs">
+      <DependentUpon>frmTabAnnualPrintPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualTabs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualTabs.designer.cs">
+      <DependentUpon>frmTabAnnualTabs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabAnnualView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabAnnualView.designer.cs">
+      <DependentUpon>frmTabAnnualView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTableMonRelease.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTableMonRelease.Designer.cs">
+      <DependentUpon>frmTableMonRelease.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTablePressRelease.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTablePressRelease.Designer.cs">
+      <DependentUpon>frmTablePressRelease.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTableSeasonalFactor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTableSeasonalFactor.designer.cs">
+      <DependentUpon>frmTableSeasonalFactor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTableSpecialPrivate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTableSpecialPrivate.Designer.cs">
+      <DependentUpon>frmTableSpecialPrivate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTableStandardErrors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTableStandardErrors.designer.cs">
+      <DependentUpon>frmTableStandardErrors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTabMonToMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTabMonToMon.designer.cs">
+      <DependentUpon>frmTabMonToMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTCDescriptionReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTCDescriptionReview.designer.cs">
+      <DependentUpon>frmTCDescriptionReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTfu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTfu.designer.cs">
+      <DependentUpon>frmTfu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTFUFlagSelPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTFUFlagSelPopup.designer.cs">
+      <DependentUpon>frmTFUFlagSelPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimeExternal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeExternal.Designer.cs">
+      <DependentUpon>frmTimeExternal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimeInternal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimeInternal.Designer.cs">
+      <DependentUpon>frmTimeInternal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTotalVip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTotalVip.designer.cs">
+      <DependentUpon>frmTotalVip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTsarSeriesSelectionPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTsarSeriesSelectionPopup.Designer.cs">
+      <DependentUpon>frmTsarSeriesSelectionPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTsarSeriesViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTsarSeriesViewer.Designer.cs">
+      <DependentUpon>frmTsarSeriesViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnavailableDays.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUnavailableDays.designer.cs">
+      <DependentUpon>frmUnavailableDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnlock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUnlock.designer.cs">
+      <DependentUpon>frmUnlock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdReferralPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdReferralPopup.Designer.cs">
+      <DependentUpon>frmUpdReferralPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdTCDescriptionPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdTCDescriptionPopup.designer.cs">
+      <DependentUpon>frmUpdTCDescriptionPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVarSelPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVarSelPopup.Designer.cs">
+      <DependentUpon>frmVarSelPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerificationPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVerificationPopup.Designer.cs">
+      <DependentUpon>frmVerificationPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerifyDeletePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVerifyDeletePopup.designer.cs">
+      <DependentUpon>frmVerifyDeletePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerifyTabPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVerifyTabPopup.Designer.cs">
+      <DependentUpon>frmVerifyTabPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMessageWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMessageWait.Designer.cs">
+      <DependentUpon>frmMessageWait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVipReviewAnn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVipReviewAnn.Designer.cs">
+      <DependentUpon>frmVipReviewAnn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVipReviewMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVipReviewMon.Designer.cs">
+      <DependentUpon>frmVipReviewMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWelcome.Designer.cs">
+      <DependentUpon>frmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhereRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhereRecall.Designer.cs">
+      <DependentUpon>frmWhereRecall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhereSrch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhereSrch.Designer.cs">
+      <DependentUpon>frmWhereSrch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWhereStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhereStore.Designer.cs">
+      <DependentUpon>frmWhereStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWorkSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWorkSheet.designer.cs">
+      <DependentUpon>frmWorkSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralFunctions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Program.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="frmActiveSel.resx">
+      <DependentUpon>frmActiveSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddCCMailPopup.resx">
+      <DependentUpon>frmAddCCMailPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddCommentPopup.resx">
+      <DependentUpon>frmAddCommentPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddMonthlyAuditPopup.resx">
+      <DependentUpon>frmAddMonthlyAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddPrinterPopup.resx">
+      <DependentUpon>frmAddPrinterPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddReferralPopup.resx">
+      <DependentUpon>frmAddReferralPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTCDescriptionPopup.resx">
+      <DependentUpon>frmAddTCDescriptionPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdHoc.resx">
+      <DependentUpon>frmAdHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAnnualProcess.resx">
+      <DependentUpon>frmAnnualProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmArtbaAnn.resx">
+      <DependentUpon>frmArtbaAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmArtbaMon.resx">
+      <DependentUpon>frmArtbaMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAuthUserAnnAddPopup.resx">
+      <DependentUpon>frmAuthUserAnnAddPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAuthUserAnnAuditPopup.resx">
+      <DependentUpon>frmAuthUserAnnAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAuthUserAuditPopup.resx">
+      <DependentUpon>frmAuthUserAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAuthUsers.resx">
+      <DependentUpon>frmAuthUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAvecost.resx">
+      <DependentUpon>frmAvecost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAvecostCases.resx">
+      <DependentUpon>frmAvecostCases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBenAnnual.resx">
+      <DependentUpon>frmBenAnnual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBenExport.resx">
+      <DependentUpon>frmBenExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBenOutputData.resx">
+      <DependentUpon>frmBenOutputData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBenRunBCF.resx">
+      <DependentUpon>frmBenRunBCF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBenTrender.resx">
+      <DependentUpon>frmBenTrender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBF.resx">
+      <DependentUpon>frmBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmC700.resx">
+      <DependentUpon>frmC700.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmC700flagSelPopup.resx">
+      <DependentUpon>frmC700flagSelPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmC700Srch.resx">
+      <DependentUpon>frmC700Srch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCalendarPopup.resx">
+      <DependentUpon>frmCalendarPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCallSchedulerCounts.resx">
+      <DependentUpon>frmCallSchedulerCounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCaseManagementReport.resx">
+      <DependentUpon>frmCaseManagementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCCMail.resx">
+      <DependentUpon>frmCCMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeAddReferralPopup.resx">
+      <DependentUpon>frmCeAddReferralPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCecommentPopup.resx">
+      <DependentUpon>frmCecommentPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeflagSelPopup.resx">
+      <DependentUpon>frmCeflagSelPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCehelpsPopup.resx">
+      <DependentUpon>frmCehelpsPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeHistoryPopup.resx">
+      <DependentUpon>frmCeHistoryPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeMarkcasesPopup.resx">
+      <DependentUpon>frmCeMarkcasesPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCemarkPopup.resx">
+      <DependentUpon>frmCemarkPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCenturionFailedVerif.resx">
+      <DependentUpon>frmCenturionFailedVerif.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeProjectAccess.resx">
+      <DependentUpon>frmCeProjectAccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeProjectAudit.resx">
+      <DependentUpon>frmCeProjectAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeProjectAuditPopup.resx">
+      <DependentUpon>frmCeProjectAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCeUpdReferralPopup.resx">
+      <DependentUpon>frmCeUpdReferralPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangeRespidPopup.resx">
+      <DependentUpon>frmChangeRespidPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCprsParent.resx">
+      <DependentUpon>frmCprsParent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCurrentUsers.resx">
+      <DependentUpon>frmCurrentUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDatabaseSelectionPopup.resx">
+      <DependentUpon>frmDatabaseSelectionPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDCPDUP.resx">
+      <DependentUpon>frmDCPDUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDCPInitPopup.resx">
+      <DependentUpon>frmDCPInitPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDistribution.resx">
+      <DependentUpon>frmDistribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDodgeInital.resx">
+      <DependentUpon>frmDodgeInital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDodgeInitialReview.resx">
+      <DependentUpon>frmDodgeInitialReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmError.resx">
+      <DependentUpon>frmError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFlagTypeReport.resx">
+      <DependentUpon>frmFlagTypeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGlobalInsightAnn.resx">
+      <DependentUpon>frmGlobalInsightAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGlobalInsightMon.resx">
+      <DependentUpon>frmGlobalInsightMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHelp.resx">
+      <DependentUpon>frmHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHelpPopup.resx">
+      <DependentUpon>frmHelpPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHistory.resx">
+      <DependentUpon>frmHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHome.resx">
+      <DependentUpon>frmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIdPopup.resx">
+      <DependentUpon>frmIdPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpAnnualProc.resx">
+      <DependentUpon>frmImpAnnualProc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpFlagsReview.resx">
+      <DependentUpon>frmImpFlagsReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpMarkCaseReview.resx">
+      <DependentUpon>frmImpMarkCaseReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpMonthProc.resx">
+      <DependentUpon>frmImpMonthProc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpReferral.resx">
+      <DependentUpon>frmImpReferral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpReferralReview.resx">
+      <DependentUpon>frmImpReferralReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImprovements.resx">
+      <DependentUpon>frmImprovements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImprovementSearch.resx">
+      <DependentUpon>frmImprovementSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpTabReview.resx">
+      <DependentUpon>frmImpTabReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpUnlockCase.resx">
+      <DependentUpon>frmImpUnlockCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLSF.resx">
+      <DependentUpon>frmLSF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMarkCaseReview.resx">
+      <DependentUpon>frmMarkCaseReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMarkCasesPopup.resx">
+      <DependentUpon>frmMarkCasesPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMarkPopup.resx">
+      <DependentUpon>frmMarkPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaster.resx">
+      <DependentUpon>frmMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMfComparePopup.resx">
+      <DependentUpon>frmMfComparePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMfInitial.resx">
+      <DependentUpon>frmMfInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMfInitialReview.resx">
+      <DependentUpon>frmMfInitialReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMFInitPopup.resx">
+      <DependentUpon>frmMFInitPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMfParentPopup.resx">
+      <DependentUpon>frmMfParentPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMonthlyAuditReviewPopup.resx">
+      <DependentUpon>frmMonthlyAuditReviewPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMonthlyProcess.resx">
+      <DependentUpon>frmMonthlyProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMonthlyProcessPopup.resx">
+      <DependentUpon>frmMonthlyProcessPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMySectors.resx">
+      <DependentUpon>frmMySectors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMySectorsPopup.resx">
+      <DependentUpon>frmMySectorsPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmName.resx">
+      <DependentUpon>frmName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewAuthUserPopup.resx">
+      <DependentUpon>frmNewAuthUserPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewtcSel.resx">
+      <DependentUpon>frmNewtcSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCActiveLoad.resx">
+      <DependentUpon>frmNPCActiveLoad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCAttemptCases.resx">
+      <DependentUpon>frmNPCAttemptCases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCAttempts.resx">
+      <DependentUpon>frmNPCAttempts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCSpecialColtecSel.resx">
+      <DependentUpon>frmNPCSpecialColtecSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCSpecialInstPopup.resx">
+      <DependentUpon>frmNPCSpecialInstPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCSpecialPopup.resx">
+      <DependentUpon>frmNPCSpecialPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPCSpecials.resx">
+      <DependentUpon>frmNPCSpecials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPNonResSpecialCases.resx">
+      <DependentUpon>frmNPNonResSpecialCases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNPNonResSpecialNA.resx">
+      <DependentUpon>frmNPNonResSpecialNA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParentIdPopup.resx">
+      <DependentUpon>frmParentIdPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrinters.resx">
+      <DependentUpon>frmPrinters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProjectAccess.resx">
+      <DependentUpon>frmProjectAccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProjectAudit.resx">
+      <DependentUpon>frmProjectAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProjectAuditPopup.resx">
+      <DependentUpon>frmProjectAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReferral.resx">
+      <DependentUpon>frmReferral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReferralReview.resx">
+      <DependentUpon>frmReferralReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReschedulePopup.resx">
+      <DependentUpon>frmReschedulePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespAddrUpdate.resx">
+      <DependentUpon>frmRespAddrUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespCentpwdPopup.resx">
+      <DependentUpon>frmRespCentpwdPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpFlgPrintSel.resx">
+      <DependentUpon>frmImpFlgPrintSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespComment.resx">
+      <DependentUpon>frmRespComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespidEditPopup.resx">
+      <DependentUpon>frmRespidEditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespidPopup.resx">
+      <DependentUpon>frmRespidPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespondent.resx">
+      <DependentUpon>frmRespondent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmResponseRate.resx">
+      <DependentUpon>frmResponseRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRespPrintSel.resx">
+      <DependentUpon>frmRespPrintSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRevCompMsgbox.resx">
+      <DependentUpon>frmRevCompMsgbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReviewScheduler.resx">
+      <DependentUpon>frmReviewScheduler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRevision.resx">
+      <DependentUpon>frmRevision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRspAudit.resx">
+      <DependentUpon>frmRspAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRspAuditPopup.resx">
+      <DependentUpon>frmRspAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSample.resx">
+      <DependentUpon>frmSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchedHistPopup.resx">
+      <DependentUpon>frmSchedHistPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSlipDisplay.resx">
+      <DependentUpon>frmSlipDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSource.resx">
+      <DependentUpon>frmSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSourceAddrPopup.resx">
+      <DependentUpon>frmSourceAddrPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecBEACDAnn.resx">
+      <DependentUpon>frmSpecBEACDAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecBEACDMon.resx">
+      <DependentUpon>frmSpecBEACDMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecBEASLAnn.resx">
+      <DependentUpon>frmSpecBEASLAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecBEASLMon.resx">
+      <DependentUpon>frmSpecBEASLMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecGeogPriv.resx">
+      <DependentUpon>frmSpecGeogPriv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecGeogPub.resx">
+      <DependentUpon>frmSpecGeogPub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialPriorityTC.resx">
+      <DependentUpon>frmSpecialPriorityTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecManufacturingAnn.resx">
+      <DependentUpon>frmSpecManufacturingAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecProjectValue.resx">
+      <DependentUpon>frmSpecProjectValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecStrt.resx">
+      <DependentUpon>frmSpecStrt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecStrtProj.resx">
+      <DependentUpon>frmSpecStrtProj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecStrtSum.resx">
+      <DependentUpon>frmSpecStrtSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecTCAuditPopup.resx">
+      <DependentUpon>frmSpecTCAuditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecTCEditPopup.resx">
+      <DependentUpon>frmSpecTCEditPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecTimeLen.resx">
+      <DependentUpon>frmSpecTimeLen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecTimeLenDist.resx">
+      <DependentUpon>frmSpecTimeLenDist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecTimeLenDistCases.resx">
+      <DependentUpon>frmSpecTimeLenDistCases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecTimeLenWorksheet.resx">
+      <DependentUpon>frmSpecTimeLenWorksheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStatusSel.resx">
+      <DependentUpon>frmStatusSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSurveySel.resx">
+      <DependentUpon>frmSurveySel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSystemAudit.resx">
+      <DependentUpon>frmSystemAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualBea.resx">
+      <DependentUpon>frmTabAnnualBea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualBeaRev.resx">
+      <DependentUpon>frmTabAnnualBeaRev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualBeaTCUpdate.resx">
+      <DependentUpon>frmTabAnnualBeaTCUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualBeaUtilities.resx">
+      <DependentUpon>frmTabAnnualBeaUtilities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualBeaWorksheet.resx">
+      <DependentUpon>frmTabAnnualBeaWorksheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualPrintPopup.resx">
+      <DependentUpon>frmTabAnnualPrintPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualTabs.resx">
+      <DependentUpon>frmTabAnnualTabs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabAnnualView.resx">
+      <DependentUpon>frmTabAnnualView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTableMonRelease.resx">
+      <DependentUpon>frmTableMonRelease.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTablePressRelease.resx">
+      <DependentUpon>frmTablePressRelease.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTableSeasonalFactor.resx">
+      <DependentUpon>frmTableSeasonalFactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTableSpecialPrivate.resx">
+      <DependentUpon>frmTableSpecialPrivate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTableStandardErrors.resx">
+      <DependentUpon>frmTableStandardErrors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTabMonToMon.resx">
+      <DependentUpon>frmTabMonToMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTCDescriptionReview.resx">
+      <DependentUpon>frmTCDescriptionReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTfu.resx">
+      <DependentUpon>frmTfu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTFUFlagSelPopup.resx">
+      <DependentUpon>frmTFUFlagSelPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeExternal.resx">
+      <DependentUpon>frmTimeExternal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimeInternal.resx">
+      <DependentUpon>frmTimeInternal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTotalVip.resx">
+      <DependentUpon>frmTotalVip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTsarSeriesSelectionPopup.resx">
+      <DependentUpon>frmTsarSeriesSelectionPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTsarSeriesViewer.resx">
+      <DependentUpon>frmTsarSeriesViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUnavailableDays.resx">
+      <DependentUpon>frmUnavailableDays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUnlock.resx">
+      <DependentUpon>frmUnlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdReferralPopup.resx">
+      <DependentUpon>frmUpdReferralPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdTCDescriptionPopup.resx">
+      <DependentUpon>frmUpdTCDescriptionPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVarSelPopup.resx">
+      <DependentUpon>frmVarSelPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVerificationPopup.resx">
+      <DependentUpon>frmVerificationPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVerifyDeletePopup.resx">
+      <DependentUpon>frmVerifyDeletePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVerifyTabPopup.resx">
+      <DependentUpon>frmVerifyTabPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMessageWait.resx">
+      <DependentUpon>frmMessageWait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVipReviewAnn.resx">
+      <DependentUpon>frmVipReviewAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVipReviewMon.resx">
+      <DependentUpon>frmVipReviewMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWelcome.resx">
+      <DependentUpon>frmWelcome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhereRecall.resx">
+      <DependentUpon>frmWhereRecall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhereSrch.resx">
+      <DependentUpon>frmWhereSrch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhereStore.resx">
+      <DependentUpon>frmWhereStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWorkSheet.resx">
+      <DependentUpon>frmWorkSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CprsBLL\CprsBLL.csproj">
+      <Project>{5FBD22CE-D7E7-4725-88AC-19DCD41D09DA}</Project>
+      <Name>CprsBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CprsDAL\CprsDAL.csproj">
+      <Project>{4023C53E-F99F-4816-8A8B-2B1DEFF2F2C3}</Project>
+      <Name>CprsDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnify.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B100C_high.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
