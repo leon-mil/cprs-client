@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5FBD22CE-D7E7-4725-88AC-19DCD41D09DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CprsBLL</RootNamespace>
+    <AssemblyName>CprsBLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ceaudit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cecomments.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ceflags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cejobs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cemark.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cesample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cpraudit.cs" />
+    <Compile Include="Cprflags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataFlags.cs" />
+    <Compile Include="DodgeInitial.cs" />
+    <Compile Include="DodgeNextInitial.cs" />
+    <Compile Include="DodgeNotes.cs" />
+    <Compile Include="Factor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GlobalVars.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImpMonProc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImpTabReview.cs" />
+    <Compile Include="MapNetwork.cs" />
+    <Compile Include="Master.cs" />
+    <Compile Include="MfCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonthlyProcessRec.cs" />
+    <Compile Include="MonthlyVips.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MySector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddr.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddrAudit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddrcomments.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddrFactor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddrmark.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NameAddrResp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPCSpecial.cs" />
+    <Compile Include="NPSpecCases.cs" />
+    <Compile Include="Presample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProjMark.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RespAddr.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RespAudit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Respondent.cs" />
+    <Compile Include="Sample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Schedcall.cs" />
+    <Compile Include="SearchCriteria.cs" />
+    <Compile Include="Searchinfo.cs" />
+    <Compile Include="Slips.cs" />
+    <Compile Include="Soc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TFU.cs" />
+    <Compile Include="UserInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
