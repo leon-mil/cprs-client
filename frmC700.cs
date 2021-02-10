@@ -80,6 +80,12 @@ Modified Date :  01/09/2020
  Keyword       :  
  Change Request: CR#
  Description   : SaveSchedCall() only update callstat when vip satisfied
+***********************************************************************************
+Modified Date :  2/9/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR#
+ Description   : allow analyst access respondent referrals
 ***********************************************************************************/
 
 using System;
@@ -486,9 +492,9 @@ public string Id;
                 lblReject.Visible = false;
 
             /*set up referer button based on my sector */
-            if (ms != null && !ms.CheckInMySector(mast.Newtc))
-                btnRef.Enabled = false;
-            else
+           // if (ms != null && !ms.CheckInMySector(mast.Newtc))
+                //btnRef.Enabled = false;
+            //else
                 btnRef.Enabled = true;
 
             /*Show referral flag */

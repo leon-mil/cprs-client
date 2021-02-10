@@ -31,6 +31,12 @@ Revision Referrals:
  Keyword       :  
  Change Request:  
  Description   :  Change Tab style
+***********************************************************************************
+Modified Date :  2/19/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request:  
+ Description   :  Allow Analyst update referral which created by others
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -706,11 +712,13 @@ namespace Cprs
                         if (tbReferrals.SelectedIndex == 0)
                         {
                             string newtc = dg.SelectedRows[0].Cells[7].Value.ToString();
-                            if (!ms.CheckInMySector(newtc))
+                            
+                            /*set up referer button based on my sector */
+                            if (ms != null && !ms.CheckInMySector(newtc))
                                 btnUpdReferral.Enabled = false;
                         }
-                        else
-                            btnUpdReferral.Enabled = false;
+                       // else
+                            //btnUpdReferral.Enabled = false;
                     }
                 }
                 else if (UserInfo.GroupCode == EnumGroups.HQMathStat || UserInfo.GroupCode == EnumGroups.NPCInterviewer)
