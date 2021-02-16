@@ -278,14 +278,18 @@ namespace Cprs
             dgTc.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgTc.Columns[14].HeaderText = ppmons + "-" + p3mons + "/" + p3mons;
             dgTc.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgTc.Columns[14].DefaultCellStyle.Format = "N2";
             dgTc.Columns[15].HeaderText = p3mons + "-" + p4mons + "/" + p4mons;
             dgTc.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgTc.Columns[15].DefaultCellStyle.Format = "N2";
             dgTc.Columns[16].HeaderText = "3rd Rev Change";
+            dgTc.Columns[16].DefaultCellStyle.Format = "N2";
             dgTc.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgTc.Columns[16].Width = 130;
             dgTc.Columns[17].HeaderText = "4th Rev Change";
             dgTc.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgTc.Columns[17].Width = 130;
+            dgTc.Columns[17].DefaultCellStyle.Format = "N2";
         }
 
         //get monthly vip calculation 
