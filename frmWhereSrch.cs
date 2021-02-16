@@ -189,20 +189,27 @@ namespace Cprs
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (txtWhere.Text.Trim() == "")
+            string txwhere = txtWhere.Text.Trim();
+           
+            if (txwhere == "")
             {
                 MessageBox.Show("Please enter search citeria. ");
                 txtWhere.Focus();
                 return;
             }
+            else if (txwhere.Contains("1=1"))
+            {
+                MessageBox.Show("Syntax Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtWhere.Focus();
+                return;
+            }
 
             /*from where clause get additional columns to display */
-            string add_cols = GetAddColumns(txtWhere.Text);
+            string add_cols = GetAddColumns(txwhere);
             
-
             string error_message = "";
 
-            DataTable dt = dataObject.GetInteractivesSearchData(txtWhere.Text, chkSample.Checked, add_cols, ref error_message);
+            DataTable dt = dataObject.GetInteractivesSearchData(txwhere, chkSample.Checked, add_cols, ref error_message);
             if (error_message != "")
             {
                 MessageBox.Show("Syntax Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
