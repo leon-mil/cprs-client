@@ -2205,6 +2205,9 @@ public string Id;
                         sc.Complete = "N";
                         sc.Callreq = "Y";
                         sc.Callstat = "";
+                        sc.Apptdate = "";
+                        sc.Appttime = (8 + time_factor).ToString("00") + "00";
+                        sc.Apptends = "1700";
                     }
                     if (sc.Callstat == "V" && !CheckVipSatisfied())
                       sc.Callstat = " ";
