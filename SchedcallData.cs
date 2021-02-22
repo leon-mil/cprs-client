@@ -12,11 +12,11 @@ Detailed Design : None
 Other           : Called by: frmC700, frmTFU
 Revision History:	
 ***************************************************************************************
-Modified Date   :  
-Modified By     :  
+Modified Date   :  2/22/2021 
+Modified By     :  Christine Zhang
 Keyword         :  
 Change Request  :  
-Description     :  
+Description     : update GetNextCase() set default apptime and append if the their value are empty
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -454,14 +454,18 @@ namespace CprsDAL
                 {
                     string calltype = row["calltpe"].ToString();
                     string rstate = row["rstate"].ToString();
-                    string apptdate = row["apptdate"].ToString();
-                    string apptime = row["appttime"].ToString();
-                    string apptend = row["apptends"].ToString();
+                    string apptdate = row["apptdate"].ToString().Trim();
+                    string apptime = row["appttime"].ToString().Trim();
+                    string apptend = row["apptends"].ToString().Trim();
 
+                    if (apptime == string.Empty)
+                        apptime = (8 + GeneralDataFuctions.GetTimezoneFactor(rstate)).ToString("00") + "00";
+                    if (apptend == string.Empty)
+                        apptend = "1700";
+                   
                     DateTime parsetime = DateTime.ParseExact(apptime, "HHmm", System.Globalization.CultureInfo.InvariantCulture);
-
                     string apptime2 = parsetime.AddHours(1).ToString("HHmm");
-
+                    
                     //check apptdate less than today
                     if (apptdate.Trim() != "" && Convert.ToInt32(apptdate) < Convert.ToInt32(todate))
                     {
