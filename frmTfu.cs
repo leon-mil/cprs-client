@@ -81,6 +81,12 @@ Revision History:
  Change Request: CR
  Description   : fix two saving issues: Save to hold table if report reject is false but reject 
                  is true; skip saving sched data if in NPC and call stat is V in one of cases with same respid
+************************************************************************************
+ Modified Date :  3/9/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR8026
+ Description   : add history button, enable only for NPC lead and manager
 ************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -776,6 +782,7 @@ namespace Cprs
                     btnRefresh.Enabled = false;
                    
                     btnPrevious.Enabled = false;
+                    btnHistory.Enabled = false;
 
                 }
             }
@@ -1168,13 +1175,15 @@ namespace Cprs
                 {
                     tabControl2.TabPages.Add(tabPage7);
                     tabControl2.TabPages.Add(tabPage8);  
-                }   
+                }
+                btnHistory.Enabled = true;  
             }
             else
             {
                 btnMark.Visible = false;
                 tabControl2.TabPages.Remove(tabPage7);
-                tabControl2.TabPages.Remove(tabPage8);  
+                tabControl2.TabPages.Remove(tabPage8);
+                btnHistory.Enabled = false; 
             }
 
             // if the id is null, disable buttons
@@ -6406,6 +6415,21 @@ namespace Cprs
         private void txtPcityst_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            DataTable dtsc = scheddata.GetSchedHistDataByID(id);
+            if (dtsc.Rows.Count == 0)
+            {
+                MessageBox.Show("There are no Scheduler History records for this case");
+                return;
+            }
+
+            frmSchedHistPopup popup = new frmSchedHistPopup();
+            popup.Id = id;
+            popup.StartPosition = FormStartPosition.CenterParent;
+            popup.ShowDialog();
         }
     }
 }
