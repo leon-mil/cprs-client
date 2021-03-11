@@ -1302,10 +1302,10 @@ namespace Cprs
 
             UpdateResp ur = new UpdateResp();
  
-            respaddrupdate = ur.UpdateRespData(this.txtRespid.Text, this.txtContact.Text, this.txtContact2.Text, this.txtOwner.Text,
-               this.txtSpecNote.Text, this.txtFactorOff.Text, this.txtOtherResp.Text, this.txtAddr1.Text,
-               this.txtAddr2.Text, this.txtAddr3.Text, this.txtPhone.Text, this.txtPhone2.Text, this.txtExt.Text, this.txtExt2.Text, this.txtFax.Text,
-               this.txtZip.Text, this.txtEmail.Text, this.txtWeb.Text, this.cboLag.Text, rstate , coltec);
+            respaddrupdate = ur.UpdateRespData(this.txtRespid.Text, this.txtContact.Text.Trim(), this.txtContact2.Text.Trim(), this.txtOwner.Text,
+               this.txtSpecNote.Text.Trim(), this.txtFactorOff.Text.Trim(), this.txtOtherResp.Text.Trim(), this.txtAddr1.Text.Trim(),
+               this.txtAddr2.Text.Trim(), this.txtAddr3.Text.Trim(), this.txtPhone.Text.Trim(), this.txtPhone2.Text.Trim(), this.txtExt.Text.Trim(), this.txtExt2.Text.Trim(), this.txtFax.Text.Trim(),
+               this.txtZip.Text.Trim(), this.txtEmail.Text.Trim(), this.txtWeb.Text.Trim(), this.cboLag.Text, rstate , coltec);
 
             DateTime prgdtm = DateTime.Now;
 

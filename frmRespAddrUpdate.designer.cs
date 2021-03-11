@@ -41,6 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.lblRespAddrUpd = new System.Windows.Forms.Label();
             this.txtOtherResp = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.txtSpecNote = new System.Windows.Forms.TextBox();
@@ -141,7 +142,6 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.label55 = new System.Windows.Forms.Label();
-            this.lblRespAddrUpd = new System.Windows.Forms.Label();
             this.tbProjHist.SuspendLayout();
             this.tbProjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgProjList)).BeginInit();
@@ -156,6 +156,17 @@
             this.tbPrimary.SuspendLayout();
             this.tbSecondary.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // lblRespAddrUpd
+            // 
+            this.lblRespAddrUpd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRespAddrUpd.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblRespAddrUpd.Location = new System.Drawing.Point(404, 56);
+            this.lblRespAddrUpd.Name = "lblRespAddrUpd";
+            this.lblRespAddrUpd.Size = new System.Drawing.Size(480, 25);
+            this.lblRespAddrUpd.TabIndex = 0;
+            this.lblRespAddrUpd.Text = "RESPONDENT UPDATE";
+            this.lblRespAddrUpd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtOtherResp
             // 
@@ -1385,23 +1396,12 @@
             // 
             this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label55.ForeColor = System.Drawing.Color.Yellow;
-            this.label55.Location = new System.Drawing.Point(502, 36);
+            this.label55.Location = new System.Drawing.Point(518, 32);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(280, 20);
+            this.label55.Size = new System.Drawing.Size(253, 24);
             this.label55.TabIndex = 198;
             this.label55.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblRespAddrUpd
-            // 
-            this.lblRespAddrUpd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRespAddrUpd.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblRespAddrUpd.Location = new System.Drawing.Point(507, 59);
-            this.lblRespAddrUpd.Name = "lblRespAddrUpd";
-            this.lblRespAddrUpd.Size = new System.Drawing.Size(278, 25);
-            this.lblRespAddrUpd.TabIndex = 0;
-            this.lblRespAddrUpd.Text = "RESPONDENT UPDATE";
-            this.lblRespAddrUpd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frmRespAddrUpdate
             // 
@@ -1461,6 +1461,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblRespAddrUpd;
         private System.Windows.Forms.Button btnFactor;
         private System.Windows.Forms.Button btnOtherResp;
         private System.Windows.Forms.Button btnAddr3;
@@ -1561,6 +1563,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label lblRespAddrUpd;
     }
 }
