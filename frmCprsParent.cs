@@ -21,11 +21,11 @@ Other           :
  
 Revision History:	
 ***********************************************************************************
-Modified Date   :  
-Modified By     :  
-Keyword         :  
-Change Request  :  
-Description     :  
+Modified Date   : March 23, 2021
+Modified By     : Christine Zhang 
+Keyword         : 20210323cz 
+Change Request  : CR 8068
+Description     : Expand Help Menu to include selections for other documents 
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -137,29 +137,29 @@ namespace Cprs
             {
                 mnuSetup.Visible = false;
 
-                mnuCcmail.Visible        = false;
+                mnuCcmail.Visible = false;
                 mnuTcDescription.Visible = false;
-                mnuMySectors.Visible     = false;
-                munPrinters.Visible      = false;
+                mnuMySectors.Visible = false;
+                munPrinters.Visible = false;
                 mnuCallScheduler.Visible = false;
             }
 
-            mnuCcmail.Visible        = false;
+            mnuCcmail.Visible = false;
             mnuTcDescription.Visible = false;
-            mnuMySectors.Visible     = false;
-            munPrinters.Visible      = false;
+            mnuMySectors.Visible = false;
+            munPrinters.Visible = false;
             mnuCallScheduler.Visible = false;
 
             if (UserInfo.GroupCode == EnumGroups.NPCManager ||
-                UserInfo.GroupCode == EnumGroups.NPCLead    ||
-                UserInfo.GroupCode == EnumGroups.HQAnalyst  ||
-                UserInfo.GroupCode == EnumGroups.HQManager  ||
-                UserInfo.GroupCode == EnumGroups.HQSupport  ||
-                UserInfo.GroupCode == EnumGroups.HQTester   ||
+                UserInfo.GroupCode == EnumGroups.NPCLead ||
+                UserInfo.GroupCode == EnumGroups.HQAnalyst ||
+                UserInfo.GroupCode == EnumGroups.HQManager ||
+                UserInfo.GroupCode == EnumGroups.HQSupport ||
+                UserInfo.GroupCode == EnumGroups.HQTester ||
                 UserInfo.GroupCode == EnumGroups.Programmer)
             {
                 mnuTcDescription.Visible = true;
-                mnuMySectors.Visible     = true;
+                mnuMySectors.Visible = true;
             }
 
             if (UserInfo.GroupCode == EnumGroups.HQManager ||
@@ -188,12 +188,12 @@ namespace Cprs
 
             //Turn off TFU for all HQ
 
-            if (UserInfo.GroupCode == EnumGroups.HQManager  ||
-                UserInfo.GroupCode == EnumGroups.HQAnalyst  ||
-                UserInfo.GroupCode == EnumGroups.HQSupport  ||
-                UserInfo.GroupCode == EnumGroups.HQTester   ||
+            if (UserInfo.GroupCode == EnumGroups.HQManager ||
+                UserInfo.GroupCode == EnumGroups.HQAnalyst ||
+                UserInfo.GroupCode == EnumGroups.HQSupport ||
+                UserInfo.GroupCode == EnumGroups.HQTester ||
                 UserInfo.GroupCode == EnumGroups.Programmer ||
-                UserInfo.GroupCode == EnumGroups.HQMathStat )
+                UserInfo.GroupCode == EnumGroups.HQMathStat)
             {
                 mnuPhone.Visible = false;
             }
@@ -258,7 +258,7 @@ namespace Cprs
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
                 mnuReport.Visible = false;
-            }     
+            }
 
             //Turn of NPC Attempts Report for NPClead and HQMathStat
 
@@ -379,7 +379,7 @@ namespace Cprs
             if (UserInfo.GroupCode == EnumGroups.HQMathStat)
             {
                 mnuUnlock.Visible = false;
-            }         
+            }
 
             //Monthly and Annual processing
 
@@ -389,12 +389,19 @@ namespace Cprs
             if (UserInfo.GroupCode == EnumGroups.NPCManager ||
                 UserInfo.GroupCode == EnumGroups.NPCLead ||
                 UserInfo.GroupCode == EnumGroups.HQMathStat ||
-                UserInfo.GroupCode  == EnumGroups.NPCInterviewer)
+                UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
                 mnuMonProc.Visible = false;
                 mnuAnnualProc.Visible = false;
             }
 
+            //Help menu
+            if (UserInfo.GroupCode == EnumGroups.HQAnalyst || UserInfo.GroupCode == EnumGroups.HQMathStat || UserInfo.GroupCode == EnumGroups.Programmer ||
+                UserInfo.GroupCode == EnumGroups.HQManager || UserInfo.GroupCode == EnumGroups.HQSupport || UserInfo.GroupCode == EnumGroups.HQTester)
+            {
+                mnuHelpTelephoneFollowUp.Visible = false;
+                mnuHelpFormEntryProcedures.Visible = false;
+            }
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -410,7 +417,7 @@ namespace Cprs
 
                 //add record to cpraccess
                 GeneralDataFuctions.AddCpraccessData("SYSTEM", "EXIT");
-                
+
                 Application.Exit();
             }
         }
@@ -474,8 +481,11 @@ namespace Cprs
                 fWS.Show();
             }
         }
-
-        private void mnuHome_Click(object sender, EventArgs e)
+        //--------------------------------------------------------------------------------
+        // HELP MENU
+        //--------------------------------------------------------------------------------
+       
+    private void mnuHome_Click(object sender, EventArgs e)
         {
             //if (VerifyFormClosing())
             //{
@@ -685,12 +695,12 @@ namespace Cprs
 
         private void mnuHelp_Click(object sender, EventArgs e)
         {
-            if (VerifyFormClosing())
-            {
-                this.Close();
-                frmHelp fH = new frmHelp();
-                fH.Show();
-            }
+            //if (VerifyFormClosing())
+            //{
+            //    this.Close();
+            //    frmHelp fH = new frmHelp();
+            //    fH.Show();
+            //}
         }
 
         private void mnuInitialsMF_Click(object sender, EventArgs e)
@@ -1268,6 +1278,94 @@ namespace Cprs
             {
                 this.Close();
                 frmNPCSpecials fp = new frmNPCSpecials();
+                fp.Show();
+            }
+        }
+
+        private void mnuhelpCPRSUserManual_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "1";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpCenturionUserManual_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "2";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpDodgeRESPIDProcedures_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "3";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpMultifamilyCAPIProcedures_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "4";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpRespondentSearchProcedures_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "5";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpTelephoneFollowUp_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "6";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpFormEntryProcedures_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "7";
+                fp.Show();
+            }
+        }
+
+        private void mnuHelpFederalContactNumbers_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmHelp fp = new frmHelp();
+                fp.mnunum = "8";
                 fp.Show();
             }
         }

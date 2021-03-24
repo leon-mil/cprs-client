@@ -139,6 +139,14 @@
             this.mnuStandardError = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNCE = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuhelpCPRSUserManual = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpCenturionUserManual = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpDodgeRESPIDProcedures = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpMultifamilyCAPIProcedures = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpRespondentSearchProcedures = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpTelephoneFollowUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpFormEntryProcedures = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpFederalContactNumbers = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1041,11 +1049,76 @@
             // 
             // mnuHelp
             // 
+            this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuhelpCPRSUserManual,
+            this.mnuHelpCenturionUserManual,
+            this.mnuHelpDodgeRESPIDProcedures,
+            this.mnuHelpMultifamilyCAPIProcedures,
+            this.mnuHelpRespondentSearchProcedures,
+            this.mnuHelpTelephoneFollowUp,
+            this.mnuHelpFormEntryProcedures,
+            this.mnuHelpFederalContactNumbers});
             this.mnuHelp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuHelp.Name = "mnuHelp";
             this.mnuHelp.Size = new System.Drawing.Size(58, 25);
             this.mnuHelp.Text = "Help";
             this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
+            // 
+            // mnuhelpCPRSUserManual
+            // 
+            this.mnuhelpCPRSUserManual.Name = "mnuhelpCPRSUserManual";
+            this.mnuhelpCPRSUserManual.Size = new System.Drawing.Size(368, 26);
+            this.mnuhelpCPRSUserManual.Text = "CPRS User Manual";
+            this.mnuhelpCPRSUserManual.Click += new System.EventHandler(this.mnuhelpCPRSUserManual_Click);
+            // 
+            // mnuHelpCenturionUserManual
+            // 
+            this.mnuHelpCenturionUserManual.Name = "mnuHelpCenturionUserManual";
+            this.mnuHelpCenturionUserManual.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpCenturionUserManual.Text = "Centurion User Manual";
+            this.mnuHelpCenturionUserManual.Click += new System.EventHandler(this.mnuHelpCenturionUserManual_Click);
+            // 
+            // mnuHelpDodgeRESPIDProcedures
+            // 
+            this.mnuHelpDodgeRESPIDProcedures.Name = "mnuHelpDodgeRESPIDProcedures";
+            this.mnuHelpDodgeRESPIDProcedures.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpDodgeRESPIDProcedures.Text = "Dodge/RESPID procedures";
+            this.mnuHelpDodgeRESPIDProcedures.Click += new System.EventHandler(this.mnuHelpDodgeRESPIDProcedures_Click);
+            // 
+            // mnuHelpMultifamilyCAPIProcedures
+            // 
+            this.mnuHelpMultifamilyCAPIProcedures.Name = "mnuHelpMultifamilyCAPIProcedures";
+            this.mnuHelpMultifamilyCAPIProcedures.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpMultifamilyCAPIProcedures.Text = "Multifamily/CAPI procedures";
+            this.mnuHelpMultifamilyCAPIProcedures.Click += new System.EventHandler(this.mnuHelpMultifamilyCAPIProcedures_Click);
+            // 
+            // mnuHelpRespondentSearchProcedures
+            // 
+            this.mnuHelpRespondentSearchProcedures.Name = "mnuHelpRespondentSearchProcedures";
+            this.mnuHelpRespondentSearchProcedures.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpRespondentSearchProcedures.Text = "Respondent search procedures";
+            this.mnuHelpRespondentSearchProcedures.Click += new System.EventHandler(this.mnuHelpRespondentSearchProcedures_Click);
+            // 
+            // mnuHelpTelephoneFollowUp
+            // 
+            this.mnuHelpTelephoneFollowUp.Name = "mnuHelpTelephoneFollowUp";
+            this.mnuHelpTelephoneFollowUp.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpTelephoneFollowUp.Text = "Telephone Follow Up procedures";
+            this.mnuHelpTelephoneFollowUp.Click += new System.EventHandler(this.mnuHelpTelephoneFollowUp_Click);
+            // 
+            // mnuHelpFormEntryProcedures
+            // 
+            this.mnuHelpFormEntryProcedures.Name = "mnuHelpFormEntryProcedures";
+            this.mnuHelpFormEntryProcedures.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpFormEntryProcedures.Text = "Form Entry procedures";
+            this.mnuHelpFormEntryProcedures.Click += new System.EventHandler(this.mnuHelpFormEntryProcedures_Click);
+            // 
+            // mnuHelpFederalContactNumbers
+            // 
+            this.mnuHelpFederalContactNumbers.Name = "mnuHelpFederalContactNumbers";
+            this.mnuHelpFederalContactNumbers.Size = new System.Drawing.Size(368, 26);
+            this.mnuHelpFederalContactNumbers.Text = "Federal Contract Numbers procedures";
+            this.mnuHelpFederalContactNumbers.Click += new System.EventHandler(this.mnuHelpFederalContactNumbers_Click);
             // 
             // statusStrip1
             // 
@@ -1226,5 +1299,13 @@
         private System.Windows.Forms.ToolStripMenuItem mnuFailedVerificationReview;
         private System.Windows.Forms.ToolStripMenuItem mnuResponseRates;
         private System.Windows.Forms.ToolStripMenuItem mnuNpcSpecials;
+        private System.Windows.Forms.ToolStripMenuItem mnuhelpCPRSUserManual;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpCenturionUserManual;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpDodgeRESPIDProcedures;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpMultifamilyCAPIProcedures;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpRespondentSearchProcedures;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpTelephoneFollowUp;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpFormEntryProcedures;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpFederalContactNumbers;
     }
 }
