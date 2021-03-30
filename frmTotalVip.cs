@@ -13,11 +13,11 @@ Detail Design :
 Rev History   : See Below
 Other         : N/A
  ***********************************************************************
-Modified Date :
-Modified By   :
+Modified Date : March 30, 2021
+Modified By   : Kevin Montgomery
 Keyword       :
 Change Request:
-Description   :
+Description   : Comment out Printing of Ratio Adjust Listings
 ***********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -769,7 +769,7 @@ namespace Cprs
             dgPrint.Columns[2].DefaultCellStyle.Format = "N1";
             dgPrint.Columns[3].HeaderText = "Adjustment Factor";
             dgPrint.Columns[3].Width = 200;
-            PrintFedRatio(); 
+            //PrintFedRatio(); 
             SaveFile(fed_fact_file);
 
             //Tabluation Federal, update vipsadj table
@@ -796,7 +796,7 @@ namespace Cprs
             dgPrint.DataSource = null;
             dgPrint.DataSource = pt1;
             SetPrintColumnHearder();
-            PrintAfterFedRation(sdate, 1);
+            //PrintAfterFedRation(sdate, 1);
             SaveFile(fed_tab1_file);
 
             //Print Federal Ratio Prior Month
@@ -804,7 +804,7 @@ namespace Cprs
             dgPrint.DataSource = null;
             dgPrint.DataSource = pt2;
             SetPrintColumnHearder();
-            PrintAfterFedRation(premon, 2);
+            //PrintAfterFedRation(premon, 2);
             SaveFile(fed_tab2_file);
 
             //Print Federal Ratio Two Month Prior Month
@@ -812,7 +812,7 @@ namespace Cprs
             dgPrint.DataSource = null;
             dgPrint.DataSource = pt3;
             SetPrintColumnHearder();
-            PrintAfterFedRation(ppmon, 3);
+            //PrintAfterFedRation(ppmon, 3);
             SaveFile(fed_tab3_file);
 
             //if the current month is May
@@ -827,7 +827,7 @@ namespace Cprs
                 dgPrint.DataSource = null;
                 dgPrint.DataSource = pt4;
                 SetPrintColumnHearder();
-                PrintAfterFedRation((datet.AddMonths(-3)).ToString("yyyyMM"), 4);
+                //PrintAfterFedRation((datet.AddMonths(-3)).ToString("yyyyMM"), 4);
                 SaveFile(fed_tab4_file);
 
                 //Print Federal Ratio 4 Prior Month
@@ -835,11 +835,12 @@ namespace Cprs
                 dgPrint.DataSource = null;
                 dgPrint.DataSource = pt5;
                 SetPrintColumnHearder();
-                PrintAfterFedRation((datet.AddMonths(-4)).ToString("yyyyMM"), 5);
+                //PrintAfterFedRation((datet.AddMonths(-4)).ToString("yyyyMM"), 5);
                 SaveFile(fed_tab5_file);
             }
 
-            MessageBox.Show("Ratio adjustment completed and listing have been printed to " + UserInfo.PrinterQ);
+            //MessageBox.Show("Ratio adjustment completed and listing have been printed to " + UserInfo.PrinterQ);
+            MessageBox.Show("Ratio adjustment completed");
         }
 
       
