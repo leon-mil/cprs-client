@@ -70,7 +70,7 @@ namespace Cprs
             int cur_year = Convert.ToInt16(sdate.Substring(0, 4));
             int cur_mon = Convert.ToInt16(sdate.Substring(4, 2));
 
-            if (cur_mon > 2)
+            if (cur_mon > 1)
             {
                 year1 = cur_year - 1;
                 year2 = cur_year - 2;
