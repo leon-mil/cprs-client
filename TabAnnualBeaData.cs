@@ -64,7 +64,7 @@ namespace CprsDAL
             int cur_mon = Convert.ToInt16(sdate.Substring(4, 2));
             bool isCurryear = false;
 
-            if (cur_mon > 2)
+            if (cur_mon > 1)
             {
                 if (year == (cur_year - 1).ToString())
                     isCurryear = true;
