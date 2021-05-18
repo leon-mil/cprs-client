@@ -25,11 +25,11 @@ Other:	            Called From: frmReferral.cs
  
 Revision History:	
 ***********************************************************************************
-Modified Date :  
-Modified By   :  
+Modified Date :  4/29/2021
+Modified By   :  Christine
 Keyword       :  
 Change Request:  
-Description   :  
+Description   :  add NPC clerk for NPC Supervisor referral
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -55,7 +55,7 @@ namespace Cprs
         private string usrnme;
         private string refnote;
         private string prgdtm;
-        private string owngrpcde;
+        private string refuser;
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
 
@@ -71,7 +71,7 @@ namespace Cprs
 
         //update variables are obtained from the frmReferral.cs Screen
 
-        public frmUpdReferralPopup(string Id, string Respid, string Reftype, string Refstatus, string Refgroup, string Refcase, string Refnote, string Prgdtm, string Usrnme, string Grpcde)
+        public frmUpdReferralPopup(string Id, string Respid, string Reftype, string Refstatus, string Refgroup, string Refuser, string Refcase, string Refnote, string Prgdtm, string Usrnme)
         {
             InitializeComponent();
 
@@ -82,8 +82,8 @@ namespace Cprs
             refstatus = Refstatus;
             refcase = Refcase;
             refnote = Refnote;
+            refuser = Refuser;
             usrnme = Usrnme;
-            owngrpcde = Grpcde;
             prgdtm = Prgdtm;
         }
 
@@ -125,6 +125,25 @@ namespace Cprs
 
         private void validateUser()
         {
+            if ((UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead) && (refgroup == "NPC Supervisor" || refgroup == "NPC Clerk"))
+            {
+                cbclerks.Visible = true;
+                label4.Visible = true;
+                ReferralData referral = new ReferralData();
+                DataTable dt = referral.GetNPCClarksList();
+                
+                cbclerks.DataSource = dt;
+                cbclerks.DisplayMember = "usrnme";
+                cbclerks.ValueMember = "usrnme";
+                if (refuser != "")
+                    cbclerks.SelectedValue = refuser;
+            }
+            else
+            {
+                cbclerks.Visible = false;
+                label4.Visible = false;
+            }
+
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
                 rbtnComplete.Enabled = false;
@@ -213,20 +232,30 @@ namespace Cprs
                         case "HQ Supervisor": refgroup = "1"; break;
                         case "HQ Analyst": refgroup = "2"; break;
                         case "NPC Supervisor": refgroup = "3"; break;
-                        case "NPC Interviewer": refgroup = "4"; break;
+                        case "NPC Clerk": refgroup = "4"; break;
                     }
 
-                    //update the project referral in the Project_Referral table
-                    //update the respondent referral in the Respondent_Referral table
-
-                    if (refcase == "PROJECT")
+                    if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
                     {
-                        referral.UpdateProjectReferral(id, reftype, refgroup, refstatus, prgdtm, Refnote);
+                        if (cbclerks.SelectedIndex > 0)
+                        {
+                            refgroup = "4";
+                            refuser = cbclerks.Text;
+                        }
+
+                    }
+
+                        //update the project referral in the Project_Referral table
+                        //update the respondent referral in the Respondent_Referral table
+
+                        if (refcase == "PROJECT")
+                    {
+                        referral.UpdateProjectReferral(id, reftype, refgroup, refuser, refstatus, prgdtm, Refnote);
                     }
 
                     else if (refcase == "RESPONDENT")
                     {
-                        referral.UpdateRespondentReferral(respid, reftype, refgroup, refstatus, prgdtm, Refnote);
+                        referral.UpdateRespondentReferral(respid, reftype, refgroup, refuser, refstatus, prgdtm, Refnote);
                     }
                 }
 
@@ -242,6 +271,10 @@ namespace Cprs
             this.Dispose();
         }
 
-
+        private void cbclerks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          /*  txtGroup.Text = "NPC Interviewer";
+            refgroup = "4";*/
+        }
     }
 }
