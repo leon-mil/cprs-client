@@ -63,7 +63,7 @@ namespace CprsDAL
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
 
-                SqlCommand sql_command = new SqlCommand("Select REFTYPE, REFSTATUS, USRNME, REFGROUP, PRGDTM, REFNOTE, GRPCDE, NEWTC From dbo.REFNOTE_PROJ_GRPCDE WHERE ID = @ID AND REFSTATUS <> @STATUS ORDER BY PRGDTM DESC", sql_connection);
+                SqlCommand sql_command = new SqlCommand("Select REFTYPE, REFSTATUS, USRNME, REFGROUP, REFUSER, PRGDTM, REFNOTE, NEWTC From dbo.REFNOTE_PROJ_GRPCDE WHERE ID = @ID AND REFSTATUS <> @STATUS ORDER BY PRGDTM DESC", sql_connection);
 
                 sql_command.Parameters.AddWithValue("@ID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(id);
                 sql_command.Parameters.AddWithValue("@STATUS", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty("C"); //display only active cases
@@ -87,7 +87,7 @@ namespace CprsDAL
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
 
-                SqlCommand sql_command = new SqlCommand("Select REFTYPE, REFSTATUS, USRNME, REFGROUP, PRGDTM, REFNOTE, GRPCDE From dbo.REFNOTE_RESP_GRPCDE WHERE RESPID = @RESPID AND REFSTATUS <> @STATUS ORDER BY PRGDTM DESC", sql_connection);
+                SqlCommand sql_command = new SqlCommand("Select REFTYPE, REFSTATUS, USRNME, REFGROUP, REFUSER, PRGDTM, REFNOTE From dbo.REFNOTE_RESP_GRPCDE WHERE RESPID = @RESPID AND REFSTATUS <> @STATUS ORDER BY PRGDTM DESC", sql_connection);
 
                 sql_command.Parameters.AddWithValue("@RESPID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(respid);
 
@@ -109,17 +109,18 @@ namespace CprsDAL
         // When the user clicks the button to add the project referral,
         // Updates the fields in the dbo.PROJECT_REFERRAL table
 
-        public void AddProjectReferral(string id, string reftype, string refgroup, string refstatus, string refnote, string usrnme, string prgdtm)
+        public void AddProjectReferral(string id, string reftype, string refgroup, string refuser, string refstatus, string refnote, string usrnme, string prgdtm)
         {
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
                 try
                 {
-                    SqlCommand sql_command = new SqlCommand("INSERT INTO dbo.PROJECT_REFERRAL(ID, REFTYPE, REFGROUP, REFSTATUS, REFNOTE, USRNME, PRGDTM) VALUES (@ID, @REFTYPE, @REFGROUP, @REFSTATUS, @REFNOTE, @USRNME, @PRGDTM )", sql_connection);
+                    SqlCommand sql_command = new SqlCommand("INSERT INTO dbo.PROJECT_REFERRAL(ID, REFTYPE, REFGROUP, REFUSER, REFSTATUS, REFNOTE, USRNME, PRGDTM) VALUES (@ID, @REFTYPE, @REFGROUP, @REFUSER, @REFSTATUS, @REFNOTE, @USRNME, @PRGDTM )", sql_connection);
 
                     sql_command.Parameters.AddWithValue("@ID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(id);
                     sql_command.Parameters.AddWithValue("@REFTYPE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(reftype);
                     sql_command.Parameters.AddWithValue("@REFGROUP", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refgroup);
+                    sql_command.Parameters.AddWithValue("@REFUSER", SqlDbType.NVarChar).Value = refuser;
                     sql_command.Parameters.AddWithValue("@REFSTATUS", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refstatus);
                     sql_command.Parameters.AddWithValue("@REFNOTE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refnote);
                     sql_command.Parameters.AddWithValue("@USRNME", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(usrnme);
@@ -152,17 +153,18 @@ namespace CprsDAL
         // When the user clicks the button to add the respondent referral,
         // Updates the fields in the dbo.RESPONDENT_REFERRAL table
 
-        public void AddRespondentReferral(string respid, string reftype, string refgroup, string refstatus, string refnote, string usrnme, string prgdtm)
+        public void AddRespondentReferral(string respid, string reftype, string refgroup, string refuser, string refstatus, string refnote, string usrnme, string prgdtm)
         {
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
                 try
                 {
-                    SqlCommand sql_command = new SqlCommand("INSERT INTO dbo.RESPONDENT_REFERRAL(RESPID, REFTYPE, REFGROUP, REFSTATUS, REFNOTE, USRNME, PRGDTM) VALUES (@RESPID, @REFTYPE, @REFGROUP, @REFSTATUS, @REFNOTE, @USRNME, @PRGDTM )", sql_connection);
+                    SqlCommand sql_command = new SqlCommand("INSERT INTO dbo.RESPONDENT_REFERRAL(RESPID, REFTYPE, REFGROUP, REFUSER, REFSTATUS, REFNOTE, USRNME, PRGDTM) VALUES (@RESPID, @REFTYPE, @REFGROUP, @REFUSER, @REFSTATUS, @REFNOTE, @USRNME, @PRGDTM )", sql_connection);
 
                     sql_command.Parameters.AddWithValue("@RESPID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(respid);
                     sql_command.Parameters.AddWithValue("@REFTYPE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(reftype);
                     sql_command.Parameters.AddWithValue("@REFGROUP", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refgroup);
+                    sql_command.Parameters.AddWithValue("@REFUSER", SqlDbType.NVarChar).Value = refuser;
                     sql_command.Parameters.AddWithValue("@REFSTATUS", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refstatus);
                     sql_command.Parameters.AddWithValue("@REFNOTE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refnote);
                     sql_command.Parameters.AddWithValue("@USRNME", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(usrnme);
@@ -199,7 +201,7 @@ namespace CprsDAL
         // When the user clicks the button to UPDATE referral,
         // Updates the note and/or status fields
 
-        public DataTable UpdateProjectReferral(string id, string reftype, string refgroup, string refstatus, string prgdtm, string refnote)
+        public DataTable UpdateProjectReferral(string id, string reftype, string refgroup, string refuser, string refstatus, string prgdtm, string refnote)
         {
 
             DataTable dt = new DataTable();
@@ -209,11 +211,12 @@ namespace CprsDAL
             {
                 try
                 {
-                    SqlCommand sql_command = new SqlCommand("UPDATE dbo.PROJECT_REFERRAL SET refstatus = @Refstatus, refnote = @Refnote WHERE [ID] = @Id AND [REFTYPE] = @Reftype AND [REFGROUP] = @Refgroup AND [Prgdtm] = @Prgdtm", sql_connection);
+                    SqlCommand sql_command = new SqlCommand("UPDATE dbo.PROJECT_REFERRAL SET refstatus = @Refstatus, refgroup=@Refgroup, refnote = @Refnote, refuser=@Refuser WHERE [ID] = @Id AND [REFTYPE] = @Reftype AND [Prgdtm] = @Prgdtm", sql_connection);
 
                     sql_command.Parameters.AddWithValue("@Id", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(id);
                     sql_command.Parameters.AddWithValue("@Reftype", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(reftype);
                     sql_command.Parameters.AddWithValue("@Refgroup", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refgroup);
+                    sql_command.Parameters.AddWithValue("@Refuser", SqlDbType.NVarChar).Value = refuser;
                     sql_command.Parameters.AddWithValue("@Refstatus", refstatus);
                     sql_command.Parameters.AddWithValue("@Prgdtm", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(prgdtm);
                     sql_command.Parameters.AddWithValue("@Refnote", refnote);
@@ -248,7 +251,7 @@ namespace CprsDAL
         // When the user clicks the button to UPDATE referral,
         // Updates the note and/or status fields
 
-        public DataTable UpdateRespondentReferral(string respid, string reftype, string refgroup, string refstatus, string prgdtm, string refnote)
+        public DataTable UpdateRespondentReferral(string respid, string reftype, string refgroup, string refuser, string refstatus, string prgdtm, string refnote)
         {
 
             DataTable dt = new DataTable();
@@ -257,11 +260,12 @@ namespace CprsDAL
             {
                 try
                 {
-                    SqlCommand sql_command = new SqlCommand("UPDATE dbo.RESPONDENT_REFERRAL SET refstatus = @Refstatus, refnote = @Refnote WHERE [RESPID] = @Respid AND [REFTYPE] = @Reftype AND [REFGROUP] = @Refgroup AND [Prgdtm] = @Prgdtm", sql_connection);
+                    SqlCommand sql_command = new SqlCommand("UPDATE dbo.RESPONDENT_REFERRAL SET refstatus = @Refstatus, refnote = @Refnote, refuser=@Refuser, refgroup=@Refgroup WHERE [RESPID] = @Respid AND [REFTYPE] = @Reftype AND [Prgdtm] = @Prgdtm", sql_connection);
 
                     sql_command.Parameters.AddWithValue("@Respid", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(respid);
                     sql_command.Parameters.AddWithValue("@Reftype", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(reftype);
                     sql_command.Parameters.AddWithValue("@Refgroup", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(refgroup);
+                    sql_command.Parameters.AddWithValue("@Refuser", SqlDbType.NVarChar).Value = refuser;
                     sql_command.Parameters.AddWithValue("@Refstatus", refstatus);
                     sql_command.Parameters.AddWithValue("@Prgdtm", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(prgdtm);
                     sql_command.Parameters.AddWithValue("@Refnote", refnote);
@@ -299,7 +303,7 @@ namespace CprsDAL
         //search the table to find rows where the ID matches the ID 
         //for the Project Referral Review Table
 
-        public DataTable GetProjReferralReviewTable(string id, string type, string group, string status, string newtc, string usrnme, string prgdtm)
+        public DataTable GetProjReferralReviewTable(string id, string type, string group, string assigned, string status, string newtc, string usrnme, string prgdtm)
         {
             DataTable dt = new DataTable();
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
@@ -311,6 +315,7 @@ namespace CprsDAL
                 sql_command.Parameters.AddWithValue("@ID", SqlDbType.Char).Value = GeneralData.NullIfEmpty(id);
                 sql_command.Parameters.AddWithValue("@TYPE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(type);
                 sql_command.Parameters.AddWithValue("@GROUP", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(group);
+                sql_command.Parameters.AddWithValue("@ASSIGNED", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(assigned);
                 sql_command.Parameters.AddWithValue("@STATUS", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(status);
                 sql_command.Parameters.AddWithValue("@NEWTC", SqlDbType.Char).Value = GeneralData.NullIfEmpty(newtc);
                 sql_command.Parameters.AddWithValue("@USER", SqlDbType.Char).Value = GeneralData.NullIfEmpty(usrnme);
@@ -441,6 +446,20 @@ namespace CprsDAL
                         }
                     }
 
+                    /*The combobox data will display unique refuser*/
+
+                    if (cbIndex == 6)
+                    {
+                        SqlCommand sql_command = new SqlCommand("select distinct refuser from dbo.project_referral order by refuser", sql_connection);
+                        using (SqlDataAdapter da = new SqlDataAdapter(sql_command))
+                        {
+                            da.Fill(dt);
+                       /*     DataRow dr = dt.NewRow();
+                            dr[0] = " ";
+                            dt.Rows.InsertAt(dr, 0);*/
+                        }
+                    }
+
                     return dt;
                 }
                 catch (SqlException ex)
@@ -457,7 +476,7 @@ namespace CprsDAL
         //search the table to find rows where the ID matches the ID 
         //for the Respondent Referral Review Table
 
-        public DataTable GetRespReferralReviewTable(string respid, string type, string group, string status, string usrnme, string prgdtm)
+        public DataTable GetRespReferralReviewTable(string respid, string type, string group, string assigned,  string status, string usrnme, string prgdtm)
         {
             DataTable dt = new DataTable();
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
@@ -469,6 +488,7 @@ namespace CprsDAL
                 sql_command.Parameters.AddWithValue("@RESPID", SqlDbType.Char).Value = GeneralData.NullIfEmpty(respid);
                 sql_command.Parameters.AddWithValue("@TYPE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(type);
                 sql_command.Parameters.AddWithValue("@GROUP", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(group);
+                sql_command.Parameters.AddWithValue("@ASSIGNED", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(assigned);
                 sql_command.Parameters.AddWithValue("@STATUS", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(status);
                 sql_command.Parameters.AddWithValue("@USER", SqlDbType.Char).Value = GeneralData.NullIfEmpty(usrnme);
                 sql_command.Parameters.AddWithValue("@PRGDTM", SqlDbType.Char).Value = GeneralData.NullIfEmpty(prgdtm);
@@ -540,6 +560,20 @@ namespace CprsDAL
                     if (cbIndex == 4)
                     {
                         SqlCommand sql_command = new SqlCommand("select distinct refgroup from dbo.respondent_referral order by refgroup", sql_connection);
+                        using (SqlDataAdapter da = new SqlDataAdapter(sql_command))
+                        {
+                            da.Fill(dt);
+                            DataRow dr = dt.NewRow();
+                            dr[0] = " ";
+                            dt.Rows.InsertAt(dr, 0);
+                        }
+                    }
+
+                    /*The combobox data will display unique refuser*/
+
+                    if (cbIndex == 5)
+                    {
+                        SqlCommand sql_command = new SqlCommand("select distinct refuser from dbo.respondent_referral order by refuser", sql_connection);
                         using (SqlDataAdapter da = new SqlDataAdapter(sql_command))
                         {
                             da.Fill(dt);
@@ -651,6 +685,32 @@ namespace CprsDAL
             }
 
             return record_found;
+        }
+
+        public DataTable GetNPCClarksList()
+        {
+            DataTable dt = new DataTable();
+            string sql = string.Empty;
+
+            using (SqlConnection c = new SqlConnection(GeneralData.getConnectionString()))
+            {
+                c.Open();
+
+                sql = "Select usrnme From dbo.sched_id where grpcde ='5' order by usrnme ";
+
+                using (SqlDataAdapter da = new SqlDataAdapter(sql, c))
+                {
+                    da.Fill(dt);
+
+                }
+                c.Close();
+            }
+
+            DataRow row = dt.NewRow();
+            row["USRNME"] = ""; //insert a blank row 
+            dt.Rows.InsertAt(row, 0); //insert new to to index 0 
+
+            return dt;
         }
 
     }
