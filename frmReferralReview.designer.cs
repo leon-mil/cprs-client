@@ -54,6 +54,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnData = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.btnAssign = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tbReferrals.SuspendLayout();
             this.tbProject.SuspendLayout();
@@ -167,6 +168,7 @@
             this.dgProjReferrals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgProjReferrals.Size = new System.Drawing.Size(1116, 531);
             this.dgProjReferrals.TabIndex = 4;
+            this.dgProjReferrals.SelectionChanged += new System.EventHandler(this.dgProjReferrals_SelectionChanged);
             // 
             // tbRespondent
             // 
@@ -331,7 +333,7 @@
             // 
             this.btnData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnData.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnData.Location = new System.Drawing.Point(403, 814);
+            this.btnData.Location = new System.Drawing.Point(222, 814);
             this.btnData.Name = "btnData";
             this.btnData.Size = new System.Drawing.Size(178, 23);
             this.btnData.TabIndex = 38;
@@ -344,7 +346,7 @@
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnPrint.Location = new System.Drawing.Point(635, 814);
+            this.btnPrint.Location = new System.Drawing.Point(799, 814);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(161, 23);
             this.btnPrint.TabIndex = 35;
@@ -353,12 +355,26 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // btnAssign
+            // 
+            this.btnAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAssign.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnAssign.Location = new System.Drawing.Point(506, 814);
+            this.btnAssign.Name = "btnAssign";
+            this.btnAssign.Size = new System.Drawing.Size(178, 23);
+            this.btnAssign.TabIndex = 39;
+            this.btnAssign.TabStop = false;
+            this.btnAssign.Text = "ASSIGN REFERRAL";
+            this.btnAssign.UseVisualStyleBackColor = true;
+            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
+            // 
             // frmReferralReview
             // 
             this.AcceptButton = this.btnSearchItem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.Controls.Add(this.btnAssign);
             this.Controls.Add(this.btnData);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.lblTab);
@@ -372,6 +388,7 @@
             this.Controls.SetChildIndex(this.lblTab, 0);
             this.Controls.SetChildIndex(this.btnPrint, 0);
             this.Controls.SetChildIndex(this.btnData, 0);
+            this.Controls.SetChildIndex(this.btnAssign, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tbReferrals.ResumeLayout(false);
@@ -410,5 +427,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label lblCasesCount;
         private System.Windows.Forms.CheckBox ckMySec;
+        private System.Windows.Forms.Button btnAssign;
     }
 }

@@ -46,6 +46,12 @@ Modified By    :  Chritine Zhang
 Keyword        :  None
 Change Request :  CR 7850
 Description    :  add my sector to screen
+***********************************************************************************
+Modified Date  :  4/29/2021
+Modified By    :  Chritine Zhang
+Keyword        :  None
+Change Request :  CR
+Description    :  add Refuser column and assign referral
 ***********************************************************************************/
 using System;
 using System.ComponentModel;
@@ -90,8 +96,8 @@ namespace Cprs
         //Populate the drop down search by combobox depending on
         //whether project search or respondent search
 
-        private string[] idSearch = { "ID", "NEWTC", "TYPE", "STATUS", "USER", "GROUP", "DATE" };
-        private string[] rspSearch = { "RESPID", "TYPE", "STATUS", "USER", "GROUP", "DATE" };
+        private string[] idSearch = { "ID", "NEWTC", "TYPE", "STATUS", "USER", "GROUP", "ASSIGNED", "DATE" };
+        private string[] rspSearch = { "RESPID", "TYPE", "STATUS", "USER", "GROUP", "ASSIGNED", "DATE" };
         private List<string> dodgeinitlist;
         
         public frmReferralReview()
@@ -222,8 +228,10 @@ namespace Cprs
             {              
                 lblCasesCount.Text = dgProjReferrals.Rows.Count.ToString() + " PROJECT REFERRALS";
                 btnPrint.Enabled = true;
-                btnData.Enabled = true;
+                btnData.Enabled = true;   
             }
+
+            btnAssign.Visible = false;
         }
 
         private void GetProj()
@@ -240,7 +248,7 @@ namespace Cprs
 
             //populate the data grid without any search criteria
 
-            DataTable dtProjItem = dataObject.GetProjReferralReviewTable("", "", "", "", "", "", "");
+            DataTable dtProjItem = dataObject.GetProjReferralReviewTable("", "", "", "", "", "", "", "");
             SetupProjCols(dtProjItem);
            
             lblTab.Location = new System.Drawing.Point(575, 97);
@@ -306,7 +314,7 @@ namespace Cprs
                         dt.Rows[i][refgroupColumn] = "NPC Supervisor";
                         break;
                     case "4":
-                        dt.Rows[i][refgroupColumn] = "NPC Interviewer";
+                        dt.Rows[i][refgroupColumn] = "NPC Clerk";
                         break;
 
                 }
@@ -390,11 +398,17 @@ namespace Cprs
                 }
                 if (i == 6)
                 {
+                    dgProjReferrals.Columns[i].HeaderText = "ASSIGNED";
+                    dgProjReferrals.Columns[i].Width = 100;
+
+                }
+                if (i == 7)
+                {
                     dgProjReferrals.Columns[i].HeaderText = "DATE/TIME";
                     dgProjReferrals.Columns[i].Width = 120;
 
                 }
-                if (i == 7)
+                if (i == 8)
                 {
                     dgProjReferrals.Columns[i].HeaderText = "NOTE";
                     dgProjReferrals.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -415,7 +429,7 @@ namespace Cprs
 
             //populate the data grid without any search criteria
 
-            DataTable dtRSPItem = dataObject.GetRespReferralReviewTable("", "", "", "", "", "");
+            DataTable dtRSPItem = dataObject.GetRespReferralReviewTable("", "","", "", "", "", "");
             SetupRespCols(dtRSPItem);
 
             lblTab.Location = new System.Drawing.Point(565, 97);
@@ -470,7 +484,7 @@ namespace Cprs
                         rdt.Rows[i][refgroupColumn] = "NPC Supervisor";
                         break;
                     case "4":
-                        rdt.Rows[i][refgroupColumn] = "NPC Interviewer";
+                        rdt.Rows[i][refgroupColumn] = "NPC Clerk";
                         break;
 
                 }
@@ -534,11 +548,17 @@ namespace Cprs
                 }
                 if (i == 5)
                 {
+                    dgRespReferrals.Columns[i].HeaderText = "ASSIGNED";
+                    dgRespReferrals.Columns[i].Width = 100;
+
+                }
+                if (i == 6)
+                {
                     dgRespReferrals.Columns[i].HeaderText = "DATE/TIME";
                     dgRespReferrals.Columns[i].Width = 120;
 
                 }
-                if (i == 6)
+                if (i == 7)
                 {
                     dgRespReferrals.Columns[i].HeaderText = "NOTE";
                     dgRespReferrals.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -582,7 +602,7 @@ namespace Cprs
                 ckMySec.Visible = false;
                 lblTab.Text = tbRespondent.Text;
                 lblTab.Location = new System.Drawing.Point(565, 97);
-                showProjSearchItems(rspSearch);
+                showRSPSearchItems(rspSearch);
 
                 //Display the row count when selected tab change
 
@@ -645,6 +665,7 @@ namespace Cprs
         {
             cbItem.Items.Clear();
             cbItem.Items.AddRange(search);
+            GetProj();
         }
 
         //Populate the respondent search criteria combobox
@@ -653,6 +674,7 @@ namespace Cprs
         {
             cbItem.Items.Clear();
             cbItem.Items.AddRange(search);
+            GetResp();
         }
 
 
@@ -703,13 +725,14 @@ namespace Cprs
 
             if (tbReferrals.SelectedIndex == 0)
             {
-                //for USRNME, REFTYPE, REFSTATUS, GROUP show combo boxes
+                //for USRNME, REFTYPE, REFSTATUS, GROUP, ASSIGNED show combo boxes
 
                 if (cbItem.SelectedIndex == 1 ||
                     cbItem.SelectedIndex == 2 ||
                     cbItem.SelectedIndex == 3 ||
                     cbItem.SelectedIndex == 4 ||
-                    cbItem.SelectedIndex == 5)
+                    cbItem.SelectedIndex == 5 ||
+                    cbItem.SelectedIndex == 6)
                 {
                     PopulateProjValueCombo(cbItem.SelectedIndex);
 
@@ -728,7 +751,7 @@ namespace Cprs
                     txtPROJValueItem.Visible = true;
                     txtPROJValueItem.Focus();
 
-                    if (cbItem.SelectedIndex == 6)
+                    if (cbItem.SelectedIndex == 7)
                     {
                         lbldatef.Visible = true;
                         txtPROJValueItem.MaxLength = 10;
@@ -748,7 +771,8 @@ namespace Cprs
                 if (cbItem.SelectedIndex == 1 ||
                     cbItem.SelectedIndex == 2 ||
                     cbItem.SelectedIndex == 3 ||
-                    cbItem.SelectedIndex == 4)
+                    cbItem.SelectedIndex == 4 ||
+                    cbItem.SelectedIndex == 5)
                 {
                     PopulateRSPValueCombo(cbItem.SelectedIndex);
 
@@ -766,7 +790,7 @@ namespace Cprs
                     txtRESPValueItem.Visible = true;
                     txtRESPValueItem.Focus();
 
-                    if (cbItem.SelectedIndex == 5)
+                    if (cbItem.SelectedIndex == 6)
                     {
                         lbldatef.Visible = true;
                         txtRESPValueItem.MaxLength = 10;
@@ -935,7 +959,7 @@ namespace Cprs
                     }
                     if (dr[0].ToString() == "4") //select a row where refgroup = "4"
                     {
-                        dr[1] = "NPC Interviewer";
+                        dr[1] = "NPC Clerk";
                     }
                 }
                  
@@ -943,17 +967,26 @@ namespace Cprs
                 cbPROJValueItem.ValueMember = "refgroup";
                 cbPROJValueItem.DisplayMember = "description";  
             }
-       
+
+            /* for usrnme combo */
+
+            if (cbIndex == 6)
+            {
+                cbPROJValueItem.DataSource = dt;
+                cbPROJValueItem.ValueMember = "refuser";
+                cbPROJValueItem.DisplayMember = "refuser";
+            }
+
+
             cbPROJValueItem.SelectedIndex = -1;
         }
 
         private void PopulateRSPValueCombo(int cbIndex)
         {
-
             /*for Item access */
 
             dt = dataObject.GetRespValueList(cbIndex);
-
+            
             /* for type combo box */
 
             if (cbIndex == 1)
@@ -1054,13 +1087,22 @@ namespace Cprs
                     }
                     if (dr[0].ToString() == "4") //select a row where refgroup = "4"
                     {
-                        dr[1] = "NPC Interviewer";
+                        dr[1] = "NPC Clerk";
                     }
                 }
 
                 cbRESPValueItem.DataSource = dt;
                 cbRESPValueItem.ValueMember = "refgroup";
                 cbRESPValueItem.DisplayMember = "description";
+            }
+
+            /* for assigned combo box */
+
+            if (cbIndex == 5)
+            {
+                cbRESPValueItem.DataSource = dt;
+                cbRESPValueItem.ValueMember = "refuser";
+                cbRESPValueItem.DisplayMember = "refuser";
             }
 
             cbRESPValueItem.SelectedIndex = -1;
@@ -1092,6 +1134,7 @@ namespace Cprs
                 string type = "";
                 string status = "";
                 string group = "";
+                string assigned = "";
                 string newtc = "";
 
                 DataTable dt;
@@ -1209,13 +1252,22 @@ namespace Cprs
                             case "HQ Supervisor": group = "1"; break;
                             case "HQ Analyst": group = "2"; break;
                             case "NPC Supervisor": group = "3"; break;
-                            case "NPC Interviewer": group = "4"; break;
+                            case "NPC Clerk": group = "4"; break;
+                        }
+                    }
+                    else if (cbItem.SelectedIndex == 6)
+                    {
+                        assigned = cbPROJValueItem.Text.Trim();
+                        if (assigned == "")
+                        {
+                            MessageBox.Show("A value must be selected from the Drop Down Menu.");
+                            cbRESPValueItem.Focus();
                         }
                     }
 
                     // for prgdtm
 
-                    else if (cbItem.SelectedIndex == 6)
+                    else if (cbItem.SelectedIndex == 7)
                     {
                         /*Verify date, and convert date to MM/DD/YYYY format */
 
@@ -1245,14 +1297,14 @@ namespace Cprs
                     id = Id;
 
                 if ((usrnme == "") && (id == "") && (prgdtm == "") && (type == "") && 
-                    (status == "") && (group == "") && (newtc == ""))
+                    (status == "") && (group == "") && (newtc == "") && (assigned == ""))
                 {
-                    dt = dataObject.GetProjReferralReviewTable("", "", "", "", "", "", "");
+                    dt = dataObject.GetProjReferralReviewTable("", "", "", "", "", "", "", "");
                     SetupProjCols(dt);
                 }
                 else
                 {
-                    dt = dataObject.GetProjReferralReviewTable(id, type, group, status, newtc, usrnme, prgdtm);
+                    dt = dataObject.GetProjReferralReviewTable(id, type, group, assigned, status, newtc, usrnme, prgdtm);
                     SetupProjCols(dt);
 
                 }
@@ -1280,7 +1332,7 @@ namespace Cprs
 
                 if ((dt.Rows.Count == 0) && ((usrnme != "") || (id != "") || 
                     (prgdtm != "") || (type != "") || (status != "") || 
-                    (group != "") || (newtc != "")))
+                    (group != "") || (newtc != "") || (assigned !="")))
                 {
                     MessageBox.Show("No data to display.");
                 }
@@ -1294,6 +1346,7 @@ namespace Cprs
                 string type = "";
                 string status = "";
                 string group = "";
+                string assigned = "";
 
                 DataTable rdt;
 
@@ -1305,9 +1358,9 @@ namespace Cprs
                     //for respid
 
                     if (cbItem.SelectedIndex == 0)
-                    {    
-                        respid = txtRESPValueItem.Text.Trim();                  
-                        
+                    {
+                        respid = txtRESPValueItem.Text.Trim();
+
                         if (!(respid.Length == 7))
                         {
                             MessageBox.Show("RESPID should be 7 digits.");
@@ -1394,19 +1447,29 @@ namespace Cprs
                             MessageBox.Show("A value must be selected from the Drop Down Menu.");
                             cbRESPValueItem.Focus();
                         }
-                        
+
                         switch (group)
                         {
                             case "HQ Supervisor": group = "1"; break;
                             case "HQ Analyst": group = "2"; break;
                             case "NPC Supervisor": group = "3"; break;
-                            case "NPC Interviewer": group = "4"; break;
+                            case "NPC Clerk": group = "4"; break;
+                        }
+                    }
+
+                    else if (cbItem.SelectedIndex == 5)
+                    {
+                        assigned = cbRESPValueItem.Text.Trim();
+                        if (assigned == "")
+                        {
+                            MessageBox.Show("A value must be selected from the Drop Down Menu.");
+                            cbRESPValueItem.Focus();
                         }
                     }
 
                     // for prgdtm
 
-                    else if (cbItem.SelectedIndex == 5)
+                    else if (cbItem.SelectedIndex == 6)
                     {
                         /*Verify date, and convert date to MM/DD/YYYY format */
 
@@ -1427,16 +1490,16 @@ namespace Cprs
                                 txtRESPValueItem.Text = "";
                                 return;
                             }
-                        }                       
+                        }
                     }
                 }
                 else
                     respid = Respid;
 
-                if ((usrnme == "") && (respid == "") && (prgdtm == "") && (type == "") && (status == "") && (group == ""))
-                    rdt = dataObject.GetRespReferralReviewTable("", "", "", "", "", "");
+                if ((usrnme == "") && (respid == "") && (prgdtm == "") && (type == "") && (status == "") && (group == "")&& (assigned == ""))
+                    rdt = dataObject.GetRespReferralReviewTable("", "","", "", "", "", "");
                 else
-                    rdt = dataObject.GetRespReferralReviewTable(respid, type, group, status, usrnme, prgdtm);
+                    rdt = dataObject.GetRespReferralReviewTable(respid, type, group, assigned, status, usrnme, prgdtm);
 
                 SetupRespCols(rdt);
                 dgRespReferrals.DataSource = rdt;
@@ -1549,7 +1612,7 @@ namespace Cprs
                         fDodgeInit.ShowDialog();  // show child
                                                   //   this.Show();
                        // showProjSearchItems(idSearch);
-                        SearchItem();
+                        SearchItem2();
                         HighlightRowForId(id);
                         GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
 
@@ -1566,7 +1629,7 @@ namespace Cprs
 
                         GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "EXIT");
                         tfu.ShowDialog();   // show child
-                        SearchItem();
+                        SearchItem2();
                         HighlightRowForId(id);
                         GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
                     }
@@ -1606,7 +1669,7 @@ namespace Cprs
                         GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "EXIT");
 
                         fC.ShowDialog();  // show child
-                        SearchItem();
+                        SearchItem2();
                         HighlightRowForId(id);
                         GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
                     } 
@@ -1635,7 +1698,7 @@ namespace Cprs
 
                     fRAU.ShowDialog();  // show child
                     //this.Show();
-                    SearchItem();
+                    SearchItem2();
                     GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
 
                 }
@@ -1677,23 +1740,23 @@ namespace Cprs
             if (tbReferrals.SelectedIndex == 0)
             {
                 //resize the note column
-                dgProjReferrals.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dgProjReferrals.Columns[7].Width = 300;
+                dgProjReferrals.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dgProjReferrals.Columns[8].Width = 300;
                 printer.PrintDataGridViewWithoutDialog(dgProjReferrals);
 
                 //resize back the note column
-                dgProjReferrals.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgProjReferrals.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             }
             else
             {
                 //resize the note column
-                dgRespReferrals.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dgRespReferrals.Columns[6].Width = 400;
+                dgRespReferrals.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dgRespReferrals.Columns[7].Width = 400;
                 printer.PrintDataGridViewWithoutDialog(dgRespReferrals);
 
                 //resize back the note column
-                dgRespReferrals.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgRespReferrals.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
             Cursor.Current = Cursors.Default;
@@ -1721,5 +1784,333 @@ namespace Cprs
           //  SetupLabel();             
    
         }
+
+        private void dgProjReferrals_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgProjReferrals.SelectedRows.Count > 0)
+            {
+                string col_group = dgProjReferrals.SelectedRows[0].Cells[5].Value.ToString();
+                if ((UserInfo.GroupCode== EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead) &&(col_group == "NPC Supervisor" ||col_group == "NPC Clerk"))
+                    btnAssign.Visible = true;
+                else
+                    btnAssign.Visible = false;
+            }
+        }
+
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+            if (tbReferrals.SelectedTab.Text == "PROJECT")
+            {
+                if (dgProjReferrals.SelectedRows.Count > 0)
+                {
+                    //Get the values for the selected row data
+
+                    string SelId = dgProjReferrals.SelectedRows[0].Cells[0].Value.ToString();
+                    string Reftype = dgProjReferrals.SelectedRows[0].Cells[2].Value.ToString();
+                    string Refstatus = dgProjReferrals.SelectedRows[0].Cells[3].Value.ToString();
+                    string Refgroup = dgProjReferrals.SelectedRows[0].Cells[5].Value.ToString();
+                    string Refuser = dgProjReferrals.SelectedRows[0].Cells[6].Value.ToString();
+                    string Prgdtm = dgProjReferrals.SelectedRows[0].Cells[7].Value.ToString();
+                    string Refnote = dgProjReferrals.SelectedRows[0].Cells[8].Value.ToString();
+                    string Refcase = lblTab.Text;
+
+                    frmReferralReviewAssignPopup popup = new frmReferralReviewAssignPopup(SelId, Reftype, Refgroup, Refuser, Refstatus, Prgdtm, Refnote, Refcase);
+                    popup.StartPosition = FormStartPosition.CenterParent;
+                    popup.ShowDialog();
+                    if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                        return;
+                    else
+                    {
+                        SearchItem2();
+                        HighlightRowForId(SelId);
+                      
+                    }
+                }
+            }
+            else if (tbReferrals.SelectedTab.Text == "RESPONDENT")
+            {
+                if (dgRespReferrals.SelectedRows.Count > 0)
+                {
+                    //Get the values for the selected row data
+                    string SelId = dgRespReferrals.SelectedRows[0].Cells[0].Value.ToString();
+                    string Reftype = dgRespReferrals.SelectedRows[0].Cells[1].Value.ToString();
+                    string Refgroup = dgRespReferrals.SelectedRows[0].Cells[4].Value.ToString();
+                    string Refuser = dgRespReferrals.SelectedRows[0].Cells[5].Value.ToString();
+                    string Refstatus = dgRespReferrals.SelectedRows[0].Cells[2].Value.ToString();
+                    string Prgdtm = dgRespReferrals.SelectedRows[0].Cells[6].Value.ToString();
+                    string Refnote = dgRespReferrals.SelectedRows[0].Cells[7].Value.ToString();
+                    string Refcase = lblTab.Text;
+                    
+                    frmReferralReviewAssignPopup popup = new frmReferralReviewAssignPopup(SelId, Reftype, Refgroup, Refuser, Refstatus, Prgdtm, Refnote, Refcase);
+                    popup.StartPosition = FormStartPosition.CenterParent;
+                    popup.ShowDialog();
+                    if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                        return;
+                    else
+                    {
+                        SearchItem2();
+                        HighlightRowForId(SelId);
+                    }
+                }
+            }
+        }
+
+        private void SearchItem2()
+        {
+            if (tbReferrals.SelectedIndex == 0)
+            {
+                string id = "";
+                string usrnme = "";
+                string prgdtm = "";
+                string type = "";
+                string status = "";
+                string group = "";
+                string assigned = "";
+                string newtc = "";
+
+                DataTable dt;
+
+                Cursor.Current = Cursors.WaitCursor;
+
+                if (Id == "")
+                {
+
+                    //for id
+
+                    if (cbItem.SelectedIndex == 0)
+                    {
+                        id = txtPROJValueItem.Text.Trim();
+                    }
+
+                    // for newtc
+
+                    else if (cbItem.SelectedIndex == 1)
+                    {
+                        newtc = cbPROJValueItem.Text.Trim();
+                    }
+
+                    // for type
+
+                    else if (cbItem.SelectedIndex == 2)
+                    {
+                        type = cbPROJValueItem.Text.Trim();
+
+                        //Reassign the radio button values to their database equivalent
+
+                        switch (type)
+                        {
+                            case "Late Receipt": type = "1"; break;
+                            case "Correct Flags": type = "2"; break;
+                            case "Data Issue": type = "3"; break;
+                            case "PNR/Address": type = "4"; break;
+                            case "Other": type = "5"; break;
+                        }
+                    }
+
+                    // for status
+
+                    else if (cbItem.SelectedIndex == 3)
+                    {
+                        status = cbPROJValueItem.Text.Trim();
+
+                        switch (status)
+                        {
+                            case "Active": status = "A"; break;
+                            case "Pending": status = "P"; break;
+                            case "Complete": status = "C"; break;
+                        }
+                    }
+
+                    // for usrname
+
+                    else if (cbItem.SelectedIndex == 4)
+                    {
+                        usrnme = cbPROJValueItem.Text.Trim();
+                    }
+
+                    // for group
+
+                    else if (cbItem.SelectedIndex == 5)
+                    {
+                        group = cbPROJValueItem.Text.Trim();
+
+                        switch (group)
+                        {
+                            case "HQ Supervisor": group = "1"; break;
+                            case "HQ Analyst": group = "2"; break;
+                            case "NPC Supervisor": group = "3"; break;
+                            case "NPC Clerk": group = "4"; break;
+                        }
+                    }
+                    else if (cbItem.SelectedIndex == 6)
+                    {
+                        assigned = cbPROJValueItem.Text.Trim();
+                    }
+
+                    // for prgdtm
+
+                    else if (cbItem.SelectedIndex == 7)
+                    {
+                        /*Verify date, and convert date to MM/DD/YYYY format */
+
+                            if (GeneralFunctions.VerifyDate(txtPROJValueItem.Text.Trim()))
+                                prgdtm = GeneralFunctions.ConvertDateFormat(txtPROJValueItem.Text);
+
+                    }
+                }
+                else
+                    id = Id;
+
+                if ((usrnme == "") && (id == "") && (prgdtm == "") && (type == "") &&
+                    (status == "") && (group == "") && (newtc == "") && (assigned == ""))
+                {
+                    dt = dataObject.GetProjReferralReviewTable("", "", "", "", "", "", "", "");
+                    SetupProjCols(dt);
+                }
+                else
+                {
+                    dt = dataObject.GetProjReferralReviewTable(id, type, group, assigned, status, newtc, usrnme, prgdtm);
+                    SetupProjCols(dt);
+
+                }
+                if (ckMySec.Checked)
+                {
+                    DataTable dtmyProjItem = dt.Clone();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string ntc = row["NEWTC"].ToString().Substring(0, 2);
+                        if (dy.Contains(ntc))
+                            dtmyProjItem.ImportRow(row);
+                    }
+                    dgProjReferrals.DataSource = dtmyProjItem;
+                }
+                else
+                    dgProjReferrals.DataSource = dt;
+
+                //display the row count on the screen after search
+
+                lblCasesCount.Text = dgProjReferrals.Rows.Count.ToString() + " PROJECT REFERRALS";
+
+                setProjItemColumnHeader();
+
+                Cursor.Current = Cursors.Default;
+
+            }
+
+            if (tbReferrals.SelectedIndex == 1)
+            {
+                string respid = "";
+                string usrnme = "";
+                string prgdtm = "";
+                string type = "";
+                string status = "";
+                string group = "";
+                string assigned = "";
+
+                DataTable rdt;
+
+                Cursor.Current = Cursors.WaitCursor;
+
+                if (Respid == "")
+                {
+
+                    //for respid
+
+                    if (cbItem.SelectedIndex == 0)
+                    {
+                        respid = txtRESPValueItem.Text.Trim();
+                    }
+
+                    // for type
+
+                    else if (cbItem.SelectedIndex == 1)
+                    {
+                        type = cbRESPValueItem.Text.Trim();
+
+                        //Reassign the radio button values to their database equivalent
+
+                        switch (type)
+                        {
+                            case "Late Receipt": type = "1"; break;
+                            case "Correct Flags": type = "2"; break;
+                            case "Data Issue": type = "3"; break;
+                            case "PNR/Address": type = "4"; break;
+                            case "Other": type = "5"; break;
+                        }
+                    }
+
+                    // for status
+
+                    else if (cbItem.SelectedIndex == 2)
+                    {
+                        status = cbRESPValueItem.Text.Trim();
+
+                        switch (status)
+                        {
+                            case "Active": status = "A"; break;
+                            case "Pending": status = "P"; break;
+                            case "Complete": status = "C"; break;
+                        }
+                    }
+
+                    // for usrname
+
+                    else if (cbItem.SelectedIndex == 3)
+                    {
+                        usrnme = cbRESPValueItem.Text.Trim();
+                    }
+
+                    // for group
+
+                    else if (cbItem.SelectedIndex == 4)
+                    {
+                        group = cbRESPValueItem.Text.Trim();
+
+                        switch (group)
+                        {
+                            case "HQ Supervisor": group = "1"; break;
+                            case "HQ Analyst": group = "2"; break;
+                            case "NPC Supervisor": group = "3"; break;
+                            case "NPC Clerk": group = "4"; break;
+                        }
+                    }
+
+                    else if (cbItem.SelectedIndex == 5)
+                    {
+                        assigned = cbRESPValueItem.Text.Trim();
+                    }
+
+                    // for prgdtm
+
+                    else if (cbItem.SelectedIndex == 6)
+                    {
+                        /*Verify date, and convert date to MM/DD/YYYY format */
+                        if (GeneralFunctions.VerifyDate(txtRESPValueItem.Text.Trim()))
+                            prgdtm = GeneralFunctions.ConvertDateFormat(txtRESPValueItem.Text);
+                             
+                    }
+                }
+                else
+                    respid = Respid;
+
+                if ((usrnme == "") && (respid == "") && (prgdtm == "") && (type == "") && (status == "") && (group == "") && (assigned == ""))
+                    rdt = dataObject.GetRespReferralReviewTable("", "", "", "", "", "", "");
+                else
+                    rdt = dataObject.GetRespReferralReviewTable(respid, type, group, assigned, status, usrnme, prgdtm);
+
+                SetupRespCols(rdt);
+                dgRespReferrals.DataSource = rdt;
+
+                //display the row count on the screen
+
+                lblCasesCount.Text = dgRespReferrals.Rows.Count.ToString() + " RESPONDENT REFERRALS";
+
+                setRespItemColumnHeader();
+
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+
     }
 }
