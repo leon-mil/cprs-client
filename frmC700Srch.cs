@@ -519,7 +519,7 @@ namespace Cprs
         private void txtStrtdate1_TextChanged(object sender, EventArgs e)
         {
             GeneralFunctions.CheckIntegerField(sender, "STRTDATE1");
-            if (txtSeldate1.Text.Length == 6)
+            if (txtStrtdate1.Text.Length == 6)
                 cbFipStateSel.Focus(); 
         }
 
