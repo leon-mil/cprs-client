@@ -37,6 +37,12 @@ Modified Date :  2/19/2021
  Keyword       :  
  Change Request:  
  Description   :  Allow Analyst update referral which created by others
+***********************************************************************************
+Modified Date :  4/29/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request:  
+ Description   :  Add refuser (assigned) column
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -271,24 +277,28 @@ namespace Cprs
                 }
                 if (i == 4)
                 {
+                    dgProjReferrals.Columns[i].HeaderText = "ASSIGNED";
+                    dgProjReferrals.Columns[i].Width = 100;
+
+                }
+
+                if (i == 5)
+                {
                     dgProjReferrals.Columns[i].HeaderText = "DATE/TIME";
                     dgProjReferrals.Columns[i].Width = 120;
 
                 }
-                if (i == 5)
+                if (i == 6)
                 {
                     dgProjReferrals.Columns[i].HeaderText = "NOTE";
                     dgProjReferrals.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     dgProjReferrals.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
-                if (i == 6)
-                {
-                    dgProjReferrals.Columns[i].Visible = false;
-                }
                 if (i == 7)
                 {
                     dgProjReferrals.Columns[i].Visible = false;
                 }
+               
                 
             }
 
@@ -333,7 +343,7 @@ namespace Cprs
                         dt.Rows[i][refgroupColumn] = "NPC Supervisor";
                         break;
                     case "4":
-                        dt.Rows[i][refgroupColumn] = "NPC Interviewer";
+                        dt.Rows[i][refgroupColumn] = "NPC Clerk";
                         break;
 
                 }
@@ -426,20 +436,23 @@ namespace Cprs
                 }
                 if (i == 4)
                 {
+                    dgRespReferrals.Columns[i].HeaderText = "ASSIGNED";
+                    dgRespReferrals.Columns[i].Width = 100;
+
+                }
+                if (i == 5)
+                {
                     dgRespReferrals.Columns[i].HeaderText = "DATE/TIME";
                     dgRespReferrals.Columns[i].Width = 120;
 
                 }
-                if (i == 5)
+                if (i == 6)
                 {
                     dgRespReferrals.Columns[i].HeaderText = "NOTE";
                     dgRespReferrals.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     dgRespReferrals.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
-                if (i == 6)
-                {
-                    dgRespReferrals.Columns[i].Visible = false;
-                }
+              
             }
 
             //reassign the value from the database to a 
@@ -477,7 +490,7 @@ namespace Cprs
                         dt.Rows[i][refgroupColumn] = "NPC Supervisor";
                         break;
                     case "4":
-                        dt.Rows[i][refgroupColumn] = "NPC Interviewer";
+                        dt.Rows[i][refgroupColumn] = "NPC Clerk";
                         break;
                 }
 
@@ -525,12 +538,13 @@ namespace Cprs
                     string Refstatus = dgProjReferrals.SelectedRows[0].Cells[1].Value.ToString();
                     string Usrnme = dgProjReferrals.SelectedRows[0].Cells[2].Value.ToString();
                     string Refgroup = dgProjReferrals.SelectedRows[0].Cells[3].Value.ToString();
-                    string Prgdtm = dgProjReferrals.SelectedRows[0].Cells[4].Value.ToString();
-                    string Refnote = dgProjReferrals.SelectedRows[0].Cells[5].Value.ToString();
-                    string Grpcde = dgProjReferrals.SelectedRows[0].Cells[6].Value.ToString();
+                    string Refuser = dgProjReferrals.SelectedRows[0].Cells[4].Value.ToString();
+                    string Prgdtm = dgProjReferrals.SelectedRows[0].Cells[5].Value.ToString();
+                    string Refnote = dgProjReferrals.SelectedRows[0].Cells[6].Value.ToString();
+                    
                     string Refcase = lblTab.Text;
 
-                    frmUpdReferralPopup URpopup = new frmUpdReferralPopup(Id, Respid, Reftype, Refstatus, Refgroup, Refcase, Refnote, Prgdtm, Usrnme, Grpcde);
+                    frmUpdReferralPopup URpopup = new frmUpdReferralPopup(Id, Respid, Reftype, Refstatus, Refgroup, Refuser, Refcase, Refnote, Prgdtm, Usrnme);
 
                     URpopup.ShowDialog();
                     if (URpopup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
@@ -551,14 +565,15 @@ namespace Cprs
 
                     string Reftype = dgRespReferrals.SelectedRows[0].Cells[0].Value.ToString();
                     string Refgroup = dgRespReferrals.SelectedRows[0].Cells[3].Value.ToString();
+                    string Refuser = dgRespReferrals.SelectedRows[0].Cells[4].Value.ToString();
                     string Usrnme = dgRespReferrals.SelectedRows[0].Cells[2].Value.ToString();
-                    string Refnote = dgRespReferrals.SelectedRows[0].Cells[5].Value.ToString();
+                    string Refnote = dgRespReferrals.SelectedRows[0].Cells[6].Value.ToString();
                     string Refstatus = dgRespReferrals.SelectedRows[0].Cells[1].Value.ToString();
-                    string Prgdtm = dgRespReferrals.SelectedRows[0].Cells[4].Value.ToString();
-                    string Grpcde = dgRespReferrals.SelectedRows[0].Cells[6].Value.ToString();
+                    string Prgdtm = dgRespReferrals.SelectedRows[0].Cells[5].Value.ToString();
+                    
                     string Refcase = lblTab.Text;
 
-                    frmUpdReferralPopup URpopup = new frmUpdReferralPopup(Id, Respid, Reftype, Refstatus, Refgroup, Refcase, Refnote, Prgdtm, Usrnme, Grpcde);
+                    frmUpdReferralPopup URpopup = new frmUpdReferralPopup(Id, Respid, Reftype, Refstatus, Refgroup,Refuser, Refcase, Refnote, Prgdtm, Usrnme);
 
                     URpopup.ShowDialog();
                     if (URpopup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
@@ -671,23 +686,23 @@ namespace Cprs
             if (tbReferrals.SelectedIndex == 0)
             {
                 //resize the note column
-                dgProjReferrals.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dgProjReferrals.Columns[5].Width = 400;
+                dgProjReferrals.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dgProjReferrals.Columns[6].Width = 400;
                 printer.PrintDataGridViewWithoutDialog(dgProjReferrals);
 
                 //resize back the note column
-                dgProjReferrals.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgProjReferrals.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             }
             else
             {
                 //resize the note column
-                dgRespReferrals.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dgRespReferrals.Columns[5].Width = 400;
+                dgRespReferrals.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dgRespReferrals.Columns[6].Width = 400;
                 printer.PrintDataGridViewWithoutDialog(dgRespReferrals);
 
                 //resize back the note column
-                dgRespReferrals.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgRespReferrals.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
             Cursor.Current = Cursors.Default;
@@ -711,7 +726,7 @@ namespace Cprs
                     {
                         if (tbReferrals.SelectedIndex == 0)
                         {
-                            string newtc = dg.SelectedRows[0].Cells[7].Value.ToString();
+                            string newtc = dg.SelectedRows[0].Cells[8].Value.ToString();
                             
                             /*set up referer button based on my sector */
                             if (ms != null && !ms.CheckInMySector(newtc))
