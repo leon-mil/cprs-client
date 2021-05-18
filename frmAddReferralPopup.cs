@@ -194,14 +194,15 @@ namespace Cprs
 
                     //add the project referral to the Project_Referral table
                     //add the respondent referral to the Respondent_Referral table
+                    string Refuser = "";
 
                     if (rbtnProject.Checked || gbChooseType.Visible == false)
                     {
-                        referral.AddProjectReferral(Id, Reftype, Refgroup, Refstatus, Refnote, Usrnme, Prgdtm);
+                        referral.AddProjectReferral(Id, Reftype, Refgroup, Refuser, Refstatus, Refnote, Usrnme, Prgdtm);
                     }
                     else
                     {
-                        referral.AddRespondentReferral(Respid, Reftype, Refgroup, Refstatus, Refnote, Usrnme, Prgdtm);
+                        referral.AddRespondentReferral(Respid, Reftype, Refgroup, Refuser,Refstatus, Refnote, Usrnme, Prgdtm);
                     }
 
                 }
