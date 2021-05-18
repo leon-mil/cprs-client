@@ -45,15 +45,16 @@ namespace Cprs
         {
             //Check database connection
             int connected = GeneralDataFuctions.CheckDatabaseConnection();
+           
             if (connected == 1)
             {
-                MessageBox.Show("                      The CPRS Database is unavailable." + "\n" + "\n" + "Please contact Special Applications Standardization Branch" + "\n" + "\n" + "Email: 'emd.all.sasb.list@census.gov' or Call 301-763-7359", "No Access to Database");
+                MessageBox.Show("                      The CPRS Database is unavailable." + "\n" + "\n" + "Please contact Special Applications Standardization Branch" + "\n" + "\n" + "Email: 'emd.all.sasb.list@census.gov' or Call 301-763-7359 or 301-763-0507", "No Access to Database");
                 Application.Exit();
                 return;
             }
             else if (connected == 2)
             {
-                MessageBox.Show("                      The CPRS Database is unavailable." + "\n" + "\n" + "Please contact Special Applications Standardization Branch" + "\n" + "\n" + "Email: 'emd.all.sasb.list@census.gov' or Call 301-763-7359", "Database Down");
+                MessageBox.Show("                      The CPRS Database is unavailable." + "\n" + "\n" + "Please contact Special Applications Standardization Branch" + "\n" + "\n" + "Email: 'emd.all.sasb.list@census.gov' or Call 301-763-7359 or 301-763-0507", "Database Down");
 
                 Application.Exit();
                 return;
