@@ -17,6 +17,13 @@ Detailed Design:    Detailed Design for Referrals
 Other:	            Called From: frmReferralReview.cs
  
 Revision History:	
+***********************************************************************************
+Modified Date :  5/24/2021
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#8240
+Description   :  change referral type of late receipt to Dodge initial, PNR/Address 
+                 to MF Intial
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -107,13 +114,13 @@ namespace Cprs
                 refuser = cbclerks.Text;
 
                 string rtype = "";
-                if (reftype == "Late Receipt")
+                if (reftype == "Dodge Initial")
                     rtype = "1";
                 else if (reftype == "Correct Flags")
                     rtype = "2";
                 else if (reftype == "Data Issue")
                     rtype = "3";
-                else if (reftype == "PNR/Address")
+                else if (reftype == "MF Initial")
                     rtype = "4";
                 else
                     rtype = "5";
