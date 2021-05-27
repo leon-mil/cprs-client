@@ -56,6 +56,12 @@ Modified By   : Christine Zhang
 Keyword       : CZ20210125
 Change Request: 
 Description   : updated code to fix error when saving comment and exiting by top menu
+***********************************************************************************
+Modified Date : May 24, 2021 
+Modified By   : Christine Zhang  
+Keyword       : CZ20210524
+Change Request: CR8238
+Description   : if grad 4 access and 1st review completed, invisible check box for check complete
 ***********************************************************************************/
 
 using System;
@@ -528,11 +534,11 @@ namespace Cprs
             if (presample.Worked == "2" ||
             (presample.Worked == "1") && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
             {
-                chkComplete.Enabled = false;
+                chkComplete.Visible = false;
             }
             else
             {
-                chkComplete.Enabled = true;
+                chkComplete.Visible = true;
             }
         }
 
@@ -1683,15 +1689,15 @@ namespace Cprs
             {
                 anytxtmodified = true;
 
-                if ((rev1nme == user) && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
-                {
-                    MessageBox.Show("You performed the first review. Cannot complete the second review.");
-                    chkComplete.Checked = false;
-                    notvalid = true;
-                    anytxtmodified = false;
-                    done = false;
-                    return;
-                }
+                //if ((rev1nme == user) && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
+                //{
+                //    MessageBox.Show("You performed the first review. Cannot complete the second review.");
+                //    chkComplete.Checked = false;
+                //    notvalid = true;
+                //    anytxtmodified = false;
+                //    done = false;
+                //    return;
+                //}
             }
         }
 
@@ -2960,6 +2966,7 @@ namespace Cprs
 
                 if (editable)
                 {
+
                     if (anytxtmodified)
                     {
                         DialogResult result2 = MessageBox.Show("The data was changed, do you want to save it?", "Important Query", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
