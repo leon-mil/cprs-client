@@ -29,7 +29,14 @@ Modified Date :  4/29/2021
 Modified By   :  Christine
 Keyword       :  
 Change Request:  
-Description   :  add NPC clerk for NPC Supervisor referral
+Description   :  add NPC clerk for NPC Sup/Lead referral
+***********************************************************************************
+Modified Date :  5/24/2021
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#8240
+Description   :  change referral type of late receipt to Dodge initial, PNR/Address 
+                 to MF Intial
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -125,7 +132,7 @@ namespace Cprs
 
         private void validateUser()
         {
-            if ((UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead) && (refgroup == "NPC Supervisor" || refgroup == "NPC Clerk"))
+            if ((UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead) && (refgroup == "NPC Sup/Lead" || refgroup == "NPC Clerk"))
             {
                 cbclerks.Visible = true;
                 label4.Visible = true;
@@ -220,10 +227,10 @@ namespace Cprs
 
                     switch (reftype)
                     {
-                        case "Late Receipt": reftype = "1"; break;
+                        case "Dodge Initial": reftype = "1"; break;
                         case "Correct Flags": reftype = "2"; break;
                         case "Data Issue": reftype = "3"; break;
-                        case "PNR/Address": reftype = "4"; break;
+                        case "MF Initial": reftype = "4"; break;
                         case "Other": reftype = "5"; break;
                     }
 
@@ -231,7 +238,7 @@ namespace Cprs
                     {
                         case "HQ Supervisor": refgroup = "1"; break;
                         case "HQ Analyst": refgroup = "2"; break;
-                        case "NPC Supervisor": refgroup = "3"; break;
+                        case "NPC Sup/Lead": refgroup = "3"; break;
                         case "NPC Clerk": refgroup = "4"; break;
                     }
 
