@@ -286,7 +286,7 @@ namespace Cprs
                 switch (dt.Rows[i][reftypeColumn].ToString())
                 {
                     case "1":
-                        dt.Rows[i][reftypeColumn] = "Late Receipt";
+                        dt.Rows[i][reftypeColumn] = "Dodge Initial";
                         break;
                     case "2":
                         dt.Rows[i][reftypeColumn] = "Correct Flags";
@@ -295,7 +295,7 @@ namespace Cprs
                         dt.Rows[i][reftypeColumn] = "Data Issue";
                         break;
                     case "4":
-                        dt.Rows[i][reftypeColumn] = "PNR/Address";
+                        dt.Rows[i][reftypeColumn] = "MF Initial";
                         break;
                     case "5":
                         dt.Rows[i][reftypeColumn] = "Other";
@@ -311,7 +311,7 @@ namespace Cprs
                         dt.Rows[i][refgroupColumn] = "HQ Analyst";
                         break;
                     case "3":
-                        dt.Rows[i][refgroupColumn] = "NPC Supervisor";
+                        dt.Rows[i][refgroupColumn] = "NPC Sup/Lead";
                         break;
                     case "4":
                         dt.Rows[i][refgroupColumn] = "NPC Clerk";
@@ -456,7 +456,7 @@ namespace Cprs
                 switch (rdt.Rows[i][reftypeColumn].ToString())
                 {
                     case "1":
-                        rdt.Rows[i][reftypeColumn] = "Late Receipt";
+                        rdt.Rows[i][reftypeColumn] = "Dodge Initial";
                         break;
                     case "2":
                         rdt.Rows[i][reftypeColumn] = "Correct Flags";
@@ -465,7 +465,7 @@ namespace Cprs
                         rdt.Rows[i][reftypeColumn] = "Data Issue";
                         break;
                     case "4":
-                        rdt.Rows[i][reftypeColumn] = "PNR/Address";
+                        rdt.Rows[i][reftypeColumn] = "MF Initial";
                         break;
                     case "5":
                         rdt.Rows[i][reftypeColumn] = "Other";
@@ -481,7 +481,7 @@ namespace Cprs
                         rdt.Rows[i][refgroupColumn] = "HQ Analyst";
                         break;
                     case "3":
-                        rdt.Rows[i][refgroupColumn] = "NPC Supervisor";
+                        rdt.Rows[i][refgroupColumn] = "NPC Sup/Lead";
                         break;
                     case "4":
                         rdt.Rows[i][refgroupColumn] = "NPC Clerk";
@@ -870,7 +870,7 @@ namespace Cprs
                     if (dr[0].ToString() == "1") //select a row where reftype = "1"
                     {
                         //Update the column value
-                        dr[1] = "Late Receipt"; //description column index
+                        dr[1] = "Dodge Initial"; //description column index
                     }
                     if (dr[0].ToString() == "2") //select a row where reftype = "2"
                     {                        
@@ -882,7 +882,7 @@ namespace Cprs
                     }
                     if (dr[0].ToString() == "4") //select a row where reftype = "4"
                     {
-                        dr[1] = "PNR/Address";
+                        dr[1] = "MF Initial";
                     }
                     if (dr[0].ToString() == "5") //select a row where reftype = "5"
                     {
@@ -955,7 +955,7 @@ namespace Cprs
                     }
                     if (dr[0].ToString() == "3") //select a row where refgroup = "3"
                     {
-                        dr[1] = "NPC Supervisor";
+                        dr[1] = "NPC Sup/Lead";
                     }
                     if (dr[0].ToString() == "4") //select a row where refgroup = "4"
                     {
@@ -999,7 +999,7 @@ namespace Cprs
                     if (dr[0].ToString() == "1") //select a row where reftype = "1"
                     {
                         //Update the column value
-                        dr[1] = "Late Receipt"; //description column index
+                        dr[1] = "Dodge Initial"; //description column index
                     }
                     if (dr[0].ToString() == "2") //select a row where reftype = "2"
                     {
@@ -1011,7 +1011,7 @@ namespace Cprs
                     }
                     if (dr[0].ToString() == "4") //select a row where reftype = "4"
                     {
-                        dr[1] = "PNR/Address";
+                        dr[1] = "MF Initial";
                     }
                     if (dr[0].ToString() == "5") //select a row where reftype = "5"
                     {
@@ -1083,7 +1083,7 @@ namespace Cprs
                     }
                     if (dr[0].ToString() == "3") //select a row where refgroup = "3"
                     {
-                        dr[1] = "NPC Supervisor";
+                        dr[1] = "NPC Sup/Lead";
                     }
                     if (dr[0].ToString() == "4") //select a row where refgroup = "4"
                     {
@@ -1195,10 +1195,10 @@ namespace Cprs
 
                         switch (type)
                         {
-                            case "Late Receipt": type = "1"; break;
+                            case "Dodge Initial": type = "1"; break;
                             case "Correct Flags": type = "2"; break;
                             case "Data Issue": type = "3"; break;
-                            case "PNR/Address": type = "4"; break;
+                            case "MF Initial": type = "4"; break;
                             case "Other": type = "5"; break;
                         }
                     }
@@ -1251,7 +1251,7 @@ namespace Cprs
                         {
                             case "HQ Supervisor": group = "1"; break;
                             case "HQ Analyst": group = "2"; break;
-                            case "NPC Supervisor": group = "3"; break;
+                            case "NPC Sup/Lead": group = "3"; break;
                             case "NPC Clerk": group = "4"; break;
                         }
                     }
@@ -1395,10 +1395,10 @@ namespace Cprs
 
                         switch (type)
                         {
-                            case "Late Receipt": type = "1"; break;
+                            case "Dodge Initial": type = "1"; break;
                             case "Correct Flags": type = "2"; break;
                             case "Data Issue": type = "3"; break;
-                            case "PNR/Address": type = "4"; break;
+                            case "MF Initial": type = "4"; break;
                             case "Other": type = "5"; break;
                         }
                     }
@@ -1452,7 +1452,7 @@ namespace Cprs
                         {
                             case "HQ Supervisor": group = "1"; break;
                             case "HQ Analyst": group = "2"; break;
-                            case "NPC Supervisor": group = "3"; break;
+                            case "NPC Sup/Lead": group = "3"; break;
                             case "NPC Clerk": group = "4"; break;
                         }
                     }
@@ -1621,6 +1621,7 @@ namespace Cprs
                    
                     if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                     {
+                        this.Hide();   // hide parent
                         frmTfu tfu = new frmTfu();
                         SampleData sdata = new SampleData();
                         Sample smp = sdata.GetSampleData(id);
@@ -1790,7 +1791,7 @@ namespace Cprs
             if (dgProjReferrals.SelectedRows.Count > 0)
             {
                 string col_group = dgProjReferrals.SelectedRows[0].Cells[5].Value.ToString();
-                if ((UserInfo.GroupCode== EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead) &&(col_group == "NPC Supervisor" ||col_group == "NPC Clerk"))
+                if ((UserInfo.GroupCode== EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead) &&(col_group == "NPC Sup/Lead" ||col_group == "NPC Clerk"))
                     btnAssign.Visible = true;
                 else
                     btnAssign.Visible = false;
@@ -1899,10 +1900,10 @@ namespace Cprs
 
                         switch (type)
                         {
-                            case "Late Receipt": type = "1"; break;
+                            case "Dodge Initial": type = "1"; break;
                             case "Correct Flags": type = "2"; break;
                             case "Data Issue": type = "3"; break;
-                            case "PNR/Address": type = "4"; break;
+                            case "MF Initial": type = "4"; break;
                             case "Other": type = "5"; break;
                         }
                     }
@@ -1938,7 +1939,7 @@ namespace Cprs
                         {
                             case "HQ Supervisor": group = "1"; break;
                             case "HQ Analyst": group = "2"; break;
-                            case "NPC Supervisor": group = "3"; break;
+                            case "NPC Sup/Lead": group = "3"; break;
                             case "NPC Clerk": group = "4"; break;
                         }
                     }
@@ -2031,10 +2032,10 @@ namespace Cprs
 
                         switch (type)
                         {
-                            case "Late Receipt": type = "1"; break;
+                            case "Dodge Initial": type = "1"; break;
                             case "Correct Flags": type = "2"; break;
                             case "Data Issue": type = "3"; break;
-                            case "PNR/Address": type = "4"; break;
+                            case "MF Initial": type = "4"; break;
                             case "Other": type = "5"; break;
                         }
                     }
@@ -2070,7 +2071,7 @@ namespace Cprs
                         {
                             case "HQ Supervisor": group = "1"; break;
                             case "HQ Analyst": group = "2"; break;
-                            case "NPC Supervisor": group = "3"; break;
+                            case "NPC Sup/Lead": group = "3"; break;
                             case "NPC Clerk": group = "4"; break;
                         }
                     }
