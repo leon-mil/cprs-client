@@ -417,7 +417,10 @@ namespace Cprs
                 }
                 else
                 {
-                    chkComplete.Visible = true;
+                    if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade=="4")
+                        chkComplete.Visible = false;
+                    else
+                        chkComplete.Visible = true;
                     chkNeedFurRev.Visible = false;
                 }
                 if (dodgeinitial.Worked == "2")
@@ -689,32 +692,32 @@ namespace Cprs
             //Time that case was entered
             accestms = DateTime.Now.ToString("HHmmss");
 
+            chkNeedFurRev.Visible = false;
+            chkComplete.Visible = false;
+
             if ((dodgeinitial.Worked == "0" || dodgeinitial.Worked == "1") && UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
             {
                 chkNeedFurRev.Visible = false;
-                chkComplete.Visible = true;
-                chkComplete.Enabled = true;
+                if (dodgeinitial.Worked == "0")
+                {
+                    chkComplete.Visible = true;
+                    chkComplete.Enabled = true;
+                }
+                else if (dodgeinitial.Worked == "1")
+                {
+                    chkComplete.Visible = false;
+                    chkComplete.Enabled = false;
+                }
             }
-            else
-            {
-                chkComplete.Visible = false;
-                chkNeedFurRev.Visible = false;
-            }
-
-            if (dodgeinitial.Worked == "0" || (dodgeinitial.Worked == "1") && (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead || 
+            else if (dodgeinitial.Worked == "0" || (dodgeinitial.Worked == "1") && (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead ||
                 UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5"))
             {
                 chkComplete.Visible = true;
                 chkComplete.Enabled = true;
                 chkNeedFurRev.Visible = false;
             }
-            else
-            {
-                chkComplete.Visible = false;
-                chkNeedFurRev.Visible = false;
-            }
-
-            if (UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCLead && UserInfo.GroupCode != EnumGroups.NPCInterviewer)
+           
+           else if (UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCLead && UserInfo.GroupCode != EnumGroups.NPCInterviewer)
             {
                 if (dodgeinitial.HQWorked == "0")
                 {
@@ -735,6 +738,7 @@ namespace Cprs
                     chkComplete.Visible = false;
                 }
             }
+           
             
             //get factors
             nameaddrfactor = SourceData.GetFactor(dodgeinitial.Masterid);
@@ -1356,7 +1360,7 @@ namespace Cprs
             {
                 if (dodgeinitial.HQWorked != "2") //&& dodgeinitial.HQWorked != "2")
                 {
-                    if ((chkComplete.Checked == false) && (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
+                    if ((chkComplete.Checked == false && chkComplete.Visible) && (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
                     {
                         CallReviewCompDialg();
                         if (returnedstring == "Cancel")
@@ -1388,7 +1392,7 @@ namespace Cprs
             {
                 if (dodgeinitial.Worked != "2" ) //|| dodgeinitial.Worked == "1")
                 {
-                    if (chkComplete.Checked == false) //|| (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
+                    if (chkComplete.Checked == false && chkComplete.Visible) //|| (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
                     {
                         CallReviewCompDialg();
                         if (returnedstring == "Cancel")
@@ -2685,7 +2689,7 @@ namespace Cprs
             //Check if the record is locked
             if (editable)
             {
-                if ((chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false) || (chkComplete.Checked == false))
+                if ((chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false) || (chkComplete.Checked == false && chkComplete.Visible))
                 {
                     frmRevCompMsgbox fRevComp =new frmRevCompMsgbox();
                     DialogResult result3 = fRevComp.ShowDialog();
@@ -2962,7 +2966,7 @@ namespace Cprs
                 if (dodgeinitial.HQWorked != "2") //&& dodgeinitial.HQWorked != "2")
                 {
                     //If both Need Further and complete visible but not checked
-                    if ((chkComplete.Checked == false) && (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
+                    if ((chkComplete.Visible && chkComplete.Checked == false) && (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
                     {
                         CallReviewCompDialg();
                         if (returnedstring == "Cancel")
@@ -3997,6 +4001,7 @@ namespace Cprs
                 txtRespname2.Text = "";
                 txtPhone2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -4025,6 +4030,7 @@ namespace Cprs
                 txtRespname2.Text = "";
                 txtPhone2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -4053,6 +4059,7 @@ namespace Cprs
                 txtRespname2.Text = "";
                 txtPhone2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -4081,6 +4088,7 @@ namespace Cprs
                 txtRespname2.Text = "";
                 txtPhone2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -4109,6 +4117,7 @@ namespace Cprs
                 txtRespname2.Text = "";
                 txtPhone2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
