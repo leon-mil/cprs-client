@@ -24,11 +24,12 @@ Other:	            Called From: frmReferral.cs
  
 Revision History:	
 ***********************************************************************************
-Modified Date :  
-Modified By   :  
+Modified Date :  5/24/2021
+Modified By   :  Christine Zhang
 Keyword       :  
-Change Request:  
-Description   :  
+Change Request:  CR#8240
+Description   :  change referral type of late receipt to Dodge initial, PNR/Address 
+                 to MF Intial
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -133,7 +134,7 @@ namespace Cprs
 
             string grpCheckedButton;
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer)
-                grpCheckedButton = "NPC Supervisor";
+                grpCheckedButton = "NPC Sup/Lead";
             else
                 grpCheckedButton = gbChooseGrp.Controls.OfType<RadioButton>()
                            .FirstOrDefault(rb => rb.Checked == true).Text;
@@ -169,10 +170,10 @@ namespace Cprs
 
                     switch (refCheckedButton)
                     {
-                        case "Late Receipt": Reftype = "1"; break;
+                        case "Dodge Initial": Reftype = "1"; break;
                         case "Correct Flags": Reftype = "2"; break;
                         case "Data Issue": Reftype = "3"; break;
-                        case "PNR/Address": Reftype = "4"; break;
+                        case "MF Initial": Reftype = "4"; break;
                         case "Other": Reftype = "5"; break;
                         default: Reftype = "1"; break;
                     }
@@ -181,7 +182,7 @@ namespace Cprs
                     {
                         case "HQ Supervisor": Refgroup = "1"; break;
                         case "HQ Analyst": Refgroup = "2"; break;
-                        case "NPC Supervisor": Refgroup = "3"; break;
+                        case "NPC Sup/Lead": Refgroup = "3"; break;
                         case "NPC Interviewer": Refgroup = "4"; break;
                         default: Refgroup = "1"; break;
                     }

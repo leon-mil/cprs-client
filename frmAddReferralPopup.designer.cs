@@ -79,9 +79,9 @@
             this.rbtnPnr.AutoSize = true;
             this.rbtnPnr.Location = new System.Drawing.Point(464, 19);
             this.rbtnPnr.Name = "rbtnPnr";
-            this.rbtnPnr.Size = new System.Drawing.Size(91, 17);
+            this.rbtnPnr.Size = new System.Drawing.Size(67, 17);
             this.rbtnPnr.TabIndex = 21;
-            this.rbtnPnr.Text = "PNR/Address";
+            this.rbtnPnr.Text = "MF Initial";
             this.rbtnPnr.UseVisualStyleBackColor = true;
             // 
             // rbtnData
@@ -101,9 +101,9 @@
             this.rbtnLate.AutoSize = true;
             this.rbtnLate.Location = new System.Drawing.Point(327, 19);
             this.rbtnLate.Name = "rbtnLate";
-            this.rbtnLate.Size = new System.Drawing.Size(86, 17);
+            this.rbtnLate.Size = new System.Drawing.Size(84, 17);
             this.rbtnLate.TabIndex = 13;
-            this.rbtnLate.Text = "Late Receipt";
+            this.rbtnLate.Text = "Dodge Initial";
             this.rbtnLate.UseVisualStyleBackColor = true;
             // 
             // rbtnCorrect
@@ -175,9 +175,9 @@
             this.rbtnNpcSupervisor.AutoSize = true;
             this.rbtnNpcSupervisor.Location = new System.Drawing.Point(382, 19);
             this.rbtnNpcSupervisor.Name = "rbtnNpcSupervisor";
-            this.rbtnNpcSupervisor.Size = new System.Drawing.Size(100, 17);
+            this.rbtnNpcSupervisor.Size = new System.Drawing.Size(98, 17);
             this.rbtnNpcSupervisor.TabIndex = 15;
-            this.rbtnNpcSupervisor.Text = "NPC Supervisor";
+            this.rbtnNpcSupervisor.Text = "NPC Sup/Lead";
             this.rbtnNpcSupervisor.UseVisualStyleBackColor = true;
             // 
             // rbtnHqSuper
@@ -241,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 392);
+            this.ClientSize = new System.Drawing.Size(800, 388);
             this.Controls.Add(this.gbChooseType);
             this.Controls.Add(this.gbChooseGrp);
             this.Controls.Add(this.gbChooseRef);
