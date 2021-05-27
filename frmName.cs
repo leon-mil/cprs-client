@@ -3931,6 +3931,7 @@ namespace Cprs
                 txtPersontoCont2.Text = "";
                 mtxtPhoneNum2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtTimeZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -3961,6 +3962,7 @@ namespace Cprs
                 txtPersontoCont2.Text = "";
                 mtxtPhoneNum2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtTimeZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -3990,6 +3992,7 @@ namespace Cprs
                 txtPersontoCont2.Text = "";
                 mtxtPhoneNum2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtTimeZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -4018,6 +4021,7 @@ namespace Cprs
                 txtPersontoCont2.Text = "";
                 mtxtPhoneNum2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtTimeZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
@@ -4046,6 +4050,7 @@ namespace Cprs
                 txtPersontoCont2.Text = "";
                 mtxtPhoneNum2.Text = "";
                 txtExt2.Text = "";
+                txtExt1.Text = "";
                 PopulateRstate();
                 txtTimeZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
