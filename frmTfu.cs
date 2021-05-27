@@ -87,6 +87,12 @@ Revision History:
  Keyword       :  
  Change Request: CR8026
  Description   : add history button, enable only for NPC lead and manager
+************************************************************************************
+ Modified Date :  5/25/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR8250
+ Description   : add mark case button, enable for NPC lead,manager and grade 5 interviewer 
 ************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -624,7 +630,7 @@ namespace Cprs
             rmarklist.Clear();
             pmarkdata = new ProjMarkData();
             rmarkdata = new RespMarkData();
-            if (UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager)
+            if (UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager ||(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5"))
             {
                 pmark = pmarkdata.GetProjmarkData(id);
                 pmarklist.Add(pmark);
@@ -1168,23 +1174,26 @@ namespace Cprs
                 btnRefresh.Enabled = false;
             }
 
-            if ((UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager) && id != null)
+            if ((UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager || (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5")) && id != null)
             {
                 btnMark.Visible = true;
                 if (tabControl2.TabPages.Count ==4)
                 {
                     tabControl2.TabPages.Add(tabPage7);
                     tabControl2.TabPages.Add(tabPage8);  
-                }
-                btnHistory.Enabled = true;  
+                }              
             }
             else
             {
                 btnMark.Visible = false;
                 tabControl2.TabPages.Remove(tabPage7);
-                tabControl2.TabPages.Remove(tabPage8);
-                btnHistory.Enabled = false; 
+                tabControl2.TabPages.Remove(tabPage8);  
             }
+
+            if ((UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager)  && id != null)
+                btnHistory.Enabled = true;
+            else
+                btnHistory.Enabled = false;
 
             // if the id is null, disable buttons
             if (id != null)
@@ -4150,8 +4159,6 @@ namespace Cprs
                     dgPmark.Columns[2].Width = 75;
                     dgPmark.Columns[2].HeaderText = "USER";
                     dgPmark.Columns[3].HeaderText = "MARK NOTE";
-
-
                 }
             }
             else if (tabControl2.SelectedIndex == 5)
@@ -4163,8 +4170,6 @@ namespace Cprs
                     dgRmark.Columns[2].Width = 60;
                     dgRmark.Columns[2].HeaderText = "USER";
                     dgRmark.Columns[3].HeaderText = "MARK NOTE";
-
-
                 }
             }
         }
