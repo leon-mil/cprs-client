@@ -706,6 +706,12 @@
     <Compile Include="frmReferralReview.Designer.cs">
       <DependentUpon>frmReferralReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReferralReviewAssignPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReferralReviewAssignPopup.designer.cs">
+      <DependentUpon>frmReferralReviewAssignPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReschedulePopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1500,6 +1506,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmReferralReview.resx">
       <DependentUpon>frmReferralReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReferralReviewAssignPopup.resx">
+      <DependentUpon>frmReferralReviewAssignPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReschedulePopup.resx">
       <DependentUpon>frmReschedulePopup.cs</DependentUpon>
