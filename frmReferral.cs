@@ -43,6 +43,13 @@ Modified Date :  4/29/2021
  Keyword       :  
  Change Request:  
  Description   :  Add refuser (assigned) column
+***********************************************************************************
+Modified Date :  5/24/2021
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#8240
+Description   :  change referral type of late receipt to Dodge initial, PNR/Address 
+                 to MF Intial
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -315,7 +322,7 @@ namespace Cprs
                 switch (dt.Rows[i][reftypeColumn].ToString())
                 {
                     case "1":
-                        dt.Rows[i][reftypeColumn] = "Late Receipt";
+                        dt.Rows[i][reftypeColumn] = "Dodge Initial";
                         break;
                     case "2":
                         dt.Rows[i][reftypeColumn] = "Correct Flags";
@@ -324,7 +331,7 @@ namespace Cprs
                         dt.Rows[i][reftypeColumn] = "Data Issue";
                         break;
                     case "4":
-                        dt.Rows[i][reftypeColumn] = "PNR/Address";
+                        dt.Rows[i][reftypeColumn] = "MF Initial";
                         break;
                     case "5":
                         dt.Rows[i][reftypeColumn] = "Other";
@@ -340,7 +347,7 @@ namespace Cprs
                         dt.Rows[i][refgroupColumn] = "HQ Analyst";
                         break;
                     case "3":
-                        dt.Rows[i][refgroupColumn] = "NPC Supervisor";
+                        dt.Rows[i][refgroupColumn] = "NPC Sup/Lead";
                         break;
                     case "4":
                         dt.Rows[i][refgroupColumn] = "NPC Clerk";
@@ -467,11 +474,17 @@ namespace Cprs
 
                 switch (dt.Rows[i][reftypeColumn].ToString())
                 {
+                    case "1":
+                        dt.Rows[i][reftypeColumn] = "Dodge Initial";
+                        break;
+                    case "2":
+                        dt.Rows[i][reftypeColumn] = "Correct Flags";
+                        break;
                     case "3":
                         dt.Rows[i][reftypeColumn] = "Data Issue";
                         break;
                     case "4":
-                        dt.Rows[i][reftypeColumn] = "PNR/Address";
+                        dt.Rows[i][reftypeColumn] = "MF Initial";
                         break;
                     case "5":
                         dt.Rows[i][reftypeColumn] = "Other";
@@ -487,7 +500,7 @@ namespace Cprs
                         dt.Rows[i][refgroupColumn] = "HQ Analyst";
                         break;
                     case "3":
-                        dt.Rows[i][refgroupColumn] = "NPC Supervisor";
+                        dt.Rows[i][refgroupColumn] = "NPC Sup/Lead";
                         break;
                     case "4":
                         dt.Rows[i][refgroupColumn] = "NPC Clerk";
