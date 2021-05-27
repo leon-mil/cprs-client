@@ -696,7 +696,7 @@ namespace CprsDAL
             {
                 c.Open();
 
-                sql = "Select usrnme From dbo.sched_id where grpcde ='5' order by usrnme ";
+                sql = "Select usrnme From dbo.sched_id where grpcde ='5' and grade = '5' order by usrnme ";
 
                 using (SqlDataAdapter da = new SqlDataAdapter(sql, c))
                 {
