@@ -739,7 +739,7 @@ namespace Cprs
                     {
                         if (tbReferrals.SelectedIndex == 0)
                         {
-                            string newtc = dg.SelectedRows[0].Cells[8].Value.ToString();
+                            string newtc = dg.SelectedRows[0].Cells[7].Value.ToString();
                             
                             /*set up referer button based on my sector */
                             if (ms != null && !ms.CheckInMySector(newtc))
