@@ -24,11 +24,11 @@ Other          : Called from: frmDodgeInitial.cs
  
 Revision Hist  :	
 ***********************************************************************************
-Modified Date  :  
-Modified By    :  
-Keyword        :  
-Change Request :  
-Description    :  
+Modified Date  :  6/10/2021
+Modified By    :  Christine Zhang
+Keyword        :  20210610cz
+Change Request :  CR # 8284
+Description    :  enable the select button for NPC users
 ***********************************************************************************/
 
 using System;
@@ -197,11 +197,13 @@ namespace Cprs
         {
             this.ActiveControl = txtID;
 
+            /* 20210610cz Comment out code for Hiding Select Button for NPC User
+             
             if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                 btnSelect.Visible = false;
             else
                 btnSelect.Visible = true;
-
+           */
         }
 
         private void txtID_Enter(object sender, EventArgs e)
