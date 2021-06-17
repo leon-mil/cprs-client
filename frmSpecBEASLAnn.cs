@@ -13,11 +13,11 @@ Detailed Design : Detailed Design for special bea Annual
 Other           :	            
 Revision History:	
 **************************************************************************************************
-Modified Date   :  
-Modified By     :  
+Modified Date   :  6/10/2021
+Modified By     :  Christine Zhang
 Keyword         :  
-Change Request  :  
-Description     :  
+Change Request  : CR8285 
+Description     :  create table add Annual CVS tab
 **************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -343,10 +343,13 @@ namespace Cprs
             xlApp = new Microsoft.Office.Interop.Excel.Application();
             xlWorkBook = xlApp.Workbooks.Add(misValue);
 
+            //create CV sheet tables
+            ExportToExcelCvs();
+
             ////create sheet tables
             if (Convert.ToInt16(sdate.Substring(4, 2)) > 2)
             {
-                ////create sheet tables
+                //create sheet tables
                 ExportToExcel1((cur_year - 5).ToString());
                 ExportToExcel1((cur_year - 4).ToString());
                 ExportToExcel1((cur_year - 3).ToString());
@@ -355,7 +358,7 @@ namespace Cprs
             }
             else
             {
-                ////create sheet tables
+                //create sheet tables
                 ExportToExcel1((cur_year - 6).ToString());
                 ExportToExcel1((cur_year - 5).ToString());
                 ExportToExcel1((cur_year - 4).ToString());
@@ -496,6 +499,125 @@ namespace Cprs
                         xlWorkSheet.Cells[iRow, iCol] = "\t" + r[c.ColumnName].ToString();
                     else if (iCol <= 40)
                         xlWorkSheet.Cells[iRow, iCol] = r[c.ColumnName].ToString();
+                }
+            }
+        }
+
+        private void ExportToExcelCvs()
+        {
+            string stitle = string.Empty;
+            stitle = "Coefficient of Variations for Selected Type of Construction";
+
+            string subtitle = "(Percent.)";
+
+            xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            xlWorkSheet.Name = "ANNUAL BEA CV";
+
+            xlWorkSheet.Rows.Font.Size = 10;
+            xlWorkSheet.Rows.Font.Name = "Arial";
+            xlWorkSheet.Rows.RowHeight = 12;
+
+            xlWorkSheet.Activate();
+            //xlWorkSheet.Application.ActiveWindow.SplitColumn = 1;
+            //xlWorkSheet.Application.ActiveWindow.SplitRow = 5;
+            //xlWorkSheet.Application.ActiveWindow.FreezePanes = true;
+
+            //Add a title
+            xlWorkSheet.Cells[1, 1] = stitle;
+
+            //Span the title across columns A through I
+            Microsoft.Office.Interop.Excel.Range titleRange = xlApp.get_Range(xlWorkSheet.Cells[1, 1], xlWorkSheet.Cells[1, 73]);
+            titleRange.Merge(Type.Missing);
+
+            //Increase the font-size of the title
+            titleRange.Font.Size = 12;
+            titleRange.RowHeight = 16;
+
+            //Make the title bold
+            titleRange.Font.Bold = true;
+            titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+            //Give the title background color
+            titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+
+            //Add a title2
+            xlWorkSheet.Cells[2, 1] = subtitle;
+
+            //Span the title across columns A through I
+            Microsoft.Office.Interop.Excel.Range titleRange2 = xlApp.get_Range(xlWorkSheet.Cells[2, 1], xlWorkSheet.Cells[2, 73]);
+            titleRange2.Merge(Type.Missing);
+            titleRange2.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            titleRange2.Font.Bold = true;
+            titleRange2.Font.Size = 10;
+
+            //Populate headers, assume row[0] contains the titles and row[5] contains all the headers
+            Microsoft.Office.Interop.Excel.Range cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, 1], xlWorkSheet.Cells[4, 73]);
+            cellRange.Font.Bold = true;
+            cellRange.RowHeight = 36;
+
+            DateTime secondDate = new DateTime((cur_year - 2), 1, 1); //DateTime.Now;
+            DataTable dcv = data_object.GetSLBeaMonCVsTable();
+
+            xlWorkSheet.Cells[4, 1] = "Type of Construction";
+
+            int x = 25;
+            for (int i = 24; i >= 1; i--)
+            {
+                DateTime nextMonth = secondDate.AddMonths(i - 1);
+                string nMonth = nextMonth.Year.ToString() + nextMonth.Month.ToString("00");
+
+                int j = 3 * (x-i) - 1;
+                xlWorkSheet.Cells[4, j] = "State \n" + nMonth;
+
+                j = 3 * (x - i);
+                xlWorkSheet.Cells[4, j] = "Local \n" + nMonth;
+
+                j = 3 * (x - i) + 1;
+                xlWorkSheet.Cells[4, j] = "Total \n" + nMonth;
+
+            }
+
+          //Setup the column header row (row 5)
+
+          //Set the font size, text wrap of columns and format for the entire worksheet
+          ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[1, Type.Missing]).ColumnWidth = 30;
+            ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[1, Type.Missing]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+            for (int i = 2; i <= 24 * 3 + 1; i++)
+            {
+                ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).ColumnWidth = 10;
+                ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).NumberFormat = "0.0";
+                ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+            }
+
+            ////Populate rest of the data. Start at row[5] 
+            int iRow = 4; //We start at row 5
+
+            foreach (DataRow r in dcv.Rows)
+            {
+                iRow++;
+               
+                xlWorkSheet.Cells[iRow, 1] = "\t" + r[0].ToString();
+                x = 25;
+                for (int i = 24; i >= 1; i--)
+                {
+                    int j = 3 * (x - i)-1 ;
+                    if (r[3 * i-2].ToString() == "")
+                        xlWorkSheet.Cells[iRow, j] = " ";
+                    else
+                        xlWorkSheet.Cells[iRow, j] = r[3*i-2].ToString();
+
+                    j = 3 * (x - i);
+                    if (r[3 * i-1].ToString() == "")
+                        xlWorkSheet.Cells[iRow, j] = " ";
+                    else
+                        xlWorkSheet.Cells[iRow, j] = r[3 * i-1].ToString();
+
+                    j = 3 * (x - i) +1;
+                    if (r[3 * i].ToString() == "")
+                        xlWorkSheet.Cells[iRow, j] = " ";
+                    else
+                        xlWorkSheet.Cells[iRow, j] = r[3 * i].ToString();
+
                 }
             }
         }
