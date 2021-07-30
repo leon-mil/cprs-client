@@ -152,6 +152,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
+            this.chkpending = new System.Windows.Forms.CheckBox();
             this.tbContact.SuspendLayout();
             this.tbpPrimary.SuspendLayout();
             this.tbpSecondary.SuspendLayout();
@@ -1499,7 +1500,7 @@
             this.chkComplete.AutoSize = true;
             this.chkComplete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkComplete.ForeColor = System.Drawing.Color.DarkBlue;
-            this.chkComplete.Location = new System.Drawing.Point(1047, 788);
+            this.chkComplete.Location = new System.Drawing.Point(1046, 780);
             this.chkComplete.Name = "chkComplete";
             this.chkComplete.Size = new System.Drawing.Size(156, 19);
             this.chkComplete.TabIndex = 283;
@@ -1619,10 +1620,24 @@
             this.label55.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // chkpending
+            // 
+            this.chkpending.AutoSize = true;
+            this.chkpending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkpending.ForeColor = System.Drawing.Color.DarkBlue;
+            this.chkpending.Location = new System.Drawing.Point(942, 780);
+            this.chkpending.Name = "chkpending";
+            this.chkpending.Size = new System.Drawing.Size(88, 19);
+            this.chkpending.TabIndex = 404;
+            this.chkpending.Text = "PENDING";
+            this.chkpending.UseVisualStyleBackColor = true;
+            this.chkpending.CheckedChanged += new System.EventHandler(this.chkpending_CheckedChanged);
+            // 
             // frmMfInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(1216, 849);
+            this.Controls.Add(this.chkpending);
             this.Controls.Add(this.label55);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label28);
@@ -1774,6 +1789,7 @@
             this.Controls.SetChildIndex(this.label28, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label55, 0);
+            this.Controls.SetChildIndex(this.chkpending, 0);
             this.tbContact.ResumeLayout(false);
             this.tbpPrimary.ResumeLayout(false);
             this.tbpPrimary.PerformLayout();
@@ -1916,5 +1932,6 @@
         private System.Windows.Forms.RadioButton rdSample;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.CheckBox chkpending;
     }
 }

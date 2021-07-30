@@ -62,6 +62,12 @@ Modified By   : Christine Zhang
 Keyword       : CZ20210524
 Change Request: CR8238
 Description   : if grad 4 access and 1st review completed, invisible check box for check complete
+***********************************************************************************
+Modified Date :  07/22/2020
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR 8385
+ Description   : Add Pending check box
 ***********************************************************************************/
 
 using System;
@@ -185,7 +191,7 @@ namespace Cprs
         //bool to indicate that the case is locked
         private bool flgIsLocked = false;
 
-        private bool editable;
+        private bool editable = true;
         private string presamplocked_by;
         private string resplocked_by;
         private bool notvalid;
@@ -291,6 +297,9 @@ namespace Cprs
 
             rdSample.Checked = true;
 
+            chkpending.Visible = false;
+            chkpending.Checked = false;
+
             access_code = "DATA ENTRY";
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager)
                 access_code = "INITIAL";
@@ -310,6 +319,8 @@ namespace Cprs
             {
                 LoadFormFromPopup();
             }
+
+            anytxtmodified = false;
         }
 
         private void LoadFormFromReview()
@@ -394,7 +405,7 @@ namespace Cprs
                 id = Id;
 
                 // Get data from PRESAMPLE table
-                DisplayPresampAddress();
+                DisplayPresampAddress(selflg);
                 SetTxtChanged();
                 compareflg = false;
 
@@ -531,15 +542,28 @@ namespace Cprs
                 btnAudit.Enabled = false;
             }
 
-            if (presample.Worked == "2" ||
-            (presample.Worked == "1") && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
+            if (presample.Worked == "2" || (presample.Worked == "1") && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
             {
                 chkComplete.Visible = false;
+                chkComplete.Checked = false;
+                chkpending.Checked = false;
+                chkpending.Visible = false;
             }
             else
             {
                 chkComplete.Visible = true;
+                chkComplete.Checked = false;
+                if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCInterviewer)
+                {
+                    chkpending.Visible = true;
+                    if (presample.Worked == "3")
+                        chkpending.Checked = true;
+                    else
+                        chkpending.Checked = false;
+                }
+                
             }
+            
         }
 
         // If the user enters a RESPID, then
@@ -698,6 +722,7 @@ namespace Cprs
                 case "0": status = "NOT STARTED"; break;
                 case "1": status = "REVIEW"; break;
                 case "2": status = "FINISHED"; break;
+                case "3": status = "PENDING"; break;
             }
             return status;
         }
@@ -737,6 +762,7 @@ namespace Cprs
             txtWebUrl.Text = "";
             txtCommtext.Text = "";
             chkComplete.Checked = false;
+            
             lblLockedBy.Visible = false;
             anytxtmodified = false;
             newval = string.Empty;
@@ -766,6 +792,8 @@ namespace Cprs
 
             txtSeldate1.Text = "";
             txtSeldate2.Text = "";
+
+           // if (chkpending.Visible) && 
         }
 
         private void unlockTextboxes()
@@ -857,6 +885,9 @@ namespace Cprs
             txtCommtext.BackColor = Color.White;
 
             btnRespid.Enabled = false;
+
+            if (chkpending.Visible)
+                chkpending.Enabled = false;
         }
 
         //Set up the txt_txtChange Event to be called after Form Initialization
@@ -895,6 +926,7 @@ namespace Cprs
             txtWebUrl.TextChanged += new EventHandler(txt_TextChanged);
             txtCommtext.TextChanged += new EventHandler(txt_TextChanged);
             chkComplete.CheckedChanged += new EventHandler(txt_TextChanged);
+            chkpending.CheckedChanged += new EventHandler(txt_TextChanged);
         }
 
         //Clear the txt_txtChange Event due to Next Respid Form Initialization
@@ -932,6 +964,7 @@ namespace Cprs
             txtWebUrl.TextChanged -= new EventHandler(txt_TextChanged);
             txtCommtext.TextChanged -= new EventHandler(txt_TextChanged);
             chkComplete.CheckedChanged -= new EventHandler(txt_TextChanged);
+            chkpending.CheckedChanged -= new EventHandler(txt_TextChanged);
         }
 
         //Method to Determine if Relevant Textboxes and Masked Textboxes Have Been Modified
@@ -1252,6 +1285,11 @@ namespace Cprs
                 {
                     oldval = "0";
                     newval = "1"; 
+                }
+                if (sender == chkpending)
+                {
+                    oldval = "0";
+                    newval = "3";
                 }
             }
 
@@ -1659,23 +1697,25 @@ namespace Cprs
 
             if (editable)
             {
-                if (rev1nme != user)
+                if ((rev1nme == "" && worked == "0")|| (rev2nme == "" && worked == "3"))
                 {
-                    if (rev1nme == "" && worked == "0")
-                    {
-                        revnme = user;
+                    revnme = user;
+                    if (chkComplete.Checked)
                         worked = "1";
-                        reviewNum = 1;
-                        mfidata.UpdateReviewStatus(id, worked, revnme, reviewNum);
-                    }
-
-                    if ((rev1nme != "" && worked == "1") && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
-                    {
-                        revnme = user;
+                    else if (chkpending.Checked)
+                        worked = "3";
+                    reviewNum = 1;
+                    mfidata.UpdateReviewStatus(id, worked, revnme, reviewNum);
+                }
+                else if (((rev1nme != "" && worked == "1" && rev1nme != user) || (rev2nme != "" && worked == "3" && rev1nme != user)) && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
+                {
+                    revnme = user;
+                    if (chkComplete.Checked)
                         worked = "2";
-                        reviewNum = 2;
-                        mfidata.UpdateReviewStatus(id, worked, revnme, reviewNum);
-                    }
+                    else if (chkpending.Checked)
+                        worked = "3";
+                    reviewNum = 2;
+                    mfidata.UpdateReviewStatus(id, worked, revnme, reviewNum);
                 }
             }
             rev1nme = presample.Rev1nme.Trim();
@@ -1684,21 +1724,24 @@ namespace Cprs
         private void chkComplete_CheckChanged(object sender, EventArgs e)
         {
             rev1nme = presample.Rev1nme.Trim();
-
-            if (chkComplete.Checked)
+            if (chkpending.Visible)
             {
-                anytxtmodified = true;
-
-                //if ((rev1nme == user) && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
-                //{
-                //    MessageBox.Show("You performed the first review. Cannot complete the second review.");
-                //    chkComplete.Checked = false;
-                //    notvalid = true;
-                //    anytxtmodified = false;
-                //    done = false;
-                //    return;
-                //}
+                if (chkComplete.Checked)
+                    chkpending.Enabled = false;
+                else
+                    chkpending.Enabled = true;
             }
+            anytxtmodified = true;
+        }
+
+        private void chkpending_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkpending.Checked)
+                chkComplete.Enabled = false;
+            else
+                chkComplete.Enabled = true;
+
+            anytxtmodified = true;
         }
 
         /********************************************************************/
@@ -2203,7 +2246,7 @@ namespace Cprs
             //update the rev1name or rev2name fields in the
             //Presample table
 
-            if (chkComplete.Checked)
+            if (chkComplete.Checked || chkpending.Checked)
                 chkCompleteUpdate();
 
             /*************** RESPONDENT UPDATE *******************/
@@ -2270,8 +2313,8 @@ namespace Cprs
                 }
 
                 Respauditlist.Clear();
-                anytxtmodified = false;
             }
+            anytxtmodified = false;
         }
 
         private void DataChanged()
@@ -2300,12 +2343,15 @@ namespace Cprs
             //Check if the record is locked
             if (editable)
             {
-                if  (chkComplete.Checked == false && ((presample.Worked == "0" && UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade =="4")||(presample.Worked == "1" && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))))
+                if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                 {
-                    frmRevCompMsgbox fRevComp = new frmRevCompMsgbox();
-                    DialogResult result3 = fRevComp.ShowDialog();
-                    returnedstring = fRevComp.RevCompRtn; 
-                }
+                    if ((chkComplete.Visible && !chkComplete.Checked) && (chkpending.Visible && !chkpending.Checked))                 
+                    {
+                        frmRevCompMsgbox fRevComp = new frmRevCompMsgbox();
+                        DialogResult result3 = fRevComp.ShowDialog();
+                        returnedstring = fRevComp.RevCompRtn;
+                    }
+                }              
             }
 
             return returnedstring;
@@ -2336,14 +2382,17 @@ namespace Cprs
 
             if (done == true)
             {
-                string returnval = CallReviewCompDialg();
-                if (returnval == "Yes")
+                if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                 {
-                    chkComplete.Checked = true;
-                    SaveData();
+                    string returnval = CallReviewCompDialg();
+                    if (returnval == "Yes")
+                    {
+                        chkComplete.Checked = true;
+                        SaveData();
+                    }
+                    else if (returnval == "Cancel")
+                        can_close = false;
                 }
-                else if (returnval == "Cancel")
-                    can_close = false;
             }
             else
                 can_close = false;
@@ -2852,21 +2901,26 @@ namespace Cprs
             //returns to review screen
             if (btnNextInitial.Text == "PREVIOUS")
             {
-                if (anytxtmodified)
+                if ((chkComplete.Visible && !chkComplete.Checked) && (chkpending.Visible && !chkpending.Checked))
                 {
-                    DialogResult result2 = MessageBox.Show("The data was changed, do you want to save it?", "Important Query", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result2 == DialogResult.Yes)
+                    string returnval =CallReviewCompDialg();
+                    if (returnval == "Cancel")
                     {
-                        SaveData();
-                        if (notvalid == true)
-                            return;
+                        return;
                     }
+                    else
+                    { SaveData(); }
                 }
-
+                else if ((chkComplete.Visible && chkComplete.Checked) || (chkpending.Visible && chkpending.Checked))
+                {
+                    SaveData();
+                }
+                if (anytxtmodified)
+                   SaveData();
+                      
                 if (CallingForm != null)
                 {
                     CallingForm.Show();
-                    CallingForm.RefreshScreen();
                 }
                 this.Close();
             }
@@ -2937,8 +2991,14 @@ namespace Cprs
                     Id = fMFInit.Id;
                     id = Id;
 
-
-                    DisplayPresampAddress();
+                    DisplayPresampAddress(selflg);
+                    
+                    //In case, case didn't get locked
+                    if (editable && selflg)
+                    {
+                        UpdatePresampleLock();
+                        UpdateRespondentLock();
+                    }
 
                     txtFin.Text = Psu + " " + Bpoid + " " + Sched;
 
@@ -2956,16 +3016,28 @@ namespace Cprs
 
         private void btnNextCase_Click(object sender, EventArgs e)
         {
-
             if (CurrIndex == Idlist.Count - 1)
             {
                 MessageBox.Show("You are at the last observation");
             }
             else
             {
-
                 if (editable)
                 {
+                    if ((chkComplete.Visible && !chkComplete.Checked) && (chkpending.Visible && !chkpending.Checked))
+                    {
+                        string returnval = CallReviewCompDialg();
+                        if (returnval == "Cancel")
+                        {
+                            return;
+                        }
+                        else
+                          SaveData(); 
+                    }
+                    else if ((chkComplete.Visible && chkComplete.Checked) || (chkpending.Visible && chkpending.Checked))
+                    {
+                         SaveData();
+                    }
 
                     if (anytxtmodified)
                     {
@@ -3234,5 +3306,7 @@ namespace Cprs
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
+
+       
     }
 }
