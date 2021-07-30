@@ -114,7 +114,7 @@ namespace CprsDAL
                 sqlQuery = @"with t2 as (select v.id,  count(date6) as months,  sum(vipdata) as cumvip from dbo.sample s, dbo.master m, dbo.MONTHLY_VIP_DATA v";
                 sqlQuery = sqlQuery + " where s.masterid = m.masterid and s.id = v.id ";
                 sqlQuery = sqlQuery + " and status = '1' and compdate between '" + (year -2) +"01' and '" + +(year - 1)+"12'";
-                sqlQuery = sqlQuery + andQuery + " group by v.ID ) select t2.id, newtc, status, seldate, rvitm5c, strtdate, compdate,months, months* fwgt as wtmonths, fwgt, cumvip,";
+                sqlQuery = sqlQuery + andQuery + " group by v.ID ) select t2.id, newtc, status, seldate, rvitm5c, strtdate, compdate,months, months* fwgt as wtmonths, fwgt, cumvip, round((CONVERT(FLOAT,cumvip)/CONVERT(FLOAT,rvitm5c))*100, 1) as comppercent,";
                 sqlQuery = sqlQuery + vgQuery + ", 0 as excluded, owner from t2, dbo.sample s, dbo.master m where t2.id = s.id and s.MASTERID = m.MASTERID order by id";
                 
                 using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
