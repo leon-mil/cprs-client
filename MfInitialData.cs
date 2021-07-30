@@ -27,11 +27,11 @@ Other:	            Called by: frmMfInitial.cs
  
 Revision History:	
 ****************************************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  7/27/2021
+ Modified By   :  Christine Zhang
  Keyword       :  
- Change Request:  
- Description   :  
+ Change Request:  CR8385
+ Description   :  add Pending as new worked status
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -41,6 +41,7 @@ using System.Text;
 using System.Linq;
 using System.Data.SqlClient;
 using CprsBLL;
+using System.Text.RegularExpressions;
 
 namespace CprsDAL
 {
@@ -307,7 +308,7 @@ namespace CprsDAL
             string presamplocked_by = String.Empty;
 
             SqlConnection connection = new SqlConnection(GeneralData.getConnectionString());
-            string sql = "SELECT RESPLOCK FROM dbo.PRESAMPLE WHERE ID = " + id;
+            string sql = "SELECT RESPLOCK FROM dbo.PRESAMPLE WHERE ID = " + GeneralData.AddSqlQuotes(id); 
             SqlCommand command = new SqlCommand(sql, connection);
 
             try
@@ -737,36 +738,83 @@ namespace CprsDAL
         }
 
         //Get the next masterid for the next unworked case for NPCInterviewers who have a user grade of 4
-        public string GetNextCaseGrade4()
+        public string GetNextCaseGrade4(string currid)
         {
             string id = string.Empty;
             string sql;
 
+            DataTable dt = new DataTable();
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
-                sql = "Select id from dbo.Presample left outer join dbo.Respondent on dbo.Presample.Respid = dbo.Respondent.Respid";
-                sql = sql + " where worked = '0' and  (dbo.PRESAMPLE.RESPLOCK = '' OR dbo.PRESAMPLE.RESPLOCK IS NULL) AND (dbo.RESPONDENT.RESPLOCK = '' OR dbo.RESPONDENT.RESPLOCK IS NULL) order by ID";
+                sql = "Select p.id,psu, bpoid, p.addr3, r.respid, rstate from dbo.Presample p left outer join dbo.Respondent r on p.Respid = r.Respid";
+                sql = sql + " where worked = '0' and (((p.RESPLOCK = '' OR p.RESPLOCK IS NULL) AND (r.RESPLOCK = '' OR r.RESPLOCK IS NULL)) or (p.RESPLOCK = '"+UserInfo.UserName + "')) and p.id <> '" + currid + "' order by ID";
                
                 SqlCommand sql_command = new SqlCommand(sql, sql_connection);
-
                 try
                 {
                     sql_connection.Open();
-                    SqlDataReader reader = sql_command.ExecuteReader();
-                    if (reader.HasRows)
+                    SqlDataAdapter da = new SqlDataAdapter(sql_command);
+                    da.Fill(dt);
+
+                    string rst;
+
+                    //find next available cases
+                    if (dt.Rows.Count > 0)
                     {
-                        while (reader.Read())
+                        string curtime = DateTime.Now.ToString("HHmm");
+
+                        //check appt date, appt time
+                        foreach (DataRow row in dt.Rows)
                         {
-                            id = reader["ID"].ToString();
-                            break;
+                            if (row["Respid"].ToString() != "")
+                            {
+                                if (GeneralDataFuctions.CheckIfGoodBussinessTime(row["rstate"].ToString()))
+                                {
+                                    //need update lock in respondent and presample
+                                    if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                                    {
+                                        id = (row["id"].ToString());
+
+                                        UpdatePresampLock(row["psu"].ToString(), row["bpoid"].ToString(), UserInfo.UserName);
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (row["Addr3"].ToString().Trim() != "")
+                            {
+                                //get rstate info from Addr3
+                                string[] words = Regex.Split(row["Addr3"].ToString(), @"\W+");
+
+                                int num_word = words.Count();
+                                rst = "";
+                                if (words[num_word - 1] == "CANADA")
+                                    rst = words[num_word - 2];
+                                else
+                                    rst = words[num_word - 1];
+
+                                //if there is no state related, set to pacific time zone
+                                if (rst == "") rst = "CA";
+                                
+                                if (GeneralDataFuctions.CheckIfGoodBussinessTime(rst))
+                                {
+                                    id = (row["id"].ToString());
+                                    UpdatePresampLock(row["psu"].ToString(), row["bpoid"].ToString(), UserInfo.UserName);
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                //if there is no state related, set to pacific time zone
+                                rst = "CA";
+                                if (GeneralDataFuctions.CheckIfGoodBussinessTime(rst))
+                                {
+                                    id = (row["id"].ToString());
+                                    UpdatePresampLock(row["psu"].ToString(), row["bpoid"].ToString(), UserInfo.UserName);
+                                    break;
+                                }
+                            }
                         }
                     }
-
-                   // while (reader.NextResult()) ;
-
-                    reader.Close();
-                    reader.Dispose();//always good idea to do proper cleanup
-
                 }
                 catch (SqlException ex)
                 {
