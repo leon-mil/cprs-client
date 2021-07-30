@@ -616,16 +616,18 @@ namespace CprsDAL
             }
 
             DataTable dt = new DataTable();
+            DataTable dt2 = new DataTable();
+            dt2.Columns.Add("Id");
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
 
                 if (owner_string == "")
                 {
-                    sql = "SELECT ID FROM dbo.DODGE_INITIAL_ADDR WHERE WORKED = '0' and RESPLOCK = '' ORDER BY ID";
+                    sql = "select d.id, r.respid, rstate from dbo.DCPINITIAL d, sample s, RESPONDENT r where d.id = s.id and r.RESPID = s.RESPID and worked = '0' and resplock = '' order by id";
                 }
                 else
                 {
-                    sql = "SELECT ID FROM dbo.DODGE_INITIAL_ADDR WHERE WORKED = '0' and RESPLOCK = '' and (" + owner_string + ") ORDER BY ID";
+                    sql = "select d.id, r.respid, rstate from dbo.DCPINITIAL d, sample s, master m, RESPONDENT r where d.id = s.id  and m.masterid = s.masterid and r.RESPID = s.RESPID and WORKED = '0' and RESPLOCK = '' and (" + owner_string + ") ORDER BY ID";
                 }
                 SqlCommand sql_command = new SqlCommand(sql, sql_connection);
                 try
@@ -633,6 +635,27 @@ namespace CprsDAL
                     sql_connection.Open();
                     SqlDataAdapter da = new SqlDataAdapter(sql_command);
                     da.Fill(dt);
+
+                    //find next available cases
+                    if (dt.Rows.Count > 0)
+                    {
+                        string curtime = DateTime.Now.ToString("HHmm");
+
+                        //check appt date, appt time
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string rst = row["rstate"].ToString().Trim();
+                            if (rst == "") rst = "CA";
+                            if (GeneralDataFuctions.CheckIfGoodBussinessTime(rst))
+                            {
+                                if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                                {
+                                    dt2.Rows.Add(row["id"].ToString());
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
                 catch (SqlException ex)
                 {
@@ -644,7 +667,7 @@ namespace CprsDAL
                     sql_connection.Dispose();
                 }
             }
-            return dt;
+            return dt2;
     }
 
         //Get the next id for the next unworked case for NPC users who have a user grade of 5
@@ -653,7 +676,7 @@ namespace CprsDAL
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
             {
-                SqlCommand sql_command = new SqlCommand("SELECT ID FROM dbo.DODGE_INITIAL_ADDR WHERE (WORKED = '0' OR WORKED = '1') AND REV1NME <> @JBONDID and RESPLOCK = '' ORDER BY WORKED DESC, ID ASC", connection);
+                SqlCommand sql_command = new SqlCommand("SELECT d.ID FROM dbo.DCPINITIAL d, sample s, RESPONDENT r where d.id = s.id and r.RESPID = s.RESPID and (WORKED = '0' OR WORKED = '1') AND REV1NME <> @JBONDID and RESPLOCK = '' ORDER BY WORKED DESC, ID ASC", connection);
                 sql_command.Parameters.AddWithValue("@JBONDID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(UserInfo.UserName);
 
                 // Create a DataAdapter to run the command and fill the DataTable
@@ -669,7 +692,7 @@ namespace CprsDAL
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
             {
-                SqlCommand sql_command = new SqlCommand("SELECT ID FROM dbo.DODGE_INITIAL_ADDR WHERE (HQWORKED = '0' OR (HQWORKED = '1' and HQNME = @JBONDID)) and RESPLOCK = '' ORDER BY HQWORKED, ID", connection);
+                SqlCommand sql_command = new SqlCommand("SELECT d.ID FROM dbo.DCPINITIAL d, sample s, RESPONDENT r where d.id = s.id and r.RESPID = s.RESPID and (HQWORKED = '0' OR (HQWORKED = '1' and HQNME = @JBONDID)) and RESPLOCK = '' ORDER BY HQWORKED, ID", connection);
                 sql_command.Parameters.AddWithValue("@JBONDID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(UserInfo.UserName);
                 // Create a DataAdapter to run the command and fill the DataTable
                 SqlDataAdapter da = new SqlDataAdapter(sql_command);
@@ -685,7 +708,7 @@ namespace CprsDAL
 
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
-                SqlCommand sql_command = new SqlCommand("SELECT ID FROM dbo.DODGE_INITIAL_ADDR WHERE (HQWORKED = '0' OR HQWORKED = '1') AND RESPLOCK = '' ORDER BY HQWORKED ASC, ID", sql_connection);
+                SqlCommand sql_command = new SqlCommand("SELECT d.ID FROM dbo.DCPINITIAL d, sample s, RESPONDENT r where d.id = s.id and r.RESPID = s.RESPID and (HQWORKED = '0' OR HQWORKED = '1') AND RESPLOCK = '' ORDER BY HQWORKED ASC, ID", sql_connection);
                 sql_command.Parameters.AddWithValue("@JBONDID", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(UserInfo.UserName);
                 try
                 {
