@@ -13,7 +13,7 @@ Inputs         : None
 
 Parameters     : None
                  
-Outputs        : Id
+Outputs        : SelectedDCPId
 
 Description    : This screen will allow the user to enter a 7 Digit Id
                  to load data into the Dodge Intial Screen
@@ -26,9 +26,17 @@ Revision Hist  :
 ***********************************************************************************
 Modified Date  :  6/10/2021
 Modified By    :  Christine Zhang
-Keyword        :  20210610cz
-Change Request :  CR # 8284
+Keyword        :  
+Change Request :  CR#8284
 Description    :  enable the select button for NPC users
+***********************************************************************************
+Modified Date  :  7/13/2021
+Modified By    :  Christine Zhang
+Keyword        :  
+Change Request :  CR 8349
+Description    : Get ids base on timezone; 
+                 For getting the case for Grade 5 clerk and NPC lead/manager it  
+                 will be the same logic as  getting a case for Grade 4 interviewer 
 ***********************************************************************************/
 
 using System;
@@ -52,12 +60,9 @@ namespace Cprs
 {
     public partial class frmDCPInitPopup : Form
     {
-        public DataTable ListSelectedDCPId;
+        public bool selflg = false;
         public string SelectedDCPId = string.Empty;
-        public bool flgIsLocked = false;
-        public List<string> HQSectnumbs = null;
-        public string Id;
-
+       
         MfInitialData mfidata = new MfInitialData();
         DodgeInitialData DodgInitdata = new DodgeInitialData();
        
@@ -82,8 +87,22 @@ namespace Cprs
         
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
+            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer ||UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
             {
+                //check current time
+                DateTime t1 = DateTime.Now;
+                DateTime t2 = Convert.ToDateTime("8:00:00 AM");
+
+                //if current time is less than 8 o'clock
+                if ((DateTime.Compare(t1, t2)) < 0)
+                {
+                    MessageBox.Show("No cases are available until 8:00 AM");
+                    this.Close();
+                    this.DialogResult = DialogResult.Abort;
+                    selflg = false;
+                    return;
+                }
+
                 DataTable dtId = DodgInitdata.GetNextCaseGrade4();
                 this.DialogResult = DialogResult.OK;
                 if (dtId.Rows.Count == 0)
@@ -96,29 +115,30 @@ namespace Cprs
                 }
                 else
                 {
-                    SelectedDCPId = dtId.Rows[0][0].ToString();
+                    selflg = true;
+                    SelectedDCPId = dtId.Rows[0][0].ToString();     
                 }
             }
 
-            if ((UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5") ||
-                UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
-            {
-                DataTable dtId = DodgInitdata.GetNextCaseGrade5();
-                this.DialogResult = DialogResult.OK;
+            //if ((UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5") ||
+            //    UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
+            //{
+            //    DataTable dtId = DodgInitdata.GetNextCaseGrade4();
+            //    this.DialogResult = DialogResult.OK;
 
-                if (dtId.Rows.Count == 0)
-                {
-                    DialogResult result = MessageBox.Show("All cases have been reviewed", "Info", MessageBoxButtons.OK);
-                    if (result == DialogResult.OK)
-                    {
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    SelectedDCPId = dtId.Rows[0][0].ToString();
-                }
-            }
+            //    if (dtId.Rows.Count == 0)
+            //    {
+            //        DialogResult result = MessageBox.Show("All cases have been reviewed", "Info", MessageBoxButtons.OK);
+            //        if (result == DialogResult.OK)
+            //        {
+            //            this.Close();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        SelectedDCPId = dtId.Rows[0][0].ToString();
+            //    }
+            //}
 
             if (UserInfo.GroupCode != EnumGroups.NPCInterviewer && UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCLead)
             {
@@ -134,6 +154,7 @@ namespace Cprs
                         if (result == DialogResult.OK)
                         {
                             this.Close();
+                            this.DialogResult = DialogResult.Abort;
                         }
                     }
                 }
@@ -196,14 +217,7 @@ namespace Cprs
         private void frmDCPInitPopup_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtID;
-
-            /* 20210610cz Comment out code for Hiding Select Button for NPC User
-             
-            if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
-                btnSelect.Visible = false;
-            else
-                btnSelect.Visible = true;
-           */
+              
         }
 
         private void txtID_Enter(object sender, EventArgs e)
