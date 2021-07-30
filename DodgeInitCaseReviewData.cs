@@ -204,6 +204,9 @@ namespace CprsDAL
                 string sqlselection = " select ID, RESPID, THQWORKED, HQNME, TNPCWORKED, REV1NME, REV2NME, " +
                     " NEWTC, OWNER, PROJDESC, PROJLOC from dbo.DCPReview where ";
                 string sqlorder = " order by ID ";
+                string sqlselection2 = " select ID, RESPID, THQWORKED, HQNME, TNPCWORKED, REV1NME, REV2NME, " +
+                    " NEWTC, OWNER, PROJDESC, PROJLOC from dbo.DCPReview order by ID  ";
+               
 
                 //ID search
                 if (var == "ID")
@@ -250,7 +253,7 @@ namespace CprsDAL
                 {
                     sqlwhere1 = sqlselection + " HQNME = @CHOICE";
                 }
-
+              
                 //if 2nd search criteria selected
                 //ID search
                 if (var2 == "ID")
@@ -302,9 +305,12 @@ namespace CprsDAL
 
                 SqlCommand sql_command = new SqlCommand(sqlwhere, connection);
 
-
+                if (var == "" && var2 == "")
+                {
+                    sqlwhere = sqlselection2;
+                }
                 //create selection clause based on one search or two
-                if (var2 != null)
+                else if (var2 != "")
                 {
                     sql_command.Parameters.AddWithValue("@VAR", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(var);
                     sql_command.Parameters.AddWithValue("@VAR2", SqlDbType.NVarChar).Value = var2;
@@ -313,13 +319,14 @@ namespace CprsDAL
 
                     sqlwhere = sqlwhere1 + " and " + sqlwhere2 + sqlorder;
                 }
-                else
+                else if (var != "")
                 {
                     sql_command.Parameters.AddWithValue("@VAR", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(var);
                     sql_command.Parameters.AddWithValue("@CHOICE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(choice);
 
                     sqlwhere = sqlwhere1 + sqlorder;
                 }
+                
 
                 sql_command.CommandText = sqlwhere;
 
