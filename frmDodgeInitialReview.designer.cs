@@ -48,6 +48,7 @@
             this.dgData = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtNPCFinished = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -60,6 +61,7 @@
             this.txtHQNotStarted = new System.Windows.Forms.TextBox();
             this.txtHQReviewed = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtNPCPending = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
@@ -263,7 +265,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgData.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgData.Location = new System.Drawing.Point(12, 184);
+            this.dgData.Location = new System.Drawing.Point(12, 170);
             this.dgData.MultiSelect = false;
             this.dgData.Name = "dgData";
             this.dgData.ReadOnly = true;
@@ -297,9 +299,9 @@
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.txtTotal);
             this.panel2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.panel2.Location = new System.Drawing.Point(326, 623);
+            this.panel2.Location = new System.Drawing.Point(320, 619);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(554, 149);
+            this.panel2.Size = new System.Drawing.Size(554, 170);
             this.panel2.TabIndex = 287;
             // 
             // tableLayoutPanel1
@@ -309,6 +311,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtNPCFinished, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label20, 0, 0);
@@ -321,20 +324,32 @@
             this.tableLayoutPanel1.Controls.Add(this.txtHQNotStarted, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtHQReviewed, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label8, 2, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(45, 61);
+            this.tableLayoutPanel1.Controls.Add(this.txtNPCPending, 1, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(45, 57);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(462, 77);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(462, 95);
             this.tableLayoutPanel1.TabIndex = 25;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(132, 20);
+            this.label7.TabIndex = 289;
+            this.label7.Text = "NPC PENDING";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtNPCFinished
             // 
             this.txtNPCFinished.BackColor = System.Drawing.Color.LightGray;
             this.txtNPCFinished.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtNPCFinished.Location = new System.Drawing.Point(141, 55);
+            this.txtNPCFinished.Location = new System.Drawing.Point(141, 53);
             this.txtNPCFinished.Name = "txtNPCFinished";
             this.txtNPCFinished.Size = new System.Drawing.Size(56, 20);
             this.txtNPCFinished.TabIndex = 288;
@@ -344,7 +359,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 52);
+            this.label3.Location = new System.Drawing.Point(3, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 23);
             this.label3.TabIndex = 27;
@@ -356,7 +371,7 @@
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(3, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(132, 27);
+            this.label20.Size = new System.Drawing.Size(132, 25);
             this.label20.TabIndex = 25;
             this.label20.Text = "NPC NOT STARTED";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -375,7 +390,7 @@
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(3, 27);
+            this.label21.Location = new System.Drawing.Point(3, 25);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(132, 23);
             this.label21.TabIndex = 26;
@@ -386,7 +401,7 @@
             // 
             this.txtNPCReviewed.BackColor = System.Drawing.Color.LightGray;
             this.txtNPCReviewed.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtNPCReviewed.Location = new System.Drawing.Point(141, 30);
+            this.txtNPCReviewed.Location = new System.Drawing.Point(141, 28);
             this.txtNPCReviewed.Name = "txtNPCReviewed";
             this.txtNPCReviewed.Size = new System.Drawing.Size(56, 20);
             this.txtNPCReviewed.TabIndex = 0;
@@ -397,7 +412,7 @@
             // 
             this.txtHQFinished.BackColor = System.Drawing.Color.LightGray;
             this.txtHQFinished.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtHQFinished.Location = new System.Drawing.Point(371, 55);
+            this.txtHQFinished.Location = new System.Drawing.Point(371, 53);
             this.txtHQFinished.Name = "txtHQFinished";
             this.txtHQFinished.Size = new System.Drawing.Size(56, 20);
             this.txtHQFinished.TabIndex = 34;
@@ -407,7 +422,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(233, 52);
+            this.label6.Location = new System.Drawing.Point(233, 50);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(132, 23);
             this.label6.TabIndex = 30;
@@ -439,7 +454,7 @@
             // 
             this.txtHQReviewed.BackColor = System.Drawing.Color.LightGray;
             this.txtHQReviewed.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtHQReviewed.Location = new System.Drawing.Point(371, 30);
+            this.txtHQReviewed.Location = new System.Drawing.Point(371, 28);
             this.txtHQReviewed.Name = "txtHQReviewed";
             this.txtHQReviewed.Size = new System.Drawing.Size(56, 20);
             this.txtHQReviewed.TabIndex = 28;
@@ -449,12 +464,23 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(233, 27);
+            this.label8.Location = new System.Drawing.Point(233, 25);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(132, 23);
             this.label8.TabIndex = 288;
             this.label8.Text = "HQ REVIEWED";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtNPCPending
+            // 
+            this.txtNPCPending.BackColor = System.Drawing.Color.LightGray;
+            this.txtNPCPending.ForeColor = System.Drawing.Color.DarkBlue;
+            this.txtNPCPending.Location = new System.Drawing.Point(141, 78);
+            this.txtNPCPending.Name = "txtNPCPending";
+            this.txtNPCPending.Size = new System.Drawing.Size(56, 20);
+            this.txtNPCPending.TabIndex = 290;
+            this.txtNPCPending.TabStop = false;
+            this.txtNPCPending.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label19
             // 
@@ -583,5 +609,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtValueItem;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtNPCPending;
     }
 }

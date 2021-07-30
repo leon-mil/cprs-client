@@ -29,6 +29,12 @@
  Keyword       : None
  Change Request: CR 201
  Description   : Update Popup Messages to conform with other screens
+ *********************************************************************
+ Modified Date : 7/22/2021
+ Modified By   : Christine Zhang
+ Keyword       : None
+ Change Request: CR
+ Description   : Add Pending work to screen
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -118,6 +124,7 @@ namespace Cprs
             int NPCnotstartedSum = 0;
             int NPCreviewedSum = 0;
             int NPCfinishedSum = 0;
+            int NPCPendingSum = 0;
             int HQnotstartedSum = 0;
             int HQreviewedSum = 0;
             int HQfinishedSum = 0;
@@ -142,6 +149,10 @@ namespace Cprs
                 else if (status == "FINISHED")
                 {
                     ++NPCfinishedSum;
+                }
+                else
+                {
+                    ++NPCPendingSum;
                 }
 
                 //Total number of cases
@@ -174,6 +185,7 @@ namespace Cprs
             txtNPCNotStarted.Text = NPCnotstartedSum.ToString();
             txtNPCReviewed.Text = NPCreviewedSum.ToString();
             txtNPCFinished.Text = NPCfinishedSum.ToString();
+            txtNPCPending.Text = NPCPendingSum.ToString();
             txtHQNotStarted.Text = HQnotstartedSum.ToString();
             txtHQReviewed.Text = HQreviewedSum.ToString();
             txtHQFinished.Text = HQfinishedSum.ToString();
@@ -198,14 +210,15 @@ namespace Cprs
             }
         }
 
-        private string var; //hold variable name for search
-        private string var2; //hold variable name for 2nd search
-        private string txt; //hold value for search
-        private string txt2; //hold value for 2nd search
-
+       
         //validate and populate searches
         private void SearchItem()
         {
+            string var=""; //hold variable name for search
+            string var2 =""; //hold variable name for 2nd search
+            string txt =""; //hold value for search
+            string txt2=""; //hold value for 2nd search
+
             DataTable dtdcp = new DataTable();
 
             //validate id is 7 digits and valid
@@ -413,6 +426,11 @@ namespace Cprs
                     enteredValue = true;
                     txt = cbValueItem.SelectedItem.ToString();
                 }
+                else if (cbValueItem.SelectedItem.ToString() == "PENDING")
+                {
+                    enteredValue = true;
+                    txt = cbValueItem.SelectedItem.ToString();
+                }
             }
             //check hq work status
             else if (cbItem.SelectedIndex == 5)
@@ -518,9 +536,7 @@ namespace Cprs
             }
 
             //necessary to null these for the parameters to DAL if selection of 2nd search not used
-            var2 = null;
-            txt2 = null;
-
+          
             //validate id is 7 digits and valid
             if (cbItem2.SelectedIndex == 0)
             {
@@ -719,6 +735,11 @@ namespace Cprs
                     enteredValue = true;
                     txt2 = cbValueItem2.SelectedItem.ToString();
                 }
+                else if (cbValueItem2.SelectedItem.ToString() == "PENDING")
+                {
+                    enteredValue = true;
+                    txt2 = cbValueItem2.SelectedItem.ToString();
+                }
             }
             //check hq work status
             else if (cbItem2.SelectedIndex == 5)
@@ -849,9 +870,8 @@ namespace Cprs
 
         //Strings to populate search comboboxes
         private string[] SurveySearch = { "", "NONRESIDENTIAL", "STATE & LOCAL", "FEDERAL", "UTILITIES" };
-        private string[] StatusSearch = { "", "NOT STARTED", "REVIEWED", "FINISHED" };
-        private string[] SurveySearch2 = { "", "NONRESIDENTIAL", "STATE & LOCAL", "FEDERAL", "UTILITIES" };
-        private string[] StatusSearch2 = { "", "NOT STARTED", "REVIEWED", "FINISHED" };
+        private string[] StatusSearch = { "", "NOT STARTED", "REVIEWED", "FINISHED", "PENDING" };
+        private string[] StatusSearch2 = { "", "NOT STARTED", "REVIEWED", "FINISHED"};
 
         //function to populate 1st combobox with appropriate search string
         private void showSearchItems(string[] search)
@@ -893,7 +913,7 @@ namespace Cprs
             //npc work status
             else if (cbIndex == 5)
             {
-                showSearchItems(StatusSearch);
+                showSearchItems(StatusSearch2);
                 cbValueItem.ValueMember = "npcstatus";
                 cbValueItem.DisplayMember = "npcstatus";
             }
@@ -946,7 +966,7 @@ namespace Cprs
             //npc work status
             else if (cbIndex2 == 5)
             {
-                showSearchItems2(StatusSearch);
+                showSearchItems2(StatusSearch2);
                 cbValueItem2.ValueMember = "npcstatus";
                 cbValueItem2.DisplayMember = "npcstatus";
             }
@@ -1244,7 +1264,7 @@ namespace Cprs
 
             cbValueItem.DataSource = null;
             cbValueItem2.DataSource = null;
-
+            
             cbItem.SelectedIndex = -1;
             cbValueItem.SelectedIndex = -1;
             cbValueItem.Items.Clear();
@@ -1305,7 +1325,28 @@ namespace Cprs
 
             GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "EXIT");
 
-            fDodgeInit.Show();  // show child
+            fDodgeInit.ShowDialog();  // show child
+
+            SearchItem();
+            CalculateTotals();
+            HighlightRowForId(id);
+            return;
+        }
+
+        private void HighlightRowForId(string id)
+        {
+            int rowIndex = -1;
+            foreach (DataGridViewRow row in dgData.Rows)
+            {
+                if (row.Cells[0].Value.ToString().Equals(id))
+                {
+                    rowIndex = row.Index;
+                    break;
+                }
+            }
+
+            if (rowIndex >= 0)
+                dgData.Rows[rowIndex].Selected = true;
 
         }
 
