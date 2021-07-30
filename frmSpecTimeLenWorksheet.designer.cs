@@ -144,7 +144,7 @@
             this.dgMain.RowHeadersVisible = false;
             this.dgMain.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMain.Size = new System.Drawing.Size(1090, 38);
+            this.dgMain.Size = new System.Drawing.Size(1090, 40);
             this.dgMain.TabIndex = 94;
             // 
             // dgData
@@ -183,7 +183,7 @@
             this.dgData.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgData.RowHeadersVisible = false;
             this.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgData.Size = new System.Drawing.Size(1090, 381);
+            this.dgData.Size = new System.Drawing.Size(1090, 384);
             this.dgData.TabIndex = 96;
             // 
             // excludelist
@@ -323,7 +323,8 @@
             this.cbItem.FormattingEnabled = true;
             this.cbItem.Items.AddRange(new object[] {
             "ID",
-            "COMPDATE"});
+            "COMPDATE",
+            "VG"});
             this.cbItem.Location = new System.Drawing.Point(119, 196);
             this.cbItem.Name = "cbItem";
             this.cbItem.Size = new System.Drawing.Size(95, 21);
@@ -380,7 +381,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label22.Location = new System.Drawing.Point(981, 204);
+            this.label22.Location = new System.Drawing.Point(981, 203);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(119, 13);
             this.label22.TabIndex = 115;
@@ -392,7 +393,7 @@
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCount.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblCount.Location = new System.Drawing.Point(1097, 204);
+            this.lblCount.Location = new System.Drawing.Point(1097, 203);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(14, 13);
             this.lblCount.TabIndex = 116;
@@ -406,7 +407,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 870);
+            this.ClientSize = new System.Drawing.Size(1188, 869);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.btnVGWM);

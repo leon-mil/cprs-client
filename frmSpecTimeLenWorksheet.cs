@@ -12,11 +12,17 @@ Detailed Design : Detailed Design for Time length worksheet
 Other           :	            
 Revision History:	
 **************************************************************************************************
-Modified Date   :  
-Modified By     :  
+Modified Date   :  7/26/2021
+Modified By     :  Christine
 Keyword         :  
-Change Request  :  
-Description     :  
+Change Request  :  CR 8375
+Description     :  add %comp column, add VG search and descending the sorting for vg, weighted months
+**************************************************************************************************
+Modified Date   :  7/27/2021
+Modified By     :  Christine
+Keyword         :  
+Change Request  :  CR 8386
+Description     :  descending the sorting for vg, months
 **************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -150,11 +156,14 @@ namespace Cprs
             dgData.Columns[10].HeaderText = "Cum VIP";
             dgData.Columns[10].DefaultCellStyle.Format = "N0";
             dgData.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgData.Columns[11].HeaderText = "VG";
+            dgData.Columns[11].HeaderText = "%Comp";
+            dgData.Columns[11].DefaultCellStyle.Format = "N1";
             dgData.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgData.Columns[12].HeaderText = "Excluded";
+            dgData.Columns[12].HeaderText = "VG";
             dgData.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgData.Columns[13].Visible = false;
+            dgData.Columns[13].HeaderText = "Excluded";
+            dgData.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgData.Columns[14].Visible = false;
 
             lblCount.Text = dtProject.Rows.Count.ToString();
         }
@@ -468,7 +477,7 @@ namespace Cprs
                     return;
                 }
             }
-            else
+            else if (colname == "Compdate")
             {
                 if (cvalue.Length != 6 || !GeneralFunctions.ValidateDateWithRange(cvalue))
                 {
@@ -478,11 +487,32 @@ namespace Cprs
                     return;
                 }
             }
+            else
+            {
+                if (Convert.ToInt32(cvalue) < 1 || Convert.ToInt32(cvalue) > 6)
+                {
+                    MessageBox.Show("Invalid VG");
+                    txtValueItem.Text = "";
+                    txtValueItem.Focus();
+                    return;
+                }
 
-            query = from myRow in dtProject.AsEnumerable()
-                    where myRow.Field<string>(colname).StartsWith(cvalue)
-                    orderby myRow.Field<string>(colname) descending
-                    select myRow;
+            }
+
+            if (colname == "VG")
+            {
+                query = from myRow in dtProject.AsEnumerable()
+                        where myRow.Field<int>(colname).Equals(Convert.ToInt32(cvalue))
+                        orderby myRow.Field<string>("ID") descending
+                        select myRow;
+            }
+            else
+            {
+                query = from myRow in dtProject.AsEnumerable()
+                        where myRow.Field<string>(colname).StartsWith(cvalue)
+                        orderby myRow.Field<string>(colname) descending
+                        select myRow;
+            }
 
             // Create a table from the query.
             if (query.Count() > 0)
@@ -508,6 +538,8 @@ namespace Cprs
                 txtValueItem.MaxLength = 7;
             else if (cbItem.SelectedIndex == 1)
                 txtValueItem.MaxLength = 6;
+            else
+                txtValueItem.MaxLength = 1;
 
             txtValueItem.Focus();
         }
@@ -541,7 +573,7 @@ namespace Cprs
         {
             DataTable pdata = dgData.DataSource as DataTable;
             DataView dv = pdata.DefaultView;
-            dv.Sort = "vg asc, months asc";
+            dv.Sort = "vg desc, months desc, id asc";
             dgData.DataSource = dv.ToTable();
         }
 
@@ -560,7 +592,7 @@ namespace Cprs
         {
             DataTable pdata = dgData.DataSource as DataTable;
             DataView dv = pdata.DefaultView;
-            dv.Sort = "vg asc, wtmonths asc";
+            dv.Sort = "vg desc, wtmonths desc, id asc";
             dgData.DataSource = dv.ToTable();
         }
     }
