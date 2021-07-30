@@ -259,7 +259,7 @@ namespace CprsDAL
                          sqlwhere = sqlwhere1 + " and " + sqlwhere2 + sqlorder;
 
                      }
-                     else
+                     else if (var != null)
                      {
                          sql_command.Parameters.AddWithValue("@VAR", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(var);
                          sql_command.Parameters.AddWithValue("@CHOICE", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(choice);
@@ -267,8 +267,10 @@ namespace CprsDAL
                          sqlwhere = sqlwhere1 + sqlorder;
                          
                      }
+                     else
+                        sqlwhere = " select ID, PSU, BPOID, SCHED, TWORKED, DUPLICATE, REV1NME, REV2NME, PROJDESC, PROJLOC from dbo.PRESAMPLE_V order by id";
 
-                     sql_command.CommandText = sqlwhere;
+                    sql_command.CommandText = sqlwhere;
 
                     // Create a DataAdapter to run the command and fill the DataTable
 
