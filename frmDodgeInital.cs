@@ -49,6 +49,12 @@ Modified Date :  01/14/2020
  Keyword       :  
  Change Request: CR3855
  Description   : Don't allow NPC edit status
+***********************************************************************************
+Modified Date :  07/22/2020
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR
+ Description   : Add Pending check box
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -279,6 +285,8 @@ namespace Cprs
             csda = new CsdaccessData();
             refdata = new ReferralData();
 
+            chkpending.Visible = false;
+
             //if a EntryPoint value is present that means the form was accessed by the 
             //Review form and therefore displays the previous button to return to that form upon click
             if (EntryPnt == "REV")
@@ -316,9 +324,11 @@ namespace Cprs
                 if (dialogresult == DialogResult.OK && popup.SelectedDCPId != "")
                 {
                     Id = popup.SelectedDCPId;
+                    if (popup.selflg) btnResetClicked = true;
                   //  dodgeinitial = DodgeInitialData.GetDodgeInitialData(Id);    // GetDodgeInitialData(Id);, viewcode
                     GetDataDodgeInitial();
                     txtNewtc.Focus();
+                    if (popup.selflg) btnResetClicked = false;
                 }
                 else
                 {
@@ -414,19 +424,38 @@ namespace Cprs
                     chkNeedFurRev.Checked = false;
                     chkComplete.Visible = true;
                     chkComplete.Enabled = true;
+                    chkpending.Visible = true;
+                    chkpending.Enabled = true;
                 }
-                else
+                else if (dodgeinitial.Worked == "1")
                 {
-                    if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade=="4")
+                    if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
+                    {
+                        chkpending.Visible = false;
                         chkComplete.Visible = false;
+                    }
                     else
+                    {
                         chkComplete.Visible = true;
+                        chkpending.Visible = true;
+                    }
                     chkNeedFurRev.Visible = false;
                 }
-                if (dodgeinitial.Worked == "2")
+                else if (dodgeinitial.Worked == "2")
                 {
                     chkNeedFurRev.Visible = false;
                     chkComplete.Visible = false;
+                    chkpending.Visible = false;
+                    chkpending.Enabled = false;
+                }
+                else if (dodgeinitial.Worked == "3")
+                {
+                    chkNeedFurRev.Visible = false;
+                    chkComplete.Visible = true;
+                    chkComplete.Enabled = false;
+                    chkpending.Visible = true;
+                    chkpending.Enabled = true;
+                   
                 }
 
                 txtStrtDater.ReadOnly = false;
@@ -539,6 +568,8 @@ namespace Cprs
             txtZone.ReadOnly = true;
             chkComplete.Enabled = false;
             chkNeedFurRev.Enabled = false;
+            if (chkpending.Visible)
+                chkpending.Enabled = false;
         }
 
         //This code populates row header of datagrid dynamically
@@ -694,27 +725,51 @@ namespace Cprs
 
             chkNeedFurRev.Visible = false;
             chkComplete.Visible = false;
-
-            if ((dodgeinitial.Worked == "0" || dodgeinitial.Worked == "1") && UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
+            chkComplete.Checked = false;
+            chkpending.Visible = false;
+            chkpending.Checked = false;
+           
+            if (dodgeinitial.Worked != "2" && UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
             {
                 chkNeedFurRev.Visible = false;
-                if (dodgeinitial.Worked == "0")
+                if (dodgeinitial.Worked == "0" || dodgeinitial.Worked == "3")
                 {
                     chkComplete.Visible = true;
                     chkComplete.Enabled = true;
+                    chkpending.Visible = true;
+                    chkpending.Enabled = true;
                 }
                 else if (dodgeinitial.Worked == "1")
                 {
                     chkComplete.Visible = false;
                     chkComplete.Enabled = false;
+                    chkpending.Visible = false;
+                    chkpending.Enabled = false;
+                }
+                else if (dodgeinitial.Worked == "3")
+                {
+                    chkComplete.Visible = true;
+                    chkComplete.Enabled = false;
+                    chkpending.Visible = true;
+                    chkpending.Enabled = true;
+                    chkpending.Checked = true;
                 }
             }
-            else if (dodgeinitial.Worked == "0" || (dodgeinitial.Worked == "1") && (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead ||
+            else if (dodgeinitial.Worked != "2"  && (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead ||
                 UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5"))
             {
                 chkComplete.Visible = true;
                 chkComplete.Enabled = true;
+                chkpending.Visible = true;
+                chkpending.Enabled = true;
                 chkNeedFurRev.Visible = false;
+
+                if (dodgeinitial.Worked == "3")
+                {
+                    chkpending.Checked = true;
+                    chkComplete.Enabled = false;
+                }
+                
             }
            
            else if (UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCLead && UserInfo.GroupCode != EnumGroups.NPCInterviewer)
@@ -725,17 +780,23 @@ namespace Cprs
                     chkNeedFurRev.Checked = false;
                     chkComplete.Visible = true;
                     chkComplete.Checked = false;
+                    chkpending.Visible = false;
+                    chkpending.Checked = false;
                 }
                 if (dodgeinitial.HQWorked == "1")
                 {
                     chkNeedFurRev.Visible = false;
                     chkComplete.Checked = false;
                     chkComplete.Visible = true;
+                    chkpending.Visible = false;
+                    chkpending.Checked = false;
                 }
                 if (dodgeinitial.HQWorked == "2")
                 {
                     chkNeedFurRev.Visible = false;
                     chkComplete.Visible = false;
+                    chkpending.Visible = false;
+                    chkpending.Enabled = false;
                 }
             }
            
@@ -752,12 +813,12 @@ namespace Cprs
             {
                 Respid = dodgeinitial.Respid;
             }
+            editable = true;
             if (!btnResetClicked)
             {
                 locked_by = GeneralDataFuctions.ChkRespIDIsLocked(Respid);
                 if (String.IsNullOrEmpty(locked_by))
                 {
-                    editable = true;
                     EnableEdits();
                     lblLockedBy.Text = "";
                     lblLockedBy.Visible = false;
@@ -830,6 +891,7 @@ namespace Cprs
             txtEmail.TextChanged += new EventHandler(txt_TextChanged);
             txtWebUrl.TextChanged += new EventHandler(txt_TextChanged);
             chkComplete.CheckedChanged += new EventHandler(txt_TextChanged);
+            chkpending.CheckedChanged += new EventHandler(txt_TextChanged);
             chkNeedFurRev.CheckedChanged += new EventHandler(txt_TextChanged);
             cboCollTec.TextChanged += new EventHandler(txt_TextChanged);
             cboSurvey.TextChanged += new EventHandler(txt_TextChanged);
@@ -866,6 +928,7 @@ namespace Cprs
             txtEmail.TextChanged -= new EventHandler(txt_TextChanged);
             txtWebUrl.TextChanged -= new EventHandler(txt_TextChanged);
             chkComplete.CheckedChanged -= new EventHandler(txt_TextChanged);
+            chkpending.CheckedChanged -= new EventHandler(txt_TextChanged);
             chkNeedFurRev.CheckedChanged -= new EventHandler(txt_TextChanged);
             cboCollTec.TextChanged -= new EventHandler(txt_TextChanged);
             cboSurvey.TextChanged -= new EventHandler(txt_TextChanged);
@@ -906,6 +969,7 @@ namespace Cprs
             cboSurvey.TextChanged -= new EventHandler(txt_TextChanged);
             cboSurvey.Text = "";
             chkComplete.Checked = false;
+            chkpending.Checked = false;
             chkNeedFurRev.Checked = false;
             lblLockedBy.Visible = false;
             newval = string.Empty;
@@ -951,6 +1015,10 @@ namespace Cprs
             else if (Reviewtext == "2")
             {
                 txtReview.Text = "FINISHED";
+            }
+            else if (Reviewtext == "3")
+            {
+                txtReview.Text = "PENDING";
             }
             else
             {
@@ -1390,9 +1458,9 @@ namespace Cprs
 
             if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
             {
-                if (dodgeinitial.Worked != "2" ) //|| dodgeinitial.Worked == "1")
+                if (dodgeinitial.Worked != "2" ) 
                 {
-                    if (chkComplete.Checked == false && chkComplete.Visible) //|| (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
+                    if ((chkComplete.Checked == false && chkComplete.Visible) && (chkpending.Visible && !chkpending.Checked)) //|| (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
                     {
                         CallReviewCompDialg();
                         if (returnedstring == "Cancel")
@@ -1406,14 +1474,11 @@ namespace Cprs
                     }
                 }
             }
-            if(chkComplete.Checked == true)
+            if (anytxtmodified)
             {
                 SaveData();
             }
-            if(chkNeedFurRev.Checked == true)
-            {
-                SaveData();
-            }
+            
             
             if (done == false)
             { can_close = false; }
@@ -1908,7 +1973,7 @@ namespace Cprs
                      NameAddrAuditData.AddNameRspAudit(Respid, varnme, oldval, newval, usrnme, prgdtm);
                  }
              }
-            if (chkComplete.Checked)
+            if (chkComplete.Checked || chkpending.Checked)
             { chkCompleteUpdate(); }
             if (chkNeedFurRev.Checked)
             { needFurtherRev(); }
@@ -2480,6 +2545,7 @@ namespace Cprs
                  GetDataDodgeInitial();
              
              SetTxtChanged();
+            btnResetClicked = false;
         }
 
       
@@ -2524,8 +2590,11 @@ namespace Cprs
          //Populate the dcp_Hist table
          private void UpdateCaseAccessRecord()
          {
-             //Time that user exited case
-             accestme = DateTime.Now.ToString("HHmmss");
+            if (accestms =="")
+                accestms = DateTime.Now.ToString("HHmmss");
+
+            //Time that user exited case
+            accestme = DateTime.Now.ToString("HHmmss");
 
              dodgeinitialdata.AddDCPHistRecs(id, user, accesday, accestms, accestme);
          }
@@ -2549,28 +2618,32 @@ namespace Cprs
             hqworked = dodgeinitial.HQWorked.Trim();
             revnme = "";
             id = txtId.Text;
-                if (editable)
+            if (editable)
+            {
+                if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                 {
-                  if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
+                    if ((rev1nme == "" && worked == "0") || (rev2nme == "" && worked == "3"))
                     {
-                        if (rev1nme != user)
-                        {
-                            if (rev1nme == "" && worked == "0")
-                            {
-                                revnme = user;
-                                worked = "1";
-                                reviewNum = 1;
-                                dodgeinitialdata.UpdateDodgeIniRevStatusNPC(id, worked, revnme, reviewNum);
-                            }
-                            if ((rev1nme != "" && worked == "1") && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
-                            {
-                                revnme = user;
-                                worked = "2";
-                                reviewNum = 2;
-                                dodgeinitialdata.UpdateDodgeIniRevStatusNPC(id, worked, revnme, reviewNum);
-                            }
-                        }
+                        revnme = user;
+                        if (chkComplete.Checked)
+                            worked = "1";
+                        else if (chkpending.Checked)
+                            worked = "3";
+                        reviewNum = 1;
+                        dodgeinitialdata.UpdateDodgeIniRevStatusNPC(id, worked, revnme, reviewNum);
                     }
+                    else if (((rev1nme != "" && worked == "1" && rev1nme != user) || (rev2nme != "" && worked == "3" && rev1nme != user)) && !(UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
+                    {
+                        revnme = user;
+                        if (chkComplete.Checked)
+                            worked = "2";
+                        else if (chkpending.Checked)
+                            worked = "3"; 
+                        reviewNum = 2;
+                        dodgeinitialdata.UpdateDodgeIniRevStatusNPC(id, worked, revnme, reviewNum);
+                    }
+                        
+                 }
 
                 if (UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCInterviewer && UserInfo.GroupCode != EnumGroups.NPCLead)
                     {
@@ -2582,7 +2655,7 @@ namespace Cprs
                             dodgeinitialdata.UpdateDodgeIniRevStatus(id, worked, hqnme, reviewNum);
                         }
                     }
-                }
+               }
                 rev1nme = dodgeinitial.Rev1nme.Trim();
         }
 
@@ -2655,6 +2728,14 @@ namespace Cprs
                             return;
                         }
                     }
+                    if (chkpending.Visible) chkpending.Enabled = false;
+                }
+            }
+            else
+            {
+                if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
+                {
+                    if (chkpending.Visible) chkpending.Enabled = true;
                 }
             }
 
@@ -2689,7 +2770,7 @@ namespace Cprs
             //Check if the record is locked
             if (editable)
             {
-                if ((chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false) || (chkComplete.Checked == false && chkComplete.Visible))
+                if ((chkNeedFurRev.Visible && !chkNeedFurRev.Checked) || ((chkComplete.Visible && !chkComplete.Checked) && (chkpending.Visible && !chkpending.Checked)))
                 {
                     frmRevCompMsgbox fRevComp =new frmRevCompMsgbox();
                     DialogResult result3 = fRevComp.ShowDialog();
@@ -2706,22 +2787,22 @@ namespace Cprs
             }
         }
 
-        private void chkReviewButtons()
-        {
-            //If both Need Further and complete visible but not checked
-            if ((chkComplete.Checked == false) && (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
-            {
-                CallReviewCompDialg();
-                if (returnedstring == "Cancel")
-                { return; }
-            }
-            if ((chkComplete.Checked == false) && (chkNeedFurRev.Visible == false))
-            {
-                CallReviewCompDialg();
-                if (returnedstring == "Cancel")
-                { return; }
-            }
-        }
+        //private void chkReviewButtons()
+        //{
+        //    //If both Need Further and complete visible but not checked
+        //    if ((chkComplete.Checked == false) && (chkNeedFurRev.Visible == true && chkNeedFurRev.Checked == false))
+        //    {
+        //        CallReviewCompDialg();
+        //        if (returnedstring == "Cancel")
+        //        { return; }
+        //    }
+        //    if ((chkComplete.Checked == false) && (chkNeedFurRev.Visible == false))
+        //    {
+        //        CallReviewCompDialg();
+        //        if (returnedstring == "Cancel")
+        //        { return; }
+        //    }
+        //}
 
         // ********************************************************************
          private void btnNextInitial_Click(object sender, EventArgs e)
@@ -2733,7 +2814,7 @@ namespace Cprs
              {
                 if (dodgeinitial.Worked != "2" && dodgeinitial.HQWorked != "2")
                 {
-                    if (chkNeedFurRev.Checked == false && chkComplete.Checked == false)
+                    if (chkNeedFurRev.Checked == false && chkComplete.Checked == false && (chkpending.Visible && !chkpending.Checked))
                     {
                         CallReviewCompDialg();
                         if (returnedstring == "Cancel")
@@ -2773,25 +2854,15 @@ namespace Cprs
                 //Only if Worked not equals 2 and hqworked not equals 2
                 if ((dodgeinitial.Worked) != "2" || (dodgeinitial.HQWorked) != "2")
                 {
-                        //NPC Interviewer Grade 4
-                        if (chkComplete.Checked == false && dodgeinitial.Worked != "2"
-                             && ((dodgeinitial.Worked == "1" && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")) 
-                             ||  (dodgeinitial.Worked == "0" && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))))
+                    //NPC Users
+                    if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                     {
-                        CallReviewCompDialg();
-                        if (returnedstring == "Cancel")
-                        { return; }
-                    }
-
-                    //NPC Interviewer Grade 5
-                    // there is not a value in rev1name and rev2name and the review complete checkbox not checked give popup to check if the review complete for the case
-                    if (chkComplete.Checked == false && dodgeinitial.Worked != "2"
-                        && ((dodgeinitial.Worked == "1" && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5")) 
-                        ||  (dodgeinitial.Worked == "0" && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5"))))
-                    {
-                        CallReviewCompDialg();
-                        if (returnedstring == "Cancel")
-                        { return; }
+                        if (chkComplete.Checked == false && dodgeinitial.Worked != "2" && (chkpending.Visible && !chkpending.Checked))
+                        {
+                            CallReviewCompDialg();
+                            if (returnedstring == "Cancel")
+                            { return; }
+                        }
                     }
 
                     if (UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCInterviewer && UserInfo.GroupCode != EnumGroups.NPCLead)
@@ -2814,15 +2885,11 @@ namespace Cprs
                         }
                     }
                 }
-                if (chkComplete.Checked == true)
+                if (chkComplete.Checked || chkpending.Checked || chkNeedFurRev.Checked)
                 {
                     anytxtmodified = true;
                 }
-                if (chkNeedFurRev.Checked == true)
-                {
-                    anytxtmodified = true;
-                }
-
+                
                 if (anytxtmodified)
                 {
                     SaveData();
@@ -2832,17 +2899,16 @@ namespace Cprs
                 fDCPInit.ShowDialog();
 
                 //Return user to the home screen if there are no more cases to process
-                if (fDCPInit.DialogResult == DialogResult.Cancel) 
+                if (fDCPInit.DialogResult == DialogResult.Abort && fDCPInit.selflg) 
                 {
-                    if (fDCPInit.Id == string.Empty || fDCPInit.Id == null)
-                    {
+                  
                         this.Close();
                         frmHome fH = new frmHome();
                         fH.Show();
                        // GeneralDataFuctions.AddCpraccessData(access_code, "EXIT");
                         return;
                         
-                    }
+              
                 }
 
                 //Update dcp_hist
@@ -2861,6 +2927,7 @@ namespace Cprs
                     RemoveTxtChanged();
                     chkNeedFurRev.Checked = false;
                     chkComplete.Checked = false;
+                    chkpending.Checked = false;
                     if (fDCPInit.SelectedDCPId == "")
                     {
                         this.Close();
@@ -2872,11 +2939,18 @@ namespace Cprs
                     {
                         Id = fDCPInit.SelectedDCPId;
                         id = Id;
-                      //  dodgeinitial = DodgeInitialData.GetDodgeInitialData(Id);
+                        //  dodgeinitial = DodgeInitialData.GetDodgeInitialData(Id);
+                        //ignore lock
+                        if (fDCPInit.selflg)
+                            btnResetClicked = true;
+
                         GetDataDodgeInitial();
                         txtNewtc.Focus();
                         SetTxtChanged();
                         fDCPInit.Dispose();
+
+                        if (fDCPInit.selflg)
+                            btnResetClicked = false;
                     }
                 }
                 else
@@ -4280,6 +4354,18 @@ namespace Cprs
         private void txtPCitySt_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        private void chkpending_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
+            {
+                if (chkpending.Checked)
+                    chkComplete.Enabled = false;
+                else
+                    chkComplete.Enabled = true;
+            }
+
         }
     }
 }
