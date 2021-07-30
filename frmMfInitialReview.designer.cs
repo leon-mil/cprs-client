@@ -60,6 +60,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.txtpending = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgMFInitRev)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,7 +108,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgMFInitRev.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgMFInitRev.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgMFInitRev.Location = new System.Drawing.Point(12, 200);
+            this.dgMFInitRev.Location = new System.Drawing.Point(12, 182);
             this.dgMFInitRev.MultiSelect = false;
             this.dgMFInitRev.Name = "dgMFInitRev";
             this.dgMFInitRev.ReadOnly = true;
@@ -160,6 +162,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.txtpending);
             this.panel2.Controls.Add(this.txtFinished);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label21);
@@ -170,9 +174,9 @@
             this.panel2.Controls.Add(this.txtTotal);
             this.panel2.Controls.Add(this.txtNotStart);
             this.panel2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.panel2.Location = new System.Drawing.Point(512, 630);
+            this.panel2.Location = new System.Drawing.Point(512, 613);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(229, 143);
+            this.panel2.Size = new System.Drawing.Size(229, 164);
             this.panel2.TabIndex = 280;
             // 
             // txtFinished
@@ -417,6 +421,27 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // txtpending
+            // 
+            this.txtpending.BackColor = System.Drawing.Color.LightGray;
+            this.txtpending.ForeColor = System.Drawing.Color.DarkBlue;
+            this.txtpending.Location = new System.Drawing.Point(111, 138);
+            this.txtpending.Name = "txtpending";
+            this.txtpending.Size = new System.Drawing.Size(100, 20);
+            this.txtpending.TabIndex = 29;
+            this.txtpending.TabStop = false;
+            this.txtpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 137);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(108, 23);
+            this.label5.TabIndex = 283;
+            this.label5.Text = "PENDING";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frmMfInitialReview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,5 +499,7 @@
         private System.Windows.Forms.TextBox txtValueItem2;
         private System.Windows.Forms.ComboBox cbItem2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtpending;
     }
 }

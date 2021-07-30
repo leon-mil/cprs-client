@@ -39,6 +39,12 @@
  Keyword       : None
  Change Request: Dev CR 201
  Description   : Standardize Popup Message between other screens
+ **********************************************************************
+ Modified Date : 7/27/2021
+ Modified By   : Christine Zhang
+ Keyword       : 20210721
+ Change Request: CR 8385
+ Description   : Add Pending status            
  **********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -79,7 +85,8 @@ namespace Cprs
         private int notstartedSum;
         private int reviewedSum;
         private int finishedSum;
-        private int totalSum; 
+        private int totalSum;
+        private int pendingSum; 
 
         //printing variables
         private int myLocation;
@@ -97,44 +104,9 @@ namespace Cprs
 
             dgMFInitRev.DataSource = dtMF;
 
-            //Initialize counts of status
-            notstartedSum = 0;
-            reviewedSum = 0;
-            finishedSum = 0;
-            totalSum = 0;
-
-            //get counts of status of projects to display on screen
-            for (int i = 0; i < dtMF.Rows.Count; i++)
-            {
-                string status = dtMF.Rows[i]["WORKED"].ToString();
-
-                //Case not started
-                if (status == "0")
-                {
-                    ++notstartedSum;
-                }
-                //Case under 1st or 2nd review
-                else if (status == "1")
-                {
-                    ++reviewedSum;
-                }
-                //Case is finished
-                else if (status == "2")
-                {
-                    ++finishedSum;
-                }
-
-                //Total number of cases
-                ++totalSum;              
-            }
-
             DisplayColumns();
 
-            //counts of status
-            txtNotStart.Text = notstartedSum.ToString();
-            txtReview.Text = reviewedSum.ToString();
-            txtFinished.Text = finishedSum.ToString();
-            txtTotal.Text = totalSum.ToString();
+            CalculateTotals();
 
             //Needed worked for status determination - don't need for output window
             dtMF.Columns.Remove("WORKED");
@@ -145,12 +117,54 @@ namespace Cprs
             cbValueItem2.Visible = false;
         }
 
-        //refresh screen, after come back from Initial screen
-        public void RefreshScreen()
+        private void CalculateTotals()
         {
-            PopulateDG();
+            //Initialize counts of status
+            notstartedSum = 0;
+            reviewedSum = 0;
+            finishedSum = 0;
+            pendingSum = 0;
+            totalSum = 0;
+
+            //get counts of status of projects to display on screen
+            for (int i = 0; i < dtMF.Rows.Count; i++)
+            {
+                string status = dtMF.Rows[i]["TWORKED"].ToString();
+
+                //Case not started
+                if (status == "NOT STARTED")
+                {
+                    ++notstartedSum;
+                }
+                //Case under 1st or 2nd review
+                else if (status == "REVIEWED")
+                {
+                    ++reviewedSum;
+                }
+                //Case is finished
+                else if (status == "FINISHED")
+                {
+                    ++finishedSum;
+                }
+                //Case is pending
+                else if (status == "PENDING")
+                {
+                    ++pendingSum;
+                }
+
+                //Total number of cases
+                ++totalSum;
+            }
+
+            //counts of status
+            txtNotStart.Text = notstartedSum.ToString();
+            txtReview.Text = reviewedSum.ToString();
+            txtFinished.Text = finishedSum.ToString();
+            txtpending.Text = pendingSum.ToString();
+            txtTotal.Text = totalSum.ToString();
         }
 
+       
         //Display columns in specific order
         private void DisplayColumns()
         {
@@ -299,8 +313,8 @@ namespace Cprs
         }
 
         //String to populate search combobox
-        private string[] StatusSearch = { "", "NOT STARTED", "REVIEWED", "FINISHED" };
-        private string[] StatusSearch2 = { "", "NOT STARTED", "REVIEWED", "FINISHED" };
+        private string[] StatusSearch = { "", "NOT STARTED", "REVIEWED", "FINISHED", "PENDING" };
+        private string[] StatusSearch2 = { "", "NOT STARTED", "REVIEWED", "FINISHED", "PENDING" };
 
         //String to populate duplicate combobox
         private string[] DuplicateSearch = { "", "Y", "N" };
@@ -529,8 +543,7 @@ namespace Cprs
         //Search for results based on index entry of 1st combobox
         private void SearchItem()
         {
-            DataTable dtpsu = new DataTable();
-      
+           
             //validate an entry is chosen from the combobox
             if (cbItem.SelectedIndex == 0)
             {
@@ -754,11 +767,11 @@ namespace Cprs
             
             if (empty == false)
             {
-                dtpsu = mf.SearchPresample(var, txt, var2, txt2);
+                dtMF = mf.SearchPresample(var, txt, var2, txt2);
 
-                dgMFInitRev.DataSource = dtpsu;
+                dgMFInitRev.DataSource = dtMF;
 
-                if (dtpsu.Rows.Count == 0)
+                if (dtMF.Rows.Count == 0)
                 {
                     MessageBox.Show("No data to display.");
                 }
@@ -849,9 +862,31 @@ namespace Cprs
             fMFInit.CurrIndex = index;
             fMFInit.CallingForm = this;
             fMFInit.EntryPoint = "REV";
-            fMFInit.Show();  // show child
+            
+            fMFInit.ShowDialog();  // show child
+
+            SearchItem();
+            CalculateTotals();
+            HighlightRowForId(id);
+            return;
         }
 
+        private void HighlightRowForId(string id)
+        {
+            int rowIndex = -1;
+            foreach (DataGridViewRow row in dgMFInitRev.Rows)
+            {
+                if (row.Cells[0].Value.ToString().Equals(id))
+                {
+                    rowIndex = row.Index;
+                    break;
+                }
+            }
+
+            if (rowIndex >= 0)
+                dgMFInitRev.Rows[rowIndex].Selected = true;
+
+        }
 
         //This code populates row header of datagrid dynamically
         private void  dgMFInitRev_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
