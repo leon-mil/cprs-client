@@ -470,9 +470,9 @@ namespace CprsDAL
                     if (apptdate.Trim() != "" && Convert.ToInt32(apptdate) < Convert.ToInt32(todate))
                     {
                         //find their time whether is good to call
-                        if (CheckIfGoodBussinessTime(rstate))
+                        if (GeneralDataFuctions.CheckIfGoodBussinessTime(rstate))
                         {
-                            if (UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                            if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
                             {
                                 next_respid = row["Respid"].ToString();
                                 next_projectid = row["ID"].ToString();
@@ -490,7 +490,7 @@ namespace CprsDAL
                             // check appt time, the current time must greater than apptime and less than apptime +1
                             if (Convert.ToInt32(curtime) >= Convert.ToInt32(apptime) && Convert.ToInt32(curtime) <= Convert.ToInt32(apptime2))
                             {
-                                if (UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                                if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
                                 {
                                     next_respid = row["Respid"].ToString();
                                     next_projectid = row["ID"].ToString();
@@ -505,7 +505,7 @@ namespace CprsDAL
                             // check appt time, the current time must greater than apptime and less than apptends
                             if (Convert.ToInt32(curtime) >= Convert.ToInt32(apptime) && Convert.ToInt32(curtime) < Convert.ToInt32(apptend))
                             {
-                                if (UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                                if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
                                 {
                                     next_respid = row["Respid"].ToString();
                                     next_projectid = row["ID"].ToString();
@@ -516,9 +516,9 @@ namespace CprsDAL
                         else
                         {
                             //without appointment, check it is good time to call or not based on timezone
-                            if (CheckIfGoodBussinessTime(rstate))
+                            if (GeneralDataFuctions.CheckIfGoodBussinessTime(rstate))
                             {
-                                if (UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                                if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
                                 {
                                     next_respid = row["Respid"].ToString();
                                     next_projectid = row["ID"].ToString();
@@ -532,70 +532,6 @@ namespace CprsDAL
             }
         }
 
-        //check timezone time, if it is from 8:00 - 17:00
-        private bool CheckIfGoodBussinessTime(string rstate)
-        {
-            bool good_time = false;
-
-            //get timezone current time
-            string resp_time = Convert.ToDateTime(GeneralDataFuctions.GetTimezoneCurrentTime(rstate)).ToString("HH:mm");
-            TimeSpan resp_now = TimeSpan.Parse(resp_time);
-
-            TimeSpan start = new TimeSpan(8, 0, 0); //8 o'clock AM
-            TimeSpan end = new TimeSpan(19, 0, 0); //7 o'clock PM
-
-            string mytime = DateTime.Now.ToString("HH:mm");
-            TimeSpan now = TimeSpan.Parse(mytime);
-
-            if ((now > start) && (now < end) && (resp_now > start && resp_now < end))
-            {
-                good_time = true;
-            }
-
-            return good_time;
-        }
-
-        //lock the user when the resplock was empty
-        private bool UpdateRespIDLockForUser(string Respid, string username)
-        {
-            using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
-            {
-                sql_connection.Open();
-                SqlTransaction transaction;
-
-                // Start a local transaction.
-                transaction = sql_connection.BeginTransaction("Transaction");
-
-                string usql = "UPDATE dbo.Respondent SET " +
-                                "RESPLOCK = @RESPLOCK " +
-                                "WHERE RESPID = @RESPID and RESPLOCK = ''";
-                SqlCommand update_command = new SqlCommand(usql, sql_connection);
-                update_command.Parameters.AddWithValue("@RESPID", Respid);
-                update_command.Parameters.AddWithValue("@RESPLOCK", username);
-
-                update_command.Transaction = transaction;
-
-                try
-                {
-                    int count = update_command.ExecuteNonQuery();
-                    if (count > 0)
-                    {
-                        transaction.Commit();
-                        return true;
-                    }
-                    else
-                    {
-                        transaction.Rollback();
-                        return false;
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    transaction.Rollback();
-                    throw ex;
-                }
-            }
-        }
 
         public DataTable GetSchedHistDataByID(string id)
         {
