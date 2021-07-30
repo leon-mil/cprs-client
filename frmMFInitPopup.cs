@@ -24,11 +24,12 @@ Other          : Called from: frmMfInitial.cs
  
 Revision Hist  :	
 ***********************************************************************************
-Modified Date  :  
-Modified By    :  
+Modified Date  :  7/15/2021
+Modified By    :  Christine Zhang
 Keyword        :  
-Change Request :  
-Description    :  
+Change Request :  CR 8350
+Description    :  enable select button and both grade 4,5 and NPC leaders will use
+                  same method to select cases
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -50,10 +51,9 @@ namespace Cprs
     public partial class frmMFInitPopup : Form
     {
 
-        public string Id;
-        public int Masterid1;
-        public bool selflg = true;
-
+        public string Id = "";
+        public bool selflg = false;
+       
         MfInitialData mfidata = new MfInitialData();
 
         public frmMFInitPopup()
@@ -79,8 +79,8 @@ namespace Cprs
                 UserInfo.GroupCode == EnumGroups.NPCLead ||
                    UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
-               // btnSelect.Visible = true;
-               // btnSelect.Enabled = true;
+               btnSelect.Visible = true;
+               btnSelect.Enabled = true;
                 this.AcceptButton = btnSelect;
             }
 
@@ -112,8 +112,6 @@ namespace Cprs
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-
-            selflg = false;
 
             if (txtFin.Text.Length == 0 || txtFin.Text.Length != 7)
             {
@@ -149,10 +147,25 @@ namespace Cprs
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-
-            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
+            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
             {
-                Id = mfidata.GetNextCaseGrade4();
+
+                //check current time
+                DateTime t1 = DateTime.Now;
+                DateTime t2 = Convert.ToDateTime("8:00:00 AM");
+
+                //if current time is less than 8 o'clock
+                if ((DateTime.Compare(t1, t2)) < 0)
+                {
+                    MessageBox.Show("No cases are available until 8:00 AM");
+                    this.Close();
+                    this.DialogResult = DialogResult.Abort;
+                    selflg = false;
+                    return;
+                }
+
+                selflg = true;
+                Id = mfidata.GetNextCaseGrade4(Id);
                 this.DialogResult = DialogResult.OK;
 
                 if (Id == string.Empty)
@@ -162,27 +175,28 @@ namespace Cprs
                     {
                         this.Close();
                         this.DialogResult = DialogResult.Abort;
+                        selflg = false;
                     }
                 }                            
             }
 
-            if ((UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5") ||
-                UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
-            {
+            //if ((UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5") ||
+            //    UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead)
+            //{
 
-                Id = mfidata.GetNextCaseGrade5();
-                this.DialogResult = DialogResult.OK;
+            //    Id = mfidata.GetNextCaseGrade5();
+            //    this.DialogResult = DialogResult.OK;
 
-                if (Id == string.Empty)
-                {                 
-                        DialogResult result = MessageBox.Show("All cases are finished.", "Info", MessageBoxButtons.OK);
-                        if (result == DialogResult.OK)
-                        {
-                            this.Close();
-                            this.DialogResult = DialogResult.Abort;
-                        }                   
-                }
-            }
+            //    if (Id == string.Empty)
+            //    {                 
+            //            DialogResult result = MessageBox.Show("All cases are finished.", "Info", MessageBoxButtons.OK);
+            //            if (result == DialogResult.OK)
+            //            {
+            //                this.Close();
+            //                this.DialogResult = DialogResult.Abort;
+            //            }                   
+            //    }
+            //}
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
