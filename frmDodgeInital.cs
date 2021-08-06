@@ -732,7 +732,7 @@ namespace Cprs
             if (dodgeinitial.Worked != "2" && UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
             {
                 chkNeedFurRev.Visible = false;
-                if (dodgeinitial.Worked == "0" || dodgeinitial.Worked == "3")
+                if (dodgeinitial.Worked == "0")
                 {
                     chkComplete.Visible = true;
                     chkComplete.Enabled = true;
@@ -2716,7 +2716,7 @@ namespace Cprs
             {
                 if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
                 {
-                    if (dodgeinitial.Worked != "2")
+                    if (dodgeinitial.Worked == "1")
                     {
                         if ((rev1nme == user) && (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4"))
                         {
