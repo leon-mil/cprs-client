@@ -12,11 +12,11 @@ Detailed Design : Detailed Design for Time length distribution
 Other           :	            
 Revision History:	
 **************************************************************************************************
-Modified Date   :  
-Modified By     :  
+Modified Date   :  8/4/2021
+Modified By     :  Christine
 Keyword         :  
-Change Request  :  
-Description     :  
+Change Request  :  8421
+Description     :  correct title and column name in excel file
 **************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -425,7 +425,7 @@ namespace Cprs
             else if (survey == "P")
             {
                 title1 = "Table 5. Percent Distribution of Value Put in Place Each Month from Start to Completion for State and Local";
-                title2 = "Construction Projects Completed in " + (year - 2).ToString() + " -  " + (year - 1).ToString() + ", by Value.";
+                title2 = "Construction Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value.";
                 xlWorkSheet.Name = "T5";
             }
             
@@ -478,36 +478,43 @@ namespace Cprs
             xlWorkSheet.Cells[6, 2] = "$10,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 10] = "$250 - $999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 12] = "Less than $250";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 14] = "All Values";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[7, 1] = "Month work put in place ";
@@ -653,13 +660,13 @@ namespace Cprs
             else if (survey == "P")
             {
                 title1 = "Table 5a. Standard Errors of Percent Distribution of Value Put in Place Each Month from Start to Completion for State and Local";
-                title2 = "Construction Projects Completed in " + (year - 2).ToString() + " -  " + (year - 1).ToString() + ", by Value.";
+                title2 = "Construction Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value.";
                 xlWorkSheet.Name = "T5a";
             }
             else
             {
                 title1 = "Table 6a. Standard Errors of Percent Distribution of Value Put in Place Each Month from Start to Completion";
-                title2 = "for Private Multi-family Construction Projects Completed in " + (year - 2).ToString() + " -  " + (year - 1).ToString() + ", by Value.";
+                title2 = "for Private Multifamily Construction Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value.";
                 xlWorkSheet.Name = "T6a";
             }
 
@@ -723,16 +730,19 @@ namespace Cprs
             xlWorkSheet.Cells[6, 2] = "$10,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             if (survey != "M")
@@ -740,21 +750,25 @@ namespace Cprs
                 xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
                 cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
                 xlWorkSheet.Cells[6, 10] = "$250 - $999";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
                 cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
                 xlWorkSheet.Cells[6, 12] = "Less than $250";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
                 cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
                 xlWorkSheet.Cells[6, 14] = "All Values";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
                 cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
             }
             else
@@ -762,11 +776,13 @@ namespace Cprs
                 xlWorkSheet.Cells[6, 8] = "$Less than $3,000";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
                 cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
                 xlWorkSheet.Cells[6, 10] = "All Values";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
                 cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
             }
 
@@ -931,7 +947,7 @@ namespace Cprs
 
             DataTable dthyse = data_object.GetTimeLenLOTPDHWYSESData();
             title1 = "Table 5HA. Standard Errors of Percent Distribution of Value Put in Place Each Month from Start to Completion for State and Local Highway and Street";
-            title2 = "Projects Completed in " + (year - 2).ToString() + " -  " + (year - 1).ToString() + ", by Value.";
+            title2 = "Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value.";
             xlWorkSheet.Name = "H5A";
          
             Microsoft.Office.Interop.Excel.Range cellRange;
@@ -986,36 +1002,43 @@ namespace Cprs
             xlWorkSheet.Cells[6, 2] = "$10,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 10] = "$250 - $999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 12] = "Less than $250";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 14] = "All Values";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
            
             xlWorkSheet.Cells[7, 1] = "Quarter after start work put in place";
@@ -1141,7 +1164,7 @@ namespace Cprs
           
             int year = DateTime.Now.Year;
            
-            string title1 = "Table 6. Percent Distribution of Value Put in Place Each Month from Start to Completion for Multifamily";
+            string title1 = "Table 6. Percent Distribution of Value Put in Place Each Month from Start to Completion for Private Multifamily";
             string title2 = "Construction Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value.";
             xlWorkSheet.Name = "T6";
             
@@ -1192,26 +1215,31 @@ namespace Cprs
             xlWorkSheet.Cells[6, 2] = "$10,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 8] = "$Less than $3000";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 10] = "All Values";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[7, 1] = "Month work put in place ";
@@ -1371,36 +1399,43 @@ namespace Cprs
             xlWorkSheet.Cells[6, 2] = "$10,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 10] = "$250 - $999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 12] = "Less than $250";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[6, 14] = "All Values";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
             cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[7, 1] = "Quarter after start work put in place";
