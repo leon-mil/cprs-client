@@ -12,11 +12,11 @@ Detailed Design : Detailed Design for Time length
 Other           :	            
 Revision History:	
 **************************************************************************************************
-Modified Date   :  
-Modified By     :  
+Modified Date   :  8/4/2021
+Modified By     :  Christine
 Keyword         :  
-Change Request  :  
-Description     :  
+Change Request  :  CR8420
+Description     :  correct titles for excel tables
 **************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -376,14 +376,14 @@ namespace Cprs
             }
             else if (survey == "P")
             {
-                title1 = "Table 2. Average Number of Months from Start to Completion for State and Local Construction Projects";
+                title1 = "Table 2. Average Number of Months from Start to Completion for State and Local Construction Projects ";
                 title2 = "Completed in " + (year - 2).ToString() + " -  " + (year - 1).ToString() + ", by Value and Type of Construction.";
                 xlWorkSheet.Name = "T2";
             }
             else if (survey == "M")
             {
-                title1 = "Table 3. Average Number of Months from Start to Completion for Multifamily Construction Projects";
-                title2 = "Construction Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value and Type of Construction.";
+                title1 = "Table 3. Average Number of Months from Start to Completion for Private Multifamily Construction Projects ";
+                title2 = "Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value and Type of Construction.";
                 xlWorkSheet.Name = "T3";
             }
             Microsoft.Office.Interop.Excel.Range cellRange;
@@ -494,7 +494,7 @@ namespace Cprs
             }
             else if (survey == "M")
             {
-                title1 = "Table 3a. Coefficients of Variation of Average Number of Months from Start to Completion for Multifamily";
+                title1 = "Table 3a. Coefficients of Variation of Average Number of Months from Start to Completion for Private Multifamily";
                 title2 = "Construction Projects Completed in " + (year - 2).ToString() + "-" + (year - 1).ToString() + ", by Value and Type of Construction.";
                 xlWorkSheet.Name = "T3a";
             }
