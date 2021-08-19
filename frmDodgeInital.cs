@@ -668,6 +668,14 @@ namespace Cprs
                 lblEdited.Visible = false;
                 txtStrtDater.Text = dodgeinitial.Strtdater;
                 txtStrtDate.Text = dodgeinitial.Strtdate;
+
+                //cz08172021, disable newtc and status for NPC users
+                txtNewtc.Visible = true;
+                txtNewtc.Enabled = false;
+
+                cbStatCode.Enabled = false;
+
+                btnPrint.Enabled = true;
             }
             else
             {
@@ -681,7 +689,13 @@ namespace Cprs
                 txtStrtDater.Text = dodgeinitial.Strtdater;
                 txtStrtDate.Text = dodgeinitial.Strtdate;
                 lblEdited.Visible = true;
+                cbStatCode.Enabled = true;
+                txtNewtc.Enabled = true;
+
+                //cz08172021, disable print button
+                btnPrint.Enabled = false;
             }
+           
             txtProjDesc.Text = dodgeinitial.ProjDesc;
             txtProjLoc.Text = dodgeinitial.Projloc;
             txtLag.Text = dodgeinitial.Lag;
