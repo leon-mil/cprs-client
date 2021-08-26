@@ -44,6 +44,12 @@ Revision History:
  Keyword       :  
  Change Request: CR3839
  Description   : for Utilities check newtc and owner
+***********************************************************************************
+Modified Date :  08/25/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR
+ Description   : fix the bug save shed_hist without accestms 
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -2540,7 +2546,7 @@ namespace Cprs
                                     Master amaster = mastdata.GetMasterData(asamp.Masterid);
 
                                     Schedcall sscc = scdata.GetSchedCallData(aid);
-
+                                    sscc.Accestms = DateTime.Now.ToString("HHmmss");
                                     if (CheckVipstatifiedForID(aid))
                                     {
                                         sscc.Callstat = "V";
@@ -2549,7 +2555,7 @@ namespace Cprs
                                     }
                                     else
                                     {
-                                        sscc.Callstat = "";
+                                        sscc.Callstat = "9";
                                         sscc.Callreq = "Y";
                                         sscc.Complete = "N";
 
@@ -2557,6 +2563,7 @@ namespace Cprs
                                     sscc.Callcnt = sscc.Callcnt + 1;
                                     sscc.Accescde = nameaddr.Coltec;
                                     sscc.Accesday = DateTime.Now.ToString("MMdd");
+                       
                                     sscc.Accestme = DateTime.Now.ToString("HHmmss");
                                     sscc.Accesnme = UserInfo.UserName;
 
