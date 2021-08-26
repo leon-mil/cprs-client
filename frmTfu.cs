@@ -2881,12 +2881,12 @@ namespace Cprs
                         }
 
                         if (enterPoint == TypeTFUEntryPoint.NPC)
-                            schedcall.Accescde = "P";
+                            sscc.Accescde = "P";
                         else
-                            schedcall.Accescde = resp.Coltec;
+                            sscc.Accescde = resp.Coltec;
 
-                        sscc.Accesday = schedcall.Accesday;
-                        sscc.Accesnme = schedcall.Accesnme;
+                        sscc.Accesday = DateTime.Now.ToString("MMdd");
+                        sscc.Accesnme = UserInfo.UserName; 
                        
                         sscc.Accestms = schedcall.Accestms;
                         sscc.Accestme = DateTime.Now.ToString("HHmmss");
