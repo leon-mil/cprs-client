@@ -223,17 +223,15 @@ namespace Cprs
 
             mnuUtility.Visible = true;
 
-            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
+            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
                 mnuUtility.Visible = false;
             }
 
-            //Turn off Failed Verification Review for NPCLead and NPCManager and NPC Interview-Grade 5
+            //Turn off Failed Verification Review for NPCLead and NPCManager
 
             if (UserInfo.GroupCode == EnumGroups.NPCLead ||
-                UserInfo.GroupCode == EnumGroups.NPCManager ||
-                UserInfo.GroupCode == EnumGroups.NPCInterviewer
-                )
+                UserInfo.GroupCode == EnumGroups.NPCManager)
             {
                 mnuFailedVerificationReview.Visible = false;
             }
@@ -403,6 +401,19 @@ namespace Cprs
             {
                 mnuHelpTelephoneFollowUp.Visible = false;
                 mnuHelpFormEntryProcedures.Visible = false;
+            }
+
+            //Form list menu
+            mnuFormlist.Visible = false;
+            if (UserInfo.GroupCode == EnumGroups.NPCManager ||
+                UserInfo.GroupCode == EnumGroups.NPCLead ||
+                UserInfo.GroupCode == EnumGroups.HQAnalyst ||
+                UserInfo.GroupCode == EnumGroups.HQManager ||
+                UserInfo.GroupCode == EnumGroups.HQSupport ||
+                (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "5") ||
+                UserInfo.GroupCode == EnumGroups.Programmer)
+            {
+                mnuFormlist.Visible = true;
             }
         }
 
@@ -1368,6 +1379,16 @@ namespace Cprs
                 this.Close();
                 frmHelp fp = new frmHelp();
                 fp.mnunum = "8";
+                fp.Show();
+            }
+        }
+
+        private void mnuFormlist_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmAdminFormlist fp = new frmAdminFormlist();
                 fp.Show();
             }
         }

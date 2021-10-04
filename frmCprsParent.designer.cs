@@ -77,6 +77,7 @@
             this.mnuMonProc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAnnualProc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNpcSpecials = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFormlist = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUnlock = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuImprove = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuImpSearch = new System.Windows.Forms.ToolStripMenuItem();
@@ -492,6 +493,7 @@
             this.mnuMonProc,
             this.mnuAnnualProc,
             this.mnuNpcSpecials,
+            this.mnuFormlist,
             this.mnuUnlock});
             this.mnuAdmin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuAdmin.Name = "mnuAdmin";
@@ -560,6 +562,13 @@
             this.mnuNpcSpecials.Size = new System.Drawing.Size(231, 26);
             this.mnuNpcSpecials.Text = "NPC Specials";
             this.mnuNpcSpecials.Click += new System.EventHandler(this.mnuNpcSpecials_Click);
+            // 
+            // mnuFormlist
+            // 
+            this.mnuFormlist.Name = "mnuFormlist";
+            this.mnuFormlist.Size = new System.Drawing.Size(231, 26);
+            this.mnuFormlist.Text = "Form List";
+            this.mnuFormlist.Click += new System.EventHandler(this.mnuFormlist_Click);
             // 
             // mnuUnlock
             // 
@@ -1126,7 +1135,7 @@
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 847);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 839);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1188, 22);
             this.statusStrip1.TabIndex = 2;
@@ -1162,7 +1171,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1188, 869);
+            this.ClientSize = new System.Drawing.Size(1188, 861);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1307,5 +1316,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHelpTelephoneFollowUp;
         private System.Windows.Forms.ToolStripMenuItem mnuHelpFormEntryProcedures;
         private System.Windows.Forms.ToolStripMenuItem mnuHelpFederalContactNumbers;
+        private System.Windows.Forms.ToolStripMenuItem mnuFormlist;
     }
 }
