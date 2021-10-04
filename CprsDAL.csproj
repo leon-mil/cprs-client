@@ -116,6 +116,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FlagReportData.cs" />
+    <Compile Include="FormListData.cs" />
     <Compile Include="GeneralData.cs">
       <SubType>Code</SubType>
     </Compile>
