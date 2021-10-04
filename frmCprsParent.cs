@@ -223,15 +223,17 @@ namespace Cprs
 
             mnuUtility.Visible = true;
 
-            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer)
+            if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.Grade == "4")
             {
                 mnuUtility.Visible = false;
             }
 
-            //Turn off Failed Verification Review for NPCLead and NPCManager
+            //Turn off Failed Verification Review for NPCLead and NPCManager and NPC Interview-Grade 5
 
             if (UserInfo.GroupCode == EnumGroups.NPCLead ||
-                UserInfo.GroupCode == EnumGroups.NPCManager)
+                UserInfo.GroupCode == EnumGroups.NPCManager ||
+                UserInfo.GroupCode == EnumGroups.NPCInterviewer
+                )
             {
                 mnuFailedVerificationReview.Visible = false;
             }
