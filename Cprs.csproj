@@ -130,6 +130,12 @@
     <Compile Include="frmAdHoc.Designer.cs">
       <DependentUpon>frmAdHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAdminFormlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminFormlist.designer.cs">
+      <DependentUpon>frmAdminFormlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAnnualProcess.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1217,6 +1223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdHoc.resx">
       <DependentUpon>frmAdHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminFormlist.resx">
+      <DependentUpon>frmAdminFormlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAnnualProcess.resx">
       <DependentUpon>frmAnnualProcess.cs</DependentUpon>
