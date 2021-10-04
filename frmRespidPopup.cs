@@ -43,12 +43,16 @@ namespace Cprs
 
         private bool checkid = false;
         private bool checkinitial = false;
+        private bool callfromformlist = false;
 
-        public frmRespidPopup(bool checkId = false, bool checkInitial = false)
+        public frmRespidPopup(bool checkId = false, bool checkInitial = false, bool callfromFormlist = false)
         {
             InitializeComponent();
             checkid = checkId;
             checkinitial= checkInitial;
+            callfromformlist = callfromFormlist;
+            if (callfromFormlist)
+                label1.Text = "Enter a Respid";
         }
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -73,7 +77,11 @@ namespace Cprs
         {
             if (txtRespid.TextLength < 7)
             {
-                MessageBox.Show("RESPID/ID should be 7 digits.");
+                if (!callfromformlist)
+                    MessageBox.Show("RESPID/ID should be 7 digits.");
+                else
+                    MessageBox.Show("RESPID should be 7 digits.");
+
                 txtRespid.Focus();
                 this.DialogResult = DialogResult.None;
             }
@@ -111,13 +119,18 @@ namespace Cprs
                         else
                         {
                             MessageBox.Show("Invalid RESPID/ID.");
+
                             txtRespid.Focus();
                             this.DialogResult = DialogResult.None;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Invalid RESPID/ID.");
+                        if (!callfromformlist)
+                            MessageBox.Show("Invalid RESPID/ID.");
+                        else
+                            MessageBox.Show("Invalid RESPID.");
+                        
                         txtRespid.Focus();
                         this.DialogResult = DialogResult.None;
                     }
