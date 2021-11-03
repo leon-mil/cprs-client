@@ -69,6 +69,15 @@ namespace CprsDAL
                     da.Fill(dt);
                 }
 
+                foreach (DataRow row in dt.Rows)
+                {
+                    string comtxt = row["COMMTEXT"].ToString();
+                    if (comtxt.Length > 4 && comtxt.Substring(0, 4)=="HTTP")
+                    {
+                        row["COMMTEXT"] = row["COMMTEXT"].ToString().ToLower();
+                    }
+                }
+
             return dt;
 
         }
@@ -95,6 +104,15 @@ namespace CprsDAL
                 // Create a DataAdapter to run the command and fill the DataTable
                 SqlDataAdapter da = new SqlDataAdapter(sql_command);
                 da.Fill(dt);
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string comtxt = row["COMMTEXT"].ToString();
+                if (comtxt.Length > 4 && comtxt.Substring(0, 4) == "HTTP")
+                {
+                    row["COMMTEXT"] = row["COMMTEXT"].ToString().ToLower();
+                }
             }
 
             return dt;
