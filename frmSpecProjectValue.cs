@@ -25,11 +25,11 @@
 
  Revisions     : See Below
  *********************************************************************
- Modified Date : 
- Modified By   : 
+ Modified Date : 11/8/2021
+ Modified By   : Christine Zhang
  Keyword       : 
  Change Request: 
- Description   : 
+ Description   : fix the bugs in creating excel file
  *********************************************************************/
 using CprsDAL;
 using System;
@@ -121,6 +121,30 @@ namespace Cprs
             SetColumnHeader(dgData);
 
             formloading = false;
+        }
+
+        private void filterData2(string filterYear2, string filterSurvey2, string compvalue2)
+        {
+
+            //use above criteria to filter datatable and store in data view
+            DataView dv = new DataView(dtTable);
+           
+            if (filterYear2 != "")
+            {
+                dv.RowFilter = filterSurvey2 + " and " + filterYear2;
+            }
+            else
+            {
+                dv.RowFilter = filterSurvey2;
+            }
+            
+            //assign dataview to datagrid
+            tcCounts = GroupBy("TC2X", compvalue2, dv.ToTable());
+
+            foreach (DataRow dr in tcCounts.Rows)
+            {
+                dr[0] = GetTCDescription(dr["TC2X"].ToString());
+            }
         }
 
         private void filterData()
@@ -540,23 +564,25 @@ namespace Cprs
         string compname;
 
         //create excel
-        private void ExportToExcel(string Year, string compvalue)
+        private void ExportToExcel(string Year, string compvalue2)
         {
             string Title;
             string Title2;
             string compexcel = "";
+            string filterYear2 = "";
+            string filterSurvey2 = "";
 
-            if (compvalue == "PIDIFF")
+            if (compvalue2 == "PIDIFF")
             {
                 compname = "Orig Value to Proj Value";
                 compexcel = "Comparison of Census Original Value vs Dodge's Project Value";
             }
-            else if (compvalue == "PRDIFF")
+            else if (compvalue2 == "PRDIFF")
             {
                 compname = "Fin Value to Proj Value";
                 compexcel = "Comparison of Census Final Value vs Dodge's Project Value";
             }
-            else if (compvalue == "IRDIFF")
+            else if (compvalue2 == "IRDIFF")
             {
                 compname = "Fin Value to Orig Value";
                 compexcel = "Comparison of Census Final Value vs Census Original Value";
@@ -576,14 +602,14 @@ namespace Cprs
             if (Year == "")
             {
                 xlWorkSheet.Name = "All - " + compname;
-                filterYear = "";
+                filterYear2 = "";
                 Title = compexcel;
                 Title2 = "Projects Completed in " + (year - 2).ToString() + " and " + (year - 1).ToString();
             }
             else
             {
                 xlWorkSheet.Name = Year + " - " + compname;// "  - Proj Value to Orig Value";
-                filterYear = " compyear = " + Year;
+                filterYear2 = " compyear = " + Year;
                 Title = compexcel;
                 Title2 = "Projects Completed in " + Year; ;
             }
@@ -842,8 +868,8 @@ namespace Cprs
             xlWorkSheet.Cells[5, 23] = "%";
             xlWorkSheet.Cells[4, 24] = "All\nCases";
 
-            filterSurvey = " survey in ('F', 'P', 'N')";
-            filterData();
+            filterSurvey2 = " survey in ('F', 'P', 'N')";
+            filterData2(filterYear2, filterSurvey2, compvalue2);
 
             ///*for datatable */
             DataTable dt = tcCounts;
@@ -896,8 +922,8 @@ namespace Cprs
             highlight1Range.Value = "= M8" ;
             highlight2Range.Value = "=SUM(O8+ Q8 + S8 + U8 + W8)" ;
 
-            filterSurvey = " survey = 'N'";
-            filterData();
+            filterSurvey2 = " survey = 'N'";
+            filterData2(filterYear2, filterSurvey2, compvalue2);
 
             ///*for datatable */
             dt = tcCounts;
@@ -948,8 +974,8 @@ namespace Cprs
             highlight1Range1.Value = "= M29";
             highlight2Range1.Value = "=SUM(O29+ Q29 + S29 + U29 + W29)";
 
-            filterSurvey = " survey = 'P'";
-            filterData();
+            filterSurvey2 = " survey = 'P'";
+            filterData2(filterYear2, filterSurvey2, compvalue2);
 
             ///*for datatable */
             dt = tcCounts;
@@ -1002,8 +1028,8 @@ namespace Cprs
             highlight1Range2.Value = "= M50";
             highlight2Range2.Value = "=SUM(O50+ Q50 + S50 + U50 + W50)";
 
-            filterSurvey = " survey = 'F'";
-            filterData();
+            filterSurvey2 = " survey = 'F'";
+            filterData2(filterYear2, filterSurvey2, compvalue2);
             ///*for datatable */
             dt = tcCounts;
 
