@@ -376,6 +376,12 @@
     <Compile Include="frmDCPInitPopup.Designer.cs">
       <DependentUpon>frmDCPInitPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDisplayNotesPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDisplayNotesPopup.designer.cs">
+      <DependentUpon>frmDisplayNotesPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDistribution.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1347,6 +1353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDCPInitPopup.resx">
       <DependentUpon>frmDCPInitPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDisplayNotesPopup.resx">
+      <DependentUpon>frmDisplayNotesPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDistribution.resx">
       <DependentUpon>frmDistribution.cs</DependentUpon>
