@@ -29,11 +29,12 @@
 
  Revisions     : See Below
  *********************************************************************
- Modified Date : 
- Modified By   : 
- Keyword       : 
- Change Request: 
- Description   : 
+ Modified Date : 12/14/2021
+ Modified By   : Christine Zhang
+ Keyword       : 20211215cz
+ Change Request: CR 160
+ Description   : display popup window for additional features, item,
+                 and Reporter notes 
  *********************************************************************/
 
 using System;
@@ -69,10 +70,13 @@ namespace Cprs
         public List<DodgeNotes.Value> ValueList;
 
         public List<DodgeNotes.Add> AddList;
+        private string addtext="";
 
         public List<DodgeNotes.Item> ItemList;
+        private string itemtext="";
 
         public List<DodgeNotes.Reporter> ReporterList;
+        private string reporttext="";
 
         DodgeSlipData dsd = new DodgeSlipData();
 
@@ -137,7 +141,12 @@ namespace Cprs
 
             dgADD.DataSource = AddList;
             dgADD.Columns[0].Width = 1150;
-
+            //get full text of add notes
+            for (int i = 0; i < AddList.Count; i++)
+            {
+                if (AddList[i].Addnotes.Trim() !="")
+                    addtext= addtext + AddList[i].Addnotes;
+            }
 
             //obtains item data and assigns it as datasource to item data grid
 
@@ -145,7 +154,11 @@ namespace Cprs
 
             dgITM.DataSource = ItemList;
             dgITM.Columns[0].Width = 1150;
-
+            //get full text of item notes
+            for (int i = 0; i < ItemList.Count; i++)
+            {
+                itemtext = itemtext + ItemList[i].Itemnotes;
+            }
 
             //obtains reporter data and assigns it as datasource to reporter data grid
 
@@ -153,6 +166,12 @@ namespace Cprs
 
             dgREP.DataSource = ReporterList;
             dgREP.Columns[0].Width = 1150;
+
+            //get full text of report notes
+            for (int i = 0; i < ReporterList.Count; i++)
+            {
+                reporttext = reporttext + ReporterList[i].Reporternotes;
+            }
 
         }
 
@@ -734,10 +753,7 @@ namespace Cprs
                         return;
 
                     }
-   
                 }
-
-
             }
 
             catch (Exception exc)
@@ -751,35 +767,34 @@ namespace Cprs
 
       private void btnPrevious_Click(object sender, EventArgs e)
       {
-
           this.Close();
       }
 
-    private void dgADD_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-    {
-        String info;
-
-        //get note
-        info = (dgADD.Rows[e.RowIndex].Cells[0].Value).ToString();
-        MessageBox.Show(info, "Additional Features Information");
-    }
+      private void dgADD_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+      {
+            frmDisplayNotesPopup fD = new frmDisplayNotesPopup();
+            fD.title = "Additional Features Information";
+            fD.content = addtext;
+            fD.StartPosition = FormStartPosition.CenterParent;
+            fD.ShowDialog();  //show child 
+      }
 
         private void dgITM_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            String info;
-
-            //get note
-            info = (dgITM.Rows[e.RowIndex].Cells[0].Value).ToString();
-            MessageBox.Show(info, "Item Includes Information");
+            frmDisplayNotesPopup fD = new frmDisplayNotesPopup();
+            fD.title = "Item Includes Information";
+            fD.content = itemtext;
+            fD.StartPosition = FormStartPosition.CenterParent;
+            fD.ShowDialog();  //show child 
         }
 
         private void dgREP_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            String info;
-
-            //get note
-            info = (dgREP.Rows[e.RowIndex].Cells[0].Value).ToString();
-            MessageBox.Show(info, "Reporter Notes");
+            frmDisplayNotesPopup fD = new frmDisplayNotesPopup();
+            fD.title = "Reporter Notes";
+            fD.content = reporttext;
+            fD.StartPosition = FormStartPosition.CenterParent;
+            fD.ShowDialog();  //show child 
         }
     }
 
