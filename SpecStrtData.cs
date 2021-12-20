@@ -13,11 +13,11 @@ Other:	            Called by: frmSpecStrt.cs
  
 Revision History:	
 ***************************************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  December 16, 2021
+ Modified By   :  Christine Zhang 
  Keyword       :  
- Change Request:  
- Description   :  
+ Change Request:  CR 162
+ Description   :  Update excel output
 ****************************************************************************************/
 
 using System;
@@ -51,6 +51,15 @@ namespace CprsDAL
                 da.Fill(dt);
             }
 
+            //fill in 0 if data is Null
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn col in dt.Columns)
+                {
+                    if (row[col].ToString() == "")
+                        row[col] = 0;
+                }
+            }
             return dt;
         }
 
