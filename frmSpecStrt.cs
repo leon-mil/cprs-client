@@ -12,8 +12,14 @@ Detailed Design:    Detailed Design for Spec strtdate
 
 Other:	            
 Revision Referrals:	
+***********************************************************************************
+Modified Date :  12/16/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR 162
+ Description   : fix the problems in excel file
 ***********************************************************************************/
- 
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -138,7 +144,11 @@ namespace Cprs
             dgData.DataSource = strtdate_table;
 
             //set up range label
-            int range = Int32.Parse(strtdate_table.Rows[0][6].ToString()) + Int32.Parse(strtdate_table.Rows[0][8].ToString()) + Int32.Parse(strtdate_table.Rows[0][10].ToString()) + Int32.Parse(strtdate_table.Rows[0][12].ToString()) + Int32.Parse(strtdate_table.Rows[0][14].ToString());
+            int range_t = (Int32.Parse(strtdate_table.Rows[0][5].ToString()) + Int32.Parse(strtdate_table.Rows[0][7].ToString()) + Int32.Parse(strtdate_table.Rows[0][9].ToString()) + Int32.Parse(strtdate_table.Rows[0][11].ToString()) + Int32.Parse(strtdate_table.Rows[0][13].ToString()));
+            int range_sum= Int32.Parse(strtdate_table.Rows[0][19].ToString());
+            decimal range2 = ((decimal)range_t /(decimal) range_sum) * 100;
+            int range = (int)Math.Round(range2, 0);
+           
             label5.Text = "Within Dodge's Range " + range.ToString() + "%";
             label1.Text = title2;
 
@@ -418,10 +428,10 @@ namespace Cprs
             ExportToExcel1(cbYear.Items[1].ToString(), "3");
             ExportToExcel1(cbYear.Items[1].ToString(), "2");
             ExportToExcel1(cbYear.Items[1].ToString(), "1");
-            ExportToExcel1(cbYear.Items[1].ToString(), "");
+            ExportToExcel1(cbYear.Items[1].ToString(), "");   
 
             ExportToExcel1(cbYear.Items[0].ToString(), "3");
-            ExportToExcel1(cbYear.Items[0].ToString(), "2");
+            ExportToExcel1(cbYear.Items[0].ToString(), "2");  
             ExportToExcel1(cbYear.Items[0].ToString(), "1");
             ExportToExcel1(cbYear.Items[0].ToString(), "");
 
@@ -606,7 +616,11 @@ namespace Cprs
 
             /*for ALL */
             DataTable dt = dataObject.GetSpecStrtDateData(selyear, "", value_group);
-            int range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
+            int range_t = (Int32.Parse(dt.Rows[0][5].ToString()) + Int32.Parse(dt.Rows[0][7].ToString()) + Int32.Parse(dt.Rows[0][9].ToString()) + Int32.Parse(dt.Rows[0][11].ToString()) + Int32.Parse(dt.Rows[0][13].ToString()));
+            int range_sum = Int32.Parse(dt.Rows[0][19].ToString());
+            decimal range2 = ((decimal)range_t / (decimal)range_sum) * 100;
+            int range = (int)Math.Round(range2, 0);
+           // int range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
 
             //Setup the column header row (row 5)
             xlWorkSheet.Cells[6, 1] = "All ";
@@ -682,7 +696,11 @@ namespace Cprs
 
             /*****for Private *******/
             dt = dataObject.GetSpecStrtDateData(selyear, "N", value_group);
-            range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
+            range_t = (Int32.Parse(dt.Rows[0][5].ToString()) + Int32.Parse(dt.Rows[0][7].ToString()) + Int32.Parse(dt.Rows[0][9].ToString()) + Int32.Parse(dt.Rows[0][11].ToString()) + Int32.Parse(dt.Rows[0][13].ToString()));
+            range_sum = Int32.Parse(dt.Rows[0][19].ToString());
+            range2 = ((decimal)range_t / (decimal)range_sum) * 100;
+            range = (int)Math.Round(range2, 0);
+            //range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
 
             //Setup the column header row (row 5)
             xlWorkSheet.Cells[27, 1] = "Private";
@@ -736,7 +754,11 @@ namespace Cprs
 
             /*****for State and Local *******/
             dt = dataObject.GetSpecStrtDateData(selyear, "P", value_group);
-            range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
+            range_t = (Int32.Parse(dt.Rows[0][5].ToString()) + Int32.Parse(dt.Rows[0][7].ToString()) + Int32.Parse(dt.Rows[0][9].ToString()) + Int32.Parse(dt.Rows[0][11].ToString()) + Int32.Parse(dt.Rows[0][13].ToString()));
+            range_sum = Int32.Parse(dt.Rows[0][19].ToString());
+            range2 = ((decimal)range_t / (decimal)range_sum) * 100;
+            range = (int)Math.Round(range2, 0);
+            // range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
 
             //Setup the column header row (row 5)
             xlWorkSheet.Cells[48, 1] = "State and Local";
@@ -789,7 +811,11 @@ namespace Cprs
             DrawFullbox(cellRange);
 
             dt = dataObject.GetSpecStrtDateData(selyear, "F", value_group);
-            range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
+            range_t = (Int32.Parse(dt.Rows[0][5].ToString()) + Int32.Parse(dt.Rows[0][7].ToString()) + Int32.Parse(dt.Rows[0][9].ToString()) + Int32.Parse(dt.Rows[0][11].ToString()) + Int32.Parse(dt.Rows[0][13].ToString()));
+            range_sum = Int32.Parse(dt.Rows[0][19].ToString());
+            range2 = ((decimal)range_t / (decimal)range_sum) * 100;
+            range = (int)Math.Round(range2, 0);
+           // range = Int32.Parse(dt.Rows[0][6].ToString()) + Int32.Parse(dt.Rows[0][8].ToString()) + Int32.Parse(dt.Rows[0][10].ToString()) + Int32.Parse(dt.Rows[0][12].ToString()) + Int32.Parse(dt.Rows[0][14].ToString());
 
             //Setup the column header row (row 5)
             xlWorkSheet.Cells[69, 1] = "Federal";
@@ -865,37 +891,57 @@ namespace Cprs
             xlWorkSheet.Rows.Font.Name = "Arial";
             xlWorkSheet.Rows.RowHeight = 12;
 
+            string stitle = string.Empty;
+            
+            stitle = (cur_year-2).ToString() + " - " + cur_year.ToString() + " Late versus Abeyance";
+
+            //Add a title
+            xlWorkSheet.Cells[1, 1] = stitle;
+
+            //Span the title across columns A through I
+            Microsoft.Office.Interop.Excel.Range titleRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "D"]);
+            titleRange.Merge(Type.Missing);
+
+            //Increase the font-size of the title
+            titleRange.Font.Size = 12;
+            titleRange.RowHeight = 16;
+
+            //Make the title bold
+            titleRange.Font.Bold = true;
+            titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+
             /*for ALL */
             DataTable dt = dataObject.GetSpecStrtDateSumData( "", "");
-            addSumTable(xlWorkSheet, dt, 1, "All Surveys - All Values");
+            addSumTable(xlWorkSheet, dt, 3, "All Surveys - All Values");
 
             /*for Private all value */
             dt = dataObject.GetSpecStrtDateSumData("N", "");
-            addSumTable(xlWorkSheet, dt, 7, "Private Survey - All Values");
+            addSumTable(xlWorkSheet, dt, 9, "Private Survey - All Values");
 
             /*for State and Local all value */
             dt = dataObject.GetSpecStrtDateSumData("P", "");
-            addSumTable(xlWorkSheet, dt, 13, "State and Local Survey - All Values");
+            addSumTable(xlWorkSheet, dt, 15, "State and Local Survey - All Values");
 
             /*for Federal all value */
             dt = dataObject.GetSpecStrtDateSumData("F", "");
-            addSumTable(xlWorkSheet, dt, 19, "Federal Survey - All Values");
+            addSumTable(xlWorkSheet, dt, 21, "Federal Survey - All Values");
 
             /*for ALL */
             dt = dataObject.GetSpecStrtDateSumData("", "1");
-            addSumTable(xlWorkSheet, dt, 25, "All Surveys - $5 Million or more");
+            addSumTable(xlWorkSheet, dt, 27, "All Surveys - $5 Million or more");
 
             /*for Private all value */
-            dt = dataObject.GetSpecStrtDateSumData("N", "");
-            addSumTable(xlWorkSheet, dt, 31, "Private Survey - $5 Million or more");
+            dt = dataObject.GetSpecStrtDateSumData("N", "1");
+            addSumTable(xlWorkSheet, dt, 33, "Private Survey - $5 Million or more");
 
             /*for State and Local all value */
-            dt = dataObject.GetSpecStrtDateSumData("P", "");
-            addSumTable(xlWorkSheet, dt, 37, "State and Local Survey - $5 Million or more");
+            dt = dataObject.GetSpecStrtDateSumData("P", "1");
+            addSumTable(xlWorkSheet, dt, 39, "State and Local Survey - $5 Million or more");
 
             /*for Federal all value */
-            dt = dataObject.GetSpecStrtDateSumData("F", "");
-            addSumTable(xlWorkSheet, dt, 43, "Federal Survey - $5 Million or more");
+            dt = dataObject.GetSpecStrtDateSumData("F", "1");
+            addSumTable(xlWorkSheet, dt, 45, "Federal Survey - $5 Million or more");
 
             // Page Setup
             //Set page orientation to landscape
@@ -1014,23 +1060,23 @@ namespace Cprs
 
             /*for ALL */
             DataTable dt = dataObject.GetSpecStrtDateProjData("");
-            Decimal range = Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString()) + Decimal.Parse(dt.Rows[9][8].ToString());
+            Decimal range = Decimal.Parse(dt.Rows[9][3].ToString()) + Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString());
             string label = Math.Round(range, 0).ToString() + "%";
             addProjTable(xlWorkSheet, dt, 1, "Projects Valued over $100 M selected from " + start_date + "-" + end_date, label);
 
             dt = dataObject.GetSpecStrtDateProjData(end_date.Substring(0, 4));
-            range = Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString()) + Decimal.Parse(dt.Rows[9][8].ToString());
+            range = Decimal.Parse(dt.Rows[9][3].ToString()) + Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString());
             label = Math.Round(range, 0).ToString() + "%";
             addProjTable(xlWorkSheet, dt, 16, "Projects Valued over $100 M selected from " + end_date.Substring(0, 4) + "01" + "-" + end_date, label);
 
             int y = Convert.ToInt16(end_date.Substring(0, 4)) - 1;
             dt = dataObject.GetSpecStrtDateProjData(y.ToString());
-            range = Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString()) + Decimal.Parse(dt.Rows[9][8].ToString());
+            range = Decimal.Parse(dt.Rows[9][3].ToString()) + Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString());
             label = Math.Round(range, 0).ToString() + "%";
             addProjTable(xlWorkSheet, dt, 31, "Projects Valued over $100 M selected from " + y.ToString() + "01" + "-" + y.ToString() + "12", label);
 
             dt = dataObject.GetSpecStrtDateProjData(start_date.Substring(0, 4));
-            range = Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString()) + Decimal.Parse(dt.Rows[9][8].ToString());
+            range = Decimal.Parse(dt.Rows[9][3].ToString()) + Decimal.Parse(dt.Rows[9][4].ToString()) + Decimal.Parse(dt.Rows[9][5].ToString()) + Decimal.Parse(dt.Rows[9][6].ToString()) + Decimal.Parse(dt.Rows[9][7].ToString());
             label = Math.Round(range, 0).ToString() + "%";
             addProjTable(xlWorkSheet, dt, 46, "Projects Valued over $100 M selected from " + start_date + "-" + start_date.Substring(0, 4) + "12", label);
 
