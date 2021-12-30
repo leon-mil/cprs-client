@@ -23,11 +23,11 @@ Other:	            Called from:
  
 Revision History:	
 ***********************************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  12/29/2021
+ Modified By   :  Christine Zhang
  Keyword       :  
- Change Request:  
- Description   :  
+ Change Request:  CR171
+ Description   :  add description button to display flag help file
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -421,6 +421,13 @@ namespace Cprs
             GeneralDataFuctions.AddCpraccessData("IMPROVEMENTS", "EXIT");
         }
 
-        
+        private void btnDescription_Click(object sender, EventArgs e)
+        {
+            frmHelpPopup popup = new frmHelpPopup();
+
+            popup.filename = "Improvements Flag Details.txt";
+            popup.title = "FLAG HELP DESCRIPTIONS";
+            popup.ShowDialog();
+        }
     }
 }
