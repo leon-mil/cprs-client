@@ -37,6 +37,12 @@ Keyword       :
 Change Request:  CR#8240
 Description   :  change referral type of late receipt to Dodge initial, PNR/Address 
                  to MF Intial
+***********************************************************************************
+Modified Date :  1/06/2022
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#177
+Description   :  allow NPC interviewer grade 5 to set complete status 
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -153,7 +159,10 @@ namespace Cprs
 
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
-                rbtnComplete.Enabled = false;
+                if(UserInfo.Grade== "5" && (refgroup == "NPC Sup/Lead" || refgroup == "NPC Clerk") && UserInfo.UserName != usrnme)
+                    rbtnComplete.Enabled = true;
+                else
+                    rbtnComplete.Enabled = false;
                 return;
             }
 
