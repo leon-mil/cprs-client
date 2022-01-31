@@ -31,12 +31,6 @@ Modified By   :Christine
 Keyword       :
 Change Request:
 Description   :get current survey month from SAATOT table instead of VIPSADJ table
-***********************************************************************
-Modified Date :2/1/2021
-Modified By   :Christine
-Keyword       :
-Change Request:CR#7920
-Description   :Update column and related footnote (S) to X
 ***********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -568,7 +562,7 @@ namespace Cprs
             else
             {
                 //  string start_year = "2008";
-                string start_year = "2009";
+                string start_year = "2012";
                 int month2 = Convert.ToInt32(sdate.Substring(4,2));
                 string end_year;
                 if (month2 == 12)
@@ -2109,7 +2103,6 @@ namespace Cprs
                     ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).ColumnWidth = 20;
                 else
                     ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).ColumnWidth = 8.5;
-
                 ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).NumberFormat = "#,###";
                 ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns[i, Type.Missing]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
             }
@@ -2170,13 +2163,13 @@ namespace Cprs
                     if (c.ColumnName != "seq")
                     { 
                         iCol++;
-                        if (iCol >= 2)
+                        if (iCol > 2)
                         {
                             if (survey_type == "V")
                             {
                                 if ((iCol >= col10 && (int)r["seq"] == 73) || (iCol >= col09 && (int)r["seq"] == 83))
                                 {
-                                    xlWorkSheet.Cells[iRow, iCol] = "X";
+                                    xlWorkSheet.Cells[iRow, iCol] = "(S)";
                                     xlApp.get_Range(xlWorkSheet.Cells[iRow, iCol], xlWorkSheet.Cells[iRow, iCol]).NumberFormat = "@";
                                 }
                                 else
@@ -2370,7 +2363,7 @@ namespace Cprs
 
                 footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 9, "A"], xlWorkSheet.Cells[iRow + 9, num_diff + 1]);
                 footRange5.Merge(Type.Missing);
-                xlWorkSheet.Cells[iRow + 9, 1] = "X Estimates are not applicable/not available.";
+                xlWorkSheet.Cells[iRow + 9, 1] = "(S) Suppressed because estimate does not meet publication standards.";
 
             }
             else if (survey_type == "P")
