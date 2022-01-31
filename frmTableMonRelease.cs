@@ -2161,17 +2161,6 @@ namespace Cprs
 
                 iCol = 0;
 
-                int col09 = 2;
-                int col10 = 2;
-                //Find 2009 column and 2010 column
-                int ydiff = 2009 - Int32.Parse(start_year);
-                if (ydiff > 0)
-                    col09 = col09 + ydiff;
-
-                ydiff = 2010 - Int32.Parse(start_year);
-                if (ydiff > 0)
-                    col10 = col10 + ydiff;
-
                 foreach (DataColumn c in dt.Columns)
                 {
                     if (c.ColumnName != "seq")
@@ -2181,7 +2170,7 @@ namespace Cprs
                         {
                             if (survey_type == "V")
                             {
-                                if ((iCol >= col10 && (int)r["seq"] == 73) || (iCol >= col09 && (int)r["seq"] == 83))
+                                if ((iCol >= 2 && (int)r["seq"] == 73) || (iCol >= 2 && (int)r["seq"] == 83))
                                 {
                                     xlWorkSheet.Cells[iRow, iCol] = "X";
                                     xlApp.get_Range(xlWorkSheet.Cells[iRow, iCol], xlWorkSheet.Cells[iRow, iCol]).NumberFormat = "@";
