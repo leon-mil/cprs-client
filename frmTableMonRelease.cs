@@ -591,7 +591,7 @@ namespace Cprs
                 dtab = data_object.GetAnnualReleaseData("T", start_year, end_year);
                 stitle = "Annual Value of Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\Total.xls";
+                sfilename = dir + "\\total.xls";
                 ssheetname = "Total";
                 ExportAnnualToExcel("T", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
@@ -599,28 +599,28 @@ namespace Cprs
                 dtab = data_object.GetAnnualReleaseData("V", start_year, end_year);
                 stitle = "Annual Value of Private Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\Private.xls";
+                sfilename = dir + "\\private.xls";
                 ssheetname = "Private";
                 ExportAnnualToExcel("V", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
                 dtab = data_object.GetAnnualReleaseData("P", start_year, end_year);
                 stitle = "Annual Value of Public Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\Public.xls";
+                sfilename = dir + "\\public.xls";
                 ssheetname = "Public";
                 ExportAnnualToExcel("P", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
                 dtab = data_object.GetAnnualReleaseData("S", start_year, end_year);
                 stitle = "Annual Value of State and Local Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\State.xls";
+                sfilename = dir + "\\state.xls";
                 ssheetname = "State";
                 ExportAnnualToExcel("S", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
                 dtab = data_object.GetAnnualReleaseData("F", start_year, end_year);
                 stitle = "Annual Value of Federal Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\Federal.xls";
+                sfilename = dir + "\\federal.xls";
                 ssheetname = "Federal";
                 ExportAnnualToExcel("F", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
             }
@@ -2006,7 +2006,7 @@ namespace Cprs
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Excel file|*.xls";
             saveFileDialog1.Title = "Save an File";
-            saveFileDialog1.FileName = "Total.xls";
+            saveFileDialog1.FileName = "total.xls";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -2134,22 +2134,22 @@ namespace Cprs
                 //create extra line
                 if (survey_type == "T")
                 {
-                    if ((int)r["seq"] == 2 || (int)r["seq"] == 3 || (int)r["seq"] == 20 || (int)r["seq"] == 21 || (int)r["seq"] == 22 || (int)r["seq"] == 37 || (int)r["seq"] == 38 || (int)r["seq"] == 39)
+                    if ((int)r["seq"] == 2 || (int)r["seq"] == 3 || (int)r["seq"] == 20 || (int)r["seq"] == 21 || (int)r["seq"] == 22 || (int)r["seq"] == 38 || (int)r["seq"] == 39)
                         iRow++;
                 }
                 else if (survey_type == "V")
                 {
-                    if ((int)r["seq"] == 2 || (int)r["seq"] == 6 || (int)r["seq"] == 7 || (int)r["seq"] == 8 || (int)r["seq"] == 11 || (int)r["seq"] == 32 || (int)r["seq"] == 36 || (int)r["seq"] == 45 || (int)r["seq"] == 49 || (int)r["seq"] == 50 || (int)r["seq"] == 57||(int)r["seq"] == 61 || (int)r["seq"] == 62 || (int)r["seq"] == 66 || (int)r["seq"] == 67 || (int)r["seq"] == 68)
+                    if ((int)r["seq"] == 2 || (int)r["seq"] == 6 || (int)r["seq"] == 7 || (int)r["seq"] == 8 || (int)r["seq"] == 11 || (int)r["seq"] == 36 || (int)r["seq"] == 45 || (int)r["seq"] == 49 || (int)r["seq"] == 50 || (int)r["seq"] == 57||(int)r["seq"] == 61 || (int)r["seq"] == 66 || (int)r["seq"] == 67 || (int)r["seq"] == 68)
                         iRow++;
                 }
                 else if (survey_type == "P")
                 {
-                    if ((int)r["seq"] == 2 || (int)r["seq"] == 3 || (int)r["seq"] == 16 || (int)r["seq"] == 17 || (int)r["seq"] == 18 || (int)r["seq"] == 31 || (int)r["seq"] == 32 || (int)r["seq"] == 33)
+                    if ((int)r["seq"] == 2 || (int)r["seq"] == 3 || (int)r["seq"] == 16 || (int)r["seq"] == 17 || (int)r["seq"] == 18  || (int)r["seq"] == 32 || (int)r["seq"] == 33)
                         iRow++;
                 }
                 else if (survey_type == "S")
                 {
-                    if ((int)r["seq"] == 2 || (int)r["seq"] == 4 || (int)r["seq"] == 5 || (int)r["seq"] == 6 || (int)r["seq"] == 10 || (int)r["seq"] == 14 || (int)r["seq"] == 30 || (int)r["seq"] == 36 || (int)r["seq"] == 43 || (int)r["seq"] == 54 || (int)r["seq"] == 57 || (int)r["seq"] == 66 || (int)r["seq"] == 73 || (int)r["seq"] == 80)
+                    if ((int)r["seq"] == 2 || (int)r["seq"] == 4 || (int)r["seq"] == 5 || (int)r["seq"] == 6 || (int)r["seq"] == 10 || (int)r["seq"] == 14 || (int)r["seq"] == 36 || (int)r["seq"] == 43 || (int)r["seq"] == 54 || (int)r["seq"] == 66 || (int)r["seq"] == 73 || (int)r["seq"] == 80)
                         iRow++;
                 }
                 else
