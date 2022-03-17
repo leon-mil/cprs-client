@@ -1503,8 +1503,14 @@ namespace Cprs
                 {
                     relsRespLock();
                 }
+
+                //update access and dcp_hist record
+                id = Id;
+                if (id != string.Empty && id != null)
+                    UpdateCaseAccessRecord();
+                GeneralDataFuctions.AddCpraccessData(access_code, "EXIT");
             }
-            // releaseAllLocks();
+            
 
             return can_close;
         }
@@ -2465,8 +2471,6 @@ namespace Cprs
 
          private void btnTFU_Click(object sender, EventArgs e)
          {
-             relsRespLock();
-             chkBrowseUpdate();
             if (editable && EditMode == TypeEditMode.Edit)
             {
                 if (!ValidateData())
@@ -2474,8 +2478,14 @@ namespace Cprs
                 txtModifiedStatus();
             }
 
-             //Display TFU on the C-700 button for NPC users
-             if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
+            //update DCP_HIST table
+            id = txtId.Text;
+            UpdateCaseAccessRecord();
+            relsRespLock();
+            chkBrowseUpdate();
+
+            //Display TFU on the C-700 button for NPC users
+            if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
              {
                 this.Hide(); // hide parent
                 frmTfu tfu = new frmTfu();
@@ -2513,7 +2523,7 @@ namespace Cprs
                  fC700.ShowDialog();  // show child
              }
 
-            if (LckdbyUsrElsewhere == false && !is_closing && editable)
+            if (LckdbyUsrElsewhere == false && editable)
             {
                 GeneralDataFuctions.UpdateRespIDLock(Respid, UserInfo.UserName);
             }
@@ -2857,6 +2867,8 @@ namespace Cprs
 
                     CallingForm.Show();
                 }
+                id = Id;
+                UpdateCaseAccessRecord();
                 this.Close();
             }
 
@@ -3624,22 +3636,7 @@ namespace Cprs
              }
          }
 
-        bool is_closing = false;
-         private void frmDodgeInital_FormClosing(object sender, FormClosingEventArgs e)
-         {
-               // releaseAllLocks();
-            //Update dcp_hist if cancel button is not clicked when user enters screen
-            //If user has no permission to access this form, do not update case access record
-            if (UserInfo.GroupCode != EnumGroups.NPCInterviewer && UserInfo.InitFD != "N" && UserInfo.InitNR != "N" && UserInfo.InitSL != "N")
-            {
-                id = Id;
-                if (id != string.Empty && id != null)
-                { UpdateCaseAccessRecord(); }
-            }
-            GeneralDataFuctions.AddCpraccessData(access_code, "EXIT");
-            is_closing = true;
-        }
-
+       
         private void txtEmail_Leave(object sender, EventArgs e)
         {
             if (btnRefresh.Focused)

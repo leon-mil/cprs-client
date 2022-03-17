@@ -1899,7 +1899,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmDodgeInital";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDodgeInital_FormClosing);
+       //     this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDodgeInital_FormClosing);
             this.Load += new System.EventHandler(this.frmDodgeInital_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
