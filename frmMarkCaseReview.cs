@@ -46,6 +46,12 @@ Revision History:
  Keyword        :  None
  Change Request :  CR 3572
  Description    :  allow HQ manager, programmer and Person who created delete marks
+***********************************************************************************
+  Modified Date  :  04/5/2022
+ Modified By    :  Christine Zhang
+ Keyword        :  None
+ Change Request :  CR 365
+ Description    :  keep search certeria when come back from TFU/C700
 ***********************************************************************************/
 using System;
 using System.ComponentModel;
@@ -849,6 +855,172 @@ namespace Cprs
             }
         }
 
+        private void SearchItem2()
+        {
+            if (tbCaseReview.SelectedIndex == 0)
+            {
+
+                string id = "";
+                string usrnme = "";
+                string prgdtm = "";
+                string newtc = "";
+
+                DataTable dt;
+
+                Cursor.Current = Cursors.WaitCursor;
+
+                if (Id == "")
+                {
+
+                    //for id
+
+                    if (cbItem.SelectedIndex == 0)
+                    {
+                        id = txtIDValueItem.Text.Trim();
+
+                    }
+
+                    // for newtc
+
+                    else if (cbItem.SelectedIndex == 1)
+                    {
+                        newtc = cbIDValueItem.Text.Trim();
+                    }
+
+                    // for usrnme
+
+                    else if (cbItem.SelectedIndex == 2)
+                    {
+                        usrnme = cbIDValueItem.Text.Trim();
+                    }
+
+                    // for prgdtm
+
+                    else if (cbItem.SelectedIndex == 3)
+                    {
+                        if (GeneralFunctions.VerifyDate(txtIDValueItem.Text.Trim()))
+                                prgdtm = GeneralFunctions.ConvertDateFormat(txtIDValueItem.Text);
+ 
+                    }
+                }
+                else
+                    id = Id;
+
+
+                //search all items. If the user is a Programmer or HQSupervisor then
+                //search by the username selected username in the combobox. 
+                //Otherwise, search only the cases owned by the logged in user
+
+                if ((usrnme == "") && (id == "") && (newtc == "") && (prgdtm == ""))
+                {
+                    dt = dataObject.GetMarkCase(usrnme, id, newtc, prgdtm);
+                }
+                else
+                {
+                    dt = dataObject.GetMarkCase(usrnme, id, newtc, prgdtm);
+                }
+
+                dgProjMarkCase.DataSource = dt;
+                setProjItemColumnHeader();
+
+                Cursor.Current = Cursors.Default;
+
+                if (dt.Rows.Count == 0)
+                {
+
+                    btnData.Enabled = false;
+                    btnDelete.Enabled = false;
+                }
+                if (dt.Rows.Count > 0)
+                {
+                    btnData.Enabled = true;
+                    string user1 = dgProjMarkCase.CurrentRow.Cells[4].Value.ToString();
+                    if (user1 != UserInfo.UserName && UserInfo.GroupCode != EnumGroups.HQManager && UserInfo.GroupCode != EnumGroups.Programmer)
+                        btnDelete.Enabled = false;
+                    else
+                        btnDelete.Enabled = true;
+
+                }
+                lblCasesCount.Text = dgProjMarkCase.Rows.Count.ToString() + " PROJECT MARK CASES";
+            }
+
+            if (tbCaseReview.SelectedIndex == 1)
+            {
+                string respid = "";
+                string usrnme = "";
+                string prgdtm = "";
+
+                DataTable rdt;
+
+                Cursor.Current = Cursors.WaitCursor;
+
+                if (Respid == "")
+                {
+
+                    //for respid
+
+                    if (cbItem.SelectedIndex == 0)
+                    {
+                        respid = txtRESPValueItem.Text.Trim();
+                    }
+
+                    // for usrnme
+
+                    else if (cbItem.SelectedIndex == 1)
+                    {
+                        usrnme = cbRESPValueItem.Text.Trim();
+                    }
+
+                    // for prgdtm
+
+                    else if (cbItem.SelectedIndex == 2)
+                    { 
+                        if (GeneralFunctions.VerifyDate(txtRESPValueItem.Text.Trim()))
+                                prgdtm = GeneralFunctions.ConvertDateFormat(txtRESPValueItem.Text);
+                    }
+                }
+                else
+                    respid = Respid;
+
+                //search all items. If the user is a Programmer or HQSupervisor then
+                //search by the username selected username in the combobox. 
+                //Otherwise, search only the cases owned by the logged in user
+
+                if ((usrnme == "") && (respid == "") && (prgdtm == ""))
+                {
+                    rdt = dataObject.GetRSPMarkCase(usrnme, respid, prgdtm);
+                }
+                else
+                {
+                    rdt = dataObject.GetRSPMarkCase(usrnme, respid, prgdtm);
+                }
+
+                dgRespMarkCase.DataSource = rdt;
+                setRespItemColumnHeader();
+
+                Cursor.Current = Cursors.Default;
+
+                //If the are no rows in the table
+                if (rdt.Rows.Count == 0)
+                {
+                    btnData.Enabled = false;
+                    btnDelete.Enabled = false;
+                }
+
+                if (rdt.Rows.Count > 0)
+                {
+                    btnData.Enabled = true;
+                    string user1 = dgRespMarkCase.CurrentRow.Cells[1].Value.ToString();
+                    if (user1 != UserInfo.UserName && UserInfo.GroupCode != EnumGroups.HQManager && UserInfo.GroupCode != EnumGroups.Programmer)
+                        btnDelete.Enabled = false;
+                    else
+                        btnDelete.Enabled = true;
+                }
+
+                lblCasesCount.Text = dgRespMarkCase.Rows.Count.ToString() + " RESPONDENT MARK CASES";
+            }
+        }
+
         //Clear the search results
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -1003,6 +1175,8 @@ namespace Cprs
 
                     GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "EXIT");
                     tfu.ShowDialog();   // show child
+                    SearchItem2();
+                    HighlightRowForId(id);
                     GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
                 }
                 else
@@ -1043,6 +1217,8 @@ namespace Cprs
                     GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "EXIT");
 
                     fC.ShowDialog();  // show child
+                    SearchItem2();
+                    HighlightRowForId(id);
 
                     GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
                 }
@@ -1061,13 +1237,33 @@ namespace Cprs
                 GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "EXIT");
 
                 fRAU.ShowDialog();  // show child
+                SearchItem2();
+               // HighlightRowForId(id);
 
                 GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
 
             }
 
-            LoadTables();
         }
+
+        //find selected id
+        private void HighlightRowForId(string id)
+        {
+            int rowIndex = -1;
+            foreach (DataGridViewRow row in dgProjMarkCase.Rows)
+            {
+                if (row.Cells[0].Value.ToString().Equals(id))
+                {
+                    rowIndex = row.Index;
+                    break;
+                }
+            }
+
+            if (rowIndex >= 0)
+                dgProjMarkCase.Rows[rowIndex].Selected = true;
+
+        }
+
 
 
         /*Print the datagrid based upon the selected tab*/
