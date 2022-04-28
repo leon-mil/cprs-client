@@ -50,6 +50,12 @@ Modified Date :  08/25/2021
  Keyword       :  
  Change Request: CR
  Description   : fix the bug save shed_hist without accestms 
+***********************************************************************************
+ Modified Date :  04/26/2021
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR
+ Description   : fix the bug save runit to audit and update costpu
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -73,8 +79,8 @@ namespace Cprs
     public partial class frmName : Cprs.frmCprsParent
     {
         /****** public properties *******/
-        /* Required */
-        public string Id;
+/* Required */
+public string Id;
         public Form CallingForm = null;
  
         /* Optional */
@@ -119,6 +125,8 @@ namespace Cprs
         private ProjMarkData pmarkdata;
         private RespMark rmark;
         private RespMarkData rmarkdata;
+        private Soc soc;
+        private SocData socdata;
 
         RespAuditData radata = new RespAuditData();
 
@@ -149,6 +157,10 @@ namespace Cprs
             namedata = new NameData();
             nameaddr = NameData.GetNameAddr(Id, viewcode);
             nameaddrfactor = SourceData.GetFactor(nameaddr.Masterid);
+            /*Soc */
+            socdata = new SocData();
+            if (nameaddr.Survey == "M")
+                soc = socdata.GetSocData(nameaddr.Masterid);
 
             if (nameaddr.Respid == "")
                  Respid = nameaddr.Id;
@@ -1795,6 +1807,7 @@ namespace Cprs
         private string oldRepUnits;
         private string newRepUnits;
         private bool bRepUnits = false;
+        private int newCostpu;
         private string newContractNum;
         private string oldContractNum;
         private bool bContractNum = false;
@@ -2380,14 +2393,25 @@ namespace Cprs
                         }
                     }
                     if (bRepBldgs == false)
-                    { newRepBldgs = nameaddr.Rbldgs; }
+                      newRepBldgs = nameaddr.Rbldgs;
+
                     if (bRepUnits == false)
-                    { newRepUnits = nameaddr.Runits; }
-                    namedata.UpdateSocFlds(newRepBldgs, newRepUnits, masterid);
+                    {
+                        newRepUnits = nameaddr.Runits;
+                        newCostpu = soc.Costpu;
+                    }
+                    else
+                    {
+                        //Update costpu;
+                        UpdateCostpu();
+
+                    }
+
+                   
                     //audit update for RBldgs
                     if (bRepBldgs)
                     {
-                        oldval = oldRepBldgs;
+                        oldval = nameaddr.Rbldgs.ToString().Trim(); 
                         newval = newRepBldgs;
                         varnme = "RBLDGS";
                         NameAddrAuditData.AddNameCprAudit(id, varnme, oldflag, oldval, newflag, newval, usrnme, prgdtm);
@@ -2395,12 +2419,16 @@ namespace Cprs
                     //audit update for RUnits
                     if (bRepUnits)
                     {
-                        oldval = oldRepUnits;
+                        oldval = nameaddr.Runits.ToString().Trim();
                         newval = newRepUnits;
                         varnme = "RUNITS";
                         NameAddrAuditData.AddNameCprAudit(id, varnme, oldflag, oldval, newflag, newval, usrnme, prgdtm);
+
                     }
-                }
+
+                    //update database SOC
+                namedata.UpdateSocFlds(newRepBldgs, newRepUnits, newCostpu.ToString(), masterid);
+            }
 
                 //update any changes to Sample table fields. 5 fields.
                 if ((bStatcode) || (bContractNum) || (bProjdesc) || (bProjloc) || (bProjcityst) || (bRespid))
@@ -4081,6 +4109,25 @@ namespace Cprs
         private void txtProjCitySt_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        //when rvitm5c or units were changed, costpu need updated
+        private void UpdateCostpu()
+        {
+            //if it is mulitfamily
+            if (txtSurvey.Text == "M")
+            {
+                int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
+                if (it5c > 0)
+                {
+                    int iunits = Convert.ToInt32(txtRepUnits.Text.Replace(",", ""));
+                    if (iunits > 0)
+                    {
+                        double yy = (double)it5c / iunits;
+                        newCostpu = (int)Math.Round(yy);
+                    }
+                }
+            }
         }
     }
 }
