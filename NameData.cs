@@ -505,13 +505,13 @@ namespace CprsDAL
            }
         }
 
-       public void UpdateSocFlds(string repbldgs, string repunits, string masterid)
+       public void UpdateSocFlds(string repbldgs, string repunits, string costpu, string masterid)
        {
            {
                using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
                {
                    string Query = "update dbo.soc set RBLDGS = @RBLDGS" +
-                                  ",RUNITS = @RUNITS" +
+                                  ",RUNITS = @RUNITS" + ",COSTPU = @COSTPU" +
                                   " WHERE MASTERID = @MASTERID";
                    try
                    {
@@ -521,7 +521,8 @@ namespace CprsDAL
                        connection.Open();
                        sql_command.Parameters.AddWithValue("@RBLDGS", repbldgs);
                        sql_command.Parameters.AddWithValue("@RUNITS", repunits);
-                       sql_command.Parameters.AddWithValue("@MASTERID", masterid);
+                        sql_command.Parameters.AddWithValue("@COSTPU", costpu);
+                        sql_command.Parameters.AddWithValue("@MASTERID", masterid);
                        // Create a DataAdapter to run the command and fill the DataTable
                        using (SqlDataAdapter da = new SqlDataAdapter(sql_command))
                        {
