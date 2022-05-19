@@ -87,7 +87,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                         if (ftype == 0)
                         {
                             row["title"] = "(1) FLAG - STATUS CODE CHANGE";
-                            row["sqno"] = 12;
+                            row["sqno"] = 17;
                         }
                         //if show report flags, delete it
                         else
@@ -99,7 +99,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                         if (ftype == 0)
                         {
                             row["title"] = "(2) FLAG - OWNERSHIP CODE CHANGE";
-                            row["sqno"] = 13;
+                            row["sqno"] = 18;
                         }
                         else
                             row.Delete();
@@ -167,7 +167,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                         if (ftype == 0)
                         {
                             row["title"] = "(13) FLAG - START BEFORE SELDATE";
-                            row["sqno"] = 14;
+                            row["sqno"] = 19;
                         }
                         //if show report flags, delete it
                         else
@@ -177,27 +177,27 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                     else if (fno == 14)
                     {
                         row["title"] = "(14) FLAG - RVITM5C >= 3 TIMES SELVAL";
-                        row["sqno"] = 15;
+                        row["sqno"] = 12;
                     }
                     else if (fno == 15)
                     {
                         row["title"] = "(15) FLAG - SELVAL >= 3 TIMES RVITM5C";
-                        row["sqno"] = 17;
+                        row["sqno"] = 20;
                     }
                     else if (fno == 16)
                     {
                         row["title"] = "(16) FLAG - CUM VIP > 140% OF RVITM5C";
-                        row["sqno"] = 18;
+                        row["sqno"] = 21;
                     }
                     else if (fno == 17)
                     {
                         row["title"] = "(17) FLAG - VIP 25% OF RVITM5C (RVITM5C >= $10 MIL)";
-                        row["sqno"] = 20;
+                        row["sqno"] = 22;
                     }
                     else if (fno == 18)
                     {
                         row["title"] = "(18) FLAG - VIP 50% OF RVITM5C ($10 MIL > RVITM5C >= $1 MIL)";
-                        row["sqno"] = 22;
+                        row["sqno"] = 23;
                     }
                     else if (fno == 19)
                     {
@@ -210,7 +210,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                         if (ftype == 0)
                         {
                             row["title"] = "(20) FLAG - OUTLIER PROJECT";
-                            row["sqno"] = 26;
+                            row["sqno"] = 13;
                         }
                         //if show report flags, delete it
                         else
@@ -219,7 +219,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                     else if (fno == 21)
                     {
                         row["title"] = "(21) FLAG - ITEM6 50% OR MORE RVITM5C";
-                        row["sqno"] = 27;
+                        row["sqno"] = 14;
                     }
                     else if (fno == 22)
                     {
@@ -325,7 +325,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                     else if (fno == 40)
                     {
                         row["title"] = "(40) FLAG - COST PER UNIT OUT OF RANGE";
-                        row["sqno"] = 16;
+                        row["sqno"] = 15;
                     }
                     else if (fno == 41)
                     {
@@ -365,7 +365,7 @@ public DataTable GetFlagReportData(int ftype, string newtcs)
                     else if (fno == 48)
                     {
                         row["title"] = "(48) FLAG - VIP = 999% OF RVITM5C";
-                        row["sqno"] = 48;
+                        row["sqno"] = 16;
                     }
                 }
 
