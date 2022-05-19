@@ -17,6 +17,12 @@ Revision History:
  Keyword       :  
  Change Request:  CR#3591
  Description   :  Add data flag 47, 48
+****************************************************************************************
+Modified Date :  5/18/2022
+ Modified By   :  Christine Zhang
+ Keyword       :  
+ Change Request:  CR#457
+ Description   :  show data flag in order 14, 20, 21, 40, 48 in blue
 ****************************************************************************************/
 
 using System;
@@ -128,6 +134,10 @@ namespace Cprs
                 if (e.Value.ToString().Substring(4, 6) == "REJECT" || e.Value.ToString().Substring(5,6) == "REJECT")
                 {
                     e.CellStyle.ForeColor = Color.Red;
+                }
+                else if (e.Value.ToString().Substring(1, 2) == "14" || e.Value.ToString().Substring(1, 2) == "20" || e.Value.ToString().Substring(1, 2) == "21" || e.Value.ToString().Substring(1, 2) == "40" || e.Value.ToString().Substring(1, 2) == "48")
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
                 }
             }
         }
