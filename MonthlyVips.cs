@@ -15,11 +15,11 @@ Other:	            Called By: frmC700
  
 Revision History:	
 ***************************************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  5/24/2022
+ Modified By   :  Christine zhang
  Keyword       :  
  Change Request:  
- Description   :  
+ Description   :  get rid of cumdbvip, cumdbvipr properties
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -35,13 +35,13 @@ namespace CprsBLL
 
         public string Id { get; private set; }
         public List<MonthlyVip> monthlyViplist = new List<MonthlyVip>();
+        
         public bool Withallvips
         {
             get { return with_all_vip; }
             set { with_all_vip = value; }
         }
-        public int Cumdbvip { get; set;}
-        public int Cumdbvipr { get; set; }
+       
 
         //Get total vip
         public int GetCumvip()
@@ -53,6 +53,8 @@ namespace CprsBLL
             }
             return cumvip;        
         }
+
+        
 
         //Get total percent vip to 5C
         public int GetCumPercent(int itm5c)
@@ -88,7 +90,7 @@ namespace CprsBLL
             return cumpercentr; 
 
         }
-        
+
         //Get total months of vip
         public int GetSumMons()
         {
