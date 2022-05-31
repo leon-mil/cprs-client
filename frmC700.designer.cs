@@ -1446,7 +1446,7 @@
             // 
             // txtCumvipr
             // 
-            this.txtCumvipr.Location = new System.Drawing.Point(80, 328);
+            this.txtCumvipr.Location = new System.Drawing.Point(167, 328);
             this.txtCumvipr.Name = "txtCumvipr";
             this.txtCumvipr.ReadOnly = true;
             this.txtCumvipr.Size = new System.Drawing.Size(73, 20);
@@ -1464,7 +1464,7 @@
             // 
             // txtCumvip
             // 
-            this.txtCumvip.Location = new System.Drawing.Point(262, 328);
+            this.txtCumvip.Location = new System.Drawing.Point(353, 328);
             this.txtCumvip.Name = "txtCumvip";
             this.txtCumvip.ReadOnly = true;
             this.txtCumvip.Size = new System.Drawing.Size(73, 20);
@@ -1502,7 +1502,7 @@
             // 
             // txtCumvip2
             // 
-            this.txtCumvip2.Location = new System.Drawing.Point(353, 328);
+            this.txtCumvip2.Location = new System.Drawing.Point(262, 328);
             this.txtCumvip2.Name = "txtCumvip2";
             this.txtCumvip2.ReadOnly = true;
             this.txtCumvip2.Size = new System.Drawing.Size(73, 20);
@@ -1511,7 +1511,7 @@
             // 
             // txtCumvipr2
             // 
-            this.txtCumvipr2.Location = new System.Drawing.Point(171, 328);
+            this.txtCumvipr2.Location = new System.Drawing.Point(81, 328);
             this.txtCumvipr2.Name = "txtCumvipr2";
             this.txtCumvipr2.ReadOnly = true;
             this.txtCumvipr2.Size = new System.Drawing.Size(73, 20);

@@ -86,6 +86,12 @@ Modified Date :  2/9/2021
  Keyword       :  
  Change Request: CR#
  Description   : allow analyst access respondent referrals
+***********************************************************************************
+Modified Date :  5/24/2022
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR#
+ Description   : correct cumvip and pctvip for longer than 240 months cases, show all data
 ***********************************************************************************/
 
 using System;
@@ -106,8 +112,8 @@ namespace Cprs
     public partial class frmC700 : Cprs.frmCprsParent
     {
         /*********************** Public Properties  *******************/
-/* Required */
-public string Id;
+        /* Required */
+        public string Id;
         public Form CallingForm = null;
 
         /*Optional*/
@@ -130,6 +136,7 @@ public string Id;
         private RespondentData respdata;
         private MonthlyVipsData mvsdata;
         private MonthlyVips mvs;
+        private MonthlyVips mvsall;
         private Schedcall sc = null;
 
         private DataTable pdata;
@@ -236,14 +243,9 @@ public string Id;
             /*load monthly vips */
             mvsdata = new MonthlyVipsData();
             mvs = new MonthlyVips(Id);
+            mvsall = new MonthlyVips(Id);
             mvs = mvsdata.GetDisplayMonthlyVips(Id, dbsource, samp.Rvitm5c, samp.Rvitm5cr);
-
-            //for case has a lot of monthly vips and 240 months cannot hold like case 4030013
-            if (!mvs.Withallvips)
-            {
-                mvs.Cumdbvip = mvsdata.GetCumVipsFormDB(Id, dbsource);
-                mvs.Cumdbvipr = mvsdata.GetCumVipsFormDB(Id, dbsource, true);
-            }
+            mvsall = mvsdata.GetMonthlyVips(Id, dbsource);
 
             //rebuild Status combo
             SetupStatusCombo();
@@ -460,27 +462,8 @@ public string Id;
             saveRow = 0;
             displayMonthlyVips(true);
 
-            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-            txtCompr.Text = mvs.GetCumPercentr(samp.Rvitm5cr).ToString();
-
-            txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
-            txtComp.Text = mvs.GetCumPercent(samp.Rvitm5c).ToString();
-
-            txtSumMnths.Text = mvs.GetSumMons().ToString();
-
-            //if the display monthly vip didn't have all vips, add *
-            if (!mvs.Withallvips)
-            {
-                txtCumvipr2.Visible = true;
-                txtCumvipr2.Text = mvs.Cumdbvipr > 0 ? mvs.Cumdbvipr.ToString("#,#") : mvs.Cumdbvipr.ToString();
-                txtCumvip2.Visible = true;
-                txtCumvip2.Text = mvs.Cumdbvip > 0 ? mvs.Cumdbvip.ToString("#,#") : mvs.Cumdbvip.ToString();
-            }
-            else
-            {
-                txtCumvipr2.Visible = false;
-                txtCumvip2.Visible = false;
-            }
+            /*display vip related fields*/
+            SetupVipRelated();
 
             //set up screen editable
             SetupEditable();
@@ -568,6 +551,38 @@ public string Id;
             formloading = false;
 
             BeginInvoke(new ShowLockMessageDelegate(ShowLockMessage));
+        }
+
+        private void SetupVipRelated()
+        {
+            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+            txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
+
+            //if the display monthly vip didn't have all vips, add *
+            if (!mvs.Withallvips)
+            {
+                txtCumvipr2.Visible = true;
+                txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                txtCumvip2.Visible = true;
+                txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                txtCompr.Text = mvsall.GetCumPercentr(samp.Rvitm5cr).ToString();
+                txtComp.Text = mvsall.GetCumPercent(samp.Rvitm5c).ToString();
+                txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                
+                txtCumvipr.Visible = true;
+                txtCumvip.Visible = true;
+
+            }
+            else
+            {
+                txtSumMnths.Text = mvs.GetSumMons().ToString();
+                txtCumvipr2.Text = txtCumvipr.Text;
+                txtCumvip2.Text = txtCumvip.Text;
+                txtCumvipr.Visible = false;
+                txtCumvip.Visible = false;
+                txtCompr.Text = mvs.GetCumPercentr(samp.Rvitm5cr).ToString();
+                txtComp.Text = mvs.GetCumPercent(samp.Rvitm5c).ToString();
+            }
         }
 
         //show lock message
@@ -1005,12 +1020,39 @@ public string Id;
                             else if (oldvs == "d")
                                 dgVip[7, e.RowIndex].Value = "m";
 
-                            txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
-                            txtComp.Text = mvs.GetCumPercent(i5c).ToString();
-                            txtSumMnths.Text = mvs.GetSumMons().ToString();
-                            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                            txtCompr.Text = mvs.GetCumPercentr(i5c).ToString();
+                            if (mvs.Withallvips)
+                            {
+                                txtComp.Text = mvs.GetCumPercent(i5c).ToString();
+                                txtSumMnths.Text = mvs.GetSumMons().ToString();
+                                txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                                txtCompr.Text = mvs.GetCumPercentr(i5c).ToString();
+                                txtCumvip2.Text = txtCumvip.Text;
+                                txtCumvipr2.Text = txtCumvipr.Text;
+                            }
+                            else
+                            {
+                                //update mvsall
+                                foreach (var value in mvsall.monthlyViplist)
+                                {
+                                    if (value.Date6 == date6)
+                                    {
+                                        value.Vipdata = newvalue;
+                                        value.Vipflag = dgVip[e.ColumnIndex + 1, e.RowIndex].Value.ToString();
+                                        if (newflag == "R" || blankflag)
+                                        {
+                                            value.Vipdatar = newvalue;
+                                        }
+                                    }
+                                }
 
+                                txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                                txtComp.Text = mvsall.GetCumPercent(i5c).ToString();
+                                txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                                txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                                txtCompr.Text = mvsall.GetCumPercentr(i5c).ToString();
+                            }
+
+                           
                             AddVipauditData(date6, oldvalue, oldflag, newvalue, newflag);
 
                             oldvalue = newvalue;
@@ -1123,10 +1165,38 @@ public string Id;
                                 dgVip[7, e.RowIndex].Value = "m";
 
                             txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
-                            txtComp.Text = mvs.GetCumPercent(i5c).ToString();
-                            txtSumMnths.Text = mvs.GetSumMons().ToString();
-                            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                            txtCompr.Text = mvs.GetCumPercentr(i5c).ToString();
+                            
+                            if (mvs.Withallvips)
+                            {
+                                txtComp.Text = mvs.GetCumPercent(i5c).ToString();
+                                txtSumMnths.Text = mvs.GetSumMons().ToString();
+                                txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                                txtCompr.Text = mvs.GetCumPercentr(i5c).ToString();
+                                txtCumvip2.Text = txtCumvip.Text;
+                                txtCumvipr2.Text = txtCumvipr.Text;
+                            }
+                            else
+                            {
+                                //update mvsall
+                                foreach (var value in mvsall.monthlyViplist)
+                                {
+                                    if (value.Date6 == date6)
+                                    {
+                                        value.Vipdata = vipvalue;
+                                        value.Vipflag = dgVip[e.ColumnIndex - 1, e.RowIndex].Value.ToString();
+                                        if (newflag == "R" || blankflag)
+                                        {
+                                            value.Vipdatar = vipvalue;
+                                        }
+                                    }
+                                }
+
+                                txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                                txtComp.Text = mvsall.GetCumPercent(i5c).ToString();
+                                txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                                txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                                txtCompr.Text = mvsall.GetCumPercentr(i5c).ToString();
+                            }
 
                             AddVipauditData(date6, oldvipvalue, oldflag, vipvalue, newflag);
 
@@ -2556,8 +2626,16 @@ public string Id;
             {
                 mvs.UpdatePct5cs(it5c, it5cr);
                 displayMonthlyVips();
-                txtComp.Text = mvs.GetCumPercent(it5c).ToString();
-                txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                if (!mvs.Withallvips)
+                {
+                    txtComp.Text = mvsall.GetCumPercent(it5c).ToString();
+                    txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
+                }
+                else
+                {
+                    txtComp.Text = mvs.GetCumPercent(it5c).ToString();
+                    txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                }
 
                 txtRvitm5c.Modified = false;
 
@@ -3281,12 +3359,37 @@ public string Id;
                             value.vs = "d";
                         }
                         displayMonthlyVips();
-                        txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
-                        int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
-                        txtComp.Text = mvs.GetCumPercent(it5c).ToString();
-                        txtSumMnths.Text = mvs.GetSumMons().ToString();
-                        txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                        txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                        if (mvs.Withallvips)
+                        {
+                            txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
+                            int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
+                            txtComp.Text = mvs.GetCumPercent(it5c).ToString();
+                            txtSumMnths.Text = mvs.GetSumMons().ToString();
+                            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                            txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                            txtCumvip2.Text = txtCumvip.Text;
+                            txtCumvipr2.Text = txtCumvipr.Text;
+                        }
+                        else
+                        {
+                            foreach (var value in mvsall.monthlyViplist)
+                            {
+                                value.Vipdata = 0;
+                                value.Vipdatar = 0;
+                                value.Vipflag = "B";
+                                value.Pct5c = 0;
+                                value.vs = "d";
+                            }
+                            txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
+                            txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                            int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
+                            txtComp.Text = mvsall.GetCumPercent(it5c).ToString();
+                            txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                            txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                            txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
+
+                        }
+                        
                     }
                     else
                     {
@@ -3346,12 +3449,39 @@ public string Id;
                             }
                         }
                         displayMonthlyVips();
-                        txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
                         int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
-                        txtComp.Text = mvs.GetCumPercent(it5c).ToString();
-                        txtSumMnths.Text = mvs.GetSumMons().ToString();
-                        txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                        txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                        txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
+                        if (mvs.Withallvips)
+                        {
+                            txtComp.Text = mvs.GetCumPercent(it5c).ToString();
+                            txtSumMnths.Text = mvs.GetSumMons().ToString();
+                            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                            txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                            txtCumvip2.Text = txtCumvip.Text;
+                            txtCumvipr2.Text = txtCumvipr.Text;
+                        }
+                        else
+                        {
+                            foreach (var value in mvsall.monthlyViplist)
+                            {
+                                if (Convert.ToInt32(value.Date6) < Convert.ToInt32(txtStrtdate.Text))
+                                {
+                                    if (value.Vipdata > 0 || value.Vipflag != "B")
+
+                                    value.Vipdata = 0;
+                                    value.Vipflag = "B";
+                                    value.Vipdatar = 0;
+                                    
+                                }
+                            }
+                            
+                            txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                            txtComp.Text = mvsall.GetCumPercent(it5c).ToString();
+                            txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                            txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                            txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
+                        }
+                       
                     }
                     else
                     {
@@ -3383,10 +3513,35 @@ public string Id;
                         txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
                         int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
 
-                        txtSumMnths.Text = mvs.GetSumMons().ToString();
-                        txtComp.Text = mvs.GetCumPercent(it5c).ToString();
-                        txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                        txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                        if (mvs.Withallvips)
+                        {
+                            txtComp.Text = mvs.GetCumPercent(it5c).ToString();
+                            txtSumMnths.Text = mvs.GetSumMons().ToString();
+                            txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                            txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                            txtCumvip2.Text = txtCumvip.Text;
+                            txtCumvipr2.Text = txtCumvipr.Text;
+                        }
+                        else
+                        {
+                            foreach (var value in mvsall.monthlyViplist)
+                            {
+                                if (Convert.ToInt32(value.Date6) < Convert.ToInt32(txtStrtdate.Text))
+                                {
+                                    if (value.Vipdata > 0 || value.Vipflag != "B")
+
+                                        value.Vipdata = 0;
+                                        value.Vipflag = "B";
+                                        value.Vipdatar = 0;
+                                }
+                            }
+
+                            txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                            txtComp.Text = mvsall.GetCumPercent(it5c).ToString();
+                            txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                            txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                            txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
+                        }
                     }
 
                 }
@@ -3550,10 +3705,38 @@ public string Id;
                     displayMonthlyVips();
                     txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
                     int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
-                    txtComp.Text = mvs.GetCumPercent(it5c).ToString();
-                    txtSumMnths.Text = mvs.GetSumMons().ToString();
-                    txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                    txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+
+                    if (mvs.Withallvips)
+                    {
+                        txtComp.Text = mvs.GetCumPercent(it5c).ToString();
+                        txtSumMnths.Text = mvs.GetSumMons().ToString();
+                        txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                        txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                        txtCumvip2.Text = txtCumvip.Text;
+                        txtCumvipr2.Text = txtCumvipr.Text;
+                    }
+                    else
+                    {
+                        foreach (var value in mvsall.monthlyViplist)
+                        {
+                            if (Convert.ToInt32(value.Date6) > Convert.ToInt32(txtCompdate.Text))
+                            {
+                                if (value.Vipdata > 0 || value.Vipflag != "B")
+                                {
+                                    value.Vipdata = 0;
+                                    value.Vipflag = "B";
+                                    value.Vipdatar = 0;
+                                }
+                            }
+                        }
+
+                        txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                        txtComp.Text = mvsall.GetCumPercent(it5c).ToString();
+                        txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                        txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                        txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
+                    }
+
                 }
                 else
                 {
@@ -3586,9 +3769,37 @@ public string Id;
                     txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
                     int it5c = Convert.ToInt32(txtRvitm5c.Text.Replace(",", ""));
                     txtComp.Text = mvs.GetCumPercent(it5c).ToString();
-                    txtSumMnths.Text = mvs.GetSumMons().ToString();
-                    txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
-                    txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+
+                    if (mvs.Withallvips)
+                    {
+                        txtComp.Text = mvs.GetCumPercent(it5c).ToString();
+                        txtSumMnths.Text = mvs.GetSumMons().ToString();
+                        txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                        txtCompr.Text = mvs.GetCumPercentr(it5c).ToString();
+                        txtCumvip2.Text = txtCumvip.Text;
+                        txtCumvipr2.Text = txtCumvipr.Text;
+                    }
+                    else
+                    {
+                        foreach (var value in mvsall.monthlyViplist)
+                        {
+                            if (Convert.ToInt32(value.Date6) > Convert.ToInt32(txtCompdate.Text))
+                            {
+                                if (value.Vipdata > 0 || value.Vipflag != "B")
+                                {
+                                    value.Vipdata = 0;
+                                    value.Vipflag = "B";
+                                    value.Vipdatar = 0;
+                                }
+                            }
+                        }
+
+                        txtCumvip2.Text = mvsall.GetCumvip() > 0 ? mvsall.GetCumvip().ToString("#,#") : mvsall.GetCumvip().ToString();
+                        txtComp.Text = mvsall.GetCumPercent(it5c).ToString();
+                        txtSumMnths.Text = mvsall.GetSumMons().ToString();
+                        txtCumvipr2.Text = mvsall.GetCumvipr() > 0 ? mvsall.GetCumvipr().ToString("#,#") : mvsall.GetCumvipr().ToString();
+                        txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
+                    }
                 }
 
             }
@@ -4745,7 +4956,6 @@ public string Id;
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
 
     }
 
