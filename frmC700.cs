@@ -1020,6 +1020,8 @@ namespace Cprs
                             else if (oldvs == "d")
                                 dgVip[7, e.RowIndex].Value = "m";
 
+                            txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
+
                             if (mvs.Withallvips)
                             {
                                 txtComp.Text = mvs.GetCumPercent(i5c).ToString();
@@ -1171,6 +1173,7 @@ namespace Cprs
                                 txtComp.Text = mvs.GetCumPercent(i5c).ToString();
                                 txtSumMnths.Text = mvs.GetSumMons().ToString();
                                 txtCumvipr.Text = mvs.GetCumvipr() > 0 ? mvs.GetCumvipr().ToString("#,#") : mvs.GetCumvipr().ToString();
+                                txtCumvip.Text = mvs.GetCumvip() > 0 ? mvs.GetCumvip().ToString("#,#") : mvs.GetCumvip().ToString();
                                 txtCompr.Text = mvs.GetCumPercentr(i5c).ToString();
                                 txtCumvip2.Text = txtCumvip.Text;
                                 txtCumvipr2.Text = txtCumvipr.Text;
