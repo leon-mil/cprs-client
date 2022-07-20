@@ -877,7 +877,7 @@ namespace Cprs
                 }
                 else if (row["newtc"].ToString().Trim() == "1T2")
                 {
-                    row["newtc_str"] = "            Cogeneration & warehuose";
+                    row["newtc_str"] = "            Cogeneration & warehouse";
                     row["reg0"] = reg1t0;
                     row["reg1"] = reg1t1;
                     row["reg2"] = reg1t2;
