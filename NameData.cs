@@ -349,9 +349,41 @@ namespace CprsDAL
                 }
             }
         }
+        public void UpdateMasterChip(string chip, string masterid)
+        {
+            using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
+            {
+                string Query = "update dbo.master set CHIP = @CHIP" +
+                                " WHERE MASTERID = @MASTERID";
+                try
+                {
+                    SqlCommand sql_command = new SqlCommand(Query, connection);
+                    sql_command.CommandTimeout = 0;
 
-       //string strtdater, string strtdate, string flagstrtdate,
-       public void UpdateSampleFlds(string status, string contract, string projdesc, string projloc, string pcityst, string masterid, string viewcode)
+                    connection.Open();
+                    sql_command.Parameters.AddWithValue("@CHIP", chip);
+                    sql_command.Parameters.AddWithValue("@MASTERID", masterid);
+
+                    // Create a DataAdapter to run the command and fill the DataTable
+                    using (SqlDataAdapter da = new SqlDataAdapter(sql_command))
+                    {
+                        //Execute the query.
+                        sql_command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    connection.Close(); //close database connection
+                }
+            }
+        }
+
+        //string strtdater, string strtdate, string flagstrtdate,
+        public void UpdateSampleFlds(string status, string contract, string projdesc, string projloc, string pcityst, string masterid, string viewcode)
        {
            {
                //When the fields in the Name and Address form are edited update the Sample or Sample hold table
