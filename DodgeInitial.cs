@@ -42,6 +42,7 @@ namespace CprsBLL
         private string survey;
         private string fwgt;
         private string newtc;
+        private string chip;
         private string dodgenum;
         private int masterid;
         private string contract;
@@ -188,6 +189,12 @@ namespace CprsBLL
         {
             get { return newtc; }
             set { newtc = value; }
+        }
+
+        public string Chip
+        {
+            get { return chip; }
+            set { chip = value; }
         }
 
         /* class to return notes from dcpnotes data table where type = "TLE" */
@@ -633,6 +640,7 @@ namespace CprsBLL
         private string survey;
         private string fwgt;
         private string newtc;
+        private string chip;
         private string dodgenum;
         private int masterid;
         private string contract;
@@ -773,6 +781,12 @@ namespace CprsBLL
         {
             get { return newtc; }
             set { newtc = value; }
+        }
+
+        public string Chip
+        {
+            get { return chip; }
+            set { chip = value; }
         }
 
         /* class to return notes from dcpnotes data table where type = "TLE" */
