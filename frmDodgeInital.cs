@@ -55,6 +55,12 @@ Modified Date :  07/22/2020
  Keyword       :  
  Change Request: CR
  Description   : Add Pending check box
+***********************************************************************************
+ Modified Date :  8/11/2022
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR#579
+ Description   : add chip field
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -161,6 +167,9 @@ namespace Cprs
         private string newContractNum;
         private string oldContractNum;
         private bool bContractNum = false;
+        private string oldChip;
+        private string newChip;
+        private bool bChip = false;
         
         private string newRespOrg;
         private string oldRespOrg;
@@ -656,6 +665,8 @@ namespace Cprs
             txtCnty.Text = dodgeinitial.Dodgecou;
             cboSurvey.Text = dodgeinitial.Survey; //Owner
             txtNewtc.Text = dodgeinitial.Newtc;
+            txtChip.Text = dodgeinitial.Chip;
+            cbChip.SelectedItem = dodgeinitial.Chip;
             txtMrn.Text = dodgeinitial.Mrn;
             txtFin.Text = dodgeinitial.Fin;     //Frame ID
             txtContractNum.Text = dodgeinitial.Contract;
@@ -672,6 +683,9 @@ namespace Cprs
                 //cz08172021, disable newtc and status for NPC users
                 txtNewtc.Visible = true;
                 txtNewtc.Enabled = false;
+
+                cbChip.Visible = false;
+                txtChip.Visible = true;
 
                 cbStatCode.Enabled = false;
 
@@ -846,8 +860,24 @@ namespace Cprs
                     DisableEdits();
                     if (Convert.ToString(locked_by) == UserInfo.UserName)
                         LckdbyUsrElsewhere = true;
-                    
+
                     BeginInvoke(new ShowLockMessageDelegate(ShowLockMessage));
+                }
+            }
+
+            //set up chip field based on newtc
+            if (UserInfo.GroupCode != EnumGroups.NPCManager && UserInfo.GroupCode != EnumGroups.NPCLead && UserInfo.GroupCode != EnumGroups.NPCInterviewer)
+            {
+                //set up chip combo
+                if (editable && (dodgeinitial.Newtc == "3600" || dodgeinitial.Newtc == "3610" || dodgeinitial.Newtc == "3620" || dodgeinitial.Newtc == "3630"))
+                {
+                    cbChip.Visible = true;
+                    txtChip.Visible = false;
+                }
+                else
+                {
+                    cbChip.Visible = false;
+                    txtChip.Visible = true;
                 }
             }
 
@@ -883,6 +913,8 @@ namespace Cprs
             cbStatCode.TextChanged += new EventHandler(txt_TextChanged);
             txtStrtDate.TextChanged += new EventHandler(txt_TextChanged);
             txtNewtc.TextChanged += new EventHandler(txt_TextChanged);
+            cbChip.TextChanged += new EventHandler(txt_TextChanged);
+            txtChip.TextChanged += new EventHandler(txt_TextChanged);
             txtContractNum.TextChanged += new EventHandler(txt_TextChanged);
             txtProjDesc.TextChanged += new EventHandler(txt_TextChanged);
             txtProjLoc.TextChanged += new EventHandler(txt_TextChanged);
@@ -919,6 +951,8 @@ namespace Cprs
             cbStatCode.TextChanged -= new EventHandler(txt_TextChanged);
             txtStrtDate.TextChanged -= new EventHandler(txt_TextChanged);
             txtNewtc.TextChanged -= new EventHandler(txt_TextChanged);
+            cbChip.TextChanged -= new EventHandler(txt_TextChanged);
+            txtChip.TextChanged -= new EventHandler(txt_TextChanged);
             txtContractNum.TextChanged -= new EventHandler(txt_TextChanged);
             txtProjDesc.TextChanged -= new EventHandler(txt_TextChanged);
             txtProjLoc.TextChanged -= new EventHandler(txt_TextChanged);
@@ -959,6 +993,8 @@ namespace Cprs
             txtCnty.Text = "";
             cbStatCode.Text = "";
             txtNewtc.Text = "";
+            cbChip.Text = "";
+            txtChip.Text = "";
             txtStrtDate.Text = "";
             txtProjDesc.Text = "";
             txtProjLoc.Text = "";
@@ -978,10 +1014,13 @@ namespace Cprs
             txtExt1.Text = "";
             txtExt2.Text = "";
             txtFax.Text = "";
+            txtChip.Text = "";
             txtEmail.Text = "";
             txtWebUrl.Text = "";
             cboSurvey.TextChanged -= new EventHandler(txt_TextChanged);
             cboSurvey.Text = "";
+            cbChip.TextChanged -= new EventHandler(txt_TextChanged);
+            cbChip.Text = "";
             chkComplete.Checked = false;
             chkpending.Checked = false;
             chkNeedFurRev.Checked = false;
@@ -1117,6 +1156,22 @@ namespace Cprs
                 }
                 else
                 {
+                    if (old_tc.Substring(0, 2) == "36" && cbChip.Visible && txtNewtc.Text.Substring(0, 2) != "36")
+                    {
+                        if (cbChip.SelectedItem.ToString() == "Y")
+                        {
+                            cbChip.SelectedItem = "N";
+                            txtChip.Text = "N";
+                            bChip = true;
+                        }
+                        cbChip.Visible = false;
+                        txtChip.Visible = true;
+                    }
+                    if (old_tc.Substring(0, 2) != "36" && txtChip.Visible && txtNewtc.Text.Substring(0, 2) == "36")
+                    {
+                        cbChip.Visible = true;
+                        txtChip.Visible = false;
+                    }
                     bNewTC = true;
                     SetTxtChanged();
                 }
@@ -1521,12 +1576,12 @@ namespace Cprs
              Search();
          }
 
-         public void DataChanged()
+         private void DataChanged()
          {
             done = true;
                  
                  //booleans to check if any data has changed. If Yes, then save data. (bRespid || won't apply to respid changes since respid changes are instant)
-                 if ( bStatcode || bSurvey || bNewTC || bContractNum || bProjdesc || bProjloc || bProjcityst ||
+                 if ( bStatcode || bSurvey || bNewTC || bChip || bContractNum || bProjdesc || bProjloc || bProjcityst ||
                      bRespOrg || bFactOfficial || bOtherResp || bAddr1 || bAddr2 || bAddr3 || bZipCode || bLag || bCollTec || bStrtdater ||
                      bPersontoCont || bPhoneNum || bExt || bFaxNumber || bPersontoCont2 || bPhoneNum2 || bExt2 || bSplnote || bEmailAddr || bWebAddr)
                  {
@@ -1634,25 +1689,25 @@ namespace Cprs
              string oldflag = "";
              string masterid = dodgeinitial.Masterid.ToString();
 
-             //update any changes to NewTC and Survey(Owner) to Master table fields
-             if ((bSurvey) || (bNewTC))
-             {
-                 if (bSurvey == false)
-                 {
-                     if (cboSurvey.Visible == false)
-                     { newSurvey = "M"; }
-                     else
-                     {
+            //update any changes to NewTC and Survey(Owner) to Master table fields
+            if ((bSurvey) || (bNewTC))
+            {
+                if (bSurvey == false)
+                {
+                    if (cboSurvey.Visible == false)
+                    { newSurvey = "M"; }
+                    else
+                    {
                         newSurvey = cboSurvey.Text;
                     }
-                 }
-                 if (bNewTC == false)
-                 { newNewTC = dodgeinitial.Newtc; }
-                 else
+                }
+                if (bNewTC == false)
+                { newNewTC = dodgeinitial.Newtc; }
+                else
                 { newNewTC = txtNewtc.Text; }
-                 namedata.UpdateMasterFlds(newSurvey, newNewTC, masterid);
-
-                 if (bSurvey)
+                namedata.UpdateMasterFlds(newSurvey, newNewTC, masterid);
+            
+                if (bSurvey)
                  {
                      oldval = oldSurvey;
                      newval = newSurvey;
@@ -1668,10 +1723,19 @@ namespace Cprs
                      varnme = "NEWTC";
                      NameAddrAuditData.AddNameCprAudit(id, varnme, oldflag, oldval, newflag, newval, usrnme, prgdtm);
                  }
-             }
+               
+            }
+            if (bChip == true)
+            {
+                if (cbChip.Visible == false)
+                    newChip = txtChip.Text;
+                else
+                    newChip = cbChip.SelectedItem.ToString();
+                namedata.UpdateMasterChip(newChip, masterid);
+            }
 
-             //update any changes to Sample table fields. 5 fields.
-             if ((bStatcode) || (bContractNum) || (bProjdesc) || (bProjloc) || (bProjcityst) || (bRespid) || (bStrtdater))
+            //update any changes to Sample table fields. 5 fields.
+            if ((bStatcode) || (bContractNum) || (bProjdesc) || (bProjloc) || (bProjcityst) || (bRespid) || (bStrtdater))
              {
                 SampleData sdata = new SampleData();
                 Sample samp = sdata.GetSampleData(id);
@@ -2117,6 +2181,9 @@ namespace Cprs
             oldNewTC = "";
             newNewTC = "";
             bNewTC = false;
+            oldChip = "";
+            newChip = "";
+            bChip = false;
             newContractNum = "";
             oldContractNum = "";
             bContractNum = false;
@@ -2523,12 +2590,9 @@ namespace Cprs
                  fC700.ShowDialog();  // show child
              }
 
-            if (LckdbyUsrElsewhere == false && editable)
-            {
-                GeneralDataFuctions.UpdateRespIDLock(Respid, UserInfo.UserName);
-            }
-
-            // frmDodgeInital_Load(btnTFU, EventArgs.Empty);
+            btnResetClicked = true;
+            GetDataDodgeInitial();
+            btnResetClicked = false;
         }
 
          private void txtModifiedStatus()
@@ -2541,7 +2605,7 @@ namespace Cprs
 
          private void chkBrowseUpdate()
          {
-             if (bRespid || bStatcode || bSurvey || bNewTC || bContractNum || bProjdesc || bProjloc || bProjcityst ||
+             if (bRespid || bStatcode || bSurvey || bNewTC || bChip || bContractNum || bProjdesc || bProjloc || bProjcityst ||
                  bRespOrg || bFactOfficial || bOtherResp || bAddr1 || bAddr2 || bAddr3 || bZipCode || bLag || bCollTec ||
                  bPersontoCont || bPhoneNum || bExt || bFaxNumber || bPersontoCont2 || bPhoneNum2 || bExt2 || bSplnote || bEmailAddr || bWebAddr)
              {
@@ -3154,19 +3218,33 @@ namespace Cprs
                      { bRespid = false; }
                  }
 
-                 if (sender == txtNewtc)
+                if (sender == txtNewtc)
                  {
                      GeneralFunctions.CheckIntegerField(sender, "NEWTC");
                      varnme = "NEWTC";
                      newNewTC = txtNewtc.Text.ToString().Trim();
                      oldNewTC = dodgeinitial.Newtc.ToString().Trim(); 
                      if (newNewTC != oldNewTC)
-                     { bNewTC = true; }
+                     {
+                        bNewTC = true;  
+                    }
                      else
                      { bNewTC = false; }
-                 }
+                    NewtcChanged();
 
-                 if (sender == txtContractNum)
+                }
+
+                if (sender == txtChip)
+                {
+                    newChip = txtChip.Text.ToString().Trim();
+                    oldChip = dodgeinitial.Chip.ToString().Trim();
+                    if (newChip != oldChip)
+                    { bChip = true; }
+                    else
+                    { bChip = false; }
+                }
+
+                if (sender == txtContractNum)
                  {
                      varnme = "CONTRACT";
                      newContractNum = txtContractNum.Text.ToString().Trim();
@@ -3479,7 +3557,20 @@ namespace Cprs
                      { bStatcode = false; }
                  }
 
-                 if (sender == txtLag)
+                if (sender == cbChip)
+                {
+                    newChip = cbChip.Text.ToString().Trim();
+                    oldChip = dodgeinitial.Chip.ToString().Trim();
+
+                    if (newChip != oldChip)
+                    {
+                        bChip = true;
+                    }
+                    else
+                    { bChip = false; }
+                }
+
+                if (sender == txtLag)
                  {
                      varnme = "LAG";
                      newLag = txtLag.Text.ToString().Trim();
@@ -3888,25 +3979,40 @@ namespace Cprs
 
          private void txtNewtc_Leave(object sender, EventArgs e)
          {
-             //check the value entered against the NEWTCLIST table in the database.
-             if (btnRefresh.Focused)
-             {
-                 return;
-             }
-            if (editable && EditMode == TypeEditMode.Edit)
-            {
-                string newtcval = txtNewtc.Text;
+            
+         }
 
-                if (!ValidateNewtc())
+        //Show/Hide chip field when newtc was changed
+        private void NewtcChanged()
+        {
+          if (txtNewtc.TextLength == 4 && old_text != null && old_text != "")
+            {
+                if (editable && EditMode == TypeEditMode.Edit && old_text != txtNewtc.Text)
                 {
-                    MessageBox.Show("The Newtc value entered is invalid.");
-                    txtNewtc.Focus();
-                    txtNewtc.Text = dodgeinitial.Newtc;
-                    done = false;
-                    return;
+                    if (!ValidateNewtc())
+                    {
+                        MessageBox.Show("The Newtc value entered is invalid.");
+                        txtNewtc.Text = old_text;
+                    }
+                    else
+                    {
+                        if (old_text.Substring(0, 2) == "36" && cbChip.Visible && txtNewtc.Text.Substring(0, 2) != "36")
+                        {
+                            cbChip.SelectedItem = "N";
+                            txtChip.Text = "N";
+                            cbChip.Visible = false;
+                            txtChip.Visible = true;
+                        }
+                        if (old_text.Substring(0, 2) != "36" && txtChip.Visible && txtNewtc.Text.Substring(0, 2) == "36")
+                        {
+                            cbChip.Visible = true;
+                            txtChip.Visible = false;
+                        }
+                    }
+                    old_text = txtNewtc.Text;
                 }
             }
-         }
+        }
          private bool ValidateNewtc()
          {
              //check it validate newtc or not
@@ -4377,6 +4483,11 @@ namespace Cprs
                     chkComplete.Enabled = true;
             }
 
+        }
+        
+        private void txtNewtc_Enter(object sender, EventArgs e)
+        {
+            old_text = txtNewtc.Text;
         }
     }
 }
