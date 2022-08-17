@@ -61,7 +61,7 @@ namespace CprsDAL
                 string sql = " SELECT R.RESPORG, R.RESPNAME, R.RESPNAME2, R.ADDR1, R.ADDR2, R.ADDR3, R.ZIP, R.PHONE, R.PHONE2, R.EXT, R.EXT2, R.FAX, R.FACTOFF, R.OTHRRESP, ";
                 sql = sql + " R.RESPNOTE, R.EMAIL, R.WEBURL, S.ID, S.RESPID, S.PROJDESC, S.CONTRACT, S.PROJLOC, S.PCITYST, S.FWGT, S.STATUS, S.STRTDATE, S.RVITM5C, ";
                 sql = sql + " S.FLAGR5C, S.COMPDATE, S.FUTCOMPD, S.FLAGSTRTDATE, S.FLAGCOMPDATE, S.FLAGFUTCOMPD, M.DODGENUM, M.FIPSTATE, M.OWNER, M.PROJSELV, M.FIPSTATE, M.DODGECOU, ";
-                sql = sql + "  M.SELDATE, M.SOURCE, M.NEWTC, S.STRTDATER, S.STRTDATE, S.RVITM5CR, S.COMPDATER, S.FUTCOMPDR, R.CENTPWD, S.FLAGCAP, S.FLAGITM6, S.FLAG5A, S.FLAG5B, ";
+                sql = sql + "  M.SELDATE, M.SOURCE, M.NEWTC, M.CHIP, S.STRTDATER, S.STRTDATE, S.RVITM5CR, S.COMPDATER, S.FUTCOMPDR, R.CENTPWD, S.FLAGCAP, S.FLAGITM6, S.FLAG5A, S.FLAG5B, ";
                 sql = sql + "  R.COLTEC, R.COLHIST, M.STRUCTCD, R.RESPLOCK, M.FIN, M.MASTERID, S.ACTIVE, R.RSTATE, R.LAG, M.MRN, dbo.DCPINITIAL.HQWORKED,  ";
                 sql = sql + "  dbo.DCPINITIAL.WORKED, dbo.DCPINITIAL.REV1NME, dbo.DCPINITIAL.REV2NME, dbo.DCPINITIAL.HQNME ";
                 sql = sql + "  FROM  dbo.SAMPLE AS S INNER JOIN dbo.RESPONDENT AS R ON S.RESPID = R.RESPID INNER JOIN dbo.MASTER AS M ON S.MASTERID = M.MASTERID RIGHT OUTER JOIN dbo.DCPINITIAL ON S.ID = dbo.DCPINITIAL.ID ";
@@ -88,6 +88,7 @@ namespace CprsDAL
                         dodgeinitial.Fwgt = reader["Fwgt"].ToString();
                         dodgeinitial.Dodgecou = reader["Dodgecou"].ToString();
                         dodgeinitial.Newtc = reader["Newtc"].ToString();
+                        dodgeinitial.Chip = reader["Chip"].ToString();
                         dodgeinitial.Masterid = Convert.ToInt32(reader["Masterid"]);
                         dodgeinitial.Dodgenum = reader["Dodgenum"].ToString();
                         dodgeinitial.Contract = reader["Contract"].ToString().Trim();
