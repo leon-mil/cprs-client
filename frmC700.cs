@@ -92,6 +92,12 @@ Modified Date :  5/24/2022
  Keyword       :  
  Change Request: CR#
  Description   : correct cumvip and pctvip for longer than 240 months cases, show all data
+***********************************************************************************
+ Modified Date :  8/11/2022
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR#579
+ Description   : add chip field
 ***********************************************************************************/
 
 using System;
@@ -356,6 +362,8 @@ namespace Cprs
             else
                 txtFwgt.BackColor = Color.White;
             txtNewtc.Text = mast.Newtc;
+            txtChip.Text = mast.Chip;
+            cbChip.SelectedItem = mast.Chip;
             txtSource.Text = mast.Source;
             txtFin.Text = mast.Fin;
             txtCnty.Text = mast.Dodgecou;
@@ -445,6 +453,18 @@ namespace Cprs
             txtColtec.Text = cbColtec.Text;
 
             txtSurvey.Text = mast.Owner;
+
+            //set up chip combo
+            if (editable && (mast.Newtc == "3600" || mast.Newtc == "3610" || mast.Newtc == "3620" || mast.Newtc == "3630" ))
+            {
+                cbChip.Visible = true;
+                txtChip.Visible = false;
+            }
+            else
+            {
+                cbChip.Visible = false;
+                txtChip.Visible = true;
+            }
 
             /*Show and hide Capexp base on owner */
             if (mast.Owner == "N" || mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W")
@@ -1544,6 +1564,15 @@ namespace Cprs
                 mast.Newtc = txtNewtc.Text;
             }
 
+            if (cbChip.Visible && mast.Chip != cbChip.SelectedItem.ToString())
+            {
+                mast.Chip = cbChip.SelectedItem.ToString();
+            }
+            else if (txtChip.Visible  && mast.Chip != txtChip.Text)
+            {
+                mast.Chip = txtChip.Text;
+            }
+
             //check rbldg and runits
             if (mast.Owner == "M")
             {
@@ -1745,6 +1774,7 @@ namespace Cprs
                 txtNewtc.Focus();
                 return false;
             }
+            
 
             //check units and bldgs
             if (txtSurvey.Text == "M")
@@ -3083,6 +3113,21 @@ namespace Cprs
                 {
                     MessageBox.Show("The Newtc value entered is invalid.");
                     txtNewtc.Text = old_tc;
+                }
+                else
+                {
+                    if (old_tc.Substring(0,2)=="36" && cbChip.Visible && txtNewtc.Text.Substring(0,2) !="36")
+                    {
+                        cbChip.SelectedItem = "N";
+                        txtChip.Text = "N";
+                        cbChip.Visible = false;
+                        txtChip.Visible = true;
+                    }
+                    if (old_tc.Substring(0, 2) != "36" && txtChip.Visible && txtNewtc.Text.Substring(0, 2) == "36")
+                    {
+                        cbChip.Visible = true;
+                        txtChip.Visible = false;
+                    }
                 }
             }
 
@@ -4725,14 +4770,7 @@ namespace Cprs
 
         private void txtNewtc_Leave(object sender, EventArgs e)
         {
-            if (editable && EditMode == TypeEditMode.Edit && old_text != txtNewtc.Text)
-            {
-                if (!ValidateNewtc())
-                {
-                    MessageBox.Show("The Newtc value entered is invalid.");
-                    txtNewtc.Text = old_text;
-                }
-            }
+           
         }
 
         private bool ValidateNewtc()
@@ -4960,6 +4998,36 @@ namespace Cprs
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
+        private void txtNewtc_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNewtc.TextLength == 4 && old_text !=null && old_text != "")
+            {
+                if (editable && EditMode == TypeEditMode.Edit && old_text != txtNewtc.Text)
+                {
+                    if (!ValidateNewtc())
+                    {
+                        MessageBox.Show("The Newtc value entered is invalid.");
+                        txtNewtc.Text = old_text;
+                    }
+                    else
+                    {
+                        if (old_text.Substring(0, 2) == "36" && cbChip.Visible && txtNewtc.Text.Substring(0, 2) != "36")
+                        {
+                            cbChip.SelectedItem = "N";
+                            txtChip.Text = "N";
+                            cbChip.Visible = false;
+                            txtChip.Visible = true;
+                        }
+                        if (old_text.Substring(0, 2) != "36" && txtChip.Visible && txtNewtc.Text.Substring(0, 2) == "36")
+                        {
+                            cbChip.Visible = true;
+                            txtChip.Visible = false;
+                        }
+                    }
+                    old_text = txtNewtc.Text;
+                }
+            }
+        }
     }
 
 }

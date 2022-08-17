@@ -84,6 +84,9 @@
             this.label40 = new System.Windows.Forms.Label();
             this.txtCurrentrec = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtChip = new System.Windows.Forms.TextBox();
+            this.cbChip = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.txtCnty = new System.Windows.Forms.TextBox();
             this.txtRespnote = new System.Windows.Forms.TextBox();
@@ -290,7 +293,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label4.Location = new System.Drawing.Point(594, 9);
+            this.label4.Location = new System.Drawing.Point(583, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 36);
             this.label4.TabIndex = 26;
@@ -406,7 +409,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label10.Location = new System.Drawing.Point(718, 28);
+            this.label10.Location = new System.Drawing.Point(683, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 13);
             this.label10.TabIndex = 37;
@@ -438,7 +441,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label12.Location = new System.Drawing.Point(787, 28);
+            this.label12.Location = new System.Drawing.Point(746, 27);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 13);
             this.label12.TabIndex = 41;
@@ -446,11 +449,12 @@
             // 
             // txtNewtc
             // 
-            this.txtNewtc.Location = new System.Drawing.Point(783, 46);
+            this.txtNewtc.Location = new System.Drawing.Point(742, 43);
             this.txtNewtc.MaxLength = 4;
             this.txtNewtc.Name = "txtNewtc";
             this.txtNewtc.Size = new System.Drawing.Size(40, 20);
             this.txtNewtc.TabIndex = 5;
+            this.txtNewtc.TextChanged += new System.EventHandler(this.txtNewtc_TextChanged);
             this.txtNewtc.Enter += new System.EventHandler(this.txtNewtc_Enter);
             this.txtNewtc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNewtc_KeyDown);
             this.txtNewtc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNewtc_KeyPress);
@@ -461,7 +465,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label13.Location = new System.Drawing.Point(914, 8);
+            this.label13.Location = new System.Drawing.Point(926, 7);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 36);
             this.label13.TabIndex = 44;
@@ -482,7 +486,7 @@
             // 
             // txtBldgs
             // 
-            this.txtBldgs.Location = new System.Drawing.Point(917, 46);
+            this.txtBldgs.Location = new System.Drawing.Point(930, 44);
             this.txtBldgs.MaxLength = 3;
             this.txtBldgs.Name = "txtBldgs";
             this.txtBldgs.Size = new System.Drawing.Size(49, 20);
@@ -495,7 +499,7 @@
             // 
             // txtUnits
             // 
-            this.txtUnits.Location = new System.Drawing.Point(997, 46);
+            this.txtUnits.Location = new System.Drawing.Point(997, 43);
             this.txtUnits.MaxLength = 4;
             this.txtUnits.Name = "txtUnits";
             this.txtUnits.Size = new System.Drawing.Size(49, 20);
@@ -513,7 +517,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label15.Location = new System.Drawing.Point(859, 8);
+            this.label15.Location = new System.Drawing.Point(875, 8);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(49, 36);
             this.label15.TabIndex = 48;
@@ -522,7 +526,7 @@
             // 
             // txtSource
             // 
-            this.txtSource.Location = new System.Drawing.Point(874, 46);
+            this.txtSource.Location = new System.Drawing.Point(886, 43);
             this.txtSource.Name = "txtSource";
             this.txtSource.ReadOnly = true;
             this.txtSource.Size = new System.Drawing.Size(34, 20);
@@ -714,6 +718,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtChip);
+            this.groupBox2.Controls.Add(this.cbChip);
+            this.groupBox2.Controls.Add(this.label41);
             this.groupBox2.Controls.Add(this.label39);
             this.groupBox2.Controls.Add(this.txtCnty);
             this.groupBox2.Controls.Add(this.txtRespnote);
@@ -775,20 +782,51 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
+            // txtChip
+            // 
+            this.txtChip.Location = new System.Drawing.Point(828, 43);
+            this.txtChip.Name = "txtChip";
+            this.txtChip.ReadOnly = true;
+            this.txtChip.Size = new System.Drawing.Size(39, 20);
+            this.txtChip.TabIndex = 196;
+            // 
+            // cbChip
+            // 
+            this.cbChip.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbChip.FormattingEnabled = true;
+            this.cbChip.Items.AddRange(new object[] {
+            "N",
+            "Y"});
+            this.cbChip.Location = new System.Drawing.Point(828, 43);
+            this.cbChip.Name = "cbChip";
+            this.cbChip.Size = new System.Drawing.Size(37, 21);
+            this.cbChip.TabIndex = 194;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label41.Location = new System.Drawing.Point(827, 28);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(36, 13);
+            this.label41.TabIndex = 195;
+            this.label41.Text = "CHIP";
+            // 
             // label39
             // 
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label39.Location = new System.Drawing.Point(649, 28);
+            this.label39.Location = new System.Drawing.Point(628, 26);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(59, 15);
+            this.label39.Size = new System.Drawing.Size(51, 15);
             this.label39.TabIndex = 193;
             this.label39.Text = "CNTY";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtCnty
             // 
-            this.txtCnty.Location = new System.Drawing.Point(656, 46);
+            this.txtCnty.Location = new System.Drawing.Point(635, 44);
             this.txtCnty.Name = "txtCnty";
             this.txtCnty.ReadOnly = true;
             this.txtCnty.Size = new System.Drawing.Size(44, 20);
@@ -836,7 +874,7 @@
             "R",
             "O",
             "W"});
-            this.cbSurvey.Location = new System.Drawing.Point(725, 46);
+            this.cbSurvey.Location = new System.Drawing.Point(693, 43);
             this.cbSurvey.Name = "cbSurvey";
             this.cbSurvey.Size = new System.Drawing.Size(37, 21);
             this.cbSurvey.TabIndex = 4;
@@ -860,7 +898,7 @@
             // btnNewtc
             // 
             this.btnNewtc.Image = global::Cprs.Properties.Resources.Magnify;
-            this.btnNewtc.Location = new System.Drawing.Point(829, 46);
+            this.btnNewtc.Location = new System.Drawing.Point(788, 40);
             this.btnNewtc.Name = "btnNewtc";
             this.btnNewtc.Size = new System.Drawing.Size(24, 24);
             this.btnNewtc.TabIndex = 183;
@@ -960,16 +998,16 @@
             // 
             // txtFipst
             // 
-            this.txtFipst.Location = new System.Drawing.Point(605, 46);
+            this.txtFipst.Location = new System.Drawing.Point(594, 45);
             this.txtFipst.Name = "txtFipst";
             this.txtFipst.ReadOnly = true;
-            this.txtFipst.Size = new System.Drawing.Size(27, 20);
+            this.txtFipst.Size = new System.Drawing.Size(30, 20);
             this.txtFipst.TabIndex = 188;
             this.txtFipst.TabStop = false;
             // 
             // txtSurvey
             // 
-            this.txtSurvey.Location = new System.Drawing.Point(725, 47);
+            this.txtSurvey.Location = new System.Drawing.Point(691, 43);
             this.txtSurvey.Name = "txtSurvey";
             this.txtSurvey.ReadOnly = true;
             this.txtSurvey.Size = new System.Drawing.Size(39, 20);
@@ -2199,5 +2237,8 @@
         private System.Windows.Forms.TextBox txtCnty;
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox txtChip;
+        private System.Windows.Forms.ComboBox cbChip;
+        private System.Windows.Forms.Label label41;
     }
 }
