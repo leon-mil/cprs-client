@@ -209,6 +209,20 @@ namespace CprsBLL
             }
         }
 
+        private string chip;
+        public string Chip
+        {
+            get { return chip; }
+            set
+            {
+                if (value != chip)
+                {
+                    chip = value;
+                    isModified = true;
+                }
+            }
+        }
+
         private int stratid;
         public int Stratid
         {
