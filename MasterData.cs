@@ -65,6 +65,7 @@ namespace CprsDAL
                     mast.Source = reader["SOURCE"].ToString().Trim();
                     mast.Structcd = reader["STRUCTCD"].ToString().Trim();
                     mast.Newtc = reader["Newtc"].ToString().Trim();
+                    mast.Chip = reader["Chip"].ToString().Trim();
                     mast.Dmf = Double.Parse(reader["DMF"].ToString());
 
                     mast.IsModified = false;
@@ -101,7 +102,8 @@ namespace CprsDAL
             {
                 string usql = "UPDATE " + db_table + " SET " +
                                 "OWNER = @OWNER, " +
-                                "NEWTC = @NEWTC " +
+                                "NEWTC = @NEWTC, " +
+                                "CHIP = @CHIP " +
                                 "WHERE MASTERID = @MASTERID";
 
                 SqlCommand update_command = new SqlCommand(usql, sql_connection);
@@ -110,7 +112,8 @@ namespace CprsDAL
                 update_command.Parameters.AddWithValue("@MASTERID", mo.Masterid);
                 update_command.Parameters.AddWithValue("@OWNER", mo.Owner );
                 update_command.Parameters.AddWithValue("@NEWTC", mo.Newtc );
-                
+                update_command.Parameters.AddWithValue("@CHIP", mo.Chip);
+
                 try
                 {
                     sql_connection.Open();
