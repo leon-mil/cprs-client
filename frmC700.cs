@@ -169,6 +169,7 @@ namespace Cprs
 
         private bool formloading = false;
         private string old_text;
+        private string old_newtc;
 
         private bool status_changed = false;
         private int owner_changed = 0;
@@ -4752,12 +4753,12 @@ namespace Cprs
         {
             if (editable && EditMode == TypeEditMode.Edit)
             {
-                if (e.KeyCode == Keys.Enter && old_text != txtNewtc.Text)
+                if (e.KeyCode == Keys.Enter && old_newtc != txtNewtc.Text)
                 {
                     if (!ValidateNewtc())
                     {
                         MessageBox.Show("The Newtc value entered is invalid.");
-                        txtNewtc.Text = old_text;
+                        txtNewtc.Text = old_newtc;
                     }
                 }
             }
@@ -4765,12 +4766,51 @@ namespace Cprs
 
         private void txtNewtc_Enter(object sender, EventArgs e)
         {
-            old_text = txtNewtc.Text;
+            old_newtc = txtNewtc.Text;
+        }
+
+        private void txtNewtc_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNewtc.TextLength == 4 && old_newtc != null && old_newtc.Length > 0)
+            {
+                if (editable && EditMode == TypeEditMode.Edit && old_newtc != txtNewtc.Text)
+                {
+                    if (!ValidateNewtc())
+                    {
+                        MessageBox.Show("The Newtc value entered is invalid.");
+                        txtNewtc.Text = old_newtc;
+                    }
+                    else
+                    {
+                        if (old_newtc.Substring(0, 2) == "36" && cbChip.Visible && txtNewtc.Text.Substring(0, 2) != "36")
+                        {
+                            cbChip.SelectedItem = "N";
+                            txtChip.Text = "N";
+                            cbChip.Visible = false;
+                            txtChip.Visible = true;
+                        }
+                        if (old_newtc.Substring(0, 2) != "36" && txtChip.Visible && txtNewtc.Text.Substring(0, 2) == "36")
+                        {
+                            cbChip.Visible = true;
+                            txtChip.Visible = false;
+                        }
+                    }
+                    old_newtc = txtNewtc.Text;
+                }
+            }
         }
 
         private void txtNewtc_Leave(object sender, EventArgs e)
         {
-           
+
+            if (editable && EditMode == TypeEditMode.Edit && old_newtc != txtNewtc.Text)
+            {
+                if (!ValidateNewtc())
+                {
+                    MessageBox.Show("The Newtc value entered is invalid.");
+                    txtNewtc.Text = old_newtc;
+                }
+            }
         }
 
         private bool ValidateNewtc()
@@ -4998,36 +5038,7 @@ namespace Cprs
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
-        private void txtNewtc_TextChanged(object sender, EventArgs e)
-        {
-            if (txtNewtc.TextLength == 4 && old_text !=null && old_text != "")
-            {
-                if (editable && EditMode == TypeEditMode.Edit && old_text != txtNewtc.Text)
-                {
-                    if (!ValidateNewtc())
-                    {
-                        MessageBox.Show("The Newtc value entered is invalid.");
-                        txtNewtc.Text = old_text;
-                    }
-                    else
-                    {
-                        if (old_text.Substring(0, 2) == "36" && cbChip.Visible && txtNewtc.Text.Substring(0, 2) != "36")
-                        {
-                            cbChip.SelectedItem = "N";
-                            txtChip.Text = "N";
-                            cbChip.Visible = false;
-                            txtChip.Visible = true;
-                        }
-                        if (old_text.Substring(0, 2) != "36" && txtChip.Visible && txtNewtc.Text.Substring(0, 2) == "36")
-                        {
-                            cbChip.Visible = true;
-                            txtChip.Visible = false;
-                        }
-                    }
-                    old_text = txtNewtc.Text;
-                }
-            }
-        }
+        
     }
 
 }
