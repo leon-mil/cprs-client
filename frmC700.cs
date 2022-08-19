@@ -169,7 +169,7 @@ namespace Cprs
 
         private bool formloading = false;
         private string old_text;
-        private string old_newtc;
+        private string old_newtc="";
 
         private bool status_changed = false;
         private int owner_changed = 0;
@@ -226,6 +226,7 @@ namespace Cprs
             //inital flags
             status_changed = false;
             owner_changed = 0;
+            old_newtc = "";
 
             /*Sample */
             sampdata = new SampleData();
@@ -4771,7 +4772,7 @@ namespace Cprs
 
         private void txtNewtc_TextChanged(object sender, EventArgs e)
         {
-            if (txtNewtc.TextLength == 4 && old_newtc != null && old_newtc.Length > 0)
+            if (!formloading && txtNewtc.TextLength == 4 && old_newtc.Length > 0)
             {
                 if (editable && EditMode == TypeEditMode.Edit && old_newtc != txtNewtc.Text)
                 {
