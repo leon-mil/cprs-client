@@ -89,6 +89,19 @@ namespace Cprs
             SetColumnHeader();
             lblCases.Text = dgData.Rows.Count.ToString() + " CASES";
 
+            if (dgData.Rows.Count == 0)
+            {
+                btnC700.Enabled = false;
+                btnMark.Enabled = false;
+                btnPrint.Enabled = false;
+            }
+            else
+            {
+                btnC700.Enabled = true;
+                btnMark.Enabled = true;
+                btnPrint.Enabled = true;
+            }
+
         }
 
         private void SetColumnHeader()
