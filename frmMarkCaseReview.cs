@@ -934,11 +934,13 @@ namespace Cprs
                 if (dt.Rows.Count > 0)
                 {
                     btnData.Enabled = true;
-                    string user1 = dgProjMarkCase.CurrentRow.Cells[4].Value.ToString();
-                    if (user1 != UserInfo.UserName && UserInfo.GroupCode != EnumGroups.HQManager && UserInfo.GroupCode != EnumGroups.Programmer)
-                        btnDelete.Enabled = false;
-                    else
-                        btnDelete.Enabled = true;
+                    btnDelete.Enabled = true;
+                    if (dgProjMarkCase.CurrentRow != null)
+                    {
+                        string user1 = dgProjMarkCase.CurrentRow.Cells[4].Value.ToString();
+                        if (user1 != UserInfo.UserName && UserInfo.GroupCode != EnumGroups.HQManager && UserInfo.GroupCode != EnumGroups.Programmer)
+                            btnDelete.Enabled = false;    
+                    }
 
                 }
                 lblCasesCount.Text = dgProjMarkCase.Rows.Count.ToString() + " PROJECT MARK CASES";
@@ -1010,11 +1012,14 @@ namespace Cprs
                 if (rdt.Rows.Count > 0)
                 {
                     btnData.Enabled = true;
-                    string user1 = dgRespMarkCase.CurrentRow.Cells[1].Value.ToString();
-                    if (user1 != UserInfo.UserName && UserInfo.GroupCode != EnumGroups.HQManager && UserInfo.GroupCode != EnumGroups.Programmer)
-                        btnDelete.Enabled = false;
-                    else
-                        btnDelete.Enabled = true;
+                    btnDelete.Enabled = true;
+                    if (dgProjMarkCase.CurrentRow != null)
+                    {
+                        string user1 = dgRespMarkCase.CurrentRow.Cells[1].Value.ToString();
+                        if (user1 != UserInfo.UserName && UserInfo.GroupCode != EnumGroups.HQManager && UserInfo.GroupCode != EnumGroups.Programmer)
+                            btnDelete.Enabled = false;
+                    }
+                        
                 }
 
                 lblCasesCount.Text = dgRespMarkCase.Rows.Count.ToString() + " RESPONDENT MARK CASES";
@@ -1221,6 +1226,7 @@ namespace Cprs
                     HighlightRowForId(id);
 
                     GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
+                    
                 }
             }
             else
