@@ -1434,7 +1434,7 @@ namespace Cprs
 
             Microsoft.Office.Interop.Excel.Range footRange3 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 5, "A"], xlWorkSheet.Cells[iRow + 5, last_col]);
             footRange3.Merge(Type.Missing);
-            xlWorkSheet.Cells[iRow + 5, 1] = "lodging, religious, communication and manufacturing.";
+            xlWorkSheet.Cells[iRow + 5, 1] = "lodging, religious, communication, and manufacturing.";
 
             Microsoft.Office.Interop.Excel.Range footRange4 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 7, "A"], xlWorkSheet.Cells[iRow + 7, last_col]);
             footRange4.Merge(Type.Missing);
