@@ -1611,6 +1611,18 @@ namespace Cprs
         {
             if (editable && EditMode == TypeEditMode.Edit)
             {
+                if (!ValidateNewtc())
+                {
+                    DialogResult result = MessageBox.Show("The Newtc value entered is invalid.");
+                    if (result == DialogResult.OK)
+                    {
+                        notvalid = true;
+                        txtNewtc.Focus();
+                        txtNewtc.Text = dodgeinitial.Newtc;
+                        return false;
+                    }
+                }
+
                 if ((!txtFax.MaskFull) && (txtFax.Text.Trim(new Char[] { ' ', '(', ')', '-' }) != ""))
                 {
                     DialogResult result = MessageBox.Show("Fax number is invalid.", "OK", MessageBoxButtons.OK);
@@ -3989,7 +4001,7 @@ namespace Cprs
                 if (!ValidateNewtc())
                 {
                     MessageBox.Show("The Newtc value entered is invalid.");
-                    txtNewtc.Text = old_text;
+                    txtNewtc.Text = old_newtc;
                 }
             }
         }
