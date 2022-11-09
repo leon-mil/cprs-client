@@ -237,6 +237,7 @@
     <Compile Include="SpecGeoData.cs" />
     <Compile Include="SpecialTCData.cs" />
     <Compile Include="SpecManufacturingAnnData.cs" />
+    <Compile Include="SpecManufacturingMonData.cs" />
     <Compile Include="SpecProjectValueData.cs" />
     <Compile Include="SpecStrtData.cs" />
     <Compile Include="SpecTimelenData.cs" />
