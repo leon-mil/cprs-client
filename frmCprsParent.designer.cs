@@ -118,6 +118,8 @@
             this.mnuTabStart = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTabValue = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTabManufacture = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.annualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTabLength = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBenchmark = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTrenderData = new System.Windows.Forms.ToolStripMenuItem();
@@ -887,10 +889,26 @@
             // 
             // mnuTabManufacture
             // 
+            this.mnuTabManufacture.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.monthlyToolStripMenuItem,
+            this.annualToolStripMenuItem});
             this.mnuTabManufacture.Name = "mnuTabManufacture";
             this.mnuTabManufacture.Size = new System.Drawing.Size(195, 26);
             this.mnuTabManufacture.Text = "Manufacturing";
-            this.mnuTabManufacture.Click += new System.EventHandler(this.mnuTabManufacture_Click);
+            // 
+            // monthlyToolStripMenuItem
+            // 
+            this.monthlyToolStripMenuItem.Name = "monthlyToolStripMenuItem";
+            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.monthlyToolStripMenuItem.Text = "Monthly";
+            this.monthlyToolStripMenuItem.Click += new System.EventHandler(this.monthlyToolStripMenuItem_Click);
+            // 
+            // annualToolStripMenuItem
+            // 
+            this.annualToolStripMenuItem.Name = "annualToolStripMenuItem";
+            this.annualToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.annualToolStripMenuItem.Text = "Annual";
+            this.annualToolStripMenuItem.Click += new System.EventHandler(this.annualToolStripMenuItem_Click);
             // 
             // mnuTabLength
             // 
@@ -1177,7 +1195,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1224, 900);
-            this.MinimumSize = new System.Drawing.Size(1182, 880);
+            this.MinimumSize = new System.Drawing.Size(1182, 726);
             this.Name = "frmCprsParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Value of Construction Put in Place";
@@ -1317,5 +1335,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHelpFormEntryProcedures;
         private System.Windows.Forms.ToolStripMenuItem mnuHelpFederalContactNumbers;
         private System.Windows.Forms.ToolStripMenuItem mnuFormlist;
+        private System.Windows.Forms.ToolStripMenuItem monthlyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem annualToolStripMenuItem;
     }
 }

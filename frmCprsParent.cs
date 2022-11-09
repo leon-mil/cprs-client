@@ -1083,15 +1083,7 @@ namespace Cprs
                 fp.Show();
             }
         }
-        private void mnuTabManufacture_Click(object sender, EventArgs e)
-        {
-            if (VerifyFormClosing())
-            {
-                this.Close();
-                frmSpecManufacturingAnn fp = new frmSpecManufacturingAnn();
-                fp.Show();
-            }
-        }
+        
 
         private void numTabBeaSLMon_Click(object sender, EventArgs e)
         {
@@ -1391,6 +1383,26 @@ namespace Cprs
             {
                 this.Close();
                 frmAdminFormlist fp = new frmAdminFormlist();
+                fp.Show();
+            }
+        }
+
+        private void monthlyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmSpecManufacturingMon fp = new frmSpecManufacturingMon();
+                fp.Show();
+            }
+        }
+
+        private void annualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmSpecManufacturingAnn fp = new frmSpecManufacturingAnn();
                 fp.Show();
             }
         }
