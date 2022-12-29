@@ -103,6 +103,7 @@ namespace Cprs
 
         private bool notvalid;
         private bool editable = false;
+        private bool callingClose = false;
 
         private delegate void ShowPermissionDelegate(); 
         private delegate void ShowLockMessageDelegate();
@@ -333,11 +334,11 @@ namespace Cprs
                 if (dialogresult == DialogResult.OK && popup.SelectedDCPId != "")
                 {
                     Id = popup.SelectedDCPId;
-                    if (popup.selflg) btnResetClicked = true;
+                   // if (popup.selflg) btnResetClicked = true;
                   //  dodgeinitial = DodgeInitialData.GetDodgeInitialData(Id);    // GetDodgeInitialData(Id);, viewcode
                     GetDataDodgeInitial();
                     txtNewtc.Focus();
-                    if (popup.selflg) btnResetClicked = false;
+                   // if (popup.selflg) btnResetClicked = false;
                 }
                 else
                 {
@@ -414,7 +415,9 @@ namespace Cprs
             //Enable the fields for editing
             btnRespid.Enabled = true;
             btnRefresh.Enabled = true;
-           
+            btnRef.Enabled = true;
+            btnHist.Enabled = true;
+
             btnRestore.Enabled = true;
             cbStatCode.Enabled = true;
             cboSurvey.Enabled = true;
@@ -541,6 +544,8 @@ namespace Cprs
             btnReplaceE.Enabled = false;
             btnRestore.Enabled = false;
             btnRefresh.Enabled = false;
+            btnRef.Enabled = false;
+            btnHist.Enabled = false;
             cboSurvey.Enabled = false;
             cbStatCode.Enabled = false;
             txtNewtc.ReadOnly = true;
@@ -842,15 +847,23 @@ namespace Cprs
                 Respid = dodgeinitial.Respid;
             }
             editable = true;
+            bool is_locked = false;
+            LckdbyUsrElsewhere = false;
             if (!btnResetClicked)
             {
                 locked_by = GeneralDataFuctions.ChkRespIDIsLocked(Respid);
                 if (String.IsNullOrEmpty(locked_by))
                 {
-                    EnableEdits();
                     lblLockedBy.Text = "";
                     lblLockedBy.Visible = false;
-                    GeneralDataFuctions.UpdateRespIDLock(Respid, UserInfo.UserName);
+                    EnableEdits();
+
+                    do
+                    {
+                        is_locked = GeneralDataFuctions.UpdateRespIDLock(Respid, UserInfo.UserName);
+                    }
+                    while (!is_locked);
+                    
                 }
                 else
                 {
@@ -858,8 +871,8 @@ namespace Cprs
                     lblLockedBy.Text = "LOCKED";
                     editable = false;
                     DisableEdits();
-                    if (Convert.ToString(locked_by) == UserInfo.UserName)
-                        LckdbyUsrElsewhere = true;
+                    //if (Convert.ToString(locked_by) == UserInfo.UserName)
+                    LckdbyUsrElsewhere = true;
 
                     BeginInvoke(new ShowLockMessageDelegate(ShowLockMessage));
                 }
@@ -1554,11 +1567,8 @@ namespace Cprs
 
             if (can_close == true)
             {
-                if (LckdbyUsrElsewhere == false)
-                {
-                    relsRespLock();
-                }
-
+                relsRespLock();
+  
                 //update access and dcp_hist record
                 id = Id;
                 if (id != string.Empty && id != null)
@@ -2268,20 +2278,12 @@ namespace Cprs
             {
                  return;
             }
-             else
-             {
-                 if (dodgeinitial.RespLock == UserInfo.UserName || string.IsNullOrWhiteSpace(dodgeinitial.RespLock))
-                 {
-                    if (Respid == "" || Respid == null)
-                    {
-                        if (txtRespid.Text == "" || txtRespid.Text == null)
-                        { Respid = txtId.Text; }
-                    }
-                   
-                    string relsUsrName = "";
-                     GeneralDataFuctions.UpdateRespIDLock(Respid, relsUsrName);
-                 }
-             }
+            
+            if (!LckdbyUsrElsewhere)
+            {
+            GeneralDataFuctions.UpdateRespIDLock(Respid, "");
+            }
+             
          }
 
          private void Search()
@@ -2563,6 +2565,8 @@ namespace Cprs
             relsRespLock();
             chkBrowseUpdate();
 
+            callingClose = false;
+
             //Display TFU on the C-700 button for NPC users
             if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead)
              {
@@ -2602,9 +2606,9 @@ namespace Cprs
                  fC700.ShowDialog();  // show child
              }
 
-            btnResetClicked = true;
-            GetDataDodgeInitial();
-            btnResetClicked = false;
+            if (!callingClose)
+                GetDataDodgeInitial();
+          
         }
 
          private void txtModifiedStatus()
@@ -2930,17 +2934,10 @@ namespace Cprs
                     SaveData();
                  }
 
-                if (LckdbyUsrElsewhere == false)
-                    {
-                        relsRespLock();
-                    }
-
+                relsRespLock();
+                  
                 if (CallingForm != null)
                  {
-                    //if (CallingForm.Name == "frmReferralReview" )
-                    //      frmDodgeInitialReview CallingForm = new frmDodgeInitialReview();
- 
-
                     CallingForm.Show();
                 }
                 id = Id;
@@ -3021,10 +3018,9 @@ namespace Cprs
                 if (fDCPInit.DialogResult == DialogResult.OK)
                 {
                     //Release the lockof the previous ID before loading the new one.
-                        if (LckdbyUsrElsewhere == false)
-                        {
-                            relsRespLock();
-                        }
+                    
+                    relsRespLock();
+
                    // releaseAllLocks();
                     RemoveTxtChanged();
                     chkNeedFurRev.Checked = false;
@@ -3043,16 +3039,16 @@ namespace Cprs
                         id = Id;
                         //  dodgeinitial = DodgeInitialData.GetDodgeInitialData(Id);
                         //ignore lock
-                        if (fDCPInit.selflg)
-                            btnResetClicked = true;
+                      //  if (fDCPInit.selflg)
+                      //      btnResetClicked = true;
 
                         GetDataDodgeInitial();
                         txtNewtc.Focus();
                         SetTxtChanged();
                         fDCPInit.Dispose();
 
-                        if (fDCPInit.selflg)
-                            btnResetClicked = false;
+                      //  if (fDCPInit.selflg)
+                       //     btnResetClicked = false;
                     }
                 }
                 else
@@ -3103,7 +3099,6 @@ namespace Cprs
                 {
                     if (LckdbyUsrElsewhere == false)
                     {
-                        //releaseAllLocks();
                         GeneralDataFuctions.UpdateRespIDLock(Respid, "");
                     }
 
@@ -3120,10 +3115,6 @@ namespace Cprs
                     else
                     { dodgeinitial.Respid = txtRespid.Text; }
 
-                     if (LckdbyUsrElsewhere == false)
-                    {
-                        GeneralDataFuctions.UpdateRespIDLock(Respid, UserInfo.UserName);
-                    }
                     ClearSearchFlds();
                 }
             }
@@ -3195,10 +3186,7 @@ namespace Cprs
                      { dodgeinitial.Respid = Id; }
                      else
                      { dodgeinitial.Respid = txtRespid.Text; }
-                    if (LckdbyUsrElsewhere == false)
-                    { 
-                        GeneralDataFuctions.UpdateRespIDLock(Respid, UserInfo.UserName);
-                    }
+                  
                     ClearSearchFlds();
                  }
              }
@@ -4508,7 +4496,15 @@ namespace Cprs
             }
 
         }
-        
-        
+
+        private void frmDodgeInital_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            /*unlock respondent */
+            if (editable)
+                relsRespLock();
+
+            callingClose = true;
+
+        }
     }
 }
