@@ -649,11 +649,11 @@ namespace CprsDAL
                             if (rst == "") rst = "CA";
                             if (GeneralDataFuctions.CheckIfGoodBussinessTime(rst))
                             {
-                                if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
-                                {
+                                //if (GeneralDataFuctions.UpdateRespIDLockForUser(row["Respid"].ToString(), UserInfo.UserName))
+                               // {
                                     dt2.Rows.Add(row["id"].ToString());
                                     break;
-                                }
+                               // }
                             }
                         }
                     }
