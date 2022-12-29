@@ -910,7 +910,7 @@ namespace Cprs
             /*Show referral flag */
             lblReferral.Visible = false;
             lblMark.Visible = false;
-            lblLock.Visible = false;
+           // lblLock.Visible = false;
 
             btnSlip.Enabled = false;
             btnName.Enabled = false;
