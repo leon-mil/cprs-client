@@ -250,7 +250,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(399, 61);
+            this.label1.Location = new System.Drawing.Point(405, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(281, 25);
             this.label1.TabIndex = 3;
@@ -1186,7 +1186,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.44681F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.55319F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanel1.Controls.Add(this.txtFlagFutcompd, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label36, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtCompdater, 1, 7);
@@ -1227,7 +1227,7 @@
             // 
             // txtFlagFutcompd
             // 
-            this.txtFlagFutcompd.Location = new System.Drawing.Point(379, 35);
+            this.txtFlagFutcompd.Location = new System.Drawing.Point(377, 35);
             this.txtFlagFutcompd.Name = "txtFlagFutcompd";
             this.txtFlagFutcompd.ReadOnly = true;
             this.txtFlagFutcompd.Size = new System.Drawing.Size(37, 20);
@@ -1247,7 +1247,7 @@
             // 
             // txtCompdater
             // 
-            this.txtCompdater.Location = new System.Drawing.Point(313, 199);
+            this.txtCompdater.Location = new System.Drawing.Point(312, 199);
             this.txtCompdater.MaxLength = 6;
             this.txtCompdater.Name = "txtCompdater";
             this.txtCompdater.Size = new System.Drawing.Size(54, 20);
@@ -1259,7 +1259,7 @@
             // 
             // txtFlagCompdate
             // 
-            this.txtFlagCompdate.Location = new System.Drawing.Point(379, 199);
+            this.txtFlagCompdate.Location = new System.Drawing.Point(377, 199);
             this.txtFlagCompdate.Name = "txtFlagCompdate";
             this.txtFlagCompdate.ReadOnly = true;
             this.txtFlagCompdate.Size = new System.Drawing.Size(37, 20);
@@ -1268,7 +1268,7 @@
             // 
             // txtFutcompdr
             // 
-            this.txtFutcompdr.Location = new System.Drawing.Point(313, 35);
+            this.txtFutcompdr.Location = new System.Drawing.Point(312, 35);
             this.txtFutcompdr.MaxLength = 6;
             this.txtFutcompdr.Name = "txtFutcompdr";
             this.txtFutcompdr.Size = new System.Drawing.Size(54, 20);
@@ -1292,7 +1292,7 @@
             // 
             // txtCapexpr
             // 
-            this.txtCapexpr.Location = new System.Drawing.Point(313, 171);
+            this.txtCapexpr.Location = new System.Drawing.Point(312, 171);
             this.txtCapexpr.MaxLength = 10;
             this.txtCapexpr.Name = "txtCapexpr";
             this.txtCapexpr.Size = new System.Drawing.Size(54, 20);
@@ -1307,7 +1307,7 @@
             // 
             // txtFlagcap
             // 
-            this.txtFlagcap.Location = new System.Drawing.Point(379, 171);
+            this.txtFlagcap.Location = new System.Drawing.Point(377, 171);
             this.txtFlagcap.Name = "txtFlagcap";
             this.txtFlagcap.ReadOnly = true;
             this.txtFlagcap.Size = new System.Drawing.Size(37, 20);
@@ -1327,7 +1327,7 @@
             // 
             // txtItem6r
             // 
-            this.txtItem6r.Location = new System.Drawing.Point(313, 143);
+            this.txtItem6r.Location = new System.Drawing.Point(312, 143);
             this.txtItem6r.MaxLength = 10;
             this.txtItem6r.Name = "txtItem6r";
             this.txtItem6r.Size = new System.Drawing.Size(54, 20);
@@ -1342,7 +1342,7 @@
             // 
             // txtFlagItm6
             // 
-            this.txtFlagItm6.Location = new System.Drawing.Point(379, 143);
+            this.txtFlagItm6.Location = new System.Drawing.Point(377, 143);
             this.txtFlagItm6.Name = "txtFlagItm6";
             this.txtFlagItm6.ReadOnly = true;
             this.txtFlagItm6.Size = new System.Drawing.Size(37, 20);
@@ -1362,7 +1362,7 @@
             // 
             // txtStrtdater
             // 
-            this.txtStrtdater.Location = new System.Drawing.Point(313, 3);
+            this.txtStrtdater.Location = new System.Drawing.Point(312, 3);
             this.txtStrtdater.MaxLength = 6;
             this.txtStrtdater.Name = "txtStrtdater";
             this.txtStrtdater.Size = new System.Drawing.Size(54, 20);
@@ -1375,7 +1375,7 @@
             // 
             // txtRvitm5cr
             // 
-            this.txtRvitm5cr.Location = new System.Drawing.Point(313, 117);
+            this.txtRvitm5cr.Location = new System.Drawing.Point(312, 117);
             this.txtRvitm5cr.MaxLength = 11;
             this.txtRvitm5cr.Name = "txtRvitm5cr";
             this.txtRvitm5cr.Size = new System.Drawing.Size(54, 20);
@@ -1402,7 +1402,7 @@
             // 
             // txtFlagr5c
             // 
-            this.txtFlagr5c.Location = new System.Drawing.Point(379, 117);
+            this.txtFlagr5c.Location = new System.Drawing.Point(377, 117);
             this.txtFlagr5c.Name = "txtFlagr5c";
             this.txtFlagr5c.ReadOnly = true;
             this.txtFlagr5c.Size = new System.Drawing.Size(37, 20);
@@ -1422,7 +1422,7 @@
             // 
             // txtItem5br
             // 
-            this.txtItem5br.Location = new System.Drawing.Point(313, 89);
+            this.txtItem5br.Location = new System.Drawing.Point(312, 89);
             this.txtItem5br.MaxLength = 10;
             this.txtItem5br.Name = "txtItem5br";
             this.txtItem5br.Size = new System.Drawing.Size(54, 20);
@@ -1438,7 +1438,7 @@
             // 
             // txtFlag5b
             // 
-            this.txtFlag5b.Location = new System.Drawing.Point(379, 89);
+            this.txtFlag5b.Location = new System.Drawing.Point(377, 89);
             this.txtFlag5b.Name = "txtFlag5b";
             this.txtFlag5b.ReadOnly = true;
             this.txtFlag5b.Size = new System.Drawing.Size(37, 20);
@@ -1469,7 +1469,7 @@
             // 
             // txtItem5ar
             // 
-            this.txtItem5ar.Location = new System.Drawing.Point(313, 63);
+            this.txtItem5ar.Location = new System.Drawing.Point(312, 63);
             this.txtItem5ar.MaxLength = 10;
             this.txtItem5ar.Name = "txtItem5ar";
             this.txtItem5ar.Size = new System.Drawing.Size(54, 20);
@@ -1485,7 +1485,7 @@
             // 
             // txtFlag5a
             // 
-            this.txtFlag5a.Location = new System.Drawing.Point(379, 63);
+            this.txtFlag5a.Location = new System.Drawing.Point(377, 63);
             this.txtFlag5a.Name = "txtFlag5a";
             this.txtFlag5a.ReadOnly = true;
             this.txtFlag5a.Size = new System.Drawing.Size(37, 20);
@@ -1494,7 +1494,7 @@
             // 
             // txtFlagStrtdate
             // 
-            this.txtFlagStrtdate.Location = new System.Drawing.Point(379, 3);
+            this.txtFlagStrtdate.Location = new System.Drawing.Point(377, 3);
             this.txtFlagStrtdate.Name = "txtFlagStrtdate";
             this.txtFlagStrtdate.ReadOnly = true;
             this.txtFlagStrtdate.Size = new System.Drawing.Size(37, 20);
@@ -2465,7 +2465,7 @@
             this.label55.ForeColor = System.Drawing.Color.Yellow;
             this.label55.Location = new System.Drawing.Point(463, 32);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(253, 24);
+            this.label55.Size = new System.Drawing.Size(288, 32);
             this.label55.TabIndex = 197;
             this.label55.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

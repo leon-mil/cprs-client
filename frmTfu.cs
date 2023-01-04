@@ -222,6 +222,8 @@ namespace Cprs
             lblReferral.Visible = false;
             lblReject.Visible = false;
 
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             if (RespId != "0000000")
             {
                 LoadForm();
