@@ -45,7 +45,9 @@ namespace Cprs
         public frmWhereSrch()
         {
             InitializeComponent();
-            
+
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
         }      
 
         private void btnStore_Click(object sender, EventArgs e)

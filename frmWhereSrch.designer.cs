@@ -55,6 +55,7 @@
             this.btnName = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblCount = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +65,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label2.Location = new System.Drawing.Point(478, 48);
+            this.label2.Location = new System.Drawing.Point(474, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(260, 25);
             this.label2.TabIndex = 3;
@@ -221,7 +222,7 @@
             this.dgData.ReadOnly = true;
             this.dgData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgData.Size = new System.Drawing.Size(1158, 455);
+            this.dgData.Size = new System.Drawing.Size(1150, 447);
             this.dgData.TabIndex = 7;
             this.dgData.TabStop = false;
             this.dgData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgData_RowPostPaint);
@@ -349,10 +350,22 @@
             this.lblCount.Text = "0 Case";
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // label55
+            // 
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.ForeColor = System.Drawing.Color.Yellow;
+            this.label55.Location = new System.Drawing.Point(460, 29);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(288, 32);
+            this.label55.TabIndex = 199;
+            this.label55.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmWhereSrch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
+            this.Controls.Add(this.label55);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.btnC700);
             this.Controls.Add(this.btnSource);
@@ -372,6 +385,7 @@
             this.Controls.SetChildIndex(this.btnSource, 0);
             this.Controls.SetChildIndex(this.btnC700, 0);
             this.Controls.SetChildIndex(this.lblCount, 0);
+            this.Controls.SetChildIndex(this.label55, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).EndInit();
@@ -408,5 +422,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Seldate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Strtdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rvitm5c;
+        private System.Windows.Forms.Label label55;
     }
 }
