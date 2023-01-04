@@ -234,7 +234,7 @@ namespace Cprs
         private void frmMfInital_Load(object sender, EventArgs e)
         {
             this.Show();
-
+            
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer && UserInfo.InitMF== "N")
             {
                 MessageBox.Show("You do not have permission to access this area");
@@ -243,6 +243,7 @@ namespace Cprs
                 fH.Show();
                 return;
             }
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
 
             RemoveTxtChanged();
 
