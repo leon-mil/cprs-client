@@ -124,6 +124,8 @@ namespace Cprs
                 this.Dispose();
             }
 
+            label27.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             ResetFields();
 
             //Call in the GetFactor function based on the Masterid

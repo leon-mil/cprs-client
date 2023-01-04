@@ -190,7 +190,7 @@ namespace Cprs
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(511, 61);
+            this.label1.Location = new System.Drawing.Point(503, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(222, 25);
             this.label1.TabIndex = 2;
@@ -223,7 +223,7 @@ namespace Cprs
             // 
             // txtFin
             // 
-            this.txtFin.Location = new System.Drawing.Point(42, 135);
+            this.txtFin.Location = new System.Drawing.Point(41, 159);
             this.txtFin.Name = "txtFin";
             this.txtFin.ReadOnly = true;
             this.txtFin.Size = new System.Drawing.Size(153, 20);
@@ -258,14 +258,14 @@ namespace Cprs
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label3.Location = new System.Drawing.Point(86, 97);
+            this.label3.Location = new System.Drawing.Point(85, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 9;
             // 
             // txtSource
             // 
-            this.txtSource.Location = new System.Drawing.Point(243, 135);
+            this.txtSource.Location = new System.Drawing.Point(242, 159);
             this.txtSource.Name = "txtSource";
             this.txtSource.ReadOnly = true;
             this.txtSource.Size = new System.Drawing.Size(34, 20);
@@ -274,7 +274,7 @@ namespace Cprs
             // 
             // txtSeldate
             // 
-            this.txtSeldate.Location = new System.Drawing.Point(313, 135);
+            this.txtSeldate.Location = new System.Drawing.Point(312, 159);
             this.txtSeldate.Name = "txtSeldate";
             this.txtSeldate.ReadOnly = true;
             this.txtSeldate.Size = new System.Drawing.Size(54, 20);
@@ -283,7 +283,7 @@ namespace Cprs
             // 
             // txtNewtc
             // 
-            this.txtNewtc.Location = new System.Drawing.Point(397, 137);
+            this.txtNewtc.Location = new System.Drawing.Point(396, 161);
             this.txtNewtc.Name = "txtNewtc";
             this.txtNewtc.ReadOnly = true;
             this.txtNewtc.Size = new System.Drawing.Size(40, 20);
@@ -292,7 +292,7 @@ namespace Cprs
             // 
             // txtProjselv
             // 
-            this.txtProjselv.Location = new System.Drawing.Point(479, 135);
+            this.txtProjselv.Location = new System.Drawing.Point(478, 159);
             this.txtProjselv.Name = "txtProjselv";
             this.txtProjselv.ReadOnly = true;
             this.txtProjselv.Size = new System.Drawing.Size(70, 20);
@@ -301,7 +301,7 @@ namespace Cprs
             // 
             // txtFwgt
             // 
-            this.txtFwgt.Location = new System.Drawing.Point(578, 135);
+            this.txtFwgt.Location = new System.Drawing.Point(577, 159);
             this.txtFwgt.Name = "txtFwgt";
             this.txtFwgt.ReadOnly = true;
             this.txtFwgt.Size = new System.Drawing.Size(56, 20);
@@ -310,7 +310,7 @@ namespace Cprs
             // 
             // txtBldgs
             // 
-            this.txtBldgs.Location = new System.Drawing.Point(836, 135);
+            this.txtBldgs.Location = new System.Drawing.Point(835, 159);
             this.txtBldgs.Name = "txtBldgs";
             this.txtBldgs.ReadOnly = true;
             this.txtBldgs.Size = new System.Drawing.Size(49, 20);
@@ -319,7 +319,7 @@ namespace Cprs
             // 
             // txtUnits
             // 
-            this.txtUnits.Location = new System.Drawing.Point(926, 135);
+            this.txtUnits.Location = new System.Drawing.Point(925, 159);
             this.txtUnits.Name = "txtUnits";
             this.txtUnits.ReadOnly = true;
             this.txtUnits.Size = new System.Drawing.Size(53, 20);
@@ -328,7 +328,7 @@ namespace Cprs
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(1104, 135);
+            this.txtId.Location = new System.Drawing.Point(1103, 159);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(63, 20);
@@ -337,7 +337,7 @@ namespace Cprs
             // 
             // txtOwner
             // 
-            this.txtOwner.Location = new System.Drawing.Point(1030, 135);
+            this.txtOwner.Location = new System.Drawing.Point(1029, 159);
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.ReadOnly = true;
             this.txtOwner.Size = new System.Drawing.Size(18, 20);
@@ -349,7 +349,7 @@ namespace Cprs
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label17.Location = new System.Drawing.Point(22, 189);
+            this.label17.Location = new System.Drawing.Point(21, 213);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(163, 13);
             this.label17.TabIndex = 38;
@@ -361,7 +361,7 @@ namespace Cprs
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label18.Location = new System.Drawing.Point(44, 223);
+            this.label18.Location = new System.Drawing.Point(43, 247);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(141, 13);
             this.label18.TabIndex = 39;
@@ -373,7 +373,7 @@ namespace Cprs
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label19.Location = new System.Drawing.Point(32, 256);
+            this.label19.Location = new System.Drawing.Point(31, 280);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(153, 13);
             this.label19.TabIndex = 40;
@@ -382,7 +382,7 @@ namespace Cprs
             // 
             // txtProjdesc
             // 
-            this.txtProjdesc.Location = new System.Drawing.Point(194, 182);
+            this.txtProjdesc.Location = new System.Drawing.Point(193, 206);
             this.txtProjdesc.Name = "txtProjdesc";
             this.txtProjdesc.ReadOnly = true;
             this.txtProjdesc.Size = new System.Drawing.Size(991, 20);
@@ -390,7 +390,7 @@ namespace Cprs
             // 
             // txtProjloc
             // 
-            this.txtProjloc.Location = new System.Drawing.Point(194, 220);
+            this.txtProjloc.Location = new System.Drawing.Point(193, 244);
             this.txtProjloc.Name = "txtProjloc";
             this.txtProjloc.ReadOnly = true;
             this.txtProjloc.Size = new System.Drawing.Size(991, 20);
@@ -398,7 +398,7 @@ namespace Cprs
             // 
             // txtPcityst
             // 
-            this.txtPcityst.Location = new System.Drawing.Point(194, 256);
+            this.txtPcityst.Location = new System.Drawing.Point(193, 280);
             this.txtPcityst.Name = "txtPcityst";
             this.txtPcityst.ReadOnly = true;
             this.txtPcityst.Size = new System.Drawing.Size(259, 20);
@@ -409,7 +409,7 @@ namespace Cprs
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label25.Location = new System.Drawing.Point(86, 113);
+            this.label25.Location = new System.Drawing.Point(85, 137);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(66, 13);
             this.label25.TabIndex = 49;
@@ -417,7 +417,7 @@ namespace Cprs
             // 
             // txtCnty
             // 
-            this.txtCnty.Location = new System.Drawing.Point(744, 135);
+            this.txtCnty.Location = new System.Drawing.Point(743, 159);
             this.txtCnty.Name = "txtCnty";
             this.txtCnty.ReadOnly = true;
             this.txtCnty.Size = new System.Drawing.Size(53, 20);
@@ -426,7 +426,7 @@ namespace Cprs
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(673, 135);
+            this.txtState.Location = new System.Drawing.Point(672, 159);
             this.txtState.Name = "txtState";
             this.txtState.ReadOnly = true;
             this.txtState.Size = new System.Drawing.Size(35, 20);
@@ -1693,9 +1693,9 @@ namespace Cprs
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label5.Location = new System.Drawing.Point(225, 95);
+            this.label5.Location = new System.Drawing.Point(220, 119);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 38);
+            this.label5.Size = new System.Drawing.Size(66, 30);
             this.label5.TabIndex = 59;
             this.label5.Text = "SRC CODE";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1705,9 +1705,9 @@ namespace Cprs
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label2.Location = new System.Drawing.Point(297, 93);
+            this.label2.Location = new System.Drawing.Point(292, 117);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 42);
+            this.label2.Size = new System.Drawing.Size(82, 34);
             this.label2.TabIndex = 60;
             this.label2.Text = "SELECT DATE";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1716,7 +1716,7 @@ namespace Cprs
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label4.Location = new System.Drawing.Point(385, 112);
+            this.label4.Location = new System.Drawing.Point(384, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 15);
             this.label4.TabIndex = 61;
@@ -1728,9 +1728,9 @@ namespace Cprs
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label6.Location = new System.Drawing.Point(476, 90);
+            this.label6.Location = new System.Drawing.Point(471, 114);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 45);
+            this.label6.Size = new System.Drawing.Size(76, 37);
             this.label6.TabIndex = 62;
             this.label6.Text = "SELECT VALUE";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1739,7 +1739,7 @@ namespace Cprs
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label10.Location = new System.Drawing.Point(575, 113);
+            this.label10.Location = new System.Drawing.Point(574, 137);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 15);
             this.label10.TabIndex = 63;
@@ -1751,9 +1751,9 @@ namespace Cprs
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(673, 94);
+            this.label8.Location = new System.Drawing.Point(668, 118);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 41);
+            this.label8.Size = new System.Drawing.Size(39, 33);
             this.label8.TabIndex = 64;
             this.label8.Text = "FIPS ST";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1762,7 +1762,7 @@ namespace Cprs
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(741, 115);
+            this.label7.Location = new System.Drawing.Point(740, 139);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 15);
             this.label7.TabIndex = 65;
@@ -1774,9 +1774,9 @@ namespace Cprs
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label9.Location = new System.Drawing.Point(820, 93);
+            this.label9.Location = new System.Drawing.Point(815, 117);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 42);
+            this.label9.Size = new System.Drawing.Size(75, 34);
             this.label9.TabIndex = 66;
             this.label9.Text = "SOC BLDGS";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1786,9 +1786,9 @@ namespace Cprs
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label11.Location = new System.Drawing.Point(914, 90);
+            this.label11.Location = new System.Drawing.Point(909, 114);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(75, 45);
+            this.label11.Size = new System.Drawing.Size(75, 37);
             this.label11.TabIndex = 67;
             this.label11.Text = "SOC UNITS";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1797,7 +1797,7 @@ namespace Cprs
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label12.Location = new System.Drawing.Point(1108, 113);
+            this.label12.Location = new System.Drawing.Point(1107, 137);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 15);
             this.label12.TabIndex = 68;
@@ -1808,7 +1808,7 @@ namespace Cprs
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label14.Location = new System.Drawing.Point(1000, 113);
+            this.label14.Location = new System.Drawing.Point(999, 137);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(82, 15);
             this.label14.TabIndex = 70;
@@ -1821,7 +1821,7 @@ namespace Cprs
             this.label27.ForeColor = System.Drawing.Color.Yellow;
             this.label27.Location = new System.Drawing.Point(476, 35);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(285, 20);
+            this.label27.Size = new System.Drawing.Size(285, 32);
             this.label27.TabIndex = 198;
             this.label27.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1829,7 +1829,7 @@ namespace Cprs
             // frmSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label12);
