@@ -903,7 +903,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(480, 60);
+            this.label1.Location = new System.Drawing.Point(480, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(291, 25);
             this.label1.TabIndex = 292;
@@ -1783,7 +1783,7 @@
             this.label55.ForeColor = System.Drawing.Color.Yellow;
             this.label55.Location = new System.Drawing.Point(483, 33);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(290, 18);
+            this.label55.Size = new System.Drawing.Size(290, 32);
             this.label55.TabIndex = 402;
             this.label55.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
