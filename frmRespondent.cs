@@ -50,6 +50,8 @@ namespace Cprs
             GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
             GeneralDataFuctions.UpdateCurrentUsersData("SEARCH/REVIEW");
 
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             PopulateRStateCombo();
             SetButtonTxt();
             btnCentpwd.Enabled = false;
