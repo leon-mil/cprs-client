@@ -187,7 +187,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(488, 61);
+            this.label1.Location = new System.Drawing.Point(491, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(246, 25);
             this.label1.TabIndex = 2;
@@ -197,7 +197,7 @@
             // 
             this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtId.BackColor = System.Drawing.SystemColors.Control;
-            this.txtId.Location = new System.Drawing.Point(14, 134);
+            this.txtId.Location = new System.Drawing.Point(10, 134);
             this.txtId.MaxLength = 7;
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
@@ -233,7 +233,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label5.Location = new System.Drawing.Point(198, 93);
+            this.label5.Location = new System.Drawing.Point(194, 93);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 33);
             this.label5.TabIndex = 21;
@@ -245,7 +245,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label6.Location = new System.Drawing.Point(261, 93);
+            this.label6.Location = new System.Drawing.Point(257, 93);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 33);
             this.label6.TabIndex = 22;
@@ -257,7 +257,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(361, 93);
+            this.label7.Location = new System.Drawing.Point(357, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 33);
             this.label7.TabIndex = 23;
@@ -269,7 +269,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(568, 93);
+            this.label8.Location = new System.Drawing.Point(564, 93);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 39);
             this.label8.TabIndex = 24;
@@ -314,7 +314,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label12.Location = new System.Drawing.Point(890, 93);
+            this.label12.Location = new System.Drawing.Point(886, 93);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 33);
             this.label12.TabIndex = 28;
@@ -326,7 +326,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label13.Location = new System.Drawing.Point(943, 93);
+            this.label13.Location = new System.Drawing.Point(939, 93);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(55, 33);
             this.label13.TabIndex = 29;
@@ -337,7 +337,7 @@
             // 
             this.txtRespid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtRespid.BackColor = System.Drawing.SystemColors.Control;
-            this.txtRespid.Location = new System.Drawing.Point(92, 134);
+            this.txtRespid.Location = new System.Drawing.Point(88, 134);
             this.txtRespid.MaxLength = 7;
             this.txtRespid.Name = "txtRespid";
             this.txtRespid.ReadOnly = true;
@@ -353,7 +353,7 @@
             // 
             this.txtSeldate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtSeldate.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeldate.Location = new System.Drawing.Point(201, 134);
+            this.txtSeldate.Location = new System.Drawing.Point(197, 134);
             this.txtSeldate.MaxLength = 6;
             this.txtSeldate.Name = "txtSeldate";
             this.txtSeldate.ReadOnly = true;
@@ -366,7 +366,7 @@
             // 
             this.txtFwgt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtFwgt.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFwgt.Location = new System.Drawing.Point(752, 135);
+            this.txtFwgt.Location = new System.Drawing.Point(748, 135);
             this.txtFwgt.Name = "txtFwgt";
             this.txtFwgt.ReadOnly = true;
             this.txtFwgt.Size = new System.Drawing.Size(45, 20);
@@ -378,7 +378,7 @@
             // 
             this.txtNewTC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtNewTC.BackColor = System.Drawing.SystemColors.Control;
-            this.txtNewTC.Location = new System.Drawing.Point(817, 135);
+            this.txtNewTC.Location = new System.Drawing.Point(813, 135);
             this.txtNewTC.MaxLength = 4;
             this.txtNewTC.Name = "txtNewTC";
             this.txtNewTC.Size = new System.Drawing.Size(40, 20);
@@ -392,7 +392,7 @@
             // 
             this.txtSourceCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtSourceCode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSourceCode.Location = new System.Drawing.Point(899, 135);
+            this.txtSourceCode.Location = new System.Drawing.Point(895, 135);
             this.txtSourceCode.Name = "txtSourceCode";
             this.txtSourceCode.ReadOnly = true;
             this.txtSourceCode.Size = new System.Drawing.Size(34, 20);
@@ -404,7 +404,7 @@
             // 
             this.txtRepBldgs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtRepBldgs.BackColor = System.Drawing.SystemColors.Control;
-            this.txtRepBldgs.Location = new System.Drawing.Point(946, 135);
+            this.txtRepBldgs.Location = new System.Drawing.Point(942, 135);
             this.txtRepBldgs.MaxLength = 4;
             this.txtRepBldgs.Name = "txtRepBldgs";
             this.txtRepBldgs.Size = new System.Drawing.Size(46, 20);
@@ -587,7 +587,7 @@
             // 
             this.txtColhist.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtColhist.BackColor = System.Drawing.SystemColors.Control;
-            this.txtColhist.Location = new System.Drawing.Point(512, 135);
+            this.txtColhist.Location = new System.Drawing.Point(508, 135);
             this.txtColhist.Name = "txtColhist";
             this.txtColhist.ReadOnly = true;
             this.txtColhist.Size = new System.Drawing.Size(49, 20);
@@ -598,7 +598,7 @@
             // 
             this.txtSelvalue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtSelvalue.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSelvalue.Location = new System.Drawing.Point(264, 134);
+            this.txtSelvalue.Location = new System.Drawing.Point(260, 134);
             this.txtSelvalue.MaxLength = 9;
             this.txtSelvalue.Name = "txtSelvalue";
             this.txtSelvalue.ReadOnly = true;
@@ -613,7 +613,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label41.Location = new System.Drawing.Point(439, 111);
+            this.label41.Location = new System.Drawing.Point(435, 111);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(60, 15);
             this.label41.TabIndex = 34;
@@ -626,7 +626,7 @@
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label42.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label42.Location = new System.Drawing.Point(506, 111);
+            this.label42.Location = new System.Drawing.Point(502, 111);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(65, 15);
             this.label42.TabIndex = 118;
@@ -651,7 +651,7 @@
             "6-Out of Scope",
             "7-DC Refusal",
             "8-Refusal"});
-            this.cboStatCode.Location = new System.Drawing.Point(340, 134);
+            this.cboStatCode.Location = new System.Drawing.Point(336, 134);
             this.cboStatCode.MaxLength = 1;
             this.cboStatCode.Name = "cboStatCode";
             this.cboStatCode.Size = new System.Drawing.Size(84, 21);
@@ -673,7 +673,7 @@
             "C-Centurion",
             "I-Internet",
             "A-Admin"});
-            this.cboCollTec.Location = new System.Drawing.Point(430, 135);
+            this.cboCollTec.Location = new System.Drawing.Point(426, 135);
             this.cboCollTec.MaxLength = 10;
             this.cboCollTec.Name = "cboCollTec";
             this.cboCollTec.Size = new System.Drawing.Size(76, 21);
@@ -684,7 +684,7 @@
             // 
             this.txtFipsSt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtFipsSt.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFipsSt.Location = new System.Drawing.Point(568, 135);
+            this.txtFipsSt.Location = new System.Drawing.Point(564, 135);
             this.txtFipsSt.MaxLength = 2;
             this.txtFipsSt.Name = "txtFipsSt";
             this.txtFipsSt.ReadOnly = true;
@@ -746,7 +746,7 @@
             "R",
             "O",
             "W"});
-            this.cboSurvey.Location = new System.Drawing.Point(688, 133);
+            this.cboSurvey.Location = new System.Drawing.Point(684, 133);
             this.cboSurvey.MaxLength = 1;
             this.cboSurvey.Name = "cboSurvey";
             this.cboSurvey.Size = new System.Drawing.Size(49, 21);
@@ -1788,7 +1788,7 @@
             "1",
             "2",
             "3"});
-            this.cboLag.Location = new System.Drawing.Point(1091, 224);
+            this.cboLag.Location = new System.Drawing.Point(1087, 224);
             this.cboLag.Name = "cboLag";
             this.cboLag.Size = new System.Drawing.Size(43, 21);
             this.cboLag.TabIndex = 7;
@@ -1884,7 +1884,7 @@
             this.label55.ForeColor = System.Drawing.Color.Yellow;
             this.label55.Location = new System.Drawing.Point(477, 38);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(282, 18);
+            this.label55.Size = new System.Drawing.Size(282, 32);
             this.label55.TabIndex = 297;
             this.label55.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1893,7 +1893,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1216, 849);
+            this.ClientSize = new System.Drawing.Size(1208, 849);
             this.Controls.Add(this.label55);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.txtCnty);

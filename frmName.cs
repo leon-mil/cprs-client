@@ -154,6 +154,8 @@ public string Id;
             RemoveTxtChanged();
             SelViewCode();
 
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             namedata = new NameData();
             nameaddr = NameData.GetNameAddr(Id, viewcode);
             nameaddrfactor = SourceData.GetFactor(nameaddr.Masterid);
