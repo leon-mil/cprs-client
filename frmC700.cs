@@ -215,6 +215,8 @@ namespace Cprs
                 this.Dispose();
             }
 
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             //load and display form
             LoadForm();
             DisplayForm();
