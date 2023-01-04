@@ -129,6 +129,8 @@ namespace Cprs
         {
             this.Show();
 
+            label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             GeneralDataFuctions.AddCpraccessData("DATA ENTRY", "ENTER");
             GeneralDataFuctions.UpdateCurrentUsersData("DATA ENTRY");
 
