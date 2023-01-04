@@ -164,6 +164,7 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.label27 = new System.Windows.Forms.Label();
             this.tbFactors.SuspendLayout();
             this.tbOwner.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -182,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(497, 20);
+            this.label1.Location = new System.Drawing.Point(487, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(222, 25);
             this.label1.TabIndex = 3;
@@ -1750,11 +1751,23 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(462, 9);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(285, 32);
+            this.label27.TabIndex = 199;
+            this.label27.Text = "DISCLOSURE PROHIBITED: TITLE 13 USC";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmSourceAddrPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 870);
+            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.Controls.Add(this.label27);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tbFactors);
@@ -1954,6 +1967,6 @@
         private System.Windows.Forms.TextBox txtF9addr2;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.PrintDialog printDialog1;
-
+        private System.Windows.Forms.Label label27;
     }
 }

@@ -94,6 +94,8 @@ namespace Cprs
         {
             ResetFields();
 
+            label27.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
+
             //Call in the GetFactor function based on the Masterid
             //assign to the factor class
             //used to load the textboxes on the screen
