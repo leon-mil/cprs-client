@@ -367,7 +367,7 @@ namespace Cprs
         private void ExportToExcel()
         {
 
-            string stitle = "Table1. Value of Manufacturing Put in Place in the United States";
+            string stitle = "Table1. Value of Private Manufacturing Construction Put in Place by Geographic Division - Not Seasonally Adjusted";
             string subtitle = "(Millions of Dollars. Details may not add to totals due to rounding.)";
 
             //xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.Add(After: xlWorkBook.Sheets[xlWorkBook.Sheets.Count]);
@@ -512,8 +512,8 @@ namespace Cprs
                 }
             }
 
-            ////Populate rest of the data. Start at row[6] 
-            int iRow = 7; //We start at row 6
+            ////Populate rest of the data. Start at row[7] 
+            int iRow = 7; //We start at row 7
             int iCol = 0;
 
             foreach (DataRow r in dtt.Rows)
@@ -548,7 +548,15 @@ namespace Cprs
 
             Microsoft.Office.Interop.Excel.Range footRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 3, "A"], xlWorkSheet.Cells[iRow + 3, last_col]);
             footRange2.Merge(Type.Missing);
-            xlWorkSheet.Cells[iRow + 3, 1] = "Source: U.S.Census Bureau, Construction Spending*** Current Publication Date***.";
+            xlWorkSheet.Cells[iRow + 3, 1] = "Source: U.S. Census Bureau, Construction Spending";
+            xlWorkSheet.Cells[iRow + 4, 1] = "Additional information on the survey methodology may be found at";
+            Microsoft.Office.Interop.Excel.Range footRange3 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 4, "A"], xlWorkSheet.Cells[iRow + 4, last_col]);
+            footRange3.Merge(Type.Missing);
+            footRange3.Hyperlinks.Add(xlWorkSheet.Cells[iRow + 5, 1], "http://www.census.gov/construction/c30/meth.html", Type.Missing, "<www.census.gov/construction/c30/meth.html>", "<www.census.gov/construction/c30/meth.html>");
+            footRange3.Font.Name = "Arial";
+            footRange3.Font.Size = 8;
+            xlWorkSheet.Cells[iRow + 6, 1] = "The Census Bureau has reviewed the data product for unauthorized disclosure of confidential information and has";
+            xlWorkSheet.Cells[iRow + 7, 1] = "approved the disclosure avoidance practices applied. (Approval ID: CBDRB-FY23-ESMD009-001)";
 
             //repeat title header 
             xlWorkSheet.PageSetup.PrintTitleRows = "$A$1:$N$6";
