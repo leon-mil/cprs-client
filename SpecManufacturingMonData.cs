@@ -135,5 +135,23 @@ namespace CprsDAL
             return dt;
         }
 
+        //get data from manutab table
+        public DataTable GetSpecManufacturingHistoricData()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
+            {
+                string sqlQuery = @"select SDATE,V20IXV00,V20IXV01,V20IXV11,V20IXV12,V20IXV02,V20IXV21,V20IXV22,V20IXV03,V20IXV31,V20IXV32,V20IXV33,V20IXV04,V20IXV41,V20IXV42
+                     from dbo.MANUTAB";
+
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
+                {
+                    SqlDataAdapter ds = new SqlDataAdapter(cmd);
+                    ds.Fill(dt);
+                }
+            }
+            return dt;
+        }
+
     }
 }
