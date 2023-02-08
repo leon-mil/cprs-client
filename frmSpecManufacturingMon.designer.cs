@@ -44,6 +44,7 @@ namespace Cprs
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnTable = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnHist = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -195,7 +196,7 @@ namespace Cprs
             // 
             this.btnTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTable.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnTable.Location = new System.Drawing.Point(489, 781);
+            this.btnTable.Location = new System.Drawing.Point(387, 772);
             this.btnTable.Name = "btnTable";
             this.btnTable.Size = new System.Drawing.Size(133, 23);
             this.btnTable.TabIndex = 74;
@@ -209,11 +210,25 @@ namespace Cprs
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // btnHist
+            // 
+            this.btnHist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHist.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnHist.Location = new System.Drawing.Point(607, 772);
+            this.btnHist.Name = "btnHist";
+            this.btnHist.Size = new System.Drawing.Size(133, 23);
+            this.btnHist.TabIndex = 75;
+            this.btnHist.TabStop = false;
+            this.btnHist.Text = "HISTORIC";
+            this.btnHist.UseVisualStyleBackColor = true;
+            this.btnHist.Click += new System.EventHandler(this.btnHist_Click);
+            // 
             // frmSpecManufacturingMon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 861);
+            this.Controls.Add(this.btnHist);
             this.Controls.Add(this.btnTable);
             this.Controls.Add(this.dgData);
             this.Controls.Add(this.panel2);
@@ -233,6 +248,7 @@ namespace Cprs
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.dgData, 0);
             this.Controls.SetChildIndex(this.btnTable, 0);
+            this.Controls.SetChildIndex(this.btnHist, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -255,5 +271,6 @@ namespace Cprs
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnTable;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnHist;
     }
 }

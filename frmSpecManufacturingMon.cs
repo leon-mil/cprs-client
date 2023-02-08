@@ -301,7 +301,7 @@ namespace Cprs
             saveFileDialog1.Filter = "Excel file|*.xls";
             saveFileDialog1.Title = "Save a File";
 
-            saveFileDialog1.FileName = "ManufacturingMon.xls";
+            saveFileDialog1.FileName = "privmfg.xls";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -336,7 +336,7 @@ namespace Cprs
 
             FileInfo fileInfo = new FileInfo(saveFilename);
             string dir = MapNetwork.Pathing.GetUNCPath(fileInfo.DirectoryName);
-            string sfilename = dir + "\\ManufacturingMon.xls";
+            string sfilename = dir + "\\privmfg.xls";
 
             //delete exist file
             GeneralFunctions.DeleteFile(sfilename);
@@ -551,10 +551,13 @@ namespace Cprs
             xlWorkSheet.Cells[iRow + 3, 1] = "Source: U.S. Census Bureau, Construction Spending";
             xlWorkSheet.Cells[iRow + 4, 1] = "Additional information on the survey methodology may be found at";
             Microsoft.Office.Interop.Excel.Range footRange3 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 4, "A"], xlWorkSheet.Cells[iRow + 4, last_col]);
-            footRange3.Merge(Type.Missing);
-            footRange3.Hyperlinks.Add(xlWorkSheet.Cells[iRow + 5, 1], "http://www.census.gov/construction/c30/meth.html", Type.Missing, "<www.census.gov/construction/c30/meth.html>", "<www.census.gov/construction/c30/meth.html>");
-            footRange3.Font.Name = "Arial";
-            footRange3.Font.Size = 8;
+
+            Microsoft.Office.Interop.Excel.Range footRange4 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 5, "A"], xlWorkSheet.Cells[iRow + 5, last_col]);
+            footRange4.Hyperlinks.Add(xlWorkSheet.Cells[iRow + 5, 1], "http://www.census.gov/construction/c30/meth.html", Type.Missing, "www.census.gov/construction/c30/meth.html", "www.census.gov/construction/c30/meth.html");
+            footRange4.Merge(Type.Missing);
+            footRange4.Font.Name = "Arial";
+            footRange4.Font.Size = 8;
+
             xlWorkSheet.Cells[iRow + 6, 1] = "The Census Bureau has reviewed the data product for unauthorized disclosure of confidential information and has";
             xlWorkSheet.Cells[iRow + 7, 1] = "approved the disclosure avoidance practices applied. (Approval ID: CBDRB-FY23-ESMD009-001)";
 
@@ -588,6 +591,14 @@ namespace Cprs
         {
             this.Enabled = true;
             MessageBox.Show("Files have been created");
+        }
+
+        private void btnHist_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmSpecManufacturingHist fHistory = new frmSpecManufacturingHist();
+            fHistory.Show(); 
+           
         }
     }
 }
