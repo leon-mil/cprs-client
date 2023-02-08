@@ -892,6 +892,12 @@
     <Compile Include="frmSpecManufacturingAnn.designer.cs">
       <DependentUpon>frmSpecManufacturingAnn.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSpecManufacturingHist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecManufacturingHist.designer.cs">
+      <DependentUpon>frmSpecManufacturingHist.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSpecManufacturingMon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1617,6 +1623,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSpecManufacturingAnn.resx">
       <DependentUpon>frmSpecManufacturingAnn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecManufacturingHist.resx">
+      <DependentUpon>frmSpecManufacturingHist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSpecManufacturingMon.resx">
       <DependentUpon>frmSpecManufacturingMon.cs</DependentUpon>
