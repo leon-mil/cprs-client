@@ -12,6 +12,12 @@
  Detail Design :
  Other         : Called by: Publication -> Special Private Table
  Revisions     : See Below
+ *********************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR#885
+ Description   : update excel file name from .xls to .xlsx
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -182,16 +188,16 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
             if (rdRnsa.Checked)
-                saveFileDialog1.FileName = "residentialnsa.xls";
+                saveFileDialog1.FileName = "residentialnsa.xlsx";
             else if (rdRsa.Checked)
-                saveFileDialog1.FileName = "residentialsa.xls";
+                saveFileDialog1.FileName = "residentialsa.xlsx";
             else if (rdNnsa.Checked)
-                saveFileDialog1.FileName = "nonresidentialnsa.xls";
+                saveFileDialog1.FileName = "nonresidentialnsa.xlsx";
             else
-                saveFileDialog1.FileName = "nonresidentialsa.xls";
+                saveFileDialog1.FileName = "nonresidentialsa.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -229,28 +235,28 @@ namespace Cprs
                 {
                     tsar_series = "V00XXUNA";
                     stitle = "Value of Private Residential Construction Put in Place excluding rental, vacant, and seasonal residential improvements - Not Seasonally Adjusted";
-                    sfilename = dir + "\\residentialnsa.xls";
+                    sfilename = dir + "\\residentialnsa.xlsx";
                     ssheetname = "Priv-Res NSA";
                 }
                 else if (i == 2)
                 {
                     tsar_series = "V00XXSAA";
                     stitle = "Value of Private Residential Construction Put in Place excluding rental, vacant, and seasonal residential improvements - Seasonally Adjusted Annual Rate";
-                    sfilename = dir + "\\residentialsa.xls";
+                    sfilename = dir + "\\residentialsa.xlsx";
                     ssheetname = "Priv-Res SA";
                 }
                 else if (i == 3)
                 {
                     tsar_series = "VNRXXUNA";
                     stitle = "Value of Private Nonresidential Construction Put in Place - Not Seasonally Adjusted";
-                    sfilename = dir + "\\nonresidentialnsa.xls";
+                    sfilename = dir + "\\nonresidentialnsa.xlsx";
                     ssheetname = "Priv-Nonres NSA";
                 }
                 else
                 {
                     tsar_series = "VNRXXSAA";
                     stitle = "Value of Private Nonresidential Construction Put in Place - Seasonally Adjusted Annual Rate";
-                    sfilename = dir + "\\nonresidentialsa.xls";
+                    sfilename = dir + "\\nonresidentialsa.xlsx";
                     ssheetname = "Priv-Nonres SA";
                 }
 
@@ -456,7 +462,7 @@ namespace Cprs
             
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
