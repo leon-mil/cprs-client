@@ -17,7 +17,13 @@ Modified By     :
 Keyword         :  
 Change Request  :  
 Description     :  
-**************************************************************************************************/
+**************************************************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR885
+ Description   : update excel file name from .xls to .xlsx
+ ************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -399,17 +405,17 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
 
             if (rdValue.Checked)
             {
                 if (rdRegion.Checked)
-                    saveFileDialog1.FileName = "Region.xls";
+                    saveFileDialog1.FileName = "Region.xlsx";
                 if (rdDivision.Checked)
-                    saveFileDialog1.FileName = "Division.xls";
+                    saveFileDialog1.FileName = "Division.xlsx";
                 if (rdState.Checked)
-                    saveFileDialog1.FileName = "State.xls";
+                    saveFileDialog1.FileName = "State.xlsx";
             }
 
             var result = saveFileDialog1.ShowDialog();
@@ -561,11 +567,11 @@ namespace Cprs
             if (rdValue.Checked)
             {
                 if (rdRegion.Checked)
-                    sfilename = dir + "\\Region.xls";
+                    sfilename = dir + "\\Region.xlsx";
                 if (rdDivision.Checked)
-                    sfilename = dir + "\\Division.xls";
+                    sfilename = dir + "\\Division.xlsx";
                 if (rdState.Checked)
-                    sfilename = dir + "\\State.xls";
+                    sfilename = dir + "\\State.xlsx";
             }
            
             /*start a new thread */
@@ -614,7 +620,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
