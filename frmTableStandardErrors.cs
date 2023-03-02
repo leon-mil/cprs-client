@@ -25,7 +25,13 @@ Modified By   :Christine
 Keyword       :
 Change Request:
 Description   :get current survey month from SAATOT table instead of VIPSADJ table
-***********************************************************************/
+***********************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR885
+ Description   : update excel file name from .xls to .xlsx
+ *********************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -210,9 +216,9 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
-            saveFileDialog1.FileName = "totalcv.xls";
+            saveFileDialog1.FileName = "totalcv.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -249,22 +255,22 @@ namespace Cprs
             {
                 //create sheet tables
                 dtab = data_object.GetTableStandardErrorsData("T", sdate);
-                sfilename = dir + "\\totalcv.xls";
+                sfilename = dir + "\\totalcv.xlsx";
                 ssheetname = "Total CV";
                 ExportToExcel(sfilename, dtab, "T", ssheetname);
 
                 dtab = data_object.GetTableStandardErrorsData("V", sdate);
-                sfilename = dir + "\\privcv.xls";
+                sfilename = dir + "\\privcv.xlsx";
                 ssheetname = "Private CV";
                 ExportToExcel(sfilename, dtab, "V", ssheetname);
 
                 dtab = data_object.GetTableStandardErrorsData("S", sdate);
-                sfilename = dir + "\\statecv.xls";
+                sfilename = dir + "\\statecv.xlsx";
                 ssheetname = "State CV";
                 ExportToExcel(sfilename, dtab, "S", ssheetname);
 
                 dtab = data_object.GetTableStandardErrorsData("F", sdate);
-                sfilename = dir + "\\fedcv.xls";
+                sfilename = dir + "\\fedcv.xlsx";
                 ssheetname = "Fed CV";
                 ExportToExcel(sfilename, dtab, "F", ssheetname);
             }
@@ -279,22 +285,22 @@ namespace Cprs
 
                 //create sheet tables
                 dtab = data_object.GetAnnTableStandardErrorsData("T", syear);
-                sfilename = dir + "\\anntotcv.xls";
+                sfilename = dir + "\\anntotcv.xlsx";
                 ssheetname = "Total CV";
                 AnnExportToExcel(sfilename, dtab, "T", ssheetname);
 
                 dtab = data_object.GetAnnTableStandardErrorsData("V", syear);
-                sfilename = dir + "\\annprivcv.xls";
+                sfilename = dir + "\\annprivcv.xlsx";
                 ssheetname = "Private CV";
                 AnnExportToExcel(sfilename, dtab, "V", ssheetname);
 
                 dtab = data_object.GetAnnTableStandardErrorsData("S", syear);
-                sfilename = dir + "\\annstcv.xls";
+                sfilename = dir + "\\annstcv.xlsx";
                 ssheetname = "State CV";
                 AnnExportToExcel(sfilename, dtab, "S", ssheetname);
 
                 dtab = data_object.GetAnnTableStandardErrorsData("F", syear);
-                sfilename = dir + "\\annfedcv.xls";
+                sfilename = dir + "\\annfedcv.xlsx";
                 ssheetname = "Fed CV";
                 AnnExportToExcel(sfilename, dtab, "F", ssheetname);
             }
@@ -647,7 +653,7 @@ namespace Cprs
 
                 // Save file & Quit application
                 xlApp.DisplayAlerts = false; //Supress overwrite request
-                xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);         
+                xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);         
                 xlWorkBook.Close(true, misValue, misValue);
            
                 try
@@ -889,7 +895,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
@@ -909,9 +915,9 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
-            saveFileDialog1.FileName = "anntotcv.xls";
+            saveFileDialog1.FileName = "anntotcv.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
