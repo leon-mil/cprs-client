@@ -17,6 +17,12 @@ Modified By     :  Christine Zhang
 Keyword         :  
 Change Request  :  
 Description     : update GetNextCase() set default apptime and append if the their value are empty
+****************************************************************************************
+Modified Date :  2/ 23/ 2023
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request:  CR#886
+ Description   :  add Ringcount to sched_call table
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -59,6 +65,7 @@ namespace CprsDAL
                     scall.Callcnt = Convert.ToInt32(reader["CALLCNT"]);
                     scall.Complete = reader["COMPLETE"].ToString();
                     scall.LVMcnt = Convert.ToInt32(reader["LVMCNT"]);
+                    scall.Ringcnt = Convert.ToInt32(reader["RINGCNT"]);
                     scall.Apptdate = reader["APPTDATE"].ToString();
                     scall.Appttime = reader["APPTTIME"].ToString();
                     scall.Apptends = reader["APPTENDS"].ToString();
@@ -206,8 +213,8 @@ namespace CprsDAL
         {
             SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString());
 
-            string isql = "insert dbo.Sched_call (ID, CALLREQ, CALLTPE, PRIORITY, ACCESDAY, ACCESTMS, ACCESTME, ACCESCDE, ACCESNME, CALLSTAT, CALLCNT, COMPLETE, LVMCNT, APPTDATE, APPTTIME, APPTENDS, COLTEC, ADDED) "
-                        + "Values (@ID, @CALLREQ, @CALLTPE, @PRIOITY,@ACCESDAY, @ACCESTMS, @ACCESTME, @ACCESCDE, @ACCESNME, @CALLSTAT, @CALLCNT, @COMPLETE,@LVMCNT, @APPTDATE, @APPTTIME,@APPTENDS, @COLTEC, @ADDED)";
+            string isql = "insert dbo.Sched_call (ID, CALLREQ, CALLTPE, PRIORITY, ACCESDAY, ACCESTMS, ACCESTME, ACCESCDE, ACCESNME, CALLSTAT, CALLCNT, COMPLETE, LVMCNT, RINGCNT, APPTDATE, APPTTIME, APPTENDS, COLTEC, ADDED) "
+                        + "Values (@ID, @CALLREQ, @CALLTPE, @PRIOITY,@ACCESDAY, @ACCESTMS, @ACCESTME, @ACCESCDE, @ACCESNME, @CALLSTAT, @CALLCNT, @COMPLETE,@LVMCNT, @RINGCNT, @APPTDATE, @APPTTIME,@APPTENDS, @COLTEC, @ADDED)";
             SqlCommand insert_command = new SqlCommand(isql, sql_connection);
 
             insert_command.Parameters.AddWithValue("@ID", sc.Id);
@@ -223,6 +230,7 @@ namespace CprsDAL
             insert_command.Parameters.AddWithValue("@CALLCNT", sc.Callcnt);
             insert_command.Parameters.AddWithValue("@COMPLETE", sc.Complete);
             insert_command.Parameters.AddWithValue("@LVMCNT", sc.LVMcnt);
+            insert_command.Parameters.AddWithValue("@RINGCNT", sc.Ringcnt);
             insert_command.Parameters.AddWithValue("@APPTDATE", sc.Apptdate);
             insert_command.Parameters.AddWithValue("@APPTTIME", sc.Appttime);
             insert_command.Parameters.AddWithValue("@APPTENDS", sc.Apptends);
@@ -267,6 +275,7 @@ namespace CprsDAL
                                "CALLCNT = @CALLCNT, " +
                                "COMPLETE = @COMPLETE, " +
                                "LVMCNT = @LVMCNT, " +
+                               "RINGCNT = @RINGCNT, " +
                                "APPTDATE = @APPTDATE, " +
                                "APPTTIME = @APPTTIME, " +
                                "APPTENDS = @APPTENDS, " +
@@ -288,6 +297,7 @@ namespace CprsDAL
                 update_command.Parameters.AddWithValue("@CALLCNT", sc.Callcnt);
                 update_command.Parameters.AddWithValue("@COMPLETE", sc.Complete);
                 update_command.Parameters.AddWithValue("@LVMCNT", sc.LVMcnt);
+                update_command.Parameters.AddWithValue("@RINGCNT", sc.Ringcnt);
                 update_command.Parameters.AddWithValue("@APPTDATE", sc.Apptdate);
                 update_command.Parameters.AddWithValue("@APPTTIME", sc.Appttime);
                 update_command.Parameters.AddWithValue("@APPTENDS", sc.Apptends);
