@@ -12,11 +12,11 @@ Detailed Design:    CPRS II - Internal Time SeriesDesign
 Other:	            Called by: Main Menu
 Revision History:	
 ****************************************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR885
+ Description   : update excel file name from .xls to .xlsx
 ****************************************************************************************/
 
 
@@ -941,10 +941,10 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save a File";
 
-            saveFileDialog1.FileName = "totsats.xls";
+            saveFileDialog1.FileName = "totsats.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -1018,7 +1018,7 @@ namespace Cprs
             stitle = "Magnificent 7 ( from January 1993)";
             stitle1 = "Highs and Lows";
 
-            sfilename = dir + "\\totsats.xls";
+            sfilename = dir + "\\totsats.xlsx";
             ssheetname = "Total Mag 7";
             ExportToExcel(sfilename, dt, stitle, stitle1, ssheetname);
 
@@ -1043,7 +1043,7 @@ namespace Cprs
             stitle = "Total Private Spending (From January 1993) ";
             stitle1 = "Highs and Lows";
 
-            sfilename = dir + "\\privsats.xls";
+            sfilename = dir + "\\privsats.xlsx";
             ssheetname = "Total Private";
             ExportToExcel(sfilename, dt, stitle, stitle1, ssheetname);
 
@@ -1068,7 +1068,7 @@ namespace Cprs
             stitle = "Total State and Local Spending (From January 1993)";
             stitle1 = "Highs and Lows";
 
-            sfilename = dir + "\\slsats.xls";
+            sfilename = dir + "\\slsats.xlsx";
             ssheetname = "Total State & Local";
             ExportToExcel(sfilename, dt, stitle, stitle1, ssheetname);
 
@@ -1094,7 +1094,7 @@ namespace Cprs
             stitle = "Total Federal Spending (From January 2002)";
             stitle1 = "Highs and Lows";
 
-            sfilename = dir + "\\fedsats.xls";
+            sfilename = dir + "\\fedsats.xlsx";
             ssheetname = "Total Federal";
             ExportToExcel(sfilename, dt, stitle, stitle1, ssheetname);
 
@@ -1250,7 +1250,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
