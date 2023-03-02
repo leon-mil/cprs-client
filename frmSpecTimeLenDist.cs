@@ -17,7 +17,13 @@ Modified By     :  Christine
 Keyword         :  
 Change Request  :  8421
 Description     :  correct title and column name in excel file
-**************************************************************************************************/
+**************************************************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR885
+ Description   : update excel file name from .xls to .xlsx
+ *************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -301,15 +307,15 @@ namespace Cprs
 
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
             string year = (DateTime.Now.Year - 1).ToString().Substring(2);
             if (SelectedSurvey == "P")
-                saveFileDialog1.FileName = "t5" + year + ".xls";
+                saveFileDialog1.FileName = "t5" + year + ".xlsx";
             else if (SelectedSurvey == "N")
-                saveFileDialog1.FileName = "t4" + year + ".xls";
+                saveFileDialog1.FileName = "t4" + year + ".xlsx";
             else
-                saveFileDialog1.FileName = "t6" + year + ".xls";
+                saveFileDialog1.FileName = "t6" + year + ".xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -339,13 +345,13 @@ namespace Cprs
 
             if (SelectedSurvey == "P")
             {
-                sfilename = dir + "\\t5" + year + ".xls";
-                sfilename2 = dir + "\\t5h" + year + ".xls";
+                sfilename = dir + "\\t5" + year + ".xlsx";
+                sfilename2 = dir + "\\t5h" + year + ".xlsx";
             }
             else if (SelectedSurvey == "N")
-                sfilename = dir + "\\t4" + year + ".xls";
+                sfilename = dir + "\\t4" + year + ".xlsx";
             else
-                sfilename = dir + "\\t6" + year + ".xls";
+                sfilename = dir + "\\t6" + year + ".xlsx";
           
             /*start a new thread */
             Thread t = new Thread(new ThreadStart(Splashstart));
@@ -364,7 +370,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
@@ -379,7 +385,7 @@ namespace Cprs
 
                 // Save file & Quit application
                 xlApp.DisplayAlerts = false; //Supress overwrite request
-                xlWorkBook.SaveAs(sfilename2, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.SaveAs(sfilename2, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 xlWorkBook.Close(true, misValue, misValue);
                 xlApp.Quit();
             }
