@@ -12,7 +12,13 @@ Change Request:
 Detail Design : 
 Rev History   : See Below
 Other         : N/A
- ***********************************************************************/
+ ***********************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR#885
+ Description   : update excel file name from .xls to .xlsx
+ *********************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -269,19 +275,19 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
            
             if (owner == "T")
-                saveFileDialog1.FileName = "PrelTotRR.xls";
+                saveFileDialog1.FileName = "PrelTotRR.xlsx";
             else if (owner == "S")
-                saveFileDialog1.FileName = "PrelSlRR.xls";
+                saveFileDialog1.FileName = "PrelSlRR.xlsx";
             else if (owner == "F")
-                saveFileDialog1.FileName = "PrelFedRR.xls";
+                saveFileDialog1.FileName = "PrelFedRR.xlsx";
             else if (owner == "N")
-                saveFileDialog1.FileName = "PrelNrRR.xls";
+                saveFileDialog1.FileName = "PrelNrRR.xlsx";
             else
-                saveFileDialog1.FileName = "PrelMfRR.xls";
+                saveFileDialog1.FileName = "PrelMfRR.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -326,33 +332,33 @@ namespace Cprs
 
             if (owner == "F")
             {
-                file1 = "PrelFedRR.xls";
-                file2 = "Rev1FedRR.xls";
-                file3 = "Rev2FedRR.xls";
+                file1 = "PrelFedRR.xlsx";
+                file2 = "Rev1FedRR.xlsx";
+                file3 = "Rev2FedRR.xlsx";
             }
             else if (owner == "M")
             {
-                file1 = "PrelMfRR.xls";
-                file2 = "Rev1MfRR.xls";
-                file3 = "Rev2MfRR.xls";
+                file1 = "PrelMfRR.xlsx";
+                file2 = "Rev1MfRR.xlsx";
+                file3 = "Rev2MfRR.xlsx";
             }
             else if (owner == "N")
             {
-                file1 = "PrelNrRR.xls";
-                file2 = "Rev1NrRR.xls";
-                file3 = "Rev2NrRR.xls";
+                file1 = "PrelNrRR.xlsx";
+                file2 = "Rev1NrRR.xlsx";
+                file3 = "Rev2NrRR.xlsx";
             }
             else if (owner == "S")
             {
-                file1 = "PrelSlRR.xls";
-                file2 = "Rev1SlRR.xls";
-                file3 = "Rev2SlRR.xls";
+                file1 = "PrelSlRR.xlsx";
+                file2 = "Rev1SlRR.xlsx";
+                file3 = "Rev2SlRR.xlsx";
             }
             else
             {
-                file1 = "PrelTotRR.xls";
-                file2 = "Rev1TotRR.xls";
-                file3 = "Rev2TotRR.xls";
+                file1 = "PrelTotRR.xlsx";
+                file2 = "Rev1TotRR.xlsx";
+                file3 = "Rev2TotRR.xlsx";
             }
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
@@ -364,7 +370,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
@@ -375,7 +381,7 @@ namespace Cprs
                 ExportToExcel(owner, i.ToString(), "1");
 
             // Save file & Quit application
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
@@ -386,7 +392,7 @@ namespace Cprs
                 ExportToExcel(owner, i.ToString(), "2");
 
             // Save file & Quit application
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
 
             xlApp.Quit();
