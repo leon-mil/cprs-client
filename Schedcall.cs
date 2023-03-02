@@ -15,11 +15,11 @@ Other:	            Called By: frmC700, frmTFU
  
 Revision History:	
 *********************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  2/23/2023
+ Modified By   :  Christine
  Keyword       :  
- Change Request:  
- Description   :  
+ Change Request:  CR#886
+ Description   :  add Ringcount to the structure
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -207,6 +207,20 @@ namespace CprsBLL
                 if (value != lvmcnt)
                 {
                     lvmcnt = value;
+                    isModified = true;
+                }
+            }
+        }
+
+        private int ringcnt = 0;
+        public int Ringcnt
+        {
+            get { return ringcnt; }
+            set
+            {
+                if (value != ringcnt)
+                {
+                    ringcnt = value;
                     isModified = true;
                 }
             }
