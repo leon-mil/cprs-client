@@ -43,7 +43,13 @@ Modified By   :Christine
 Keyword       :
 Change Request:
 Description   :create annual table from 2012 instead of 2009
-***********************************************************************/
+***********************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR885
+ Description   : update excel file name from .xls to .xlsx
+ *********************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -439,9 +445,9 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
-            saveFileDialog1.FileName = "totsa.xls";
+            saveFileDialog1.FileName = "totsa.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -504,70 +510,70 @@ namespace Cprs
                 dtab = data_object.GetTableSAAData("T", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Construction Put in Place - Seasonally Adjusted Annual Rate";
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\totsa.xls";
+                sfilename = dir + "\\totsa.xlsx";
                 ssheetname = "Total SA";
                 ExportToExcelT(sfilename, dtab, stitle, subtitle, "SA", ssheetname);
 
                 dtab = data_object.GetTableUNAData("T", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Construction Put in Place - Not Seasonally Adjusted";
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\tot.xls";
+                sfilename = dir + "\\tot.xlsx";
                 ssheetname = "Total NSA";
                 ExportToExcelT(sfilename, dtab, stitle, subtitle, "NSA", ssheetname);
 
                 dtab = data_object.GetTableSAAData("V", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Private Construction Put in Place - Seasonally Adjusted Annual Rate";
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\privsa.xls";
+                sfilename = dir + "\\privsa.xlsx";
                 ssheetname = "Priv SA";
                 ExportToExcelV(sfilename, dtab, stitle, subtitle, "SA", ssheetname);
 
                 dtab = data_object.GetTableUNAData("V", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Private Construction Put in Place - Not Seasonally Adjusted";
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\priv.xls";
+                sfilename = dir + "\\priv.xlsx";
                 ssheetname = "Priv NSA";
                 ExportToExcelV(sfilename, dtab, stitle, subtitle, "NSA", ssheetname);
 
                 dtab = data_object.GetTableSAAData("P", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Public Construction Put in Place - Seasonally Adjusted Annual Rate";
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\pubsa.xls";
+                sfilename = dir + "\\pubsa.xlsx";
                 ssheetname = "Pub SA";
                 ExportToExcelP(sfilename, dtab, stitle, subtitle, "SA", ssheetname);
 
                 dtab = data_object.GetTableUNAData("P", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Public Construction Put in Place - Not Seasonally Adjusted";
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\pub.xls";
+                sfilename = dir + "\\pub.xlsx";
                 ssheetname = "Pub NSA";
                 ExportToExcelP(sfilename, dtab, stitle, subtitle, "NSA", ssheetname);
 
                 dtab = data_object.GetTableSAAData("S", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of State and Local Construction Put in Place - Seasonally Adjusted Annual Rate";
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\slsa.xls";
+                sfilename = dir + "\\slsa.xlsx";
                 ssheetname = "State SA";
                 ExportToExcelS(sfilename, dtab, stitle, subtitle, "SA", ssheetname);
 
                 dtab = data_object.GetTableUNAData("S", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of State and Local Construction Put in Place - Not Seasonally Adjusted";
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\sl.xls";
+                sfilename = dir + "\\sl.xlsx";
                 ssheetname = "State NSA";
                 ExportToExcelS(sfilename, dtab, stitle, subtitle, "NSA", ssheetname);
 
                 dtab = data_object.GetTableSAAData("F", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Federal Construction Put in Place - Seasonally Adjusted Annual Rate";
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\fedsa.xls";
+                sfilename = dir + "\\fedsa.xlsx";
                 ssheetname = "Fed SA";
                 ExportToExcelF(sfilename, dtab, stitle, subtitle, "SA", ssheetname);
 
                 dtab = data_object.GetTableUNAData("F", sdate, pm1, pm2, pm3, pm4, pm5);
                 stitle = "Value of Federal Construction Put in Place - Not Seasonally Adjusted";
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\fed.xls";
+                sfilename = dir + "\\fed.xlsx";
                 ssheetname = "Fed NSA";
                 ExportToExcelF(sfilename, dtab, stitle, subtitle, "NSA", ssheetname);
             }
@@ -591,7 +597,7 @@ namespace Cprs
                 dtab = data_object.GetAnnualReleaseData("T", start_year, end_year);
                 stitle = "Annual Value of Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\total.xls";
+                sfilename = dir + "\\total.xlsx";
                 ssheetname = "Total";
                 ExportAnnualToExcel("T", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
@@ -599,28 +605,28 @@ namespace Cprs
                 dtab = data_object.GetAnnualReleaseData("V", start_year, end_year);
                 stitle = "Annual Value of Private Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\private.xls";
+                sfilename = dir + "\\private.xlsx";
                 ssheetname = "Private";
                 ExportAnnualToExcel("V", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
                 dtab = data_object.GetAnnualReleaseData("P", start_year, end_year);
                 stitle = "Annual Value of Public Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals due to rounding.)";
-                sfilename = dir + "\\public.xls";
+                sfilename = dir + "\\public.xlsx";
                 ssheetname = "Public";
                 ExportAnnualToExcel("P", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
                 dtab = data_object.GetAnnualReleaseData("S", start_year, end_year);
                 stitle = "Annual Value of State and Local Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\state.xls";
+                sfilename = dir + "\\state.xlsx";
                 ssheetname = "State";
                 ExportAnnualToExcel("S", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
 
                 dtab = data_object.GetAnnualReleaseData("F", start_year, end_year);
                 stitle = "Annual Value of Federal Construction Put in Place " + start_year + " - " + end_year;
                 subtitle = "(Millions of dollars. Details may not add to totals since all types of construction are not shown separately.)";
-                sfilename = dir + "\\federal.xls";
+                sfilename = dir + "\\federal.xlsx";
                 ssheetname = "Federal";
                 ExportAnnualToExcel("F", sfilename, dtab, stitle, subtitle, ssheetname, start_year, end_year);
             }
@@ -895,7 +901,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
@@ -1195,7 +1201,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
@@ -1481,7 +1487,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
@@ -1737,7 +1743,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
@@ -1983,7 +1989,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
@@ -2004,9 +2010,9 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
-            saveFileDialog1.FileName = "total.xls";
+            saveFileDialog1.FileName = "total.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -2428,7 +2434,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
