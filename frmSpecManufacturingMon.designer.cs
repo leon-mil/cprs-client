@@ -196,7 +196,7 @@ namespace Cprs
             // 
             this.btnTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTable.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnTable.Location = new System.Drawing.Point(387, 772);
+            this.btnTable.Location = new System.Drawing.Point(394, 772);
             this.btnTable.Name = "btnTable";
             this.btnTable.Size = new System.Drawing.Size(133, 23);
             this.btnTable.TabIndex = 74;
@@ -214,7 +214,7 @@ namespace Cprs
             // 
             this.btnHist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHist.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnHist.Location = new System.Drawing.Point(607, 772);
+            this.btnHist.Location = new System.Drawing.Point(549, 772);
             this.btnHist.Name = "btnHist";
             this.btnHist.Size = new System.Drawing.Size(133, 23);
             this.btnHist.TabIndex = 75;
