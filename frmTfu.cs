@@ -93,6 +93,12 @@ Revision History:
  Keyword       :  
  Change Request: CR8250
  Description   : add mark case button, enable for NPC lead,manager and grade 5 interviewer 
+************************************************************************************
+Modified Date :  2 / 23 / 2022
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR886
+ Description   : skip case if 3 consecutive call resolutions of 1, 2
 ************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -2965,27 +2971,42 @@ namespace Cprs
                 }
                 else if (schedcall.Callstat == "1" || schedcall.Callstat == "2")
                 {
-                    //reschedule in a hour later.
-                    schedcall.Apptdate = DateTime.Now.ToString("MMdd");
-                    schedcall.Callreq = "Y";
-                    schedcall.Complete = "N";
-                    if (DateTime.Now.Hour < 16)
+                    
+                    int ringcount = schedcall.Ringcnt;
+                    schedcall.Ringcnt = ringcount + 1;
+
+                    //if 3 times left message, set call req to "N"
+                    if (schedcall.Ringcnt >= 3)
                     {
-                        schedcall.Appttime = DateTime.Now.AddHours(1).ToString("HHmm");
-                        schedcall.Apptends = "1700";
+                        schedcall.Callreq = "N";
+                        schedcall.Complete = "Y";
                     }
                     else
                     {
-                        if (DateTime.Today.Day == cut_day)
+                        schedcall.Complete = "N";
+                        schedcall.Callreq = "Y";
+
+                        //reschedule in a hour later.
+                        schedcall.Apptdate = DateTime.Now.ToString("MMdd");
+
+                        if (DateTime.Now.Hour < 16)
                         {
-                            schedcall.Callreq = "N";
-                            schedcall.Complete = "Y";
+                            schedcall.Appttime = DateTime.Now.AddHours(1).ToString("HHmm");
+                            schedcall.Apptends = "1700";
                         }
                         else
                         {
-                            schedcall.Apptdate = GeneralFunctions.GetNextBusinessDay(DateTime.Now);
-                            schedcall.Appttime = (8 + time_factor).ToString("00") + "00";
-                            schedcall.Apptends = "1700";
+                            if (DateTime.Today.Day == cut_day)
+                            {
+                                schedcall.Callreq = "N";
+                                schedcall.Complete = "Y";
+                            }
+                            else
+                            {
+                                schedcall.Apptdate = GeneralFunctions.GetNextBusinessDay(DateTime.Now);
+                                schedcall.Appttime = (8 + time_factor).ToString("00") + "00";
+                                schedcall.Apptends = "1700";
+                            }
                         }
                     }
                     schedcall.Calltpe = "S";
@@ -3198,6 +3219,16 @@ namespace Cprs
                                 sscc.Callreq = schedcall.Callreq;
                                 sscc.Calltpe = schedcall.Calltpe;
                                 sscc.Complete = schedcall.Complete;
+
+                                if (schedcall.Callstat == "1" || schedcall.Callstat == "2")
+                                {
+                                    sscc.Ringcnt = sscc.Ringcnt + 1;
+                                    if (sscc.Ringcnt >= 3)
+                                    {
+                                        schedcall.Callreq = "N";
+                                        schedcall.Complete = "Y";
+                                    }
+                                }
 
                                 if (schedcall.Callstat == "6")
                                 {
