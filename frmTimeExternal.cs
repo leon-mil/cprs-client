@@ -7,21 +7,21 @@
  Creation Date : 07/19/2017
  Inputs        : N/A
  Parameters    : N/A
- Output        : totsatime.xls, tottime.xls, privsatime.xls,
-                 privtime.xls, pubsatime.xls, pubtime.xls,
-                 slsatime.xls, sltime.xls, fedsatime.xls, fedtime.xls
+ Output        : totsatime.xlsx, tottime.xlsx, privsatime.xlsx,
+                 privtime.xlsx, pubsatime.xlsx, pubtime.xlsx,
+                 slsatime.xlsx, sltime.xlsx, fedsatime.xlsx, fedtime.xlsx
  Description   : This program will display screen to External time
                  series tables and the user can create related excel files
  Detail Design : Detailed Design for External Time Series
  Other         : Called by: Publication -> External Time Series
  Revisions     : See Below
  *********************************************************************
-Modified Date :
-Modified By   :
-Keyword       :
-Change Request:
-Description   :
-***********************************************************************/
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR885
+ Description   : update excel file name from .xls to .xlsx
+ *********************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -349,10 +349,10 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save a File";
 
-            saveFileDialog1.FileName = "totsatime.xls";
+            saveFileDialog1.FileName = "totsatime.xlsx";
           
             var result = saveFileDialog1.ShowDialog();
 
@@ -412,7 +412,7 @@ namespace Cprs
                     "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA",
                     "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN",
                     "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW"};
-            sfilename = dir + "\\totsatime.xls";
+            sfilename = dir + "\\totsatime.xlsx";
             ssheetname = "Total SA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -427,7 +427,7 @@ namespace Cprs
                     "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA",
                     "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN",
                     "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW"};
-            sfilename = dir + "\\tottime.xls";
+            sfilename = dir + "\\tottime.xlsx";
             ssheetname = "Total NSA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -444,7 +444,7 @@ namespace Cprs
                     "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ", "BA",
                     "BB", "BC", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BK", "BL", "BM", "BN",
                     "BO"};
-            sfilename = dir + "\\privsatime.xls";
+            sfilename = dir + "\\privsatime.xlsx";
             ssheetname = "Private SA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -461,7 +461,7 @@ namespace Cprs
                     "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ", "BA",
                     "BB", "BC", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BK", "BL", "BM", "BN",
                     "BO"};
-            sfilename = dir + "\\privtime.xls";
+            sfilename = dir + "\\privtime.xlsx";
             ssheetname = "Private NSA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -476,7 +476,7 @@ namespace Cprs
                     "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA",
                     "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN",
                     "AO", "AP", "AQ", "AR"};
-            sfilename = dir + "\\pubsatime.xls";
+            sfilename = dir + "\\pubsatime.xlsx";
             ssheetname = "Public SA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -491,7 +491,7 @@ namespace Cprs
                     "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA",
                     "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN",
                     "AO", "AP", "AQ", "AR"};
-            sfilename = dir + "\\pubtime.xls";
+            sfilename = dir + "\\pubtime.xlsx";
             ssheetname = "Public NSA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -508,7 +508,7 @@ namespace Cprs
                     "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ", "BA",
                     "BB", "BC", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BK", "BL", "BM", "BN",
                     "BO"};
-            sfilename = dir + "\\slsatime.xls";
+            sfilename = dir + "\\slsatime.xlsx";
             ssheetname = "State SA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -525,7 +525,7 @@ namespace Cprs
                     "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ", "BA",
                     "BB", "BC", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BK", "BL", "BM", "BN",
                     "BO"};
-            sfilename = dir + "\\sltime.xls";
+            sfilename = dir + "\\sltime.xlsx";
             ssheetname = "State NSA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -538,7 +538,7 @@ namespace Cprs
             last_col = "N";
             strColumns = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
                     "L", "M", "N"};
-            sfilename = dir + "\\fedsatime.xls";
+            sfilename = dir + "\\fedsatime.xlsx";
             ssheetname = "Fed SA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
@@ -551,15 +551,11 @@ namespace Cprs
             last_col = "N";
             strColumns = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
                     "L", "M", "N"};
-            sfilename = dir + "\\fedtime.xls";
+            sfilename = dir + "\\fedtime.xlsx";
             ssheetname = "Fed NSA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
-            //Release objects
-            GeneralFunctions.releaseObject(xlWorkSheet);
-            GeneralFunctions.releaseObject(xlWorkBook);
-            GeneralFunctions.releaseObject(xlApp);
-
+            
             /*close message wait form, abort thread */
             waiting.ExternalClose();
             t.Abort();
@@ -1051,7 +1047,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
