@@ -19,7 +19,13 @@ Modified By   :Christine
 Keyword       :
 Change Request:
 Description   :get current survey month from SAATOT table instead of VIPSADJ table
-***********************************************************************/
+***********************************************************************
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR#885
+ Description   : update excel file name from .xls to .xlsx
+ *********************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -262,9 +268,9 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save an File";
-            saveFileDialog1.FileName = "totalsf.xls";
+            saveFileDialog1.FileName = "totalsf.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -308,35 +314,35 @@ namespace Cprs
             dtab = data_object.GetTableSeasonalFactorData("T", sdate, pm1, pm2, pm3, pm4);
             stitle = "Factors Used to Seasonally Adjust Estimates of the";
             subtitle = "Value of Total Construction Put in Place";
-            sfilename = dir + "\\totalsf.xls";
+            sfilename = dir + "\\totalsf.xlsx";
             ssheetname = "Total SF";
             ExportToExcel(sfilename, dtab, stitle, subtitle, "T", ssheetname);
 
             dtab = data_object.GetTableSeasonalFactorData("V", sdate, pm1, pm2, pm3, pm4);
             stitle = "Factors Used to Seasonally Adjust Estimates of the";
             subtitle = "Value of Private Construction Put in Place";
-            sfilename = dir + "\\privsf.xls";
+            sfilename = dir + "\\privsf.xlsx";
             ssheetname = "Private SF";
             ExportToExcel(sfilename, dtab, stitle, subtitle, "V", ssheetname);
 
             dtab = data_object.GetTableSeasonalFactorData("P", sdate, pm1, pm2, pm3, pm4);
             stitle = "Factors Used to Seasonally Adjust Estimates of the";
             subtitle = "Value of Public Construction Put in Place";
-            sfilename = dir + "\\pubsf.xls";
+            sfilename = dir + "\\pubsf.xlsx";
             ssheetname = "Public SF";
             ExportToExcel(sfilename, dtab, stitle, subtitle, "P", ssheetname);
 
             dtab = data_object.GetTableSeasonalFactorData("S", sdate, pm1, pm2, pm3, pm4);
             stitle = "Factors Used to Seasonally Adjust Estimates of the";
             subtitle = "Value of State and Local Construction Put in Place";
-            sfilename = dir + "\\statesf.xls";
+            sfilename = dir + "\\statesf.xlsx";
             ssheetname = "State SF";
             ExportToExcel(sfilename, dtab, stitle, subtitle, "S", ssheetname);
 
             dtab = data_object.GetTableSeasonalFactorData("F", sdate, pm1, pm2, pm3, pm4);
             stitle = "Factors Used to Seasonally Adjust Estimates of the";
             subtitle = "Value of Federal Construction Put in Place";
-            sfilename = dir + "\\fedsf.xls";
+            sfilename = dir + "\\fedsf.xlsx";
             ssheetname = "Fed SF";
             ExportToExcel(sfilename, dtab, stitle, subtitle, "F", ssheetname);
 
@@ -553,7 +559,7 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Supress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             try
             {
