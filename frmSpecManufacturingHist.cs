@@ -27,11 +27,11 @@
 
  Revisions     : See Below
  *********************************************************************
- Modified Date : 
- Modified By   : 
+ Modified Date : 2/21/2023
+ Modified By   : Christine Zhang
  Keyword       : 
- Change Request: 
- Description   : 
+ Change Request: CR#885
+ Description   : update excel file name from .xls to .xlsx
  *********************************************************************/
 
 using CprsDAL;
@@ -163,10 +163,10 @@ namespace Cprs
         {
             // Displays a SaveFileDialog save file
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel file|*.xls";
+            saveFileDialog1.Filter = "Excel file|*.xlsx";
             saveFileDialog1.Title = "Save a File";
 
-            saveFileDialog1.FileName = "privmfgtime.xls";
+            saveFileDialog1.FileName = "privmfgtime.xlsx";
 
             var result = saveFileDialog1.ShowDialog();
 
@@ -407,7 +407,7 @@ namespace Cprs
 
             FileInfo fileInfo = new FileInfo(saveFilename);
             string dir = MapNetwork.Pathing.GetUNCPath(fileInfo.DirectoryName);
-            string sfilename = dir + "\\" + "privmfgtime.xls";
+            string sfilename = dir + "\\" + "privmfgtime.xlsx";
 
             //delete exist file
             GeneralFunctions.DeleteFile(sfilename);
@@ -420,7 +420,8 @@ namespace Cprs
 
             // Save file & Quit application
             xlApp.DisplayAlerts = false; //Suppress overwrite request
-            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            //xlWorkBook.SaveAs(sfilename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
