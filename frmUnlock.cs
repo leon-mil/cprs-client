@@ -22,11 +22,11 @@ Detailed Design:    None
 Other:	            Called from: Main form
 Revision History:	
 *********************************************************************
-Modified Date   :  
-Modified By     :  
+Modified Date   :  3/2/2023
+Modified By     :  Christine Zhang
 Keyword         :  
 Change Request  :  
-Description     :
+Description     : Add function to unlock tab lock
 *********************************************************************/
 
 using System;
@@ -161,6 +161,18 @@ namespace Cprs
             dgDup.Columns[7].Width = 125;
         }
 
+        /* popupalate Current users data grid */
+        private void GetDataTableTab()
+        {
+            dataObject = new UnlockData();
+            dgTab.DataSource = dataObject.GetTablockData();
+            dgTab.RowHeadersVisible = false;
+            dgTab.Columns[0].HeaderText = "TC";
+            dgTab.Columns[0].Width = 550;
+            dgTab.Columns[1].HeaderText = "USER";
+            dgTab.Columns[1].Width = 560;
+        }
+
         private void frmUnlock_FormClosing(object sender, FormClosingEventArgs e)
         {
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "EXIT");
@@ -184,6 +196,10 @@ namespace Cprs
             else if (tbResearch.SelectedTab == tbSpecialcase)
             {
                 UnLock_Specialcase();
+            }
+            else if (tbResearch.SelectedTab == tbTab)
+            {
+                UnLock_Tablock();
             }
             else
                 UnLock_Dup();
@@ -309,6 +325,31 @@ namespace Cprs
             }
         }
 
+        private void UnLock_Tablock()
+        {
+            //check if a user is selected before unlocking.
+            if (dgTab.SelectedRows.Count > 0)
+            {
+                //check before deleting
+                DialogResult UserSel = MessageBox.Show("Are you sure you want to unlock this TC?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (UserSel == DialogResult.Yes)
+                {
+                    string tc;
+                    int selectedrowindex = dgTab.SelectedCells[0].RowIndex;
+                    DataGridViewRow selectedRow = dgTab.Rows[selectedrowindex];
+                    tc = Convert.ToString(selectedRow.Cells["TC2"].Value);
+                    
+                    dataObject.ClearTabLock(tc);
+
+                    GetDataTableTab();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must select a TC to unlock");
+            }
+        }
+
         private void tbUnlock_Click(object sender, EventArgs e)
         {
             if (tbResearch.SelectedTab == tbUsers)
@@ -326,6 +367,10 @@ namespace Cprs
             else if (tbResearch.SelectedTab == tbSpecialcase)
             {
                 GetDataTableSpecialcase();
+            }
+            else if (tbResearch.SelectedTab == tbTab)
+            {
+                GetDataTableTab();
             }
             else
                 GetDataTableDupResearch();

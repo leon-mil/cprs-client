@@ -38,6 +38,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.btnUnlock = new System.Windows.Forms.Button();
             this.tbResearch = new System.Windows.Forms.TabControl();
@@ -51,6 +53,8 @@
             this.dgSpecial = new System.Windows.Forms.DataGridView();
             this.tbDup = new System.Windows.Forms.TabPage();
             this.dgDup = new System.Windows.Forms.DataGridView();
+            this.tbTab = new System.Windows.Forms.TabPage();
+            this.dgTab = new System.Windows.Forms.DataGridView();
             this.tbResearch.SuspendLayout();
             this.tbUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).BeginInit();
@@ -62,6 +66,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgSpecial)).BeginInit();
             this.tbDup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDup)).BeginInit();
+            this.tbTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTab)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -94,6 +100,7 @@
             this.tbResearch.Controls.Add(this.tbPreSamp);
             this.tbResearch.Controls.Add(this.tbSpecialcase);
             this.tbResearch.Controls.Add(this.tbDup);
+            this.tbResearch.Controls.Add(this.tbTab);
             this.tbResearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbResearch.Location = new System.Drawing.Point(42, 100);
             this.tbResearch.Name = "tbResearch";
@@ -337,19 +344,66 @@
             this.dgDup.Size = new System.Drawing.Size(1121, 601);
             this.dgDup.TabIndex = 8;
             // 
+            // tbTab
+            // 
+            this.tbTab.Controls.Add(this.dgTab);
+            this.tbTab.Location = new System.Drawing.Point(4, 22);
+            this.tbTab.Name = "tbTab";
+            this.tbTab.Padding = new System.Windows.Forms.Padding(3);
+            this.tbTab.Size = new System.Drawing.Size(1125, 610);
+            this.tbTab.TabIndex = 6;
+            this.tbTab.Text = "TAB";
+            this.tbTab.UseVisualStyleBackColor = true;
+            // 
+            // dgTab
+            // 
+            this.dgTab.AllowUserToAddRows = false;
+            this.dgTab.AllowUserToDeleteRows = false;
+            this.dgTab.AllowUserToResizeColumns = false;
+            this.dgTab.AllowUserToResizeRows = false;
+            this.dgTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgTab.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgTab.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgTab.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTab.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dgTab.Location = new System.Drawing.Point(4, 5);
+            this.dgTab.MultiSelect = false;
+            this.dgTab.Name = "dgTab";
+            this.dgTab.ReadOnly = true;
+            this.dgTab.RowHeadersVisible = false;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgTab.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgTab.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgTab.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgTab.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTab.Size = new System.Drawing.Size(1116, 601);
+            this.dgTab.TabIndex = 5;
+            // 
             // frmUnlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 853);
-            this.Controls.Add(this.tbResearch);
             this.Controls.Add(this.btnUnlock);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbResearch);
             this.Name = "frmUnlock";
             this.Load += new System.EventHandler(this.frmUnlock_Load);
+            this.Controls.SetChildIndex(this.tbResearch, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.btnUnlock, 0);
-            this.Controls.SetChildIndex(this.tbResearch, 0);
             this.tbResearch.ResumeLayout(false);
             this.tbUsers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).EndInit();
@@ -361,6 +415,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgSpecial)).EndInit();
             this.tbDup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgDup)).EndInit();
+            this.tbTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTab)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,5 +437,7 @@
         private System.Windows.Forms.DataGridView dgSpecial;
         private System.Windows.Forms.TabPage tbDup;
         private System.Windows.Forms.DataGridView dgDup;
+        private System.Windows.Forms.TabPage tbTab;
+        private System.Windows.Forms.DataGridView dgTab;
     }
 }
