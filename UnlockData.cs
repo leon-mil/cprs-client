@@ -24,11 +24,11 @@ Other:	            Called by:  frmUnlock.cs
  
 Revision History:	
 ****************************************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  03/02/2023
+ Modified By   :  Christine Zhang
  Keyword       :  
  Change Request:  
- Description   :  
+ Description   :  add function to unlock tab
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -120,6 +120,48 @@ namespace CprsDAL
                 }
             }
             return dtPSamp;
+        }
+
+        //get data from tablock table.
+        public DataTable GetTablockData()
+        {
+            DataTable dtTab = new DataTable();
+            using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
+            {
+                string sqlQuery = @"SELECT Tc2, USRNME FROM dbo.Tablock WHERE USRNME <> ''";
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
+                {
+                    SqlDataAdapter ds = new SqlDataAdapter(cmd);
+                    ds.Fill(dtTab);
+                }
+            }
+            return dtTab;
+        }
+
+        /*Clear the lock field in tablock table*/
+        public void ClearTabLock(string Tc2)
+        {
+            using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
+            {
+                sql_connection.Open();
+                string usql = "UPDATE dbo.Tablock SET " +
+                                "USRNME = '' " +
+                                "WHERE Tc2 = @Tc2";
+                SqlCommand update_command = new SqlCommand(usql, sql_connection);
+                update_command.Parameters.AddWithValue("@Tc2", Tc2);
+                try
+                {
+                    int count = update_command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    sql_connection.Close(); //close database connection
+                }
+            }
         }
 
         //Delete the account_user row selected.
