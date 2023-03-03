@@ -1318,7 +1318,7 @@ public string Id;
                     if (NamProjCommlist.Rows.Count != 0)
                     {
                             dgProjComments.DataSource = NamProjCommlist;
-                            if (tabControl1.SelectedIndex == 0)
+                            if (tabControl2.SelectedIndex == 0)
                             {
                                 dgProjComments.Columns[0].Width = 75;
                                 dgProjComments.Columns[1].Width = 60;
@@ -1329,7 +1329,7 @@ public string Id;
                     if (NamRespCommlist.Rows.Count != 0)
                     {
                         dgRespComments.DataSource = NamRespCommlist;
-                        if (tabControl1.SelectedIndex == 1)
+                        if (tabControl2.SelectedIndex == 1)
                         {
                             dgRespComments.Columns[0].Width = 75;
                             dgRespComments.Columns[1].Width = 60;
