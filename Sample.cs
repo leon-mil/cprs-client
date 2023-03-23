@@ -20,6 +20,12 @@ Revision History:
  Keyword       :  
  Change Request:  
  Description   :  Add Projlength to Class
+****************************************************************************************
+Modified Date :  03/13/2023
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#917
+Description   : add Tag to sample table
 ****************************************************************************************/
 
 using System;
@@ -662,6 +668,20 @@ namespace CprsBLL
                 if (value != projlength)
                 {
                     projlength = value;
+                    isModified = true;
+                }
+            }
+        }
+
+        private int tag;
+        public int Tag
+        {
+            get { return tag; }
+            set
+            {
+                if (value != tag)
+                {
+                    tag = value;
                     isModified = true;
                 }
             }
