@@ -25,6 +25,12 @@ Modified By   :  Christine Zhang
 Keyword       :  
 Change Request:  
 Description   : Read in Projlength from Sample table
+****************************************************************************************
+Modified Date :  03/13/2023
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#917
+Description   : add Tag to sample table
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -105,6 +111,7 @@ namespace CprsDAL
                     samp.Oflg = reader["OFLG"].ToString();
                     samp.Sampseq  = reader["SAMPSEQ"].ToString();
                     samp.Projlength = (int)reader["Projlength"];
+                    samp.Tag = (int)reader["Tag"];
                     samp.IsModified = false;
                 }
                 else
@@ -206,7 +213,8 @@ namespace CprsDAL
                               "REPCOMPD = @REPCOMPD,  " +
                               "ACTIVE = @ACTIVE, " +
                               "OADJ = @OADJ, " +
-                              "OFLG = @OFLG " +
+                              "OFLG = @OFLG, " +
+                              "TAG = @TAG " +
                               "WHERE ID = @ID";
 
               SqlCommand update_command = new SqlCommand(usql, sql_connection);
@@ -250,6 +258,7 @@ namespace CprsDAL
               update_command.Parameters.AddWithValue("@ACTIVE", so.Active);
               update_command.Parameters.AddWithValue("@OADJ", so.Oadj);
               update_command.Parameters.AddWithValue("@OFLG", so.Oflg);
+              update_command.Parameters.AddWithValue("@TAG", so.Tag);
 
                 try
               {
@@ -286,11 +295,11 @@ namespace CprsDAL
                         + " (id, masterid, respid, projdesc, contract, projloc, pcityst, fwgt, active, status, statdate, strtdate, strtdater, "
                         + " repsdate, item5a, item5ar, item5b, item5br,item5c, rvitm5c, rvitm5cr, item6, item6r, capexp, capexpr, flag5a, flag5b, flag5c, "
                         + " flagr5c, flagitm6, flagcap, compdate, compdater, repcompd, futcompd, futcompdr, flagstrtdate, flagcompdate, flagfutcompd, "
-                        + " flgmodel, model, oadj, oflg, sampseq, projlength)"
+                        + " flgmodel, model, oadj, oflg, sampseq, projlength, tag)"
                   + "Values (@ID, @masterid, @respid, @projdesc, @contract, @projloc, @pcityst, @fwgt, @active, @status, @statdate, @strtdate, @strtdater, "
                          + "@repsdate, @item5a,@item5ar,@item5b,@item5br, @item5c,@rvitm5c,@rvitm5cr, @item6,@item6r, @capexp, @capexpr,@flag5a, @flag5b, @flag5c, "
                          + " @flagr5c, @flagitm6,@flagcap,@compdate,@compdater,@repcompd,@futcompd,@futcompdr,@flagstrtdate,@flagcompdate,@flagfutcompd, "
-                         + "@flgmodel,@model,@oadj,@oflg,@sampseq,@projlength)";
+                         + "@flgmodel,@model,@oadj,@oflg,@sampseq,@projlength,@tag)";
 
           SqlCommand insert_command = new SqlCommand(isql, sql_connection);
           insert_command.CommandTimeout = 0;
@@ -340,6 +349,7 @@ namespace CprsDAL
           insert_command.Parameters.AddWithValue("@OFLG", samp.Oflg);
           insert_command.Parameters.AddWithValue("@SAMPSEQ", samp.Sampseq);
           insert_command.Parameters.AddWithValue("@PROJLENGTH", samp.Projlength);
+          insert_command.Parameters.AddWithValue("@TAG", samp.Tag);
 
             try
           {
