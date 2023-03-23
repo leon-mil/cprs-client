@@ -84,6 +84,8 @@
             this.label40 = new System.Windows.Forms.Label();
             this.txtCurrentrec = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbtag = new System.Windows.Forms.ComboBox();
+            this.label42 = new System.Windows.Forms.Label();
             this.txtChip = new System.Windows.Forms.TextBox();
             this.cbChip = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
@@ -106,6 +108,7 @@
             this.txtFipst = new System.Windows.Forms.TextBox();
             this.txtSurvey = new System.Windows.Forms.TextBox();
             this.txtLag = new System.Windows.Forms.TextBox();
+            this.txtTag = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnHistory = new System.Windows.Forms.Button();
             this.btnRef = new System.Windows.Forms.Button();
@@ -590,7 +593,7 @@
             this.txtProjDesc.Location = new System.Drawing.Point(163, 91);
             this.txtProjDesc.MaxLength = 120;
             this.txtProjDesc.Name = "txtProjDesc";
-            this.txtProjDesc.Size = new System.Drawing.Size(803, 20);
+            this.txtProjDesc.Size = new System.Drawing.Size(790, 20);
             this.txtProjDesc.TabIndex = 8;
             // 
             // txtContact
@@ -648,7 +651,7 @@
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label21.Location = new System.Drawing.Point(973, 78);
+            this.label21.Location = new System.Drawing.Point(959, 78);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(60, 33);
             this.label21.TabIndex = 61;
@@ -666,7 +669,7 @@
             "1",
             "2",
             "3"});
-            this.cbLag.Location = new System.Drawing.Point(985, 118);
+            this.cbLag.Location = new System.Drawing.Point(971, 118);
             this.cbLag.Name = "cbLag";
             this.cbLag.Size = new System.Drawing.Size(39, 21);
             this.cbLag.TabIndex = 11;
@@ -718,6 +721,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbtag);
+            this.groupBox2.Controls.Add(this.label42);
             this.groupBox2.Controls.Add(this.txtChip);
             this.groupBox2.Controls.Add(this.cbChip);
             this.groupBox2.Controls.Add(this.label41);
@@ -776,11 +781,44 @@
             this.groupBox2.Controls.Add(this.txtFipst);
             this.groupBox2.Controls.Add(this.txtSurvey);
             this.groupBox2.Controls.Add(this.txtLag);
+            this.groupBox2.Controls.Add(this.txtTag);
             this.groupBox2.Location = new System.Drawing.Point(12, 89);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1192, 177);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            // 
+            // cbtag
+            // 
+            this.cbtag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbtag.FormattingEnabled = true;
+            this.cbtag.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.cbtag.Location = new System.Drawing.Point(1026, 116);
+            this.cbtag.Name = "cbtag";
+            this.cbtag.Size = new System.Drawing.Size(41, 21);
+            this.cbtag.TabIndex = 200;
+            // 
+            // label42
+            // 
+            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label42.Location = new System.Drawing.Point(1015, 78);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(52, 33);
+            this.label42.TabIndex = 197;
+            this.label42.Text = "TAG";
+            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtChip
             // 
@@ -908,7 +946,7 @@
             // 
             // txtCostpu
             // 
-            this.txtCostpu.Location = new System.Drawing.Point(1060, 118);
+            this.txtCostpu.Location = new System.Drawing.Point(1100, 117);
             this.txtCostpu.Name = "txtCostpu";
             this.txtCostpu.ReadOnly = true;
             this.txtCostpu.Size = new System.Drawing.Size(49, 20);
@@ -921,7 +959,7 @@
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label25.Location = new System.Drawing.Point(1048, 79);
+            this.label25.Location = new System.Drawing.Point(1088, 78);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(78, 33);
             this.label25.TabIndex = 181;
@@ -1015,11 +1053,19 @@
             // 
             // txtLag
             // 
-            this.txtLag.Location = new System.Drawing.Point(985, 118);
+            this.txtLag.Location = new System.Drawing.Point(971, 118);
             this.txtLag.Name = "txtLag";
             this.txtLag.ReadOnly = true;
-            this.txtLag.Size = new System.Drawing.Size(34, 20);
+            this.txtLag.Size = new System.Drawing.Size(39, 20);
             this.txtLag.TabIndex = 188;
+            // 
+            // txtTag
+            // 
+            this.txtTag.Location = new System.Drawing.Point(1026, 118);
+            this.txtTag.Name = "txtTag";
+            this.txtTag.ReadOnly = true;
+            this.txtTag.Size = new System.Drawing.Size(39, 20);
+            this.txtTag.TabIndex = 199;
             // 
             // panel1
             // 
@@ -2240,5 +2286,8 @@
         private System.Windows.Forms.TextBox txtChip;
         private System.Windows.Forms.ComboBox cbChip;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox txtTag;
+        private System.Windows.Forms.ComboBox cbtag;
     }
 }

@@ -98,7 +98,13 @@ Modified Date :  5/24/2022
  Keyword       :  
  Change Request: CR#579
  Description   : add chip field
-***********************************************************************************/
+***********************************************************************************
+Modified Date :  03/13/2023
+Modified By   :  Christine Zhang
+Keyword       :  
+Change Request:  CR#917
+Description   : add Tag to sample table and display to screen
+****************************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -470,6 +476,11 @@ namespace Cprs
                 txtChip.Visible = true;
             }
 
+            //set up tag combo
+
+            cbtag.SelectedItem = samp.Tag.ToString();
+            txtTag.Text = samp.Tag.ToString();
+
             /*Show and hide Capexp base on owner */
             if (mast.Owner == "N" || mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W")
                 SetupCapexp(true);
@@ -694,7 +705,7 @@ namespace Cprs
                 txtContract.ReadOnly = true;
                 txtFutcompd.ReadOnly = true;
                 txtItem6.ReadOnly = true;
-
+                
                 cbStatus.Enabled = true;
                 cbStatus.Visible = false;
                 txtStatus.Visible = true;
@@ -704,6 +715,8 @@ namespace Cprs
                 txtFipst.Visible = true;
                 cbLag.Visible = false;
                 txtLag.Visible = true;
+                cbtag.Visible = false;
+                txtTag.Visible = true;
 
                 txtSurvey.Visible = true;
 
@@ -728,6 +741,8 @@ namespace Cprs
                 txtColtec.Visible = false;
                 cbLag.Visible = true;
                 txtLag.Visible = false;
+                cbtag.Visible = true;
+                txtTag.Visible = false;
 
                 txtFipst.Visible = true;
 
@@ -1765,6 +1780,10 @@ namespace Cprs
                 samp.Futcompdr = txtFutcompdr.Text;
             if (samp.Flagfutcompd != txtFlagFutcompd.Text)
                 samp.Flagfutcompd = txtFlagFutcompd.Text;
+            
+            
+            if (samp.Tag.ToString() != cbtag.SelectedItem.ToString())
+                samp.Tag = Convert.ToInt32(cbtag.SelectedItem.ToString());
 
         }
 
