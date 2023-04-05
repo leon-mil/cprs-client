@@ -235,6 +235,7 @@
     </Compile>
     <Compile Include="SpecBEAData.cs" />
     <Compile Include="SpecGeoData.cs" />
+    <Compile Include="SpecialEventsData.cs" />
     <Compile Include="SpecialTCData.cs" />
     <Compile Include="SpecManufacturingAnnData.cs" />
     <Compile Include="SpecManufacturingMonData.cs" />
