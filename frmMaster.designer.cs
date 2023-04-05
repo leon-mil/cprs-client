@@ -124,7 +124,7 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(133, 23);
             this.btnPrint.TabIndex = 19;
-            this.btnPrint.Text = "PRINT";
+            this.btnPrint.Text = "EXPORT";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -203,7 +203,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.9946F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.0054F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 457F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 459F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 2, 0);
@@ -229,7 +229,7 @@
             this.flowLayoutPanel1.Controls.Add(this.txtFin);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(317, 34);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(316, 34);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -278,9 +278,9 @@
             this.flowLayoutPanel2.Controls.Add(this.cbOwner);
             this.flowLayoutPanel2.Controls.Add(this.txtOwner);
             this.flowLayoutPanel2.Controls.Add(this.btnOwner);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(326, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(325, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(405, 34);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(404, 34);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // label5
@@ -336,7 +336,7 @@
             this.flowLayoutPanel3.Controls.Add(this.txtProjselv);
             this.flowLayoutPanel3.Controls.Add(this.lbProjselvto);
             this.flowLayoutPanel3.Controls.Add(this.txtProjselv1);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(737, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(735, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(408, 34);
             this.flowLayoutPanel3.TabIndex = 2;
@@ -463,9 +463,9 @@
             this.flowLayoutPanel5.Controls.Add(this.txtSeldate);
             this.flowLayoutPanel5.Controls.Add(this.lbSeldateto);
             this.flowLayoutPanel5.Controls.Add(this.txtSeldate1);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(326, 50);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(325, 50);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(405, 33);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(404, 33);
             this.flowLayoutPanel5.TabIndex = 4;
             // 
             // label6
@@ -543,7 +543,7 @@
             this.flowLayoutPanel6.Controls.Add(this.txtTvalue);
             this.flowLayoutPanel6.Controls.Add(this.lbTvalueto);
             this.flowLayoutPanel6.Controls.Add(this.txtTvalue1);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(737, 50);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(735, 50);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(408, 33);
             this.flowLayoutPanel6.TabIndex = 5;
@@ -672,9 +672,9 @@
             this.flowLayoutPanel8.Controls.Add(this.lbNewtcto);
             this.flowLayoutPanel8.Controls.Add(this.txtNewtc1);
             this.flowLayoutPanel8.Controls.Add(this.btnNewtc1);
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(326, 95);
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(325, 95);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(405, 33);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(404, 33);
             this.flowLayoutPanel8.TabIndex = 7;
             // 
             // label7
@@ -775,7 +775,7 @@
             this.flowLayoutPanel9.Controls.Add(this.txtRunits);
             this.flowLayoutPanel9.Controls.Add(this.lbRunitsto);
             this.flowLayoutPanel9.Controls.Add(this.txtRunits1);
-            this.flowLayoutPanel9.Location = new System.Drawing.Point(737, 95);
+            this.flowLayoutPanel9.Location = new System.Drawing.Point(735, 95);
             this.flowLayoutPanel9.Name = "flowLayoutPanel9";
             this.flowLayoutPanel9.Size = new System.Drawing.Size(408, 33);
             this.flowLayoutPanel9.TabIndex = 8;
@@ -890,7 +890,7 @@
             // frmMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.lblRecordCount);
             this.Controls.Add(this.dgMaster);
             this.Controls.Add(this.groupBox1);
