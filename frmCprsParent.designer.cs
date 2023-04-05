@@ -39,6 +39,7 @@
             this.mnuCallScheduler = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTCSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUnavailableDays = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSpecialEvents = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaster = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSample = new System.Windows.Forms.ToolStripMenuItem();
@@ -192,7 +193,7 @@
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(124, 26);
+            this.mnuExit.Size = new System.Drawing.Size(180, 26);
             this.mnuExit.Text = "Exit ";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
@@ -203,9 +204,10 @@
             this.mnuTcDescription,
             this.munPrinters,
             this.mnuMySectors,
-            this.mnuCallScheduler});
+            this.mnuCallScheduler,
+            this.mnuSpecialEvents});
             this.mnuSetup.Name = "mnuSetup";
-            this.mnuSetup.Size = new System.Drawing.Size(124, 26);
+            this.mnuSetup.Size = new System.Drawing.Size(180, 26);
             this.mnuSetup.Text = "Setup";
             // 
             // mnuCcmail
@@ -258,6 +260,13 @@
             this.mnuUnavailableDays.Size = new System.Drawing.Size(218, 26);
             this.mnuUnavailableDays.Text = "Unavailable Days";
             this.mnuUnavailableDays.Click += new System.EventHandler(this.mnuUnavailableDays_Click);
+            // 
+            // mnuSpecialEvents
+            // 
+            this.mnuSpecialEvents.Name = "mnuSpecialEvents";
+            this.mnuSpecialEvents.Size = new System.Drawing.Size(221, 26);
+            this.mnuSpecialEvents.Text = "Special Events";
+            this.mnuSpecialEvents.Click += new System.EventHandler(this.mnuSpecialEvents_Click);
             // 
             // mnuSearch
             // 
@@ -899,14 +908,14 @@
             // monthlyToolStripMenuItem
             // 
             this.monthlyToolStripMenuItem.Name = "monthlyToolStripMenuItem";
-            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.monthlyToolStripMenuItem.Text = "Monthly";
             this.monthlyToolStripMenuItem.Click += new System.EventHandler(this.monthlyToolStripMenuItem_Click);
             // 
             // annualToolStripMenuItem
             // 
             this.annualToolStripMenuItem.Name = "annualToolStripMenuItem";
-            this.annualToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.annualToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.annualToolStripMenuItem.Text = "Annual";
             this.annualToolStripMenuItem.Click += new System.EventHandler(this.annualToolStripMenuItem_Click);
             // 
@@ -1337,5 +1346,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuFormlist;
         private System.Windows.Forms.ToolStripMenuItem monthlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem annualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuSpecialEvents;
     }
 }
