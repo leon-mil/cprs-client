@@ -68,7 +68,7 @@
             this.groupBox1.Size = new System.Drawing.Size(160, 89);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Please Select Print Data:";
+            this.groupBox1.Text = "Please Select Export Data:";
             // 
             // btnOK
             // 
@@ -85,7 +85,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 212);
+            this.ClientSize = new System.Drawing.Size(218, 211);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
@@ -94,7 +94,7 @@
             this.MinimumSize = new System.Drawing.Size(226, 242);
             this.Name = "frmRespPrintSel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Select Print Data";
+            this.Text = "Select Export Data";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
