@@ -13,7 +13,13 @@ Specification : Respondent Search Specifications
 Rev History   : See Below
 
 Other         : N/A
- ***********************************************************************/
+ ***********************************************************************
+Modified Date :  3 / 23 / 2023
+Modified By   :  Christine
+Keyword       :  
+Change Request: CR#945
+Description   : change print to export button
+************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -496,7 +502,7 @@ namespace Cprs
 
             if (dgResp.RowCount==0)
             {
-                MessageBox.Show("The Search Results lists is empty. Nothing to print.");
+                MessageBox.Show("The Search Results lists is empty. Nothing to explore.");
             }
             else
             {
@@ -512,19 +518,75 @@ namespace Cprs
                 popup.Dispose();
 
 
-                if ((print_selection == "Respondent" && dgResp.RowCount > 115) || (print_selection == "Project" && dgProject.RowCount >= 115))
+                if ((print_selection == "Respondent" && dgResp.RowCount > 500) || (print_selection == "Project" && dgProject.RowCount > 500))
                 {
-                    if (MessageBox.Show("The printout will contain more then 5 pages. Continue to Print?", "Printout Large", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("The export will contain more than 500 cases. Continue to Export?", "Export Large", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        PrintData(print_selection);
+                        ExportData(print_selection);
                     }
                 }
                 else
                 {
-                    PrintData(print_selection);
+                    ExportData(print_selection);
 
                 }
             }
+        }
+
+        private void ExportData(string print_selection)
+        {
+            // Displays a SaveFileDialog save file
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text file|*.dat";
+            saveFileDialog1.Title = "Save an File";
+            var result = saveFileDialog1.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            if (print_selection == "Respondent")
+            {
+
+                dgResp.MultiSelect = true;
+                dgResp.RowHeadersVisible = false;
+
+                // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+                dgResp.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+                // Select all the cells
+                dgResp.SelectAll();
+                // Copy (set clipboard)
+                Clipboard.SetDataObject(dgResp.GetClipboardContent());
+                // Paste (get the clipboard and serialize it to a file)
+                System.IO.File.WriteAllText(saveFileDialog1.FileName, Clipboard.GetText(TextDataFormat.CommaSeparatedValue));
+
+                dgResp.ClearSelection();
+                dgResp.RowHeadersVisible = true;
+                dgResp.Rows[0].Selected = true;
+                dgResp.MultiSelect = false;
+            }
+            else
+            {
+                dgProject.MultiSelect = true;
+                dgProject.RowHeadersVisible = false;
+
+                // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+                dgProject.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+                // Select all the cells
+                dgProject.SelectAll();
+                // Copy (set clipboard)
+                Clipboard.SetDataObject(dgProject.GetClipboardContent());
+                // Paste (get the clipboard and serialize it to a file)
+                System.IO.File.WriteAllText(saveFileDialog1.FileName, Clipboard.GetText(TextDataFormat.CommaSeparatedValue));
+
+                dgProject.ClearSelection();
+                dgProject.RowHeadersVisible = true;
+                dgProject.Rows[0].Selected = true;
+                dgProject.MultiSelect = false;
+
+            }
+
+            MessageBox.Show("File has been created.");
+
         }
 
         private void SetHeaderCellValueProject()
