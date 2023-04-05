@@ -13,7 +13,13 @@ Specification : C700 Search Specifications
 Rev History   : See Below
 
 Other         : N/A
- ***********************************************************************/
+ ***********************************************************************
+ Modified Date :  3 / 23 / 2023
+Modified By   :  Christine
+Keyword       :  
+Change Request: CR#945
+Description   : change print to export button
+************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -807,23 +813,55 @@ namespace Cprs
         {
             if (lblRecordCount.Text == " " || lblRecordCount.Text == "0 CASES FOUND" || lblRecordCount.Text == null)
             {
-                MessageBox.Show("The Search Results lists is empty. Nothing to print.");
+                MessageBox.Show("The Search Results lists is empty. Nothing to export.");
             }
             else
             {
-                if (dgC700Srch.RowCount >= 150)
+                if (dgC700Srch.RowCount > 500)
                 {
-                    if (MessageBox.Show("The printout will contain more then 5 pages. Continue to Print?", "Printout Large", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("The export will contain more than 500 cases. Continue to Export?", "Export Large", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        PrintData();
+                        ExportData();
                     }
                 }
                 else
                 {
-                    PrintData();
+                    ExportData();
 
                 }
             }
+        }
+
+        private void ExportData()
+        {
+            // Displays a SaveFileDialog save file
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text file|*.dat";
+            saveFileDialog1.Title = "Save an File";
+            var result = saveFileDialog1.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            dgC700Srch.MultiSelect = true;
+            dgC700Srch.RowHeadersVisible = false;
+
+            // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+            dgC700Srch.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+            // Select all the cells
+            dgC700Srch.SelectAll();
+            // Copy (set clipboard)
+            Clipboard.SetDataObject(dgC700Srch.GetClipboardContent());
+            // Paste (get the clipboard and serialize it to a file)
+            System.IO.File.WriteAllText(saveFileDialog1.FileName, Clipboard.GetText(TextDataFormat.CommaSeparatedValue));
+
+            dgC700Srch.ClearSelection();
+            dgC700Srch.RowHeadersVisible = true;
+            dgC700Srch.Rows[0].Selected = true;
+            dgC700Srch.MultiSelect = false;
+
+            MessageBox.Show("File has been created.");
+
         }
 
         private void SetHeaderCellValue()
