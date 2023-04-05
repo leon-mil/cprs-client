@@ -880,6 +880,18 @@
     <Compile Include="frmSpecGeogPub.designer.cs">
       <DependentUpon>frmSpecGeogPub.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSpecialEventAddPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialEventAddPopup.designer.cs">
+      <DependentUpon>frmSpecialEventAddPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecialEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialEvents.designer.cs">
+      <DependentUpon>frmSpecialEvents.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSpecialPriorityTC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1617,6 +1629,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSpecGeogPub.resx">
       <DependentUpon>frmSpecGeogPub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialEventAddPopup.resx">
+      <DependentUpon>frmSpecialEventAddPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialEvents.resx">
+      <DependentUpon>frmSpecialEvents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSpecialPriorityTC.resx">
       <DependentUpon>frmSpecialPriorityTC.cs</DependentUpon>
