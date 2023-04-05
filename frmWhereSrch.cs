@@ -13,12 +13,12 @@ Detailed Design:    Detailed User Requirements for interactive search Screen
 Other:	             
 Revision History:	
 *********************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
-**********************************************************************/
+Modified Date :  3 / 23 / 2023
+Modified By   :  Christine
+Keyword       :  
+Change Request: CR#945
+Description   : change print to export button
+************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -234,6 +234,7 @@ namespace Cprs
                 dgData.DataSource = dt;
                
                 dgData.Columns["Masterid"].Visible = false;
+                dgData.Columns["FIN"].DefaultCellStyle.Format = "N0";
                 dgData.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgData.Columns["Respid"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgData.Columns["Owner"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -312,24 +313,57 @@ namespace Cprs
         {
              if ( dgData.RowCount ==0)
             {
-                MessageBox.Show("The Search Results lists is empty. Nothing to print.");
+                MessageBox.Show("The Search Results lists is empty. Nothing to export.");
             }
             else
             {
-                if (dgData.RowCount >= 115)
+                if (dgData.RowCount > 500)
                 {
-                    if (MessageBox.Show("The printout will contain more then 5 pages. Continue to Print?", "Printout Large", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("The export will contain more than 500 cases. Continue to Export?", "Export Large", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        PrintData();
+                        ExportData();
                     }
                 }
                 else
                 {
-                    PrintData();
+                    ExportData();
 
                 }
             }
         }
+
+        private void ExportData()
+        {
+            // Displays a SaveFileDialog save file
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text file|*.dat";
+            saveFileDialog1.Title = "Save an File";
+            var result = saveFileDialog1.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            dgData.MultiSelect = true;
+            dgData.RowHeadersVisible = false;
+
+            // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+            dgData.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+            // Select all the cells
+            dgData.SelectAll();
+            // Copy (set clipboard)
+            Clipboard.SetDataObject(dgData.GetClipboardContent());
+            // Paste (get the clipboard and serialize it to a file)
+            System.IO.File.WriteAllText(saveFileDialog1.FileName, Clipboard.GetText(TextDataFormat.CommaSeparatedValue));
+
+            dgData.ClearSelection();
+            dgData.RowHeadersVisible = true;
+            dgData.Rows[0].Selected = true;
+            dgData.MultiSelect = false;
+
+            MessageBox.Show("File has been created.");
+
+        }
+
 
         private void SetHeaderCellValue()
         {
