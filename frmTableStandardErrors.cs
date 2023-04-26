@@ -31,6 +31,12 @@ Description   :get current survey month from SAATOT table instead of VIPSADJ tab
  Keyword       : 
  Change Request: CR885
  Description   : update excel file name from .xls to .xlsx
+ *********************************************************************
+ Modified Date : 4/20/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR#1014
+ Description   : update excel file by adding extra footnotes
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -596,6 +602,11 @@ namespace Cprs
                     Microsoft.Office.Interop.Excel.Range footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 8, "A"], xlWorkSheet.Cells[iRow + 8, "F"]);
                     footRange5.Merge(Type.Missing);
                     xlWorkSheet.Cells[iRow + 8, 1] = "lodging, religious, communication, and manufacturing.";
+
+                    Microsoft.Office.Interop.Excel.Range footRange6 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 10, "A"], xlWorkSheet.Cells[iRow + 10, "F"]);
+                    footRange6.Merge(Type.Missing);
+                    xlWorkSheet.Cells[iRow + 10, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent period.";
+
                 }
                 else if (survey_type == "V")
                 {
@@ -616,7 +627,11 @@ namespace Cprs
                     xlWorkSheet.Cells[iRow + 7, 1] = "2Private residential improvements does not include expenditures to rental, vacant, or seasonal properties.";
                     footRange4.Characters[1, 1].Font.Superscript = true;
 
-                }
+                    Microsoft.Office.Interop.Excel.Range footRange6 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 9, "A"], xlWorkSheet.Cells[iRow + 9, "F"]);
+                    footRange6.Merge(Type.Missing);
+                    xlWorkSheet.Cells[iRow + 9, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent period.";
+
+            }
                 else if (survey_type == "S")
                 {
                     Microsoft.Office.Interop.Excel.Range footRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 2, "A"], xlWorkSheet.Cells[iRow + 2, "F"]);
@@ -625,7 +640,11 @@ namespace Cprs
                     Microsoft.Office.Interop.Excel.Range footRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 3, "A"], xlWorkSheet.Cells[iRow + 3, "F"]);
                     footRange2.Merge(Type.Missing);
                     xlWorkSheet.Cells[iRow + 3, 1] = "lodging, religious, communication, and manufacturing.";
-                }
+
+                    Microsoft.Office.Interop.Excel.Range footRange6 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 5, "A"], xlWorkSheet.Cells[iRow + 5, "F"]);
+                    footRange6.Merge(Type.Missing);
+                    xlWorkSheet.Cells[iRow + 5, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent period.";
+            }
                 else
                 {
                     Microsoft.Office.Interop.Excel.Range footRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 2, "A"], xlWorkSheet.Cells[iRow + 2, "F"]);
@@ -634,7 +653,11 @@ namespace Cprs
                     Microsoft.Office.Interop.Excel.Range footRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 3, "A"], xlWorkSheet.Cells[iRow + 3, "F"]);
                     footRange2.Merge(Type.Missing);
                     xlWorkSheet.Cells[iRow + 3, 1] = "lodging, religious, communication, sewage and waste disposal, water supply, and manufacturing.";
-                }
+
+                    Microsoft.Office.Interop.Excel.Range footRange6 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 5, "A"], xlWorkSheet.Cells[iRow + 5, "F"]);
+                    footRange6.Merge(Type.Missing);
+                    xlWorkSheet.Cells[iRow + 5, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent period.";
+            }
 
                 // Page Setup
                 //Set page orientation to landscape
@@ -876,6 +899,16 @@ namespace Cprs
                 Microsoft.Office.Interop.Excel.Range footRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 2, "A"], xlWorkSheet.Cells[iRow + 2, "C"]);
                 footRange1.Merge(Type.Missing);
                 xlWorkSheet.Cells[iRow + 2, 1] = "NA Not applicable";
+
+                Microsoft.Office.Interop.Excel.Range footRange6 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 4, "A"], xlWorkSheet.Cells[iRow + 4, "C"]);
+                footRange6.Merge(Type.Missing);
+                xlWorkSheet.Cells[iRow + 4, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent annual period.";
+            }
+            else
+            {
+                Microsoft.Office.Interop.Excel.Range footRange6 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 2, "A"], xlWorkSheet.Cells[iRow + 2, "C"]);
+                footRange6.Merge(Type.Missing);
+                xlWorkSheet.Cells[iRow + 2, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent annual period.";
             }
             
             // Page Setup
