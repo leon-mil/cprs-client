@@ -36,11 +36,11 @@
  Change Request: 
  Description   : fixed screen error when deleting row
  *********************************************************************
- Modified Date : 
- Modified By   : 
+ Modified Date : April 27 2023
+ Modified By   : Christine Zhang
  Keyword       : 
  Change Request: 
- Description   : 
+ Description   : Bug fix - show changes when survey changed
  *********************************************************************/
 
 using System;
@@ -348,7 +348,7 @@ namespace Cprs
 
            filter.Append("(((( " + onet + "=true and currtc2x='1T' and prevtc2x='1T')" +
                           " or ( " + onet + "=false and currtc2 = " + selectedNewtc2.AddSqlQuotes() +
-                          " and prevtc2 = " + selectedNewtc2.AddSqlQuotes() + ")) and change <> 0)" +
+                          " and prevtc2 = " + selectedNewtc2.AddSqlQuotes() + ")))" +
                       " or ((" + onet + "=true and currtc2x='1T' and prevtc2x<>'1T')" +
                       " or  (" + onet + "=false and currtc2 = " + selectedNewtc2.AddSqlQuotes() + " " +
                       "      and prevtc2 <> " + selectedNewtc2.AddSqlQuotes() + "))" +
@@ -362,7 +362,7 @@ namespace Cprs
             //use above criteria to filter datatable and store in data view
             dv = new DataView(dt1);
             dv.RowFilter = filter.ToString();
-
+           
             di = new DataTable();
             di = dv.ToTable();
 
@@ -374,10 +374,11 @@ namespace Cprs
                 double change;
                 double currwvip;
                 double prevwvip;
-                         
+                
                 if (!double.TryParse(di.Rows[i]["Change"].ToString(), out change)) change = 0;
 
                 string id = di.Rows[i][0].ToString();
+               
                 string newtcData = di.Rows[i][1].ToString();
                 if (!double.TryParse(di.Rows[i][8].ToString(), out currwvip)) currwvip = 0;
                 if (!double.TryParse(di.Rows[i][10].ToString(), out prevwvip)) prevwvip = 0;
@@ -390,6 +391,7 @@ namespace Cprs
                 string currstatus = di.Rows[i][22].ToString();
                 string prevstatus = di.Rows[i][23].ToString();
 
+               
                 //if tc changed
                 if ((currtc2 == selectedNewtc2) && (prevtc2 != selectedNewtc2))
                 {
@@ -434,7 +436,7 @@ namespace Cprs
                         di.Rows[i].Delete();
                     }
                 }
-         
+
                 //if survey changed
                 else if ((prevsurv == selectSurvey) && (prevsurv != currsurv))
                 {
@@ -463,7 +465,8 @@ namespace Cprs
                     {
                         di.Rows[i].Delete();
                     }
-                }                                      
+                }
+                
             }
 
             //dm12022020
