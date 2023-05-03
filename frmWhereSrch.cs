@@ -156,6 +156,7 @@ namespace Cprs
             {
                 wlist.Add(s);
             }
+            var uniquewList = wlist.Distinct().ToList();
 
             List<string> collist = new List<string>();
             collist = dataObject.GetColumnNames();
@@ -171,7 +172,7 @@ namespace Cprs
             collist.Remove("RVITM5C");
 
             // find join items
-            var jlist = (from Item1 in wlist
+            var jlist = (from Item1 in uniquewList
                          join Item2 in collist
                          on Item1 equals Item2 
                          select new { Item1 }).ToList();
