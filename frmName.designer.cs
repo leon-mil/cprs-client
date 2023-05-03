@@ -78,7 +78,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtFIN = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.cboSurvey = new System.Windows.Forms.ComboBox();
             this.txtSurvey = new System.Windows.Forms.TextBox();
             this.txtProjLoc = new System.Windows.Forms.TextBox();
             this.txtProjCitySt = new System.Windows.Forms.TextBox();
@@ -724,36 +723,6 @@
             this.label15.TabIndex = 131;
             this.label15.Text = "FRAME ID";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboSurvey
-            // 
-            this.cboSurvey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.cboSurvey.BackColor = System.Drawing.SystemColors.Control;
-            this.cboSurvey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSurvey.DropDownWidth = 150;
-            this.cboSurvey.FormattingEnabled = true;
-            this.cboSurvey.Items.AddRange(new object[] {
-            "S",
-            "L",
-            "P",
-            "C",
-            "D",
-            "F",
-            "N",
-            "T",
-            "E",
-            "G",
-            "R",
-            "O",
-            "W"});
-            this.cboSurvey.Location = new System.Drawing.Point(684, 133);
-            this.cboSurvey.MaxLength = 1;
-            this.cboSurvey.Name = "cboSurvey";
-            this.cboSurvey.Size = new System.Drawing.Size(49, 21);
-            this.cboSurvey.TabIndex = 39;
-            this.cboSurvey.SelectionChangeCommitted += new System.EventHandler(this.cboSurvey_SelectionChangeCommitted);
-            this.cboSurvey.TextChanged += new System.EventHandler(this.txt_TextChanged);
-            this.cboSurvey.Enter += new System.EventHandler(this.cboSurvey_Enter);
             // 
             // txtSurvey
             // 
@@ -1928,7 +1897,6 @@
             this.Controls.Add(this.cboStatCode);
             this.Controls.Add(this.txtSelvalue);
             this.Controls.Add(this.txtSeldate);
-            this.Controls.Add(this.cboSurvey);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSurvey);
@@ -2090,7 +2058,6 @@
             this.Controls.SetChildIndex(this.txtSurvey, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtId, 0);
-            this.Controls.SetChildIndex(this.cboSurvey, 0);
             this.Controls.SetChildIndex(this.txtSeldate, 0);
             this.Controls.SetChildIndex(this.txtSelvalue, 0);
             this.Controls.SetChildIndex(this.cboStatCode, 0);
@@ -2231,7 +2198,6 @@
         private System.Windows.Forms.Button btnNewtc;
         private System.Windows.Forms.ComboBox cboStatCode;
         private System.Windows.Forms.ComboBox cboCollTec;
-        private System.Windows.Forms.ComboBox cboSurvey;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;

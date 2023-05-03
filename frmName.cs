@@ -341,7 +341,7 @@ public string Id;
                 txtSurvey.Visible = true;
                 txtSurvey.Text = nameaddr.Survey;
                 txtSurvey.ReadOnly = true;
-                cboSurvey.Visible = false;
+                
 
                 txtRepBldgs.Text = nameaddr.Rbldgs;
                 txtRepUnits.Text = Convert.ToInt32(nameaddr.Runits).ToString("N0");
@@ -354,9 +354,10 @@ public string Id;
             }
             else
             {
-                txtSurvey.Visible = false;
-                cboSurvey.Visible = true;
-                cboSurvey.Text = nameaddr.Survey;
+                txtSurvey.Visible = true;
+                txtSurvey.Text = nameaddr.Survey;
+                txtSurvey.ReadOnly = true;
+               
 
                 txtRepBldgs.Text = "";
                 txtRepUnits.Text = "";
@@ -691,7 +692,7 @@ public string Id;
             txtSelvalue.ReadOnly = true;
             cboStatCode.Enabled = false;
             txtFipsSt.ReadOnly = true;
-            cboSurvey.Enabled = false;
+           
             txtFwgt.ReadOnly = true;
             txtNewTC.ReadOnly = true;
             btnNewtc.Enabled = false;
@@ -742,7 +743,7 @@ public string Id;
             txtSelvalue.BackColor = SystemColors.Control;
             cboStatCode.BackColor = SystemColors.Control;
             txtFipsSt.BackColor = SystemColors.Control;
-            cboSurvey.BackColor = SystemColors.Control;
+            
             txtFwgt.BackColor = SystemColors.Control;
             txtNewTC.BackColor = SystemColors.Control;
             txtSourceCode.BackColor = SystemColors.Control;
@@ -794,17 +795,7 @@ public string Id;
             //Enable the fields for editing
             btnRespid.Enabled = true;
             btnRefresh.Enabled = true;
-            if (cboSurvey.Text == "M")
-            {
-                cboSurvey.Enabled = false;
-                cboSurvey.BackColor = SystemColors.Control;
-            }
-            else
-            {
-                cboSurvey.Enabled = true;
-                cboSurvey.BackColor = Color.White;
-            }
-
+            
             //set source buttons
             SetReplaceButtons();
 
@@ -909,7 +900,7 @@ public string Id;
             cboStatCode.Text = "";
             cboLag.Text = "";
             txtFipsSt.Text = "";
-            cboSurvey.Text = "";
+          
             txtFwgt.Text = "";
             txtNewTC.Text = "";
             txtSourceCode.Text = "";
@@ -1557,10 +1548,8 @@ public string Id;
         private void btnNewtc_Click(object sender, EventArgs e)
         {
             frmNewtcSel popup = new frmNewtcSel();
-            if (cboSurvey.Visible == true)
-            { popup.CaseOwner = cboSurvey.Text; }//string OwnerVal = cboSurvey.Text; }
-            else
-            { popup.CaseOwner = txtSurvey.Text; }//string OwnerVal = txtSurvey.Text; }
+           
+            popup.CaseOwner = txtSurvey.Text; 
             if (UserInfo.GroupCode == EnumGroups.NPCInterviewer || UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCManager)
                 popup.ViewOnly = true;
             else
@@ -1601,7 +1590,7 @@ public string Id;
             this.txtRespid.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.cboStatCode.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.cboCollTec.TextChanged += new System.EventHandler(this.txt_TextChanged);
-            this.cboSurvey.TextChanged += new System.EventHandler(this.txt_TextChanged);
+            
             this.txtNewTC.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.txtRepBldgs.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.txtRepUnits.TextChanged += new System.EventHandler(this.txt_TextChanged);
@@ -1637,7 +1626,7 @@ public string Id;
             this.txtRespid.TextChanged -= new System.EventHandler(this.txt_TextChanged);
             this.cboStatCode.TextChanged -= new System.EventHandler(this.txt_TextChanged);
             this.cboCollTec.TextChanged -= new System.EventHandler(this.txt_TextChanged);
-            this.cboSurvey.TextChanged -= new System.EventHandler(this.txt_TextChanged);
+            
             this.txtNewTC.TextChanged -= new System.EventHandler(this.txt_TextChanged);
             this.txtRepBldgs.TextChanged -= new System.EventHandler(this.txt_TextChanged);
             this.txtRepUnits.TextChanged -= new System.EventHandler(this.txt_TextChanged);
@@ -2227,24 +2216,7 @@ public string Id;
                     { bCollTec = false; }
                 }
 
-                //check if the survey code is 'M' accordingly use the textbox or combobox
-                if (sender == cboSurvey)
-                {
-                    varnme = "OWNER";
-                    if (cboSurvey.Visible == false)
-                    {
-                        newSurvey = "M";
-                    }
-                    else
-                    {
-                        newSurvey = cboSurvey.Text.ToString().Trim();
-                    }
-                    oldSurvey = nameaddr.Survey.ToString().Trim();
-                    if (newSurvey != oldSurvey)
-                    { bSurvey = true; }
-                    else
-                    { bSurvey = false; }
-                }
+              
             }
         }
 
@@ -2349,13 +2321,7 @@ public string Id;
                 //update any changes to NewTC and Survey(Owner) to Master table fields
                 if ((bSurvey) || (bNewTC))
                 {
-                    if (bSurvey == false)
-                    {
-                        if (cboSurvey.Visible == false)
-                        { newSurvey = "M"; }
-                        else
-                        { newSurvey = nameaddr.Survey; }
-                    }
+                   
                     if (bNewTC == false)
                     { newNewTC = nameaddr.Newtc; }
                     namedata.UpdateMasterFlds(newSurvey, newNewTC, masterid);
@@ -3051,11 +3017,7 @@ public string Id;
                 return;
             }
             string newtcval = txtNewTC.Text;
-            if (cboSurvey.Visible == true)
-            {string OwnerVal = cboSurvey.Text; }
-            else
-            { string OwnerVal = txtSurvey.Text; }
-
+            
             if (!ValidateNewtc())
             {
                 MessageBox.Show("The Newtc value entered is invalid.");
@@ -3070,10 +3032,9 @@ public string Id;
         {
             //check it validate newtc or not
             bool NewTCresult;
-            if (txtSurvey.Visible)
-                NewTCresult = GeneralDataFuctions.CheckNewTC(txtNewTC.Text, txtSurvey.Text);
-            else
-                NewTCresult = GeneralDataFuctions.CheckNewTC(txtNewTC.Text, cboSurvey.Text);
+           
+            NewTCresult = GeneralDataFuctions.CheckNewTC(txtNewTC.Text, txtSurvey.Text);
+            
             return NewTCresult;
         }
 
@@ -4092,21 +4053,8 @@ public string Id;
                 txtTimeZone.Text = GeneralDataFuctions.GetTimezone(rstatevalue);
             }
         }
-        string old_text;
-        private void cboSurvey_Enter(object sender, EventArgs e)
-        {
-            //store old status
-            old_text = cboSurvey.SelectedItem.ToString();
-        }
-
-        private void cboSurvey_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (!ValidateNewtc())
-            {
-                MessageBox.Show("The Owner is not valid for this Newtc.");
-                cboSurvey.SelectedItem = old_text;
-            }
-        }
+      
+        
 
         private void txtProjCitySt_KeyPress(object sender, KeyPressEventArgs e)
         {
