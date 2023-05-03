@@ -39,6 +39,12 @@ Description   : Update footnotes on Tables 1,2 and 4
  Keyword       : 
  Change Request: CR#885
  Description   : update excel file name from .xls to .xlsx
+ *********************************************************************
+ Modified Date : 5/2/2023
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR # 1029
+ Description   : add footnote to table3
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -1341,6 +1347,10 @@ namespace Cprs
             footRange4.Hyperlinks.Add(xlWorkSheet.Cells[iRow + 5, 1], "http://www.census.gov/construction/c30/meth.html", Type.Missing, "<www.census.gov/construction/c30/meth.html>", "<www.census.gov/construction/c30/meth.html>");
             footRange4.Font.Name = "Arial";
             footRange4.Font.Size = 8;
+
+            Microsoft.Office.Interop.Excel.Range footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 7, "A"], xlWorkSheet.Cells[iRow + 7, "F"]);
+            footRange5.Merge(Type.Missing);
+            xlWorkSheet.Cells[iRow + 7, 1] = "Coefficients of variation and standard errors are relevant to the estimate from the most recent period.";
 
             // Page Setup
             //Set page orientation to landscape
