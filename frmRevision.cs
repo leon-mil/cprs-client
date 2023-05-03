@@ -397,6 +397,9 @@ namespace Cprs
                 {
                     double updatedprevwvip = 0;
                     di.Rows[i][10] = 0;
+                    di.Rows[i][11] = "";
+                    di.Rows[i][13] = 0;
+                    di.Rows[i][15] = 0;
                     if (!double.TryParse(di.Rows[i][10].ToString(), out updatedprevwvip)) updatedprevwvip = 0;
                     change = currwvip - updatedprevwvip;
                     di.Rows[i]["Change"] = change;
@@ -412,6 +415,9 @@ namespace Cprs
                 {
                     double updatedcurrwvip = 0;
                     di.Rows[i][8] = 0;
+                    di.Rows[i][9] = "";
+                    di.Rows[i][12] = 0;
+                    di.Rows[i][14] = 0;
                     if (!double.TryParse(di.Rows[i][8].ToString(), out updatedcurrwvip)) updatedcurrwvip = 0;
                     change = updatedcurrwvip - prevwvip;
                     di.Rows[i]["Change"] = change;
@@ -427,6 +433,9 @@ namespace Cprs
                 {
                     double updatedprevwvip = 0;
                     di.Rows[i][10] = 0;
+                    di.Rows[i][11] = "";
+                    di.Rows[i][13] = 0;
+                    di.Rows[i][15] = 0;
                     if (!double.TryParse(di.Rows[i][10].ToString(), out updatedprevwvip)) updatedprevwvip = 0;
                     change = currwvip - updatedprevwvip;
                     di.Rows[i]["Change"] = change;
@@ -442,6 +451,9 @@ namespace Cprs
                 {
                     double updatedcurrwvip = 0;
                     di.Rows[i][8] = 0;
+                    di.Rows[i][9] = "";
+                    di.Rows[i][12] = 0;
+                    di.Rows[i][14] = 0;
                     if (!double.TryParse(di.Rows[i][8].ToString(), out updatedcurrwvip)) updatedcurrwvip = 0;
                     change = updatedcurrwvip - prevwvip;
                     di.Rows[i]["Change"] = change;
@@ -457,6 +469,9 @@ namespace Cprs
                 {
                     double updatedcurrwvip = 0;
                     di.Rows[i][8] = 0;
+                    di.Rows[i][9] = "";
+                    di.Rows[i][12] = 0;
+                    di.Rows[i][14] = 0;
                     if (!double.TryParse(di.Rows[i][8].ToString(), out updatedcurrwvip)) updatedcurrwvip = 0;
                     change = updatedcurrwvip - prevwvip;
                     di.Rows[i]["Change"] = change;
