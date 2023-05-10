@@ -894,7 +894,7 @@ namespace Cprs
             }
 
             //add text after grid
-            if (survey_type != "F")
+            if (survey_type != "F" && survey_type != "S")
             {
                 Microsoft.Office.Interop.Excel.Range footRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 2, "A"], xlWorkSheet.Cells[iRow + 2, "C"]);
                 footRange1.Merge(Type.Missing);
