@@ -14,11 +14,11 @@ Detailed Design:    Detailed Design for Anuualy Processing
 Other:	            Called from: 
 Revision History:	
 *********************************************************************
-Modified Date   :   
-Modified By     :   
+Modified Date   :  6/7/2023 
+Modified By     :   Christine Zhang
 Keyword         :   
 Change Request  :   
-Description     :   
+Description     :   add fedload and xseries buttons
 *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -78,14 +78,18 @@ namespace Cprs
             dgData.Columns[10].HeaderText = "STATUS";
             dgData.Columns[11].HeaderText = "VIPHIST UPDATE";
             dgData.Columns[12].HeaderText = "STATUS";
-            dgData.Columns[13].HeaderText = "FEDERAL BOOST";
+            dgData.Columns[13].HeaderText = "FEDERAL LOAD";
             dgData.Columns[14].HeaderText = "STATUS";
-            dgData.Columns[15].HeaderText = "1 UNIT LOAD";
+            dgData.Columns[15].HeaderText = "FEDERAL BOOST";
             dgData.Columns[16].HeaderText = "STATUS";
-            dgData.Columns[17].HeaderText = "TSAR PROCESSING";
+            dgData.Columns[17].HeaderText = "1 UNIT LOAD";
             dgData.Columns[18].HeaderText = "STATUS";
-            dgData.Columns[19].HeaderText = "SEASONAL UPDATE";
+            dgData.Columns[19].HeaderText = "XSERIES LOAD";
             dgData.Columns[20].HeaderText = "STATUS";
+            dgData.Columns[21].HeaderText = "TSAR PROCESSING";
+            dgData.Columns[22].HeaderText = "STATUS";
+            dgData.Columns[23].HeaderText = "SEASONAL UPDATE";
+            dgData.Columns[24].HeaderText = "STATUS";
 
            
             //make column unsortable
@@ -102,16 +106,18 @@ namespace Cprs
             DataRow dr = rows[0]; 
 
            
-            btnP1.Enabled = (dr["TASK01B"].ToString().TrimEnd() == "");
-            btnP2.Enabled = (dr["TASK02B"].ToString().TrimEnd() == "");
-            btnP3.Enabled = (dr["TASK03B"].ToString().TrimEnd() == "");
-            btnP4.Enabled = (dr["TASK04B"].ToString().TrimEnd() == "");
-            btnP5.Enabled = (dr["TASK05B"].ToString().TrimEnd() == "");
-            btnP6.Enabled = (dr["TASK06B"].ToString().TrimEnd() == "");
-            btnP7.Enabled = (dr["TASK07B"].ToString().TrimEnd() == "");
-            btnP8.Enabled = (dr["TASK08B"].ToString().TrimEnd() == "");
-            btnP9.Enabled = (dr["TASK09B"].ToString().TrimEnd() == "");
+            btnP1.Enabled  = (dr["TASK01B"].ToString().TrimEnd() == "");
+            btnP2.Enabled  = (dr["TASK02B"].ToString().TrimEnd() == "");
+            btnP3.Enabled  = (dr["TASK03B"].ToString().TrimEnd() == "");
+            btnP4.Enabled  = (dr["TASK04B"].ToString().TrimEnd() == "");
+            btnP5.Enabled  = (dr["TASK05B"].ToString().TrimEnd() == "");
+            btnP6.Enabled  = (dr["TASK06B"].ToString().TrimEnd() == "");
+            btnP7.Enabled  = (dr["TASK07B"].ToString().TrimEnd() == "");
+            btnP8.Enabled  = (dr["TASK08B"].ToString().TrimEnd() == "");
+            btnP9.Enabled  = (dr["TASK09B"].ToString().TrimEnd() == "");
             btnP10.Enabled = (dr["TASK10B"].ToString().TrimEnd() == "");
+            btnP11.Enabled = (dr["TASK11B"].ToString().TrimEnd() == "");
+            btnP12.Enabled = (dr["TASK12B"].ToString().TrimEnd() == "");
 
         }
 
@@ -190,10 +196,20 @@ namespace Cprs
                 data_object.UpdateTask("Task09");
                 btnP9.Enabled = false;
             }
-            else
+            else if (no == 10)
             {
                 data_object.UpdateTask("Task10");
                 btnP10.Enabled = false;
+            }
+            else if (no == 11)
+            {
+                data_object.UpdateTask("Task11");
+                btnP11.Enabled = false;
+            }
+            else 
+            {
+                data_object.UpdateTask("Task12");
+                btnP12.Enabled = false;
             }
 
             MessageBox.Show("Processing has been submitted. Do not close any popup windows!");
@@ -220,10 +236,14 @@ namespace Cprs
             else if (job == 6)
                 bat_file = "start_histupd.bat";
             else if (job == 7)
-                bat_file = "start_fedbst.bat";
+                bat_file = "start_fedload.bat";
             else if (job == 8)
-                bat_file = "start_unitload.bat";
+                bat_file = "start_fedbst.bat";
             else if (job == 9)
+                bat_file = "start_unitload.bat";
+            else if (job == 10)
+                bat_file = "start_xload.bat";
+            else if (job == 11)
                 bat_file = "start_anntsar.bat";
             else 
                 bat_file = "start_seasupd.bat";
@@ -286,17 +306,29 @@ namespace Cprs
 
         private void btnP8_Click(object sender, EventArgs e)
         {
-            ProcessTasks(8);
+           ProcessTasks(8);
         }
 
         private void btnP9_Click(object sender, EventArgs e)
         {
-            ProcessTasks(9);
+           ProcessTasks(9);
         }
 
         private void btnP10_Click(object sender, EventArgs e)
         {
             ProcessTasks(10);
         }
+
+        private void btnP11_Click(object sender, EventArgs e)
+        {
+           ProcessTasks(11);
+        }
+
+        private void btnP12_Click(object sender, EventArgs e)
+        {
+            ProcessTasks(12);
+        }
+
+       
     }
 }

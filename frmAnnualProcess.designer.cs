@@ -39,11 +39,13 @@
             this.btnP4 = new System.Windows.Forms.Button();
             this.btnP5 = new System.Windows.Forms.Button();
             this.btnP6 = new System.Windows.Forms.Button();
-            this.btnP7 = new System.Windows.Forms.Button();
             this.btnP8 = new System.Windows.Forms.Button();
             this.btnP9 = new System.Windows.Forms.Button();
-            this.btnP10 = new System.Windows.Forms.Button();
+            this.btnP11 = new System.Windows.Forms.Button();
+            this.btnP12 = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnP7 = new System.Windows.Forms.Button();
+            this.btnP10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             // 
             this.btnP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP1.Location = new System.Drawing.Point(179, 723);
+            this.btnP1.Location = new System.Drawing.Point(103, 722);
             this.btnP1.Name = "btnP1";
             this.btnP1.Size = new System.Drawing.Size(145, 23);
             this.btnP1.TabIndex = 28;
@@ -114,7 +116,7 @@
             // 
             this.btnP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP2.Location = new System.Drawing.Point(357, 723);
+            this.btnP2.Location = new System.Drawing.Point(267, 722);
             this.btnP2.Name = "btnP2";
             this.btnP2.Size = new System.Drawing.Size(137, 23);
             this.btnP2.TabIndex = 29;
@@ -126,7 +128,7 @@
             // 
             this.btnP3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP3.Location = new System.Drawing.Point(531, 723);
+            this.btnP3.Location = new System.Drawing.Point(433, 722);
             this.btnP3.Name = "btnP3";
             this.btnP3.Size = new System.Drawing.Size(137, 23);
             this.btnP3.TabIndex = 30;
@@ -138,7 +140,7 @@
             // 
             this.btnP4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP4.Location = new System.Drawing.Point(704, 723);
+            this.btnP4.Location = new System.Drawing.Point(600, 722);
             this.btnP4.Name = "btnP4";
             this.btnP4.Size = new System.Drawing.Size(137, 23);
             this.btnP4.TabIndex = 31;
@@ -150,7 +152,7 @@
             // 
             this.btnP5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP5.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP5.Location = new System.Drawing.Point(876, 723);
+            this.btnP5.Location = new System.Drawing.Point(767, 722);
             this.btnP5.Name = "btnP5";
             this.btnP5.Size = new System.Drawing.Size(137, 23);
             this.btnP5.TabIndex = 32;
@@ -162,7 +164,7 @@
             // 
             this.btnP6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP6.Location = new System.Drawing.Point(179, 766);
+            this.btnP6.Location = new System.Drawing.Point(929, 722);
             this.btnP6.Name = "btnP6";
             this.btnP6.Size = new System.Drawing.Size(145, 23);
             this.btnP6.TabIndex = 33;
@@ -170,27 +172,15 @@
             this.btnP6.UseVisualStyleBackColor = true;
             this.btnP6.Click += new System.EventHandler(this.btnP6_Click);
             // 
-            // btnP7
-            // 
-            this.btnP7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnP7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP7.Location = new System.Drawing.Point(357, 766);
-            this.btnP7.Name = "btnP7";
-            this.btnP7.Size = new System.Drawing.Size(137, 23);
-            this.btnP7.TabIndex = 34;
-            this.btnP7.Text = "FEDERAL BOOST";
-            this.btnP7.UseVisualStyleBackColor = true;
-            this.btnP7.Click += new System.EventHandler(this.btnP7_Click);
-            // 
             // btnP8
             // 
             this.btnP8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP8.Location = new System.Drawing.Point(531, 766);
+            this.btnP8.Location = new System.Drawing.Point(267, 766);
             this.btnP8.Name = "btnP8";
             this.btnP8.Size = new System.Drawing.Size(137, 23);
-            this.btnP8.TabIndex = 35;
-            this.btnP8.Text = "1 UNIT LOAD";
+            this.btnP8.TabIndex = 34;
+            this.btnP8.Text = "FEDERAL BOOST";
             this.btnP8.UseVisualStyleBackColor = true;
             this.btnP8.Click += new System.EventHandler(this.btnP8_Click);
             // 
@@ -198,25 +188,37 @@
             // 
             this.btnP9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnP9.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP9.Location = new System.Drawing.Point(704, 766);
+            this.btnP9.Location = new System.Drawing.Point(433, 766);
             this.btnP9.Name = "btnP9";
             this.btnP9.Size = new System.Drawing.Size(137, 23);
-            this.btnP9.TabIndex = 36;
-            this.btnP9.Text = "TSAR PROCESSING";
+            this.btnP9.TabIndex = 35;
+            this.btnP9.Text = "1 UNIT LOAD";
             this.btnP9.UseVisualStyleBackColor = true;
             this.btnP9.Click += new System.EventHandler(this.btnP9_Click);
             // 
-            // btnP10
+            // btnP11
             // 
-            this.btnP10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnP10.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnP10.Location = new System.Drawing.Point(876, 766);
-            this.btnP10.Name = "btnP10";
-            this.btnP10.Size = new System.Drawing.Size(137, 23);
-            this.btnP10.TabIndex = 37;
-            this.btnP10.Text = "SEASONAL UPDATE";
-            this.btnP10.UseVisualStyleBackColor = true;
-            this.btnP10.Click += new System.EventHandler(this.btnP10_Click);
+            this.btnP11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnP11.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnP11.Location = new System.Drawing.Point(767, 766);
+            this.btnP11.Name = "btnP11";
+            this.btnP11.Size = new System.Drawing.Size(137, 23);
+            this.btnP11.TabIndex = 36;
+            this.btnP11.Text = "TSAR PROCESSING";
+            this.btnP11.UseVisualStyleBackColor = true;
+            this.btnP11.Click += new System.EventHandler(this.btnP11_Click);
+            // 
+            // btnP12
+            // 
+            this.btnP12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnP12.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnP12.Location = new System.Drawing.Point(929, 766);
+            this.btnP12.Name = "btnP12";
+            this.btnP12.Size = new System.Drawing.Size(137, 23);
+            this.btnP12.TabIndex = 37;
+            this.btnP12.Text = "SEASONAL UPDATE";
+            this.btnP12.UseVisualStyleBackColor = true;
+            this.btnP12.Click += new System.EventHandler(this.btnP12_Click);
             // 
             // btnRefresh
             // 
@@ -231,16 +233,42 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnP7
+            // 
+            this.btnP7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnP7.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnP7.Location = new System.Drawing.Point(103, 766);
+            this.btnP7.Name = "btnP7";
+            this.btnP7.Size = new System.Drawing.Size(137, 23);
+            this.btnP7.TabIndex = 43;
+            this.btnP7.Text = "FEDERAL LOAD";
+            this.btnP7.UseVisualStyleBackColor = true;
+            this.btnP7.Click += new System.EventHandler(this.btnP7_Click);
+            // 
+            // btnP10
+            // 
+            this.btnP10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnP10.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnP10.Location = new System.Drawing.Point(600, 766);
+            this.btnP10.Name = "btnP10";
+            this.btnP10.Size = new System.Drawing.Size(137, 23);
+            this.btnP10.TabIndex = 44;
+            this.btnP10.Text = "XSERIES LOAD";
+            this.btnP10.UseVisualStyleBackColor = true;
+            this.btnP10.Click += new System.EventHandler(this.btnP10_Click);
+            // 
             // frmAnnualProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 870);
-            this.Controls.Add(this.btnRefresh);
+            this.ClientSize = new System.Drawing.Size(1188, 869);
             this.Controls.Add(this.btnP10);
+            this.Controls.Add(this.btnP7);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.btnP12);
+            this.Controls.Add(this.btnP11);
             this.Controls.Add(this.btnP9);
             this.Controls.Add(this.btnP8);
-            this.Controls.Add(this.btnP7);
             this.Controls.Add(this.btnP6);
             this.Controls.Add(this.btnP5);
             this.Controls.Add(this.btnP4);
@@ -260,11 +288,13 @@
             this.Controls.SetChildIndex(this.btnP4, 0);
             this.Controls.SetChildIndex(this.btnP5, 0);
             this.Controls.SetChildIndex(this.btnP6, 0);
-            this.Controls.SetChildIndex(this.btnP7, 0);
             this.Controls.SetChildIndex(this.btnP8, 0);
             this.Controls.SetChildIndex(this.btnP9, 0);
-            this.Controls.SetChildIndex(this.btnP10, 0);
+            this.Controls.SetChildIndex(this.btnP11, 0);
+            this.Controls.SetChildIndex(this.btnP12, 0);
             this.Controls.SetChildIndex(this.btnRefresh, 0);
+            this.Controls.SetChildIndex(this.btnP7, 0);
+            this.Controls.SetChildIndex(this.btnP10, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -281,10 +311,12 @@
         private System.Windows.Forms.Button btnP4;
         private System.Windows.Forms.Button btnP5;
         private System.Windows.Forms.Button btnP6;
-        private System.Windows.Forms.Button btnP7;
         private System.Windows.Forms.Button btnP8;
         private System.Windows.Forms.Button btnP9;
-        private System.Windows.Forms.Button btnP10;
+        private System.Windows.Forms.Button btnP11;
+        private System.Windows.Forms.Button btnP12;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnP7;
+        private System.Windows.Forms.Button btnP10;
     }
 }
