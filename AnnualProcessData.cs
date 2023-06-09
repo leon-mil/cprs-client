@@ -14,12 +14,12 @@ Other:	            Called by: frmAnnualProcess.cs
 
 Revision History:	
 ***************************************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
-****************************************************************************************/
+ Modified Date   :  6/7/2023 
+Modified By     :   Christine Zhang
+Keyword         :   
+Change Request  :   
+Description     :   add fedload and xseries fields to annprcess
+**************************************************************************************/
 using System.Data;
 using System.Data.SqlClient;
 using System;
@@ -51,8 +51,8 @@ namespace CprsDAL
                             {
                                 SqlCommand sql_command = new SqlCommand(@"INSERT INTO dbo.ANNPRCSS(year, 
                                 Task01A, Task01B, Task02A, Task02B, Task03A, Task03B,Task04A, Task04B,
-                                Task05A, Task05B, Task06A, Task06B, Task07A, Task07B,Task08A, Task08B, Task09A, Task09B, Task10A, Task10B) 
-                                VALUES (@YEAR, '','','','','','','','','','','','','','','','','','','','')", connection);
+                                Task05A, Task05B, Task06A, Task06B, Task07A, Task07B,Task08A, Task08B, Task09A, Task09B, Task10A, Task10B, Task11A, Task11B, Task12A, Task12B) 
+                                VALUES (@YEAR, '','','','','','','','','','','','','','','','','','','','', '', '','', '')", connection);
                                 sql_command.Parameters.AddWithValue("@YEAR", year);
 
                                 // Create a DataAdapter to run the command and fill the DataTable
