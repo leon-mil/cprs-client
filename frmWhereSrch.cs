@@ -267,6 +267,10 @@ namespace Cprs
                     dgData.Columns["FLAGR5C"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 if (dgData.Columns["FLAGITM6"] != null)
                     dgData.Columns["FLAGITM6"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (dgData.Columns["NDDISRUPT"] != null)
+                    dgData.Columns["NDDISRUPT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (dgData.Columns["NDDATE"] != null)
+                    dgData.Columns["NDDATE"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
 
