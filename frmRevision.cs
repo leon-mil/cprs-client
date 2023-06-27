@@ -348,7 +348,7 @@ namespace Cprs
 
            filter.Append("(((( " + onet + "=true and currtc2x='1T' and prevtc2x='1T')" +
                           " or ( " + onet + "=false and currtc2 = " + selectedNewtc2.AddSqlQuotes() +
-                          " and prevtc2 = " + selectedNewtc2.AddSqlQuotes() + ")))" +
+                          " and prevtc2 = " + selectedNewtc2.AddSqlQuotes() + ")) and change <>0 and prevsurv =currsurv and currstatus = prevstatus)" +
                       " or ((" + onet + "=true and currtc2x='1T' and prevtc2x<>'1T')" +
                       " or  (" + onet + "=false and currtc2 = " + selectedNewtc2.AddSqlQuotes() + " " +
                       "      and prevtc2 <> " + selectedNewtc2.AddSqlQuotes() + "))" +
