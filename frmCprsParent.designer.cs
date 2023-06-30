@@ -40,6 +40,7 @@
             this.mnuTCSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUnavailableDays = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSpecialEvents = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRobocalls = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaster = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSample = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,7 +206,8 @@
             this.munPrinters,
             this.mnuMySectors,
             this.mnuCallScheduler,
-            this.mnuSpecialEvents});
+            this.mnuSpecialEvents,
+            this.mnuRobocalls});
             this.mnuSetup.Name = "mnuSetup";
             this.mnuSetup.Size = new System.Drawing.Size(180, 26);
             this.mnuSetup.Text = "Setup";
@@ -267,6 +269,13 @@
             this.mnuSpecialEvents.Size = new System.Drawing.Size(221, 26);
             this.mnuSpecialEvents.Text = "Special Events";
             this.mnuSpecialEvents.Click += new System.EventHandler(this.mnuSpecialEvents_Click);
+            // 
+            // mnuRobocalls
+            // 
+            this.mnuRobocalls.Name = "mnuRobocalls";
+            this.mnuRobocalls.Size = new System.Drawing.Size(221, 26);
+            this.mnuRobocalls.Text = "Robocalls";
+            this.mnuRobocalls.Click += new System.EventHandler(this.mnuRobocalls_Click);
             // 
             // mnuSearch
             // 
@@ -1347,5 +1356,6 @@
         private System.Windows.Forms.ToolStripMenuItem monthlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem annualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuSpecialEvents;
+        private System.Windows.Forms.ToolStripMenuItem mnuRobocalls;
     }
 }

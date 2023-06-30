@@ -1417,5 +1417,16 @@ namespace Cprs
                 fp.Show();
             }
         }
+
+        private void mnuRobocalls_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmRobocalls fp = new frmRobocalls();
+
+                fp.Show();
+            }
+        }
     }
 }
