@@ -34,9 +34,9 @@ namespace Cprs
     {
         private const int CP_NOCLOSE_BUTTON = 0x200;
         public int Roboid;
+        public int Robocalls_type =0;  /*0 - robocalls creation day; 1 - robocalls callback day */
 
         private ROBOCallsData dataObject;
-
         public frmRoboCallsUpdatePopup()
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace Cprs
 
             else
             {
-                dataObject.UpdateRobocallday(Roboid, comboBox1.Text);
+                dataObject.UpdateRobocallday(Roboid, comboBox1.Text, Robocalls_type);
                 this.Dispose();
             }
         }
@@ -66,6 +66,34 @@ namespace Cprs
         private void frmRoboCallsUpdatePopup_Load(object sender, EventArgs e)
         {
             dataObject = new ROBOCallsData();
+            comboBox1.Items.Clear();
+            if (Robocalls_type ==0)
+            {
+                comboBox1.Items.Add("07");
+                comboBox1.Items.Add("08");
+                comboBox1.Items.Add("09");
+                comboBox1.Items.Add("10");
+                comboBox1.Items.Add("11");
+                comboBox1.Items.Add("12");
+                comboBox1.Items.Add("13");
+                comboBox1.Items.Add("14");
+
+                //update caption
+                this.Text = "Select Robocall Creation Day";
+            }
+            else
+            {
+                comboBox1.Items.Add("19");
+                comboBox1.Items.Add("20");
+                comboBox1.Items.Add("21");
+                comboBox1.Items.Add("22");
+                comboBox1.Items.Add("23");
+                comboBox1.Items.Add("24");
+                comboBox1.Items.Add("25");
+
+                //update caption
+                this.Text = "Select Robocall Callback Day";
+            }
         }
     }
 }
