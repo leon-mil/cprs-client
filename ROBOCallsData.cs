@@ -55,22 +55,39 @@ namespace CprsDAL
         // When the user clicks the button to update the day,
         // Updates the fields in the dbo.ROBOCALLS table
 
-        public void UpdateRobocallday(int roboid, string roboday)
+        public void UpdateRobocallday(int roboid, string day, int Robocalls_type)
         {
 
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
+                SqlCommand sql_command;
+
                 try
                 {
-                    SqlCommand sql_command = new SqlCommand("UPDATE dbo.ROBOCALLS SET roboday = @roboday," +
-                        "USRNME = @USRNME," +
-                        "PRGDTM = @PRGDTM" +
-                        " WHERE [ROBOID] = @roboid", sql_connection);
+                    if (Robocalls_type == 0)
+                    {
+                        sql_command = new SqlCommand("UPDATE dbo.ROBOCALLS SET roboday = @roboday," +
+                            "USRNME = @USRNME," +
+                            "PRGDTM = @PRGDTM" +
+                            " WHERE [ROBOID] = @roboid", sql_connection);
 
-                    sql_command.Parameters.AddWithValue("@ROBOID", SqlDbType.Int).Value = roboid;
-                    sql_command.Parameters.AddWithValue("@ROBODAY", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(roboday);
-                    sql_command.Parameters.AddWithValue("@USRNME", UserInfo.UserName);
-                    sql_command.Parameters.AddWithValue("@PRGDTM", DateTime.Now);
+                        sql_command.Parameters.AddWithValue("@ROBOID", SqlDbType.Int).Value = roboid;
+                        sql_command.Parameters.AddWithValue("@ROBODAY", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(day);
+                        sql_command.Parameters.AddWithValue("@USRNME", UserInfo.UserName);
+                        sql_command.Parameters.AddWithValue("@PRGDTM", DateTime.Now);
+                    }
+                    else
+                    {
+                        sql_command = new SqlCommand("UPDATE dbo.ROBOCALLS SET Robocall = @robocall," +
+                            "USRNME = @USRNME," +
+                            "PRGDTM = @PRGDTM" +
+                            " WHERE [ROBOID] = @roboid", sql_connection);
+
+                        sql_command.Parameters.AddWithValue("@ROBOID", SqlDbType.Int).Value = roboid;
+                        sql_command.Parameters.AddWithValue("@ROBOCALL", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(day);
+                        sql_command.Parameters.AddWithValue("@USRNME", UserInfo.UserName);
+                        sql_command.Parameters.AddWithValue("@PRGDTM", DateTime.Now);
+                    }
 
                     //Open the connection.
 
