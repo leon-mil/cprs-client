@@ -74,11 +74,13 @@ namespace Cprs
             dgData.DataSource = dataObject.GetRobocalls();
 
             dgData.Columns[0].Visible = false;
-            dgData.Columns[1].HeaderText = "Month";
-            dgData.Columns[2].HeaderText = "RoboCall Day";
+            dgData.Columns[1].HeaderText = "Robocall Month";
+            dgData.Columns[2].HeaderText = "Robocall Creation";
             dgData.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgData.Columns[3].HeaderText = "User";
-            dgData.Columns[4].HeaderText = "Date/Time";
+            dgData.Columns[3].HeaderText = "Robocall Callback";
+            dgData.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgData.Columns[4].HeaderText = "User";
+            dgData.Columns[5].HeaderText = "Date/Time";
             dgData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //set up buttons
@@ -103,11 +105,23 @@ namespace Cprs
         {
             frmRoboCallsUpdatePopup Apopup = new frmRoboCallsUpdatePopup();
             Apopup.Roboid = Convert.ToInt32(dgData.CurrentRow.Cells[0].Value);
+            Apopup.Robocalls_type = 0;
             Apopup.StartPosition = FormStartPosition.CenterParent;
             Apopup.ShowDialog();
             
             GetRoboCalls();
             
+        }
+
+        private void btnCallback_Click(object sender, EventArgs e)
+        {
+            frmRoboCallsUpdatePopup Apopup = new frmRoboCallsUpdatePopup();
+            Apopup.Roboid = Convert.ToInt32(dgData.CurrentRow.Cells[0].Value);
+            Apopup.Robocalls_type = 1;
+            Apopup.StartPosition = FormStartPosition.CenterParent;
+            Apopup.ShowDialog();
+
+            GetRoboCalls();
         }
     }
 }

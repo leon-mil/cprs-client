@@ -34,6 +34,7 @@ namespace Cprs
             this.dgData = new System.Windows.Forms.DataGridView();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCallback = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,12 +86,12 @@ namespace Cprs
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnUpdate.Location = new System.Drawing.Point(475, 699);
+            this.btnUpdate.Location = new System.Drawing.Point(392, 699);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(156, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(171, 23);
             this.btnUpdate.TabIndex = 53;
             this.btnUpdate.TabStop = false;
-            this.btnUpdate.Text = "UPDATE DAY";
+            this.btnUpdate.Text = "UPDATE CREATION DAY";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -101,15 +102,29 @@ namespace Cprs
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(535, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 25);
+            this.label2.Size = new System.Drawing.Size(152, 25);
             this.label2.TabIndex = 52;
-            this.label2.Text = "Robocall Days";
+            this.label2.Text = "Robocall Day";
+            // 
+            // btnCallback
+            // 
+            this.btnCallback.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCallback.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnCallback.Location = new System.Drawing.Point(651, 699);
+            this.btnCallback.Name = "btnCallback";
+            this.btnCallback.Size = new System.Drawing.Size(171, 23);
+            this.btnCallback.TabIndex = 55;
+            this.btnCallback.TabStop = false;
+            this.btnCallback.Text = "UPDATE CALLBACK DAY";
+            this.btnCallback.UseVisualStyleBackColor = true;
+            this.btnCallback.Click += new System.EventHandler(this.btnCallback_Click);
             // 
             // frmRobocalls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 853);
+            this.Controls.Add(this.btnCallback);
             this.Controls.Add(this.dgData);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label2);
@@ -119,6 +134,7 @@ namespace Cprs
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.btnUpdate, 0);
             this.Controls.SetChildIndex(this.dgData, 0);
+            this.Controls.SetChildIndex(this.btnCallback, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -130,5 +146,6 @@ namespace Cprs
         private System.Windows.Forms.DataGridView dgData;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCallback;
     }
 }
