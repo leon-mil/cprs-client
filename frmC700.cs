@@ -1663,7 +1663,7 @@ namespace Cprs
             if (samp.Flagr5c != txtFlagr5c.Text)
                 samp.Flagr5c = txtFlagr5c.Text;
 
-            if (samp.Item5c == 0 && (txtFlagr5c.Text == "R" || txtFlagr5c.Text == "A"))
+            if (samp.Item5c == 0 && (txtFlagr5c.Text == "R" || txtFlagr5c.Text == "A" || txtFlagr5c.Text == "O"))
             {
                 samp.Item5c = rc;
                 samp.Flag5c = txtFlagr5c.Text;
@@ -1731,7 +1731,7 @@ namespace Cprs
                 AddCprauditData("STRTDATE", samp.Strtdate, samp.Flagstrtdate, txtStrtdate.Text.Trim(), txtFlagStrtdate.Text);
                 samp.Strtdate = txtStrtdate.Text;
 
-                if ((txtFlagStrtdate.Text == "R" || txtFlagStrtdate.Text == "A") && samp.Repsdate == "")
+                if ((txtFlagStrtdate.Text == "R" || txtFlagStrtdate.Text == "A" || txtFlagStrtdate.Text == "O") && samp.Repsdate == "")
                     samp.Repsdate = currYearMon;
                 if (txtStrtdate.Text == "" && samp.Repsdate != "")
                     samp.Repsdate = "";
@@ -5060,7 +5060,6 @@ namespace Cprs
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
-        
     }
 
 }
