@@ -39,6 +39,12 @@ Modified Date :  01/12/2021
  Keyword       :  
  Change Request: CR#7867
  Description   : When check flag 22 add condition flagr5c = 'R'
+***********************************************************************
+*Modified Date :  09/14/2023
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR#1212
+ Description   : update criteria for setting up cpr flag23, flag24 
 ***********************************************************************/
 
 using System;
@@ -865,19 +871,19 @@ namespace CprsBLL
                 Setnoflag(20);
 
             //22 Item7 blank, newtc20-39
-            if ((mast.Owner == "N" || mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") && samp.Rvitm5c > 0 && (samp.Flagr5c =="R" || samp.Flagr5c=="A" || samp.Flagr5c == "O") && Convert.ToInt32(mast.Newtc.Substring(0, 2)) > 20 && samp.Capexp == 0 && samp.Flagcap == "B")
+            if ((mast.Owner == "N" && Convert.ToInt32(mast.Newtc.Substring(0, 2)) >= 20) && samp.Rvitm5c > 0 && (samp.Flag5c == "R" || samp.Flag5c == "A" || samp.Flag5c == "O") && samp.Capexp == 0 && samp.Flagcap == "B")
                 Setflag(21);
             else
                 Setnoflag(21);
 
             //23 Rvitm5c + item6 = item7
-            if ((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") && (samp.Rvitm5c + samp.Item6 == samp.Capexp))
+            if (((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") || (mast.Owner == "N" && Convert.ToInt32(mast.Newtc.Substring(0, 2)) >= 20)) && samp.Rvitm5c > 0 && (samp.Flag5c == "R" || samp.Flag5c == "A" || samp.Flag5c == "O") && (samp.Rvitm5c + samp.Item6 == samp.Capexp))
                 Setflag(22);
             else
                 Setnoflag(22);
 
             //24 Item7> Rvitm5c
-            if ((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") && (samp.Rvitm5c != 0 && samp.Capexp > samp.Rvitm5c))
+            if (((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") || (mast.Owner == "N" && Convert.ToInt32(mast.Newtc.Substring(0, 2)) >= 20)) && samp.Rvitm5c > 0 && (samp.Flag5c == "R" || samp.Flag5c == "A" || samp.Flag5c == "O") && samp.Capexp > samp.Rvitm5c)
                 Setflag(23);
             else
                 Setnoflag(23);
@@ -1383,19 +1389,19 @@ namespace CprsBLL
                 Setnorflag(20);
 
             //22 Item7 blank, newtc20-39
-            if ((mast.Owner == "N" || mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") && samp.Rvitm5cr > 0 && (samp.Flagr5c == "R" || samp.Flagr5c == "A" || samp.Flagr5c == "O") && Convert.ToInt32(mast.Newtc.Substring(0, 2)) > 20 && samp.Capexpr == 0 && samp.Flagcap == "B")
+            if ((mast.Owner == "N" && Convert.ToInt32(mast.Newtc.Substring(0, 2)) >= 20) && samp.Rvitm5cr > 0 && (samp.Flagr5c == "R" || samp.Flagr5c == "A" || samp.Flagr5c == "O") && samp.Capexpr == 0 && samp.Flagcap == "B")
                 Setrflag(21);
             else
                 Setnorflag(21);
 
             //23 Rvitm5c + item6 = item7
-            if ((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") && (samp.Rvitm5cr + samp.Item6r == samp.Capexpr))
+            if (((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") || (mast.Owner == "N" && Convert.ToInt32(mast.Newtc.Substring(0, 2)) >= 20)) && samp.Rvitm5cr > 0 && (samp.Flagr5c == "R" || samp.Flagr5c == "A" || samp.Flagr5c == "O") && (samp.Rvitm5cr + samp.Item6r == samp.Capexpr))
                 Setrflag(22);
             else
                 Setnorflag(22);
 
             //24 Item7> Rvitm5c
-            if ((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") && (samp.Rvitm5cr != 0 && samp.Capexpr > samp.Rvitm5cr))
+            if (((mast.Owner == "T" || mast.Owner == "E" || mast.Owner == "G" || mast.Owner == "R" || mast.Owner == "O" || mast.Owner == "W") || (mast.Owner == "N" && Convert.ToInt32(mast.Newtc.Substring(0, 2)) >= 20)) && samp.Rvitm5cr > 0 && (samp.Flagr5c == "R" || samp.Flagr5c == "A" || samp.Flagr5c == "O") && samp.Capexpr > samp.Rvitm5cr)
                 Setrflag(23);
             else
                 Setnorflag(23);
