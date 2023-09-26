@@ -64,7 +64,6 @@
     </Compile>
     <Compile Include="DataFlags.cs" />
     <Compile Include="DodgeInitial.cs" />
-    <Compile Include="DodgeNextInitial.cs" />
     <Compile Include="DodgeNotes.cs" />
     <Compile Include="Factor.cs">
       <SubType>Code</SubType>
@@ -91,16 +90,7 @@
     <Compile Include="NameAddr.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NameAddrAudit.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NameAddrcomments.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="NameAddrFactor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NameAddrmark.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NameAddrResp.cs">
@@ -127,7 +117,6 @@
     </Compile>
     <Compile Include="Schedcall.cs" />
     <Compile Include="SearchCriteria.cs" />
-    <Compile Include="Searchinfo.cs" />
     <Compile Include="Slips.cs" />
     <Compile Include="Soc.cs">
       <SubType>Code</SubType>
