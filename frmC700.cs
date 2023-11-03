@@ -1756,7 +1756,7 @@ namespace Cprs
                 }
 
                 //in case compdate flag didn't get set
-                if (txtCompdater.Text.Trim() == "")
+                if (txtCompdate.Text.Trim() == "")
                     txtFlagCompdate.Text = "B";
 
                 AddCprauditData("COMPDATE", samp.Compdate, samp.Flagcompdate, txtCompdate.Text.Trim(), txtFlagCompdate.Text);
@@ -2370,7 +2370,7 @@ namespace Cprs
             if (!editable || EditMode == TypeEditMode.Display || itemBox.Text == "")
                 return;
 
-            if (checkDefault)
+             if (checkDefault)
             {
                 if ((default_flag == "") || (itemBox.Text == "0"))
                 {
@@ -3876,6 +3876,8 @@ namespace Cprs
             }
 
             SetDefaultFlag(txtCompdate, txtFlagCompdate);
+            txtFlagCompdate.Focus();
+           
             if (txtFlagCompdate.Text == "R")
                 txtCompdater.Text = txtCompdate.Text;
 
