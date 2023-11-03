@@ -38,6 +38,7 @@ namespace CprsDAL
             {
                 SqlCommand sql_command = new SqlCommand("dbo.sp_AdhocSearch", sql_connection);
                 sql_command.CommandType = CommandType.StoredProcedure;
+                sql_command.CommandTimeout = 0;
 
                 sql_command.Parameters.Add("@PROJDESC1", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(projdesc1);
                 sql_command.Parameters.Add("@PROJDESC2", SqlDbType.NVarChar).Value = GeneralData.NullIfEmpty(projdesc2);
