@@ -91,6 +91,14 @@ namespace Cprs
                 dateTimePicker1.Value = cut_date;
                 dateTimePicker1.Enabled = false;
             }
+            else if (cut_day < DateTime.Now.Day)
+            {
+                dateTimePicker1.Value = cut_date;
+                dateTimePicker1.Enabled = false;
+                btnSave.Enabled = false;
+                txtBtime.Enabled = false;
+                txtEtime.Enabled = false;
+            }
             else
             {
                 dateTimePicker1.MinDate = DateTime.Now;
