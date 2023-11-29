@@ -81,11 +81,13 @@ namespace CprsDAL
                     {
                        
                         pv.Priority = s.Priority;
-                       
                         pv.Callreq = s.Callreq;
 
                         if (s.Callstat == "V")
                             pv.Satisfied = "Y";
+                        else if (CheckVipstatifiedForID(respid, pv.Id, pv.Compdater))
+                            pv.Satisfied = "Y";
+                        
                     }
                     
                 }
@@ -93,6 +95,35 @@ namespace CprsDAL
             }
             return projectlist;
 
+        }
+
+        //check other ids for vip satisfied
+        private bool CheckVipstatifiedForID(string respid,string cid, string compdater)
+        {
+            bool satisfied = false;
+        
+            RespondentData rdata = new RespondentData();
+            MonthlyVipsData mdata = new MonthlyVipsData();
+
+            Respondent rd = rdata.GetRespondentData(respid);
+            if (compdater == "")
+            {
+                //check vip satisfied
+                MonthlyVips monvip = mdata.GetMonthlyVips(cid);
+                MonthlyVip mvv = monvip.GetMonthVip(DateTime.Now.AddMonths(-1).ToString("yyyyMM"));
+                if (mvv != null && mvv.Vipflag == "R")
+                    satisfied = true;
+                else
+                {
+                    MonthlyVip mvv2 = monvip.GetMonthVip(DateTime.Now.AddMonths(-rd.Lag).ToString("yyyyMM"));
+                    if (mvv2 != null && mvv2.Vipflag == "R")
+                        satisfied = true;
+                }
+            }
+            else
+                satisfied = true;
+
+            return satisfied;
         }
     }
 }
