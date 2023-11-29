@@ -99,6 +99,12 @@ Modified Date :  2 / 23 / 2022
  Keyword       :  
  Change Request: CR886
  Description   : skip case if 3 consecutive call resolutions of 1, 2
+************************************************************************************
+Modified Date :  11 / 21 / 2023
+ Modified By   :  Christine
+ Keyword       :  cz11212023
+ Change Request: 
+ Description   : bug fixed for form entry cases, add to finished cases
 ************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -3181,8 +3187,9 @@ namespace Cprs
             shist.Accesnme = UserInfo.UserName;
            
             shist.Accescde = schedcall.Accescde;
-           
-            if (enterPoint == TypeTFUEntryPoint.NPC)
+
+            /*cz11212023*/
+            if (enterPoint == TypeTFUEntryPoint.NPC || enterPoint == TypeTFUEntryPoint.FORM)
             {
                 scheddata.AddSchedHistData(shist);
                 if( !IsFinishedCases(schedcall.Id))
@@ -4071,7 +4078,7 @@ namespace Cprs
                     csda.AddCsdaccessData(id, "BROWSE");
 
                 /*unlock respondent */
-                if (editable)
+            if (editable)
                 {
                     bool locked = GeneralDataFuctions.UpdateRespIDLock(samp.Respid, "");
                 }
