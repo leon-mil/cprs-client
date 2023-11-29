@@ -13,11 +13,11 @@ Other:	            Called by: frmWorksheet
  
 Revision History:	
 ***************************************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date :  11/27/2023
+ Modified By   :  Christine zhang
  Keyword       :  
  Change Request:  
- Description   :  
+ Description   :  add GetFedBstFromSave(), get bst for federal from bstsave table
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -86,43 +86,109 @@ namespace CprsDAL
         {
             DataTable dt = new DataTable();
             string where_clause = "where owner = " + GeneralData.AddSqlQuotes(owner) + " and newtc = " + GeneralData.AddSqlQuotes(newtc) + " and sdate = " + GeneralData.AddSqlQuotes(sdate);
-            using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
+
+            DateTime dtime = DateTime.ParseExact(sdate, "yyyyMM", CultureInfo.InvariantCulture);
+
+            //get month name
+            string curmon = (dtime.ToString("MMMM", CultureInfo.InvariantCulture));
+            string premon = (dtime.AddMonths(-1)).ToString("MMMM", CultureInfo.InvariantCulture);
+            string ppmon = (dtime.AddMonths(-2)).ToString("MMMM", CultureInfo.InvariantCulture);
+            string p3mon = (dtime.AddMonths(-3)).ToString("MMMM", CultureInfo.InvariantCulture);
+            string p4mon = (dtime.AddMonths(-4)).ToString("MMMM", CultureInfo.InvariantCulture);
+
+            if (owner == "F")
             {
-                DateTime dtime = DateTime.ParseExact(sdate, "yyyyMM", CultureInfo.InvariantCulture);
+                //get proior month bst
+                List<string> bstlist = GetFedBstFromSave(sdate, newtc);
 
-                //get month name
-                string curmon = (dtime.ToString("MMMM", CultureInfo.InvariantCulture));
-                string premon = (dtime.AddMonths(-1)).ToString("MMMM", CultureInfo.InvariantCulture);
-                string ppmon = (dtime.AddMonths(-2)).ToString("MMMM", CultureInfo.InvariantCulture);
-                string p3mon = (dtime.AddMonths(-3)).ToString("MMMM", CultureInfo.InvariantCulture);
-                string p4mon = (dtime.AddMonths(-4)).ToString("MMMM", CultureInfo.InvariantCulture);
-
-                string sqlQuery = @" select 1 as n, '" + curmon + "' as month, u_cm0, l_cm0, c_cm0,  b_cm0, s_cm0, cm0, lsf0,ucf, bst0, saf0 from dbo.VIPSADJ " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select  2 as n, '" + premon + "' as month, u_cm1, l_cm1, c_cm1,  b_cm1, s_cm1, cm1, lsf1, ucf, bst1, saf1 from dbo.VIPSADJ " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 3 as n, '" + ppmon + "' as month, u_cm2, l_cm2, c_cm2, b_cm2, s_cm2, cm2, lsf2, ucf, bst2, saf2 from dbo.VIPSADJ " + where_clause; 
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 4 as n, " + "'Previous " + premon + "' as month, u_pm0, l_pm0, c_pm0, b_pm0, s_pm0,  pm0, lsf0, ucf, bst1, saf1 from dbo.VIPSADJ " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 5 as n," + "'Previous " + ppmon + "' as month, u_pm1, l_pm1, c_pm1, b_pm1, s_pm1, pm1, lsf1, ucf, bst2, saf2 from dbo.VIPSADJ  " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 6 as n, '" + p3mon + "' as month, u_cm3, l_cm3, c_cm3,  b_cm3, s_cm3, cm3, lsf3, ucf, bst3, saf3 from dbo.VIPSADJ " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 7 as n, '" + p4mon + "' as month, u_cm4, l_cm4, c_cm4,  b_cm4, s_cm4, cm4, lsf4, ucf, bst4, saf4 from dbo.VIPSADJ " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 8 as n, " + "'Previous " + p3mon + "' as month, u_pm2, l_pm2, c_pm2, b_pm2, s_pm2,  pm2, lsf2, ucf, bst3, saf3 from dbo.VIPSADJ " + where_clause;
-                       sqlQuery = sqlQuery + " union ";
-                       sqlQuery = sqlQuery + " select 9 as n," + "'Previous " + p4mon + "' as month, u_pm3, l_pm3, c_pm3, b_pm3, s_pm3, pm3, lsf3, ucf, bst4, saf4 from dbo.VIPSADJ  " + where_clause;
-                       sqlQuery = sqlQuery + " order by n";
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
+                using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
                 {
-                    SqlDataAdapter ds = new SqlDataAdapter(cmd);
-                    ds.Fill(dt);
+                    string sqlQuery = @" select 1 as n, '" + curmon + "' as month, u_cm0, l_cm0, c_cm0,  b_cm0, s_cm0, cm0, lsf0,ucf, bst0, saf0 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select  2 as n, '" + premon + "' as month, u_cm1, l_cm1, c_cm1,  b_cm1, s_cm1, cm1, lsf1, ucf, bst1, saf1 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 3 as n, '" + ppmon + "' as month, u_cm2, l_cm2, c_cm2, b_cm2, s_cm2, cm2, lsf2, ucf, bst2, saf2 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 4 as n, " + "'Previous " + premon + "' as month, u_pm0, l_pm0, c_pm0, b_pm0, s_pm0,  pm0, lsf0, ucf, '" + bstlist[0] + "', saf1 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 5 as n," + "'Previous " + ppmon + "' as month, u_pm1, l_pm1, c_pm1, b_pm1, s_pm1, pm1, lsf1, ucf, '" + bstlist[1] + "', saf2 from dbo.VIPSADJ  " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 6 as n, '" + p3mon + "' as month, u_cm3, l_cm3, c_cm3,  b_cm3, s_cm3, cm3, lsf3, ucf, bst3, saf3 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 7 as n, '" + p4mon + "' as month, u_cm4, l_cm4, c_cm4,  b_cm4, s_cm4, cm4, lsf4, ucf, bst4, saf4 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 8 as n, " + "'Previous " + p3mon + "' as month, u_pm2, l_pm2, c_pm2, b_pm2, s_pm2,  pm2, lsf2, ucf,'" + bstlist[2] + "', saf3 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 9 as n," + "'Previous " + p4mon + "' as month, u_pm3, l_pm3, c_pm3, b_pm3, s_pm3, pm3, lsf3, ucf, '" + bstlist[3] + "', saf4 from dbo.VIPSADJ  " + where_clause;
+                    sqlQuery = sqlQuery + " order by n";
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
+                    {
+                        SqlDataAdapter ds = new SqlDataAdapter(cmd);
+                        ds.Fill(dt);
+                    }
+                }
+            }
+            else
+            {
+                using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
+                {
+
+                    string sqlQuery = @" select 1 as n, '" + curmon + "' as month, u_cm0, l_cm0, c_cm0,  b_cm0, s_cm0, cm0, lsf0,ucf, bst0, saf0 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select  2 as n, '" + premon + "' as month, u_cm1, l_cm1, c_cm1,  b_cm1, s_cm1, cm1, lsf1, ucf, bst1, saf1 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 3 as n, '" + ppmon + "' as month, u_cm2, l_cm2, c_cm2, b_cm2, s_cm2, cm2, lsf2, ucf, bst2, saf2 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 4 as n, " + "'Previous " + premon + "' as month, u_pm0, l_pm0, c_pm0, b_pm0, s_pm0,  pm0, lsf0, ucf, bst1, saf1 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 5 as n," + "'Previous " + ppmon + "' as month, u_pm1, l_pm1, c_pm1, b_pm1, s_pm1, pm1, lsf1, ucf, bst2, saf2 from dbo.VIPSADJ  " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 6 as n, '" + p3mon + "' as month, u_cm3, l_cm3, c_cm3,  b_cm3, s_cm3, cm3, lsf3, ucf, bst3, saf3 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 7 as n, '" + p4mon + "' as month, u_cm4, l_cm4, c_cm4,  b_cm4, s_cm4, cm4, lsf4, ucf, bst4, saf4 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 8 as n, " + "'Previous " + p3mon + "' as month, u_pm2, l_pm2, c_pm2, b_pm2, s_pm2,  pm2, lsf2, ucf, bst3, saf3 from dbo.VIPSADJ " + where_clause;
+                    sqlQuery = sqlQuery + " union ";
+                    sqlQuery = sqlQuery + " select 9 as n," + "'Previous " + p4mon + "' as month, u_pm3, l_pm3, c_pm3, b_pm3, s_pm3, pm3, lsf3, ucf, bst4, saf4 from dbo.VIPSADJ  " + where_clause;
+                    sqlQuery = sqlQuery + " order by n";
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
+                    {
+                        SqlDataAdapter ds = new SqlDataAdapter(cmd);
+                        ds.Fill(dt);
+                    }
                 }
             }
 
             return dt;
+        }
+
+        //get bst from bstsav table for prior month
+        private List<string> GetFedBstFromSave(string sdate, string newtc)
+        {
+            DateTime dtime = DateTime.ParseExact(sdate, "yyyyMM", CultureInfo.InvariantCulture);
+
+            //get month name
+            string premon = (dtime.AddMonths(-1)).ToString("yyyyMM", CultureInfo.InvariantCulture);
+            string ppmon = (dtime.AddMonths(-2)).ToString("yyyyMM", CultureInfo.InvariantCulture);
+            string p3mon = (dtime.AddMonths(-3)).ToString("yyyyMM", CultureInfo.InvariantCulture);
+            string p4mon = (dtime.AddMonths(-4)).ToString("yyyyMM", CultureInfo.InvariantCulture);
+
+            using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
+            {
+                string sql = "SELECT bst from dbo.BSTSAV where newtc = " + GeneralData.AddSqlQuotes(newtc) + " and sdate in ('" + premon + "','" + ppmon + "','" + p3mon + "','" + p4mon + "') order by sdate desc";
+                SqlCommand command = new SqlCommand(sql, sql_connection);
+
+                sql_connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                List<string> bstlist = new List<string>();
+                while (reader.Read())
+                {
+                    decimal bst = reader.GetDecimal(reader.GetOrdinal("bst"));
+                    bstlist.Add(Convert.ToString(bst));
+                }
+
+                return bstlist;
+            }
         }
 
         //get where clause for newtc when the newtc is 1T
@@ -146,9 +212,10 @@ namespace CprsDAL
             return newtc_str;
         }
 
+        
 
-        //get preliminary, rev1 and rev2 change data based table no
-        public DataTable GetChangeData(string owner, string newtc, int table_no)
+    //get preliminary, rev1 and rev2 change data based table no
+    public DataTable GetChangeData(string owner, string newtc, int table_no)
         {
             DataTable dt = new DataTable();
 
