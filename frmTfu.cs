@@ -2933,14 +2933,15 @@ namespace Cprs
                 lag_changed = false;
                 return true;
             }
-            
+
             //Save sched call
-          
+            bool vip_sat = CheckVipsatisfied();
+
             //for search, form entry, no call resolution
             if (cbCall.SelectedIndex == -1)
             {
                 schedcall.Callstat = "";
-                bool vip_sat = CheckVipsatisfied();
+                
                  if (samp.Status != "1" )
                 {
                     schedcall.Complete = "Y";
@@ -3048,15 +3049,26 @@ namespace Cprs
                 }
                 else if (schedcall.Callstat == "5")
                 {
-                    schedcall.Apptdate = sApptdate;
-                    schedcall.Appttime = sAppttime;
-                    schedcall.Apptends = sApptend;
-                    if (sAppttime == sApptend)
-                        schedcall.Calltpe = "H";
+                    //in case, completed case was clicked
+                    if (!reject && (vip_sat || samp.Compdater != ""))
+                    {
+                        schedcall.Complete = "Y";
+                        schedcall.Callstat = "V";
+                        schedcall.Callreq = "N";
+                    }
                     else
-                        schedcall.Calltpe = "S";
-                    schedcall.Complete = "N";
-                    schedcall.Callreq = "Y";
+                    {
+                        schedcall.Apptdate = sApptdate;
+                        schedcall.Appttime = sAppttime;
+                        schedcall.Apptends = sApptend;
+
+                        if (sAppttime == sApptend)
+                            schedcall.Calltpe = "H";
+                        else
+                            schedcall.Calltpe = "S";
+                        schedcall.Complete = "N";
+                        schedcall.Callreq = "Y";
+                    }
 
                 }
                 else if (schedcall.Callstat == "6")
@@ -3188,8 +3200,7 @@ namespace Cprs
            
             shist.Accescde = schedcall.Accescde;
 
-            /*cz11212023*/
-            if (enterPoint == TypeTFUEntryPoint.NPC || enterPoint == TypeTFUEntryPoint.FORM)
+            if (enterPoint == TypeTFUEntryPoint.NPC )
             {
                 scheddata.AddSchedHistData(shist);
                 if( !IsFinishedCases(schedcall.Id))
