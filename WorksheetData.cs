@@ -11,13 +11,19 @@ Description:	    data layer to get data for worksheet
 Detailed Design:    Vip Worksheet Detailed Design
 Other:	            Called by: frmWorksheet
  
-Revision History:	
+Revision History:	See Below
 ***************************************************************************************
  Modified Date :  11/27/2023
  Modified By   :  Christine zhang
  Keyword       :  
  Change Request:  
  Description   :  add GetFedBstFromSave(), get bst for federal from bstsave table
+****************************************************************************************
+ Modified Date :  02/26/2024
+ Modified By   :  Christine zhang
+ Keyword       :  cz01162024
+ Change Request:  
+ Description   :  bug fix - for displaying federal four digits newtc, create errors
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -172,6 +178,10 @@ namespace CprsDAL
             string ppmon = (dtime.AddMonths(-2)).ToString("yyyyMM", CultureInfo.InvariantCulture);
             string p3mon = (dtime.AddMonths(-3)).ToString("yyyyMM", CultureInfo.InvariantCulture);
             string p4mon = (dtime.AddMonths(-4)).ToString("yyyyMM", CultureInfo.InvariantCulture);
+
+            //cz01162024 if there are four digits newtc, change to 2 digits
+            if (newtc.Length > 2)
+                newtc = newtc.Substring(0, 2);
 
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
