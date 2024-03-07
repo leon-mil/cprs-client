@@ -11,13 +11,13 @@ Description     : Display Annual Artba tabulation
 
 Detailed Design : Detailed Design for Artba Annual
 Other           :	            
-Revision History:	
+Revision History:  See Below
 **************************************************************************************************
-Modified Date   :  
-Modified By     :  
-Keyword         :  
-Change Request  :  
-Description     :  
+Modified Date   :  2/15/2024
+Modified By     :  Christine
+Keyword         :  cz2024215
+Change Request  :  CR#1390
+Description     :  display month data from oldest to new
 **************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace Cprs
             /* initialize elements of array n */
             for (int i = 0; i < 60; i++)
             {
-                mons[i] = (dt.AddMonths(-i)).ToString("yyyyMM", CultureInfo.InvariantCulture);
+                mons[i] = (dt.AddMonths(-(59-i))).ToString("yyyyMM", CultureInfo.InvariantCulture);
             }
 
             ArtbaData gdata = new ArtbaData();

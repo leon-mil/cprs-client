@@ -128,7 +128,7 @@
             // frmArtbaAnn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1216, 870);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgData);
