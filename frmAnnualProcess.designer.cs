@@ -110,6 +110,7 @@
             this.btnP1.TabIndex = 28;
             this.btnP1.Text = "ANNUAL VARIANCE";
             this.btnP1.UseVisualStyleBackColor = true;
+            this.btnP1.EnabledChanged += new System.EventHandler(this.btnP1_EnabledChanged);
             this.btnP1.Click += new System.EventHandler(this.btnP1_Click);
             // 
             // btnP2
@@ -122,6 +123,7 @@
             this.btnP2.TabIndex = 29;
             this.btnP2.Text = "ANNUAL LSF";
             this.btnP2.UseVisualStyleBackColor = true;
+            this.btnP2.EnabledChanged += new System.EventHandler(this.btnP2_EnabledChanged);
             this.btnP2.Click += new System.EventHandler(this.btnP2_Click);
             // 
             // btnP3
@@ -134,6 +136,7 @@
             this.btnP3.TabIndex = 30;
             this.btnP3.Text = "ANNUAL FACTORS";
             this.btnP3.UseVisualStyleBackColor = true;
+            this.btnP3.EnabledChanged += new System.EventHandler(this.btnP3_EnabledChanged);
             this.btnP3.Click += new System.EventHandler(this.btnP3_Click);
             // 
             // btnP4
@@ -146,6 +149,7 @@
             this.btnP4.TabIndex = 31;
             this.btnP4.Text = "VIP RATIOS";
             this.btnP4.UseVisualStyleBackColor = true;
+            this.btnP4.EnabledChanged += new System.EventHandler(this.btnP4_EnabledChanged);
             this.btnP4.Click += new System.EventHandler(this.btnP4_Click);
             // 
             // btnP5
@@ -158,6 +162,7 @@
             this.btnP5.TabIndex = 32;
             this.btnP5.Text = "BEA INDEX";
             this.btnP5.UseVisualStyleBackColor = true;
+            this.btnP5.EnabledChanged += new System.EventHandler(this.btnP5_EnabledChanged);
             this.btnP5.Click += new System.EventHandler(this.btnP5_Click);
             // 
             // btnP6
@@ -170,6 +175,7 @@
             this.btnP6.TabIndex = 33;
             this.btnP6.Text = "VIPHIST UPDATE";
             this.btnP6.UseVisualStyleBackColor = true;
+            this.btnP6.EnabledChanged += new System.EventHandler(this.btnP6_EnabledChanged);
             this.btnP6.Click += new System.EventHandler(this.btnP6_Click);
             // 
             // btnP8
@@ -182,6 +188,7 @@
             this.btnP8.TabIndex = 34;
             this.btnP8.Text = "FEDERAL BOOST";
             this.btnP8.UseVisualStyleBackColor = true;
+            this.btnP8.EnabledChanged += new System.EventHandler(this.btnP8_EnabledChanged);
             this.btnP8.Click += new System.EventHandler(this.btnP8_Click);
             // 
             // btnP9
@@ -194,6 +201,7 @@
             this.btnP9.TabIndex = 35;
             this.btnP9.Text = "1 UNIT LOAD";
             this.btnP9.UseVisualStyleBackColor = true;
+            this.btnP9.EnabledChanged += new System.EventHandler(this.btnP9_EnabledChanged);
             this.btnP9.Click += new System.EventHandler(this.btnP9_Click);
             // 
             // btnP11
@@ -206,6 +214,7 @@
             this.btnP11.TabIndex = 36;
             this.btnP11.Text = "TSAR PROCESSING";
             this.btnP11.UseVisualStyleBackColor = true;
+            this.btnP11.EnabledChanged += new System.EventHandler(this.btnP11_EnabledChanged);
             this.btnP11.Click += new System.EventHandler(this.btnP11_Click);
             // 
             // btnP12
@@ -218,6 +227,7 @@
             this.btnP12.TabIndex = 37;
             this.btnP12.Text = "SEASONAL UPDATE";
             this.btnP12.UseVisualStyleBackColor = true;
+            this.btnP12.EnabledChanged += new System.EventHandler(this.btnP12_EnabledChanged);
             this.btnP12.Click += new System.EventHandler(this.btnP12_Click);
             // 
             // btnRefresh
@@ -243,6 +253,7 @@
             this.btnP7.TabIndex = 43;
             this.btnP7.Text = "FEDERAL LOAD";
             this.btnP7.UseVisualStyleBackColor = true;
+            this.btnP7.EnabledChanged += new System.EventHandler(this.btnP7_EnabledChanged);
             this.btnP7.Click += new System.EventHandler(this.btnP7_Click);
             // 
             // btnP10
@@ -255,13 +266,14 @@
             this.btnP10.TabIndex = 44;
             this.btnP10.Text = "XSERIES LOAD";
             this.btnP10.UseVisualStyleBackColor = true;
+            this.btnP10.EnabledChanged += new System.EventHandler(this.btnP10_EnabledChanged);
             this.btnP10.Click += new System.EventHandler(this.btnP10_Click);
             // 
             // frmAnnualProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 869);
+            this.ClientSize = new System.Drawing.Size(1188, 861);
             this.Controls.Add(this.btnP10);
             this.Controls.Add(this.btnP7);
             this.Controls.Add(this.btnRefresh);

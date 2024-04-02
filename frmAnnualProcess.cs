@@ -329,6 +329,88 @@ namespace Cprs
             ProcessTasks(12);
         }
 
-       
+        private void btnP1_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP1.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP1.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP2_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP2.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP2.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP3_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP3.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP3.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP4_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP4.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP4.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP5_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP5.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP5.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP6_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP6.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP6.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP8_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP8.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP8.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP9_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP9.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP9.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP10_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP10.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP10.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP11_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP11.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP11.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP12_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP12.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP12.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnP7_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnP7.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnP7.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
