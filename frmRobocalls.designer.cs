@@ -93,6 +93,7 @@ namespace Cprs
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "UPDATE CREATION DAY";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.EnabledChanged += new System.EventHandler(this.btnUpdate_EnabledChanged);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label2

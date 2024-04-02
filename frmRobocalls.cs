@@ -123,5 +123,12 @@ namespace Cprs
 
             GetRoboCalls();
         }
+
+        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnUpdate.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnUpdate.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
