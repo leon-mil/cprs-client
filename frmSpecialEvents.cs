@@ -150,5 +150,27 @@ namespace Cprs
         {
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "EXIT");
         }
+
+        private void btnAdd_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAdd.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAdd.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnUpdate.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnUpdate.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnDelete_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnDelete.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnDelete.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+
+        }
     }
 }

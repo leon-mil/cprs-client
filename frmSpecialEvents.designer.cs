@@ -50,6 +50,7 @@ namespace Cprs
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "DELETE EVENTS";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.EnabledChanged += new System.EventHandler(this.btnDelete_EnabledChanged);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
@@ -63,6 +64,7 @@ namespace Cprs
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "UPDATE EVENTS";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.EnabledChanged += new System.EventHandler(this.btnUpdate_EnabledChanged);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
@@ -76,6 +78,7 @@ namespace Cprs
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "ADD EVENTS";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.EnabledChanged += new System.EventHandler(this.btnAdd_EnabledChanged);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label2
@@ -85,7 +88,7 @@ namespace Cprs
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(485, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(293, 25);
+            this.label2.Size = new System.Drawing.Size(204, 25);
             this.label2.TabIndex = 46;
             this.label2.Text = "SPECIAL EVENTS";
             // 
@@ -130,14 +133,14 @@ namespace Cprs
             this.dgData.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dgData.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgData.Size = new System.Drawing.Size(783, 529);
+            this.dgData.Size = new System.Drawing.Size(775, 521);
             this.dgData.TabIndex = 51;
             // 
             // frmSpecialEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.dgData);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
