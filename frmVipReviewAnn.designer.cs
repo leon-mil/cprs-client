@@ -141,7 +141,7 @@
             this.dgData.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgData.Size = new System.Drawing.Size(921, 620);
+            this.dgData.Size = new System.Drawing.Size(913, 620);
             this.dgData.TabIndex = 48;
             this.dgData.TabStop = false;
             this.dgData.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgData_CellBeginEdit);
@@ -262,7 +262,7 @@
             this.dgPrint.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgPrint.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgPrint.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgPrint.Size = new System.Drawing.Size(921, 522);
+            this.dgPrint.Size = new System.Drawing.Size(913, 522);
             this.dgPrint.TabIndex = 49;
             this.dgPrint.TabStop = false;
             this.dgPrint.Visible = false;
@@ -342,7 +342,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(546, 115);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 16);
+            this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 46;
             this.label1.Text = "Year =";
             // 
@@ -353,7 +353,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(535, 84);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 16);
+            this.label3.Size = new System.Drawing.Size(131, 16);
             this.label3.TabIndex = 73;
             this.label3.Text = "Millions of Dollars";
             // 
@@ -361,7 +361,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 853);
+            this.ClientSize = new System.Drawing.Size(1208, 853);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbDate);
