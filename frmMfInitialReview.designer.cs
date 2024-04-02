@@ -37,6 +37,8 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnData = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtpending = new System.Windows.Forms.TextBox();
             this.txtFinished = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -60,8 +62,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.txtpending = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgMFInitRev)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -131,7 +131,7 @@
             this.dgMFInitRev.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgMFInitRev.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgMFInitRev.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMFInitRev.Size = new System.Drawing.Size(1192, 411);
+            this.dgMFInitRev.Size = new System.Drawing.Size(1184, 411);
             this.dgMFInitRev.TabIndex = 15;
             this.dgMFInitRev.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgMFInitRev_RowPostPaint);
             // 
@@ -178,6 +178,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(229, 164);
             this.panel2.TabIndex = 280;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 137);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(108, 23);
+            this.label5.TabIndex = 283;
+            this.label5.Text = "PENDING";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtpending
+            // 
+            this.txtpending.BackColor = System.Drawing.Color.LightGray;
+            this.txtpending.ForeColor = System.Drawing.Color.DarkBlue;
+            this.txtpending.Location = new System.Drawing.Point(111, 138);
+            this.txtpending.Name = "txtpending";
+            this.txtpending.Size = new System.Drawing.Size(100, 20);
+            this.txtpending.TabIndex = 29;
+            this.txtpending.TabStop = false;
+            this.txtpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtFinished
             // 
@@ -421,31 +442,10 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
-            // txtpending
-            // 
-            this.txtpending.BackColor = System.Drawing.Color.LightGray;
-            this.txtpending.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtpending.Location = new System.Drawing.Point(111, 138);
-            this.txtpending.Name = "txtpending";
-            this.txtpending.Size = new System.Drawing.Size(100, 20);
-            this.txtpending.TabIndex = 29;
-            this.txtpending.TabStop = false;
-            this.txtpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 137);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 23);
-            this.label5.TabIndex = 283;
-            this.label5.Text = "PENDING";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // frmMfInitialReview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1216, 857);
+            this.ClientSize = new System.Drawing.Size(1208, 857);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnData);
