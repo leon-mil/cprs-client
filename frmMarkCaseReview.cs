@@ -1060,6 +1060,7 @@ namespace Cprs
         {
             var btn = (Button)sender;
             btn.ForeColor = btn.Enabled ? Color.DarkBlue : Color.Gray;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -1354,6 +1355,13 @@ namespace Cprs
                 btnDelete.Enabled = false;
             else
                 btnDelete.Enabled = true;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }
 }

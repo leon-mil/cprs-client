@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCasesCount = new System.Windows.Forms.Label();
             this.tbCaseReview = new System.Windows.Forms.TabControl();
             this.tbProject = new System.Windows.Forms.TabPage();
             this.dgProjMarkCase = new System.Windows.Forms.DataGridView();
@@ -56,7 +57,6 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.lblTab = new System.Windows.Forms.Label();
-            this.lblCasesCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tbCaseReview.SuspendLayout();
             this.tbProject.SuspendLayout();
@@ -75,6 +75,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1138, 657);
             this.panel1.TabIndex = 9;
+            // 
+            // lblCasesCount
+            // 
+            this.lblCasesCount.AutoSize = true;
+            this.lblCasesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCasesCount.Location = new System.Drawing.Point(6, 72);
+            this.lblCasesCount.Name = "lblCasesCount";
+            this.lblCasesCount.Size = new System.Drawing.Size(35, 16);
+            this.lblCasesCount.TabIndex = 31;
+            this.lblCasesCount.Text = "xxxx";
             // 
             // tbCaseReview
             // 
@@ -344,6 +354,7 @@
             this.btnPrint.TabStop = false;
             this.btnPrint.Text = "PRINT";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.EnabledChanged += new System.EventHandler(this.btnPrint_EnabledChanged);
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // lblTab
@@ -356,22 +367,12 @@
             this.lblTab.TabIndex = 28;
             this.lblTab.Text = "Table";
             // 
-            // lblCasesCount
-            // 
-            this.lblCasesCount.AutoSize = true;
-            this.lblCasesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCasesCount.Location = new System.Drawing.Point(6, 72);
-            this.lblCasesCount.Name = "lblCasesCount";
-            this.lblCasesCount.Size = new System.Drawing.Size(36, 16);
-            this.lblCasesCount.TabIndex = 31;
-            this.lblCasesCount.Text = "xxxx";
-            // 
             // frmMarkCaseReview
             // 
             this.AcceptButton = this.btnSearchItem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 870);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.lblTab);
             this.Controls.Add(this.btnData);
             this.Controls.Add(this.btnDelete);
