@@ -16,7 +16,7 @@ Revision History:
  Modified By   :  Christine Zhang
  Keyword       :  
  Change Request:  CR 4230
- Description   :  add DELCOD column
+ Description   :  Add DELCOD column
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -427,8 +427,26 @@ namespace Cprs
             Cursor.Current = Cursors.Default;
         }
 
-      
-     
+        private void btnDup_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnValid_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnUnmark_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
 

@@ -104,11 +104,8 @@
             this.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgData.Size = new System.Drawing.Size(1140, 506);
             this.dgData.TabIndex = 61;
-           // this.dgData.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgData_ColumnHeaderMouseClick);
-           // this.dgData.ColumnSortModeChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgData_ColumnSortModeChanged);
             this.dgData.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgData_DataBindingComplete);
             this.dgData.SelectionChanged += new System.EventHandler(this.dgData_SelectionChanged);
-           // this.dgData.Sorted += new System.EventHandler(this.dgData_Sorted);
             // 
             // btnPrint
             // 
@@ -134,6 +131,7 @@
             this.btnValid.TabStop = false;
             this.btnValid.Text = "MARK VALID";
             this.btnValid.UseVisualStyleBackColor = true;
+            this.btnValid.EnabledChanged += new System.EventHandler(this.btnValid_EnabledChanged);
             this.btnValid.Click += new System.EventHandler(this.btnValid_Click);
             // 
             // btnUnmark
@@ -147,6 +145,7 @@
             this.btnUnmark.TabStop = false;
             this.btnUnmark.Text = "UNMARK";
             this.btnUnmark.UseVisualStyleBackColor = true;
+            this.btnUnmark.EnabledChanged += new System.EventHandler(this.btnUnmark_EnabledChanged);
             this.btnUnmark.Click += new System.EventHandler(this.btnUnmark_Click);
             // 
             // dgMaster
@@ -198,6 +197,7 @@
             this.btnDup.TabStop = false;
             this.btnDup.Text = "MARK DUPLICATE";
             this.btnDup.UseVisualStyleBackColor = true;
+            this.btnDup.EnabledChanged += new System.EventHandler(this.btnDup_EnabledChanged);
             this.btnDup.Click += new System.EventHandler(this.btnDup_Click);
             // 
             // label1
@@ -281,7 +281,7 @@
             this.txtTotal.ForeColor = System.Drawing.Color.DarkBlue;
             this.txtTotal.Location = new System.Drawing.Point(131, 102);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(57, 20);
+            this.txtTotal.Size = new System.Drawing.Size(65, 20);
             this.txtTotal.TabIndex = 124;
             this.txtTotal.TabStop = false;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
