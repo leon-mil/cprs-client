@@ -218,5 +218,26 @@ namespace Cprs
         {
             GeneralDataFuctions.AddCpraccessData("DATA ENTRY", "EXIT");
         }
+
+        private void btnEdit_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnEdit.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnEdit.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnDelete_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnDelete.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnDelete.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
