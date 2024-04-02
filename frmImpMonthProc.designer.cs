@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.dgMonProc = new System.Windows.Forms.DataGridView();
             this.btnRunTabulations = new System.Windows.Forms.Button();
@@ -61,33 +61,33 @@
             this.dgMonProc.AllowUserToResizeColumns = false;
             this.dgMonProc.AllowUserToResizeRows = false;
             this.dgMonProc.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMonProc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMonProc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgMonProc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMonProc.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMonProc.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgMonProc.Location = new System.Drawing.Point(24, 131);
             this.dgMonProc.Name = "dgMonProc";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMonProc.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMonProc.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgMonProc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMonProc.Size = new System.Drawing.Size(1169, 559);
             this.dgMonProc.TabIndex = 24;
@@ -104,9 +104,8 @@
             this.btnRunTabulations.TabStop = false;
             this.btnRunTabulations.Text = "RUN TABULATIONS";
             this.btnRunTabulations.UseVisualStyleBackColor = true;
-            this.btnRunTabulations.EnabledChanged += new System.EventHandler(this.btn_EnabledChanged);
+            this.btnRunTabulations.EnabledChanged += new System.EventHandler(this.btnRunTabulations_EnabledChanged);
             this.btnRunTabulations.Click += new System.EventHandler(this.btnRunTabulations_Click);
-            this.btnRunTabulations.Paint += new System.Windows.Forms.PaintEventHandler(this.btnRunTabulations_Paint);
             // 
             // btnRunCELoad
             // 
@@ -119,9 +118,8 @@
             this.btnRunCELoad.TabStop = false;
             this.btnRunCELoad.Text = "RUN CE LOAD";
             this.btnRunCELoad.UseVisualStyleBackColor = true;
-            this.btnRunCELoad.EnabledChanged += new System.EventHandler(this.btn_EnabledChanged);
+            this.btnRunCELoad.EnabledChanged += new System.EventHandler(this.btnRunCELoad_EnabledChanged);
             this.btnRunCELoad.Click += new System.EventHandler(this.btnRunCELoad_Click);
-            this.btnRunCELoad.Paint += new System.Windows.Forms.PaintEventHandler(this.btnRunCELoad_Paint);
             // 
             // btnRunVIPLoad
             // 
@@ -134,9 +132,8 @@
             this.btnRunVIPLoad.TabStop = false;
             this.btnRunVIPLoad.Text = "RUN VIP LOAD";
             this.btnRunVIPLoad.UseVisualStyleBackColor = true;
-            this.btnRunVIPLoad.EnabledChanged += new System.EventHandler(this.btn_EnabledChanged);
+            this.btnRunVIPLoad.EnabledChanged += new System.EventHandler(this.btnRunVIPLoad_EnabledChanged);
             this.btnRunVIPLoad.Click += new System.EventHandler(this.btnRunVIPLoad_Click);
-            this.btnRunVIPLoad.Paint += new System.Windows.Forms.PaintEventHandler(this.btnRunVIPLoad_Paint);
             // 
             // btnRunForecasting
             // 
@@ -149,9 +146,8 @@
             this.btnRunForecasting.TabStop = false;
             this.btnRunForecasting.Text = "RUN FORECASTING";
             this.btnRunForecasting.UseVisualStyleBackColor = true;
-            this.btnRunForecasting.EnabledChanged += new System.EventHandler(this.btn_EnabledChanged);
+            this.btnRunForecasting.EnabledChanged += new System.EventHandler(this.btnRunForecasting_EnabledChanged);
             this.btnRunForecasting.Click += new System.EventHandler(this.btnRunForecasting_Click);
-            this.btnRunForecasting.Paint += new System.Windows.Forms.PaintEventHandler(this.btnRunForecasting_Paint);
             // 
             // btnRefresh
             // 
@@ -177,15 +173,13 @@
             this.btnReset.TabStop = false;
             this.btnReset.Text = "RESET";
             this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.EnabledChanged += new System.EventHandler(this.btn_EnabledChanged);
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            this.btnReset.Paint += new System.Windows.Forms.PaintEventHandler(this.btnReset_Paint);
             // 
             // frmImpMonthProc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 870);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnRunVIPLoad);

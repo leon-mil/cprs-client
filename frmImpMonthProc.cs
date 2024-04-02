@@ -104,70 +104,6 @@ namespace Cprs
 
         }
 
-        //Draw the greyed buttons if disabled. In order to grey the buttons,
-        //The text in the button but first be removed and the button re-drawn
-
-        private void btn_EnabledChanged(object sender, EventArgs e)
-        {           
-            var btn = (Button)sender;
-            btn.ForeColor = btn.Enabled ? Color.DarkBlue : Color.Gray;
-        }
-
-        private void btnRunTabulations_Paint(object sender, PaintEventArgs e)
-        {
-            var btn = (Button)sender;
-            var drawBrush = new SolidBrush(btn.ForeColor);
-            var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            btnRunTabulations.Text = string.Empty; //remove the button text
-            e.Graphics.DrawString("RUN TABULATIONS", btn.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
-        private void btnRunVIPLoad_Paint(object sender, PaintEventArgs e)
-        {
-            var btn = (Button)sender;
-            var drawBrush = new SolidBrush(btn.ForeColor);
-            var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            btnRunVIPLoad.Text = string.Empty;
-            e.Graphics.DrawString("RUN VIP LOAD", btn.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
-        private void btnRunCELoad_Paint(object sender, PaintEventArgs e)
-        {
-            var btn = (Button)sender;
-            var drawBrush = new SolidBrush(btn.ForeColor);
-            var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            btnRunCELoad.Text = string.Empty;
-            e.Graphics.DrawString("RUN CE LOAD", btn.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
-        private void btnRunForecasting_Paint(object sender, PaintEventArgs e)
-        {
-            var btn = (Button)sender;
-            var drawBrush = new SolidBrush(btn.ForeColor);
-            var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            btnRunForecasting.Text = string.Empty;
-            e.Graphics.DrawString("RUN FORECASTING", btn.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
-        private void btnReset_Paint(object sender, PaintEventArgs e)
-        {
-            var btn = (Button)sender;
-            var drawBrush = new SolidBrush(btn.ForeColor);
-            var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            btnReset.Text = string.Empty;
-            e.Graphics.DrawString("RESET", btn.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
 
         //Populates and formats the Monthly Processing table 
 
@@ -503,6 +439,34 @@ namespace Cprs
         private void frmImpMonthProc_FormClosing(object sender, FormClosingEventArgs e)
         {
             GeneralDataFuctions.AddCpraccessData("IMPROVEMENTS", "EXIT");
+        }
+
+        private void btnRunCELoad_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRunCELoad.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRunCELoad.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRunTabulations_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRunTabulations.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRunTabulations.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRunForecasting_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRunForecasting.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRunForecasting.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRunVIPLoad_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRunVIPLoad.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRunVIPLoad.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }
 }
