@@ -942,6 +942,28 @@ namespace Cprs
 
             printer.PrintDataGridViewWithoutDialog(dgPrint);
         }
-        
+
+        private void btnWork_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnWork.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnWork.BackColor = currentButton.Enabled == false ? Color.LightGray: Color.White;
+        }
+
+        private void btnMonth_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnMonth.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnMonth.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRevision_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRevision.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRevision.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+       
     }
 }

@@ -99,7 +99,7 @@
             this.lbllabel.ForeColor = System.Drawing.Color.DarkBlue;
             this.lbllabel.Location = new System.Drawing.Point(885, 626);
             this.lbllabel.Name = "lbllabel";
-            this.lbllabel.Size = new System.Drawing.Size(215, 16);
+            this.lbllabel.Size = new System.Drawing.Size(214, 16);
             this.lbllabel.TabIndex = 32;
             this.lbllabel.Text = "Double Click a Line to Expand";
             // 
@@ -110,7 +110,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(19, 626);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 16);
+            this.label2.Size = new System.Drawing.Size(195, 16);
             this.label2.TabIndex = 30;
             this.label2.Text = "* Indicates Unpublished TC";
             // 
@@ -121,7 +121,7 @@
             this.ckMySec.ForeColor = System.Drawing.Color.DarkBlue;
             this.ckMySec.Location = new System.Drawing.Point(516, 15);
             this.ckMySec.Name = "ckMySec";
-            this.ckMySec.Size = new System.Drawing.Size(96, 20);
+            this.ckMySec.Size = new System.Drawing.Size(95, 20);
             this.ckMySec.TabIndex = 1;
             this.ckMySec.Text = "My Sector";
             this.ckMySec.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             this.rd1u.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1u.Location = new System.Drawing.Point(888, 48);
             this.rd1u.Name = "rd1u";
-            this.rd1u.Size = new System.Drawing.Size(78, 20);
+            this.rd1u.Size = new System.Drawing.Size(77, 20);
             this.rd1u.TabIndex = 29;
             this.rd1u.Text = "Utilities";
             this.rd1u.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             this.rd1m.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1m.Location = new System.Drawing.Point(771, 48);
             this.rd1m.Name = "rd1m";
-            this.rd1m.Size = new System.Drawing.Size(99, 20);
+            this.rd1m.Size = new System.Drawing.Size(98, 20);
             this.rd1m.TabIndex = 28;
             this.rd1m.Text = "Multifamily";
             this.rd1m.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             this.rd1f.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1f.Location = new System.Drawing.Point(516, 48);
             this.rd1f.Name = "rd1f";
-            this.rd1f.Size = new System.Drawing.Size(80, 20);
+            this.rd1f.Size = new System.Drawing.Size(79, 20);
             this.rd1f.TabIndex = 26;
             this.rd1f.Text = "Federal";
             this.rd1f.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(136, 48);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 16);
+            this.label3.Size = new System.Drawing.Size(107, 16);
             this.label3.TabIndex = 27;
             this.label3.Text = "Select Survey:";
             // 
@@ -184,7 +184,7 @@
             this.rd1n.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1n.Location = new System.Drawing.Point(618, 48);
             this.rd1n.Name = "rd1n";
-            this.rd1n.Size = new System.Drawing.Size(127, 20);
+            this.rd1n.Size = new System.Drawing.Size(126, 20);
             this.rd1n.TabIndex = 25;
             this.rd1n.Text = "Nonresidential";
             this.rd1n.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             this.rd1p.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1p.Location = new System.Drawing.Point(375, 48);
             this.rd1p.Name = "rd1p";
-            this.rd1p.Size = new System.Drawing.Size(134, 20);
+            this.rd1p.Size = new System.Drawing.Size(133, 20);
             this.rd1p.TabIndex = 24;
             this.rd1p.Text = "State and Local";
             this.rd1p.UseVisualStyleBackColor = true;
@@ -211,7 +211,7 @@
             this.rd1a.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1a.Location = new System.Drawing.Point(250, 48);
             this.rd1a.Name = "rd1a";
-            this.rd1a.Size = new System.Drawing.Size(104, 20);
+            this.rd1a.Size = new System.Drawing.Size(103, 20);
             this.rd1a.TabIndex = 23;
             this.rd1a.TabStop = true;
             this.rd1a.Text = "All Surveys";
@@ -309,6 +309,7 @@
             this.btnRevision.TabStop = false;
             this.btnRevision.Text = "REVISIONS";
             this.btnRevision.UseVisualStyleBackColor = true;
+            this.btnRevision.EnabledChanged += new System.EventHandler(this.btnRevision_EnabledChanged);
             this.btnRevision.Click += new System.EventHandler(this.btnRevision_Click);
             // 
             // btnWork
@@ -322,6 +323,7 @@
             this.btnWork.TabStop = false;
             this.btnWork.Text = "WORKSHEET";
             this.btnWork.UseVisualStyleBackColor = true;
+            this.btnWork.EnabledChanged += new System.EventHandler(this.btnWork_EnabledChanged);
             this.btnWork.Click += new System.EventHandler(this.btnWork_Click);
             // 
             // btnMonth
@@ -335,6 +337,7 @@
             this.btnMonth.TabStop = false;
             this.btnMonth.Text = "MONTH to MONTH";
             this.btnMonth.UseVisualStyleBackColor = true;
+            this.btnMonth.EnabledChanged += new System.EventHandler(this.btnMonth_EnabledChanged);
             this.btnMonth.Click += new System.EventHandler(this.btnMonth_Click);
             // 
             // btnPrint
@@ -378,7 +381,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 850);
+            this.ClientSize = new System.Drawing.Size(1208, 850);
             this.Controls.Add(this.btnAdjust);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRevision);
