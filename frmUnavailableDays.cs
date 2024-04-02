@@ -266,6 +266,26 @@ namespace Cprs
             txtCut.Text = month_name + " " + sday.Day.ToString("00");
             cut_day = sday.Day.ToString("00");
         }
-        
+
+        private void btnAdd_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnDelete_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnCut_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
