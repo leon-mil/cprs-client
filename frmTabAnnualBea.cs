@@ -627,5 +627,47 @@ namespace Cprs
             popup.CallingForm = this;
             popup.Show();
         }
+
+        private void btnWork_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRevision_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnTable_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnUpdate_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnSub_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnBoost_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }

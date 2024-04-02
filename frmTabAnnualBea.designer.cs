@@ -132,7 +132,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(501, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 16);
+            this.label2.Size = new System.Drawing.Size(155, 16);
             this.label2.TabIndex = 71;
             this.label2.Text = "Thousands of Dollars";
             // 
@@ -154,7 +154,7 @@
             this.rd1u.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1u.Location = new System.Drawing.Point(848, 158);
             this.rd1u.Name = "rd1u";
-            this.rd1u.Size = new System.Drawing.Size(78, 20);
+            this.rd1u.Size = new System.Drawing.Size(77, 20);
             this.rd1u.TabIndex = 81;
             this.rd1u.Text = "Utilities";
             this.rd1u.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             this.rd1m.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1m.Location = new System.Drawing.Point(743, 158);
             this.rd1m.Name = "rd1m";
-            this.rd1m.Size = new System.Drawing.Size(99, 20);
+            this.rd1m.Size = new System.Drawing.Size(98, 20);
             this.rd1m.TabIndex = 80;
             this.rd1m.Text = "Multifamily";
             this.rd1m.UseVisualStyleBackColor = true;
@@ -180,7 +180,7 @@
             this.rd1f.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1f.Location = new System.Drawing.Point(524, 158);
             this.rd1f.Name = "rd1f";
-            this.rd1f.Size = new System.Drawing.Size(80, 20);
+            this.rd1f.Size = new System.Drawing.Size(79, 20);
             this.rd1f.TabIndex = 78;
             this.rd1f.Text = "Federal";
             this.rd1f.UseVisualStyleBackColor = true;
@@ -193,7 +193,7 @@
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
             this.label4.Location = new System.Drawing.Point(270, 156);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 16);
+            this.label4.Size = new System.Drawing.Size(107, 16);
             this.label4.TabIndex = 79;
             this.label4.Text = "Select Survey:";
             // 
@@ -204,7 +204,7 @@
             this.rd1n.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1n.Location = new System.Drawing.Point(610, 158);
             this.rd1n.Name = "rd1n";
-            this.rd1n.Size = new System.Drawing.Size(127, 20);
+            this.rd1n.Size = new System.Drawing.Size(126, 20);
             this.rd1n.TabIndex = 77;
             this.rd1n.Text = "Nonresidential";
             this.rd1n.UseVisualStyleBackColor = true;
@@ -218,7 +218,7 @@
             this.rd1p.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1p.Location = new System.Drawing.Point(384, 157);
             this.rd1p.Name = "rd1p";
-            this.rd1p.Size = new System.Drawing.Size(134, 20);
+            this.rd1p.Size = new System.Drawing.Size(133, 20);
             this.rd1p.TabIndex = 76;
             this.rd1p.TabStop = true;
             this.rd1p.Text = "State and Local";
@@ -236,6 +236,7 @@
             this.btnRevision.TabStop = false;
             this.btnRevision.Text = "REVISIONS";
             this.btnRevision.UseVisualStyleBackColor = true;
+            this.btnRevision.EnabledChanged += new System.EventHandler(this.btnRevision_EnabledChanged);
             this.btnRevision.Click += new System.EventHandler(this.btnRevision_Click);
             // 
             // btnWork
@@ -249,6 +250,7 @@
             this.btnWork.TabStop = false;
             this.btnWork.Text = "WORKSHEET";
             this.btnWork.UseVisualStyleBackColor = true;
+            this.btnWork.EnabledChanged += new System.EventHandler(this.btnWork_EnabledChanged);
             this.btnWork.Click += new System.EventHandler(this.btnWork_Click);
             // 
             // btnPrint
@@ -275,6 +277,7 @@
             this.btnBoost.TabStop = false;
             this.btnBoost.Text = "BOOSTED";
             this.btnBoost.UseVisualStyleBackColor = true;
+            this.btnBoost.EnabledChanged += new System.EventHandler(this.btnBoost_EnabledChanged);
             this.btnBoost.Click += new System.EventHandler(this.btnBoost_Click);
             // 
             // btnTable
@@ -288,6 +291,7 @@
             this.btnTable.TabStop = false;
             this.btnTable.Text = "CREATE TABLES";
             this.btnTable.UseVisualStyleBackColor = true;
+            this.btnTable.EnabledChanged += new System.EventHandler(this.btnTable_EnabledChanged);
             this.btnTable.Click += new System.EventHandler(this.btnTable_Click);
             // 
             // backgroundWorker1
@@ -306,6 +310,7 @@
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "NEWTC UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.EnabledChanged += new System.EventHandler(this.btnUpdate_EnabledChanged);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSub
@@ -319,6 +324,7 @@
             this.btnSub.TabStop = false;
             this.btnSub.Text = "UTILITES SUBTC";
             this.btnSub.UseVisualStyleBackColor = true;
+            this.btnSub.EnabledChanged += new System.EventHandler(this.btnSub_EnabledChanged);
             this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
             // 
             // frmTabAnnualBea
