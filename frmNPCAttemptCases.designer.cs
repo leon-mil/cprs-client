@@ -119,7 +119,7 @@
             this.dgCases.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dgCases.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgCases.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCases.Size = new System.Drawing.Size(783, 520);
+            this.dgCases.Size = new System.Drawing.Size(775, 520);
             this.dgCases.TabIndex = 26;
             this.dgCases.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dg_CellFormatting);
             this.dgCases.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dg_CellParsing);
@@ -267,7 +267,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 853);
+            this.ClientSize = new System.Drawing.Size(1208, 853);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtDate);
