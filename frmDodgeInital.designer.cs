@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label28 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnRespid = new System.Windows.Forms.Button();
@@ -959,9 +959,9 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label22.Location = new System.Drawing.Point(114, 81);
+            this.label22.Location = new System.Drawing.Point(115, 81);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(52, 27);
+            this.label22.Size = new System.Drawing.Size(51, 27);
             this.label22.TabIndex = 277;
             this.label22.Text = "EMAIL";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -970,9 +970,9 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label33.Location = new System.Drawing.Point(102, 0);
+            this.label33.Location = new System.Drawing.Point(103, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(64, 27);
+            this.label33.Size = new System.Drawing.Size(63, 27);
             this.label33.TabIndex = 0;
             this.label33.Text = "RESPID";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -981,9 +981,9 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label34.Location = new System.Drawing.Point(45, 27);
+            this.label34.Location = new System.Drawing.Point(46, 27);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(121, 27);
+            this.label34.Size = new System.Drawing.Size(120, 27);
             this.label34.TabIndex = 1;
             this.label34.Text = "ORGANIZATION";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -992,9 +992,9 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label40.Location = new System.Drawing.Point(770, 27);
+            this.label40.Location = new System.Drawing.Point(771, 27);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(69, 27);
+            this.label40.Size = new System.Drawing.Size(68, 27);
             this.label40.TabIndex = 274;
             this.label40.Text = "PHONE1";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1003,9 +1003,9 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label41.Location = new System.Drawing.Point(770, 54);
+            this.label41.Location = new System.Drawing.Point(771, 54);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(69, 27);
+            this.label41.Size = new System.Drawing.Size(68, 27);
             this.label41.TabIndex = 275;
             this.label41.Text = "PHONE2";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1073,9 +1073,9 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label24.Location = new System.Drawing.Point(86, 54);
+            this.label24.Location = new System.Drawing.Point(87, 54);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(80, 27);
+            this.label24.Size = new System.Drawing.Size(79, 27);
             this.label24.TabIndex = 278;
             this.label24.Text = "CONTACT";
             // 
@@ -1141,22 +1141,22 @@
             this.dgInitialsSrch1.AllowUserToResizeColumns = false;
             this.dgInitialsSrch1.AllowUserToResizeRows = false;
             this.dgInitialsSrch1.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgInitialsSrch1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgInitialsSrch1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.dgInitialsSrch1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgInitialsSrch1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgInitialsSrch1.Location = new System.Drawing.Point(10, 21);
             this.dgInitialsSrch1.MultiSelect = false;
             this.dgInitialsSrch1.Name = "dgInitialsSrch1";
             this.dgInitialsSrch1.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgInitialsSrch1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgInitialsSrch1.RowsDefaultCellStyle = dataGridViewCellStyle34;
             this.dgInitialsSrch1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.dgInitialsSrch1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgInitialsSrch1.Size = new System.Drawing.Size(1169, 110);
@@ -1186,6 +1186,7 @@
             this.btnAudit.TabIndex = 43;
             this.btnAudit.Text = "AUDIT";
             this.btnAudit.UseVisualStyleBackColor = true;
+            this.btnAudit.EnabledChanged += new System.EventHandler(this.btnAudit_EnabledChanged);
             this.btnAudit.Click += new System.EventHandler(this.btnAudit_Click);
             // 
             // btnPrint
@@ -1198,6 +1199,7 @@
             this.btnPrint.TabIndex = 44;
             this.btnPrint.Text = "PRINT";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.EnabledChanged += new System.EventHandler(this.btnPrint_EnabledChanged);
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnNextInitial
@@ -1210,6 +1212,7 @@
             this.btnNextInitial.TabIndex = 36;
             this.btnNextInitial.Text = "NEXT INITIAL";
             this.btnNextInitial.UseVisualStyleBackColor = true;
+            this.btnNextInitial.EnabledChanged += new System.EventHandler(this.btnNextInitial_EnabledChanged);
             this.btnNextInitial.Click += new System.EventHandler(this.btnNextInitial_Click);
             // 
             // btnRefresh
@@ -1222,6 +1225,7 @@
             this.btnRefresh.TabIndex = 41;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.EnabledChanged += new System.EventHandler(this.btnRefresh_EnabledChanged);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnSlip
@@ -1234,6 +1238,7 @@
             this.btnSlip.TabIndex = 38;
             this.btnSlip.Text = "SLIP";
             this.btnSlip.UseVisualStyleBackColor = true;
+            this.btnSlip.EnabledChanged += new System.EventHandler(this.btnSlip_EnabledChanged);
             this.btnSlip.Click += new System.EventHandler(this.btnSlip_Click);
             // 
             // btnSource
@@ -1246,6 +1251,7 @@
             this.btnSource.TabIndex = 39;
             this.btnSource.Text = "SOURCE";
             this.btnSource.UseVisualStyleBackColor = true;
+            this.btnSource.EnabledChanged += new System.EventHandler(this.btnSource_EnabledChanged);
             this.btnSource.Click += new System.EventHandler(this.btnSource_Click);
             // 
             // btnTFU
@@ -1258,6 +1264,7 @@
             this.btnTFU.TabIndex = 40;
             this.btnTFU.Text = "TFU";
             this.btnTFU.UseVisualStyleBackColor = true;
+            this.btnTFU.EnabledChanged += new System.EventHandler(this.btnTFU_EnabledChanged);
             this.btnTFU.Click += new System.EventHandler(this.btnTFU_Click);
             // 
             // txtStrtDater
@@ -1284,6 +1291,7 @@
             this.btnHist.TabIndex = 42;
             this.btnHist.Text = "COMMENTS";
             this.btnHist.UseVisualStyleBackColor = true;
+            this.btnHist.EnabledChanged += new System.EventHandler(this.btnHist_EnabledChanged);
             this.btnHist.Click += new System.EventHandler(this.btnHist_Click);
             // 
             // gbListCount
@@ -1589,6 +1597,7 @@
             this.btnPrevCase.Text = "PREV CASE";
             this.btnPrevCase.UseVisualStyleBackColor = true;
             this.btnPrevCase.Visible = false;
+            this.btnPrevCase.EnabledChanged += new System.EventHandler(this.btnPrevCase_EnabledChanged);
             this.btnPrevCase.Click += new System.EventHandler(this.btnPrevCase_Click);
             // 
             // btnNextCase
@@ -1602,6 +1611,7 @@
             this.btnNextCase.Text = "NEXT CASE";
             this.btnNextCase.UseVisualStyleBackColor = true;
             this.btnNextCase.Visible = false;
+            this.btnNextCase.EnabledChanged += new System.EventHandler(this.btnNextCase_EnabledChanged);
             this.btnNextCase.Click += new System.EventHandler(this.btnNextCase_Click);
             // 
             // btnRestore
@@ -1614,6 +1624,7 @@
             this.btnRestore.TabIndex = 388;
             this.btnRestore.Text = "RESTORE";
             this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.EnabledChanged += new System.EventHandler(this.btnRestore_EnabledChanged);
             this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // txtLag
@@ -1655,6 +1666,7 @@
             this.btnReplaceO2.TabIndex = 395;
             this.btnReplaceO2.Text = "OWNER2";
             this.btnReplaceO2.UseVisualStyleBackColor = true;
+            this.btnReplaceO2.EnabledChanged += new System.EventHandler(this.btnReplaceO2_EnabledChanged);
             this.btnReplaceO2.Click += new System.EventHandler(this.btnReplaceO2_Click);
             // 
             // btnReplaceE
@@ -1668,6 +1680,7 @@
             this.btnReplaceE.TabIndex = 394;
             this.btnReplaceE.Text = "ENGINEER";
             this.btnReplaceE.UseVisualStyleBackColor = true;
+            this.btnReplaceE.EnabledChanged += new System.EventHandler(this.btnReplaceE_EnabledChanged);
             this.btnReplaceE.Click += new System.EventHandler(this.btnReplaceE_Click);
             // 
             // btnReplaceA
@@ -1681,6 +1694,7 @@
             this.btnReplaceA.TabIndex = 393;
             this.btnReplaceA.Text = "ARCHITECT";
             this.btnReplaceA.UseVisualStyleBackColor = true;
+            this.btnReplaceA.EnabledChanged += new System.EventHandler(this.btnReplaceA_EnabledChanged);
             this.btnReplaceA.Click += new System.EventHandler(this.btnReplaceA_Click);
             // 
             // btnReplaceO
@@ -1694,6 +1708,7 @@
             this.btnReplaceO.TabIndex = 392;
             this.btnReplaceO.Text = "OWNER";
             this.btnReplaceO.UseVisualStyleBackColor = true;
+            this.btnReplaceO.EnabledChanged += new System.EventHandler(this.btnReplaceO_EnabledChanged);
             this.btnReplaceO.Click += new System.EventHandler(this.btnReplaceO_Click);
             // 
             // btnReplaceC
@@ -1707,6 +1722,7 @@
             this.btnReplaceC.TabIndex = 391;
             this.btnReplaceC.Text = "CONTRACTOR";
             this.btnReplaceC.UseVisualStyleBackColor = true;
+            this.btnReplaceC.EnabledChanged += new System.EventHandler(this.btnReplaceC_EnabledChanged);
             this.btnReplaceC.Click += new System.EventHandler(this.btnReplaceC_Click_1);
             // 
             // btnRef
@@ -1719,6 +1735,7 @@
             this.btnRef.TabIndex = 396;
             this.btnRef.Text = "REFERRAL";
             this.btnRef.UseVisualStyleBackColor = true;
+            this.btnRef.EnabledChanged += new System.EventHandler(this.btnRef_EnabledChanged);
             this.btnRef.Click += new System.EventHandler(this.btnRef_Click);
             // 
             // lblReferral
