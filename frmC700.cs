@@ -104,6 +104,13 @@ Modified By   :  Christine Zhang
 Keyword       :  
 Change Request:  CR#917
 Description   : add Tag to sample table and display to screen
+****************************************************************************************
+Modified Date :  04/1/2024
+Modified By   :  Christine Zhang
+Keyword       :  20240401cz
+Change Request:  
+Description   : add a question when analysts enter compdate, and there are month vip data
+               with 'I' exist
 ****************************************************************************************/
 
 using System;
@@ -3817,9 +3824,29 @@ namespace Cprs
             }
             else
             {
-                //Check impute data, set to blank
-                var ilist = from v in mvs.monthlyViplist where v.Vipflag == "M" && Convert.ToInt32(v.Date6) > Convert.ToInt32(txtCompdate.Text) select v;
+                bool delete_fl = false;
+
+                //Check impute data, set to blank  20240401cz
+                var ilist = from v in mvs.monthlyViplist where (v.Vipflag == "I") && Convert.ToInt32(v.Date6) > Convert.ToInt32(txtCompdate.Text) select v;
                 if (ilist.ToList().Count > 0)
+                {
+                    DialogResult result1 = MessageBox.Show("Analyst impute Vip data after Completion Date, Erase?", "Important Query", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result1 == DialogResult.Yes)
+                        delete_fl = true;
+                    else
+                    {
+                        txtCompdate.Text = old_text;
+                        return false;
+                    }
+                }
+                else
+                {
+                    ilist = from v in mvs.monthlyViplist where (v.Vipflag == "M") && Convert.ToInt32(v.Date6) > Convert.ToInt32(txtCompdate.Text) select v;
+                    if (ilist.ToList().Count > 0)
+                        delete_fl = true;
+                }
+
+                if (delete_fl)
                 {
                     foreach (var value in mvs.monthlyViplist)
                     {
@@ -3872,7 +3899,7 @@ namespace Cprs
                         txtCompr.Text = mvsall.GetCumPercentr(it5c).ToString();
                     }
                 }
-
+                
             }
 
             SetDefaultFlag(txtCompdate, txtFlagCompdate);
@@ -5062,6 +5089,89 @@ namespace Cprs
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
+        private void btnMark_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnMark.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnMark.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnReturn_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnReturn.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnReturn.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRef_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRef.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRef.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnNextCase_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnNextCase.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnNextCase.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnSlip_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnSlip.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnSlip.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnName_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnName.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnName.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRefresh_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRefresh.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRefresh.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnHist_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnHist.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnHist.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnAduit_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAduit.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAduit.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnHistory_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnHistory.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnHistory.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnProcess_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnProcess.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnProcess.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 
 }

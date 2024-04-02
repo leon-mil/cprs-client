@@ -225,6 +225,7 @@
             this.btnPrint.TabIndex = 34;
             this.btnPrint.Text = "PRINT";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.EnabledChanged += new System.EventHandler(this.btnPrint_EnabledChanged);
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnReturn
@@ -237,6 +238,7 @@
             this.btnReturn.TabIndex = 25;
             this.btnReturn.Text = "PREVIOUS";
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.EnabledChanged += new System.EventHandler(this.btnReturn_EnabledChanged);
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // label2
@@ -1097,6 +1099,7 @@
             this.btnHistory.TabIndex = 35;
             this.btnHistory.Text = "HISTORY";
             this.btnHistory.UseVisualStyleBackColor = true;
+            this.btnHistory.EnabledChanged += new System.EventHandler(this.btnHistory_EnabledChanged);
             this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // btnRef
@@ -1109,6 +1112,7 @@
             this.btnRef.TabIndex = 26;
             this.btnRef.Text = "REFERRAL";
             this.btnRef.UseVisualStyleBackColor = true;
+            this.btnRef.EnabledChanged += new System.EventHandler(this.btnRef_EnabledChanged);
             this.btnRef.Click += new System.EventHandler(this.btnRef_Click);
             // 
             // btnName
@@ -1121,6 +1125,7 @@
             this.btnName.TabIndex = 29;
             this.btnName.Text = "N/A";
             this.btnName.UseVisualStyleBackColor = true;
+            this.btnName.EnabledChanged += new System.EventHandler(this.btnName_EnabledChanged);
             this.btnName.Click += new System.EventHandler(this.btnName_Click);
             // 
             // btnAduit
@@ -1133,6 +1138,7 @@
             this.btnAduit.TabIndex = 32;
             this.btnAduit.Text = "AUDIT";
             this.btnAduit.UseVisualStyleBackColor = true;
+            this.btnAduit.EnabledChanged += new System.EventHandler(this.btnAduit_EnabledChanged);
             this.btnAduit.Click += new System.EventHandler(this.btnAduit_Click);
             // 
             // btnMark
@@ -1145,6 +1151,7 @@
             this.btnMark.TabIndex = 24;
             this.btnMark.Text = "MARK";
             this.btnMark.UseVisualStyleBackColor = true;
+            this.btnMark.EnabledChanged += new System.EventHandler(this.btnMark_EnabledChanged);
             this.btnMark.Click += new System.EventHandler(this.btnMark_Click);
             // 
             // btnProcess
@@ -1157,6 +1164,7 @@
             this.btnProcess.TabIndex = 33;
             this.btnProcess.Text = "PROCESS";
             this.btnProcess.UseVisualStyleBackColor = true;
+            this.btnProcess.EnabledChanged += new System.EventHandler(this.btnProcess_EnabledChanged);
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // btnNextCase
@@ -1169,6 +1177,7 @@
             this.btnNextCase.TabIndex = 27;
             this.btnNextCase.Text = "NEXT CASE";
             this.btnNextCase.UseVisualStyleBackColor = true;
+            this.btnNextCase.EnabledChanged += new System.EventHandler(this.btnNextCase_EnabledChanged);
             this.btnNextCase.Click += new System.EventHandler(this.btnNextCase_Click);
             // 
             // btnPrevCase
@@ -1193,6 +1202,7 @@
             this.btnHist.TabIndex = 31;
             this.btnHist.Text = "COMMENTS";
             this.btnHist.UseVisualStyleBackColor = true;
+            this.btnHist.EnabledChanged += new System.EventHandler(this.btnHist_EnabledChanged);
             this.btnHist.Click += new System.EventHandler(this.btnHist_Click);
             // 
             // btnSlip
@@ -1205,6 +1215,7 @@
             this.btnSlip.TabIndex = 28;
             this.btnSlip.Text = "SLIP";
             this.btnSlip.UseVisualStyleBackColor = true;
+            this.btnSlip.EnabledChanged += new System.EventHandler(this.btnSlip_EnabledChanged);
             this.btnSlip.Click += new System.EventHandler(this.btnSlip_Click);
             // 
             // btnRefresh
@@ -1217,6 +1228,7 @@
             this.btnRefresh.TabIndex = 30;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.EnabledChanged += new System.EventHandler(this.btnRefresh_EnabledChanged);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // groupBox3
