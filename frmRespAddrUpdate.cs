@@ -1361,18 +1361,8 @@ namespace Cprs
         private void btn_EnabledChanged(object sender, EventArgs e)
         {
             var btn = (Button)sender;
-            btn.ForeColor = btn.Enabled ? Color.DarkBlue : Color.Gray;
-        }
-
-        private void btnReset_Paint(object sender, PaintEventArgs e)
-        {
-            var btn = (Button)sender;
-            var drawBrush = new SolidBrush(btn.ForeColor);
-            var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            btnReset.Text = string.Empty; //remove the button text
-            e.Graphics.DrawString("REFRESH", btn.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
         }
 
 
@@ -1714,6 +1704,27 @@ namespace Cprs
                 }
 
             }
+        }
+
+        private void btnC700_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnC700.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnC700.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnNextRespid_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnNextRespid.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnNextRespid.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }
 }
