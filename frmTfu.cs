@@ -6487,5 +6487,103 @@ namespace Cprs
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.ShowDialog();
         }
+
+        private void btnSlip_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnSlip.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnSlip.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnName_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnName.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnName.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrevious_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrevious.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrevious.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRefresh_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRefresh.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRefresh.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnComments_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnComments.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnComments.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnReferral_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnReferral.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnReferral.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnHistory_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnHistory.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnHistory.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnSource_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnSource.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnSource.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnTfu_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnTfu.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnTfu.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnForm_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnForm.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnForm.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnMark_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnMark.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnMark.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnProcess_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnProcess.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnProcess.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnAduit_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAduit.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAduit.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
