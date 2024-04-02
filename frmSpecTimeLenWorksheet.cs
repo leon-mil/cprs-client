@@ -595,5 +595,40 @@ namespace Cprs
             dv.Sort = "vg desc, wtmonths desc, id asc";
             dgData.DataSource = dv.ToTable();
         }
+
+        private void btnC700_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnApply_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnSave_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrev_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
