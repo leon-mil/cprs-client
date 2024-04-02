@@ -163,6 +163,7 @@
             this.btnSave.TabIndex = 193;
             this.btnSave.Text = "SAVE CHANGES";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.EnabledChanged += new System.EventHandler(this.btnSave_EnabledChanged);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRefresh
