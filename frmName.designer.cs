@@ -1153,6 +1153,7 @@
             this.btnReturn.TabIndex = 27;
             this.btnReturn.Text = "PREVIOUS";
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.EnabledChanged += new System.EventHandler(this.btnReturn_EnabledChanged);
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // btnPrint
@@ -1165,6 +1166,7 @@
             this.btnPrint.TabIndex = 36;
             this.btnPrint.Text = "PRINT";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.EnabledChanged += new System.EventHandler(this.btnPrint_EnabledChanged);
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnC700
@@ -1178,6 +1180,7 @@
             this.btnC700.TabIndex = 31;
             this.btnC700.Text = "C-700";
             this.btnC700.UseVisualStyleBackColor = true;
+            this.btnC700.EnabledChanged += new System.EventHandler(this.btnC700_EnabledChanged);
             this.btnC700.Click += new System.EventHandler(this.btnC700_Click);
             // 
             // btnHist
@@ -1190,6 +1193,7 @@
             this.btnHist.TabIndex = 33;
             this.btnHist.Text = "COMMENTS";
             this.btnHist.UseVisualStyleBackColor = true;
+            this.btnHist.EnabledChanged += new System.EventHandler(this.btnHist_EnabledChanged);
             this.btnHist.Click += new System.EventHandler(this.btnHist_Click);
             // 
             // btnPrevCase
@@ -1202,6 +1206,7 @@
             this.btnPrevCase.TabIndex = 25;
             this.btnPrevCase.Text = "PREV CASE";
             this.btnPrevCase.UseVisualStyleBackColor = true;
+            this.btnPrevCase.EnabledChanged += new System.EventHandler(this.btnPrevCase_EnabledChanged);
             this.btnPrevCase.Click += new System.EventHandler(this.btnPrevCase_Click);
             // 
             // btnNextCase
@@ -1214,6 +1219,7 @@
             this.btnNextCase.TabIndex = 29;
             this.btnNextCase.Text = "NEXT CASE";
             this.btnNextCase.UseVisualStyleBackColor = true;
+            this.btnNextCase.EnabledChanged += new System.EventHandler(this.btnNextCase_EnabledChanged);
             this.btnNextCase.Click += new System.EventHandler(this.btnNextCase_Click);
             // 
             // btnSlip
@@ -1226,6 +1232,7 @@
             this.btnSlip.TabIndex = 30;
             this.btnSlip.Text = "SLIP";
             this.btnSlip.UseVisualStyleBackColor = true;
+            this.btnSlip.EnabledChanged += new System.EventHandler(this.btnSlip_EnabledChanged);
             this.btnSlip.Click += new System.EventHandler(this.btnSlip_Click);
             // 
             // btnRefresh
@@ -1238,6 +1245,7 @@
             this.btnRefresh.TabIndex = 32;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.EnabledChanged += new System.EventHandler(this.btnRefresh_EnabledChanged);
             this.btnRefresh.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnMark
@@ -1250,6 +1258,7 @@
             this.btnMark.TabIndex = 26;
             this.btnMark.Text = "MARK";
             this.btnMark.UseVisualStyleBackColor = true;
+            this.btnMark.EnabledChanged += new System.EventHandler(this.btnMark_EnabledChanged);
             this.btnMark.Click += new System.EventHandler(this.btnMark_Click);
             // 
             // lblLockedBy
@@ -1475,11 +1484,11 @@
             this.btnReferral.TabIndex = 28;
             this.btnReferral.Text = "REFERRAL";
             this.btnReferral.UseVisualStyleBackColor = true;
+            this.btnReferral.EnabledChanged += new System.EventHandler(this.btnReferral_EnabledChanged);
             this.btnReferral.Click += new System.EventHandler(this.btnReferral_Click);
             // 
             // btnReplaceC
             // 
-            this.btnReplaceC.Enabled = false;
             this.btnReplaceC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplaceC.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnReplaceC.Location = new System.Drawing.Point(956, 358);
@@ -1488,6 +1497,7 @@
             this.btnReplaceC.TabIndex = 15;
             this.btnReplaceC.Text = "CONTRACTOR";
             this.btnReplaceC.UseVisualStyleBackColor = true;
+            this.btnReplaceC.EnabledChanged += new System.EventHandler(this.btnReplaceC_EnabledChanged);
             this.btnReplaceC.Click += new System.EventHandler(this.btnReplaceC_Click);
             // 
             // tabControl1
@@ -1718,6 +1728,7 @@
             this.btnSource.TabIndex = 35;
             this.btnSource.Text = "SOURCE";
             this.btnSource.UseVisualStyleBackColor = true;
+            this.btnSource.EnabledChanged += new System.EventHandler(this.btnSource_EnabledChanged);
             this.btnSource.Click += new System.EventHandler(this.btnSource_Click);
             // 
             // btnAudit
@@ -1730,6 +1741,7 @@
             this.btnAudit.TabIndex = 34;
             this.btnAudit.Text = "AUDIT";
             this.btnAudit.UseVisualStyleBackColor = true;
+            this.btnAudit.EnabledChanged += new System.EventHandler(this.btnAudit_EnabledChanged);
             this.btnAudit.Click += new System.EventHandler(this.btnAudit_Click);
             // 
             // btnRespid
@@ -1777,7 +1789,6 @@
             // 
             // btnReplaceO
             // 
-            this.btnReplaceO.Enabled = false;
             this.btnReplaceO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplaceO.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnReplaceO.Location = new System.Drawing.Point(680, 358);
@@ -1786,11 +1797,11 @@
             this.btnReplaceO.TabIndex = 291;
             this.btnReplaceO.Text = "OWNER";
             this.btnReplaceO.UseVisualStyleBackColor = true;
+            this.btnReplaceO.EnabledChanged += new System.EventHandler(this.btnReplaceO_EnabledChanged);
             this.btnReplaceO.Click += new System.EventHandler(this.btnReplaceO_Click);
             // 
             // btnReplaceA
             // 
-            this.btnReplaceA.Enabled = false;
             this.btnReplaceA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplaceA.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnReplaceA.Location = new System.Drawing.Point(772, 358);
@@ -1799,11 +1810,11 @@
             this.btnReplaceA.TabIndex = 292;
             this.btnReplaceA.Text = "ARCHITECT";
             this.btnReplaceA.UseVisualStyleBackColor = true;
+            this.btnReplaceA.EnabledChanged += new System.EventHandler(this.btnReplaceA_EnabledChanged);
             this.btnReplaceA.Click += new System.EventHandler(this.btnReplaceA_Click);
             // 
             // btnReplaceE
             // 
-            this.btnReplaceE.Enabled = false;
             this.btnReplaceE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplaceE.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnReplaceE.Location = new System.Drawing.Point(864, 358);
@@ -1812,11 +1823,11 @@
             this.btnReplaceE.TabIndex = 293;
             this.btnReplaceE.Text = "ENGINEER";
             this.btnReplaceE.UseVisualStyleBackColor = true;
+            this.btnReplaceE.EnabledChanged += new System.EventHandler(this.btnReplaceE_EnabledChanged);
             this.btnReplaceE.Click += new System.EventHandler(this.btnReplaceE_Click);
             // 
             // btnReplaceO2
             // 
-            this.btnReplaceO2.Enabled = false;
             this.btnReplaceO2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplaceO2.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnReplaceO2.Location = new System.Drawing.Point(1058, 358);
@@ -1825,6 +1836,7 @@
             this.btnReplaceO2.TabIndex = 294;
             this.btnReplaceO2.Text = "OWNER2";
             this.btnReplaceO2.UseVisualStyleBackColor = true;
+            this.btnReplaceO2.EnabledChanged += new System.EventHandler(this.btnReplaceO2_EnabledChanged);
             this.btnReplaceO2.Click += new System.EventHandler(this.btnReplaceO2_Click);
             // 
             // label39
