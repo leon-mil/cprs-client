@@ -102,7 +102,7 @@
             this.dgData.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgData.Size = new System.Drawing.Size(921, 461);
+            this.dgData.Size = new System.Drawing.Size(913, 453);
             this.dgData.TabIndex = 13;
             this.dgData.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgData_CellBeginEdit);
             this.dgData.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgData_CellEndEdit);
@@ -209,7 +209,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(535, 116);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.Size = new System.Drawing.Size(56, 16);
             this.label1.TabIndex = 45;
             this.label1.Text = "Date = ";
             // 
@@ -220,7 +220,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(535, 86);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 16);
+            this.label3.Size = new System.Drawing.Size(155, 16);
             this.label3.TabIndex = 72;
             this.label3.Text = "Thousands of Dollars";
             // 
@@ -228,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPrint);
