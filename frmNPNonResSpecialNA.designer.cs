@@ -113,7 +113,7 @@
             // 
             this.txtFwgt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtFwgt.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFwgt.Location = new System.Drawing.Point(722, 154);
+            this.txtFwgt.Location = new System.Drawing.Point(718, 154);
             this.txtFwgt.Name = "txtFwgt";
             this.txtFwgt.ReadOnly = true;
             this.txtFwgt.Size = new System.Drawing.Size(45, 20);
@@ -125,7 +125,7 @@
             // 
             this.txtSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtSource.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSource.Location = new System.Drawing.Point(939, 154);
+            this.txtSource.Location = new System.Drawing.Point(935, 154);
             this.txtSource.Name = "txtSource";
             this.txtSource.ReadOnly = true;
             this.txtSource.Size = new System.Drawing.Size(34, 20);
@@ -137,7 +137,7 @@
             // 
             this.txtFipsstate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtFipsstate.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFipsstate.Location = new System.Drawing.Point(575, 154);
+            this.txtFipsstate.Location = new System.Drawing.Point(571, 154);
             this.txtFipsstate.MaxLength = 2;
             this.txtFipsstate.Name = "txtFipsstate";
             this.txtFipsstate.ReadOnly = true;
@@ -150,7 +150,7 @@
             // 
             this.txtBpoid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtBpoid.BackColor = System.Drawing.SystemColors.Control;
-            this.txtBpoid.Location = new System.Drawing.Point(130, 154);
+            this.txtBpoid.Location = new System.Drawing.Point(126, 154);
             this.txtBpoid.MaxLength = 6;
             this.txtBpoid.Name = "txtBpoid";
             this.txtBpoid.ReadOnly = true;
@@ -163,7 +163,7 @@
             // 
             this.txtNewtc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtNewtc.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNewtc.Location = new System.Drawing.Point(817, 154);
+            this.txtNewtc.Location = new System.Drawing.Point(813, 154);
             this.txtNewtc.MaxLength = 4;
             this.txtNewtc.Name = "txtNewtc";
             this.txtNewtc.Size = new System.Drawing.Size(48, 20);
@@ -177,7 +177,7 @@
             // 
             this.txtProjselv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtProjselv.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProjselv.Location = new System.Drawing.Point(460, 154);
+            this.txtProjselv.Location = new System.Drawing.Point(456, 154);
             this.txtProjselv.MaxLength = 9;
             this.txtProjselv.Name = "txtProjselv";
             this.txtProjselv.ReadOnly = true;
@@ -190,7 +190,7 @@
             // 
             this.txtSeldate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtSeldate.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSeldate.Location = new System.Drawing.Point(356, 154);
+            this.txtSeldate.Location = new System.Drawing.Point(352, 154);
             this.txtSeldate.MaxLength = 6;
             this.txtSeldate.Name = "txtSeldate";
             this.txtSeldate.ReadOnly = true;
@@ -203,7 +203,7 @@
             // 
             this.txtPsu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtPsu.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPsu.Location = new System.Drawing.Point(38, 154);
+            this.txtPsu.Location = new System.Drawing.Point(34, 154);
             this.txtPsu.MaxLength = 5;
             this.txtPsu.Name = "txtPsu";
             this.txtPsu.ReadOnly = true;
@@ -228,9 +228,9 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label5.Location = new System.Drawing.Point(353, 110);
+            this.label5.Location = new System.Drawing.Point(349, 110);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 39);
+            this.label5.Size = new System.Drawing.Size(72, 31);
             this.label5.TabIndex = 141;
             this.label5.Text = "SELECT DATE";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -240,9 +240,9 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(566, 110);
+            this.label8.Location = new System.Drawing.Point(562, 110);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 39);
+            this.label8.Size = new System.Drawing.Size(49, 31);
             this.label8.TabIndex = 144;
             this.label8.Text = "FIPS ST";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,9 +285,9 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label12.Location = new System.Drawing.Point(919, 110);
+            this.label12.Location = new System.Drawing.Point(915, 110);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 39);
+            this.label12.Size = new System.Drawing.Size(73, 31);
             this.label12.TabIndex = 148;
             this.label12.Text = "SRC CODE";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -308,9 +308,9 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label6.Location = new System.Drawing.Point(457, 110);
+            this.label6.Location = new System.Drawing.Point(453, 110);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 39);
+            this.label6.Size = new System.Drawing.Size(76, 31);
             this.label6.TabIndex = 142;
             this.label6.Text = "SELECT VALUE";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -394,7 +394,7 @@
             // 
             this.txtSched.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtSched.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSched.Location = new System.Drawing.Point(237, 154);
+            this.txtSched.Location = new System.Drawing.Point(233, 154);
             this.txtSched.MaxLength = 7;
             this.txtSched.Name = "txtSched";
             this.txtSched.ReadOnly = true;
@@ -686,7 +686,7 @@
             // 
             this.txtOwner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtOwner.BackColor = System.Drawing.SystemColors.Control;
-            this.txtOwner.Location = new System.Drawing.Point(652, 154);
+            this.txtOwner.Location = new System.Drawing.Point(648, 154);
             this.txtOwner.MaxLength = 2;
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.ReadOnly = true;
@@ -828,6 +828,7 @@
             this.btnRefresh.TabIndex = 17;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.EnabledChanged += new System.EventHandler(this.btnRefresh_EnabledChanged);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // printDocument1
@@ -854,7 +855,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.lblLockedBy);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.tabControl1);
