@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTab = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ckMySec = new System.Windows.Forms.CheckBox();
@@ -93,7 +93,7 @@
             this.ckMySec.ForeColor = System.Drawing.Color.DarkBlue;
             this.ckMySec.Location = new System.Drawing.Point(528, 3);
             this.ckMySec.Name = "ckMySec";
-            this.ckMySec.Size = new System.Drawing.Size(96, 20);
+            this.ckMySec.Size = new System.Drawing.Size(95, 20);
             this.ckMySec.TabIndex = 31;
             this.ckMySec.Text = "My Sector";
             this.ckMySec.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.lblCasesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCasesCount.Location = new System.Drawing.Point(25, 72);
             this.lblCasesCount.Name = "lblCasesCount";
-            this.lblCasesCount.Size = new System.Drawing.Size(36, 16);
+            this.lblCasesCount.Size = new System.Drawing.Size(35, 16);
             this.lblCasesCount.TabIndex = 30;
             this.lblCasesCount.Text = "xxxx";
             // 
@@ -146,23 +146,23 @@
             this.dgProjReferrals.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgProjReferrals.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgProjReferrals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProjReferrals.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProjReferrals.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgProjReferrals.Location = new System.Drawing.Point(3, 3);
             this.dgProjReferrals.MultiSelect = false;
             this.dgProjReferrals.Name = "dgProjReferrals";
             this.dgProjReferrals.ReadOnly = true;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgProjReferrals.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgProjReferrals.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgProjReferrals.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgProjReferrals.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dgProjReferrals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -193,25 +193,25 @@
             this.dgRespReferrals.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgRespReferrals.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgRespReferrals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgRespReferrals.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgRespReferrals.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgRespReferrals.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgRespReferrals.Location = new System.Drawing.Point(3, 3);
             this.dgRespReferrals.MultiSelect = false;
             this.dgRespReferrals.Name = "dgRespReferrals";
             this.dgRespReferrals.ReadOnly = true;
             this.dgRespReferrals.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgRespReferrals.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgRespReferrals.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgRespReferrals.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgRespReferrals.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dgRespReferrals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -340,6 +340,7 @@
             this.btnData.TabStop = false;
             this.btnData.Text = "C-700";
             this.btnData.UseVisualStyleBackColor = true;
+            this.btnData.EnabledChanged += new System.EventHandler(this.btnData_EnabledChanged);
             this.btnData.Click += new System.EventHandler(this.btnData_Click);
             // 
             // btnPrint
@@ -353,6 +354,7 @@
             this.btnPrint.TabStop = false;
             this.btnPrint.Text = "PRINT";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.EnabledChanged += new System.EventHandler(this.btnPrint_EnabledChanged);
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnAssign
@@ -366,6 +368,7 @@
             this.btnAssign.TabStop = false;
             this.btnAssign.Text = "ASSIGN REFERRAL";
             this.btnAssign.UseVisualStyleBackColor = true;
+            this.btnAssign.EnabledChanged += new System.EventHandler(this.btnAssign_EnabledChanged);
             this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
             // frmReferralReview
@@ -373,7 +376,7 @@
             this.AcceptButton = this.btnSearchItem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 869);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.btnAssign);
             this.Controls.Add(this.btnData);
             this.Controls.Add(this.btnPrint);

@@ -2112,6 +2112,25 @@ namespace Cprs
             }
         }
 
+        private void btnAssign_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAssign.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAssign.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
 
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnData_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnData.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnData.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
