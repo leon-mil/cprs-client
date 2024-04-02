@@ -982,7 +982,7 @@
             this.label43.ForeColor = System.Drawing.Color.DarkBlue;
             this.label43.Location = new System.Drawing.Point(832, 8);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(123, 16);
+            this.label43.Size = new System.Drawing.Size(122, 16);
             this.label43.TabIndex = 206;
             this.label43.Text = "Select Location: ";
             // 
@@ -991,7 +991,7 @@
             this.rdPresample.AutoSize = true;
             this.rdPresample.Location = new System.Drawing.Point(1050, 8);
             this.rdPresample.Name = "rdPresample";
-            this.rdPresample.Size = new System.Drawing.Size(103, 20);
+            this.rdPresample.Size = new System.Drawing.Size(102, 20);
             this.rdPresample.TabIndex = 37;
             this.rdPresample.Text = "PreSample";
             this.rdPresample.UseVisualStyleBackColor = true;
@@ -1002,7 +1002,7 @@
             this.rdSample.Checked = true;
             this.rdSample.Location = new System.Drawing.Point(961, 8);
             this.rdSample.Name = "rdSample";
-            this.rdSample.Size = new System.Drawing.Size(79, 20);
+            this.rdSample.Size = new System.Drawing.Size(78, 20);
             this.rdSample.TabIndex = 36;
             this.rdSample.TabStop = true;
             this.rdSample.Text = "Sample";
@@ -1076,9 +1076,9 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label33.Location = new System.Drawing.Point(84, 0);
+            this.label33.Location = new System.Drawing.Point(85, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(121, 29);
+            this.label33.Size = new System.Drawing.Size(120, 29);
             this.label33.TabIndex = 0;
             this.label33.Text = "ORGANIZATION";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1087,9 +1087,9 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label34.Location = new System.Drawing.Point(125, 29);
+            this.label34.Location = new System.Drawing.Point(126, 29);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(80, 29);
+            this.label34.Size = new System.Drawing.Size(79, 29);
             this.label34.TabIndex = 1;
             this.label34.Text = "CONTACT";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1098,9 +1098,9 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label36.Location = new System.Drawing.Point(21, 58);
+            this.label36.Location = new System.Drawing.Point(22, 58);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(184, 29);
+            this.label36.Size = new System.Drawing.Size(183, 29);
             this.label36.TabIndex = 2;
             this.label36.Text = "PROJECT DESCRIPTION";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1109,9 +1109,9 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label37.Location = new System.Drawing.Point(48, 87);
+            this.label37.Location = new System.Drawing.Point(49, 87);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(157, 29);
+            this.label37.Size = new System.Drawing.Size(156, 29);
             this.label37.TabIndex = 3;
             this.label37.Text = "PROJECT LOCATION";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1170,7 +1170,7 @@
             this.lblSeldateto.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblSeldateto.Location = new System.Drawing.Point(984, 87);
             this.lblSeldateto.Name = "lblSeldateto";
-            this.lblSeldateto.Size = new System.Drawing.Size(21, 29);
+            this.lblSeldateto.Size = new System.Drawing.Size(20, 29);
             this.lblSeldateto.TabIndex = 9;
             this.lblSeldateto.Text = "to";
             this.lblSeldateto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1208,9 +1208,9 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label40.Location = new System.Drawing.Point(668, 29);
+            this.label40.Location = new System.Drawing.Point(669, 29);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(69, 29);
+            this.label40.Size = new System.Drawing.Size(68, 29);
             this.label40.TabIndex = 274;
             this.label40.Text = "PHONE1";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1219,9 +1219,9 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label41.Location = new System.Drawing.Point(668, 58);
+            this.label41.Location = new System.Drawing.Point(669, 58);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(69, 29);
+            this.label41.Size = new System.Drawing.Size(68, 29);
             this.label41.TabIndex = 275;
             this.label41.Text = "PHONE2";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1308,6 +1308,7 @@
             this.btnRefresh.TabIndex = 39;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.EnabledChanged += new System.EventHandler(this.btnRefresh_EnabledChanged);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnNextInitial
@@ -1320,6 +1321,7 @@
             this.btnNextInitial.TabIndex = 37;
             this.btnNextInitial.Text = "NEXT INITIAL";
             this.btnNextInitial.UseVisualStyleBackColor = true;
+            this.btnNextInitial.EnabledChanged += new System.EventHandler(this.btnNextInitial_EnabledChanged);
             this.btnNextInitial.Click += new System.EventHandler(this.btnNextInitial_Click);
             // 
             // btnPrint
@@ -1332,6 +1334,7 @@
             this.btnPrint.TabIndex = 41;
             this.btnPrint.Text = "PRINT";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.EnabledChanged += new System.EventHandler(this.btnPrint_EnabledChanged);
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnPrevCase
@@ -1345,6 +1348,7 @@
             this.btnPrevCase.Text = "PREV CASE";
             this.btnPrevCase.UseVisualStyleBackColor = true;
             this.btnPrevCase.Visible = false;
+            this.btnPrevCase.EnabledChanged += new System.EventHandler(this.btnPrevCase_EnabledChanged);
             this.btnPrevCase.Click += new System.EventHandler(this.btnPrevCase_Click);
             // 
             // btnNextCase
@@ -1358,6 +1362,7 @@
             this.btnNextCase.Text = "NEXT CASE";
             this.btnNextCase.UseVisualStyleBackColor = true;
             this.btnNextCase.Visible = false;
+            this.btnNextCase.EnabledChanged += new System.EventHandler(this.btnNextCase_EnabledChanged);
             this.btnNextCase.Click += new System.EventHandler(this.btnNextCase_Click);
             // 
             // groupBox2
@@ -1413,6 +1418,7 @@
             this.btnCompare.TabIndex = 36;
             this.btnCompare.Text = "COMPARE";
             this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.EnabledChanged += new System.EventHandler(this.btnCompare_EnabledChanged);
             this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
             // 
             // gbListCount
@@ -1469,6 +1475,7 @@
             this.btnAudit.TabIndex = 40;
             this.btnAudit.Text = "AUDIT";
             this.btnAudit.UseVisualStyleBackColor = true;
+            this.btnAudit.EnabledChanged += new System.EventHandler(this.btnAudit_EnabledChanged);
             this.btnAudit.Click += new System.EventHandler(this.btnAudit_Click);
             // 
             // label42
@@ -1562,6 +1569,7 @@
             this.btnRestore.TabStop = false;
             this.btnRestore.Text = "RESTORE";
             this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.EnabledChanged += new System.EventHandler(this.btnRestore_EnabledChanged);
             this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // btnRespid

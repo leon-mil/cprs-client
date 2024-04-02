@@ -3308,6 +3308,60 @@ namespace Cprs
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
-       
+        private void btnRestore_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRestore.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRestore.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnCompare_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnCompare.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnCompare.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnAudit_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAudit.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAudit.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRefresh_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRefresh.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRefresh.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnNextInitial_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnNextInitial.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnNextInitial.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnNextCase_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnNextCase.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnNextCase.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrevCase_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrevCase.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrevCase.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
