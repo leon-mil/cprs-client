@@ -302,7 +302,8 @@ namespace Cprs
         private void btn_EnabledChanged(object sender, EventArgs e)
         {
             var btn = (Button)sender;
-            btn.ForeColor = btn.Enabled ? Color.DarkBlue : Color.Gray;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
         }
 
         //dm032819 changed column 6 to 7 since added status
@@ -375,6 +376,20 @@ namespace Cprs
             /*Close the hide form */
             if (!call_callingFrom)
                 CallingForm.Close();
+        }
+
+        private void btnPrevious_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrevious.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrevious.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnPrint_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnPrint.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnPrint.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }
 }
