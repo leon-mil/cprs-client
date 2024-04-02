@@ -63,7 +63,7 @@
             this.rd1m.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1m.Location = new System.Drawing.Point(390, -1);
             this.rd1m.Name = "rd1m";
-            this.rd1m.Size = new System.Drawing.Size(99, 20);
+            this.rd1m.Size = new System.Drawing.Size(98, 20);
             this.rd1m.TabIndex = 85;
             this.rd1m.Text = "Multifamily";
             this.rd1m.UseVisualStyleBackColor = true;
@@ -76,7 +76,7 @@
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
             this.label4.Location = new System.Drawing.Point(3, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 16);
+            this.label4.Size = new System.Drawing.Size(107, 16);
             this.label4.TabIndex = 84;
             this.label4.Text = "Select Survey:";
             // 
@@ -87,7 +87,7 @@
             this.rd1n.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1n.Location = new System.Drawing.Point(257, -1);
             this.rd1n.Name = "rd1n";
-            this.rd1n.Size = new System.Drawing.Size(127, 20);
+            this.rd1n.Size = new System.Drawing.Size(126, 20);
             this.rd1n.TabIndex = 82;
             this.rd1n.Text = "Nonresidential";
             this.rd1n.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@
             this.rd1p.ForeColor = System.Drawing.Color.DarkBlue;
             this.rd1p.Location = new System.Drawing.Point(117, -1);
             this.rd1p.Name = "rd1p";
-            this.rd1p.Size = new System.Drawing.Size(134, 20);
+            this.rd1p.Size = new System.Drawing.Size(133, 20);
             this.rd1p.TabIndex = 81;
             this.rd1p.TabStop = true;
             this.rd1p.Text = "State and Local";
@@ -137,7 +137,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(471, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(257, 16);
+            this.label2.Size = new System.Drawing.Size(256, 16);
             this.label2.TabIndex = 88;
             this.label2.Text = "Project Completed in 201701-201812";
             // 
@@ -205,6 +205,7 @@
             this.btnWork.TabStop = false;
             this.btnWork.Text = "WORKSHEET";
             this.btnWork.UseVisualStyleBackColor = true;
+            this.btnWork.EnabledChanged += new System.EventHandler(this.btnWork_EnabledChanged);
             this.btnWork.Click += new System.EventHandler(this.btnWork_Click);
             // 
             // btnPrint
@@ -227,7 +228,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(493, 194);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 16);
+            this.label1.Size = new System.Drawing.Size(208, 16);
             this.label1.TabIndex = 93;
             this.label1.Text = "Value of Project (Thousands)";
             // 
@@ -238,7 +239,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 16);
+            this.label3.Size = new System.Drawing.Size(95, 16);
             this.label3.TabIndex = 94;
             this.label3.Text = "Select Type:";
             // 
@@ -250,7 +251,7 @@
             this.rdbMonth.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdbMonth.Location = new System.Drawing.Point(97, 0);
             this.rdbMonth.Name = "rdbMonth";
-            this.rdbMonth.Size = new System.Drawing.Size(138, 20);
+            this.rdbMonth.Size = new System.Drawing.Size(137, 20);
             this.rdbMonth.TabIndex = 95;
             this.rdbMonth.TabStop = true;
             this.rdbMonth.Text = "Average Months";
@@ -264,7 +265,7 @@
             this.rdbValue.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdbValue.Location = new System.Drawing.Point(245, 0);
             this.rdbValue.Name = "rdbValue";
-            this.rdbValue.Size = new System.Drawing.Size(129, 20);
+            this.rdbValue.Size = new System.Drawing.Size(128, 20);
             this.rdbValue.TabIndex = 96;
             this.rdbValue.Text = "Average Value";
             this.rdbValue.UseVisualStyleBackColor = true;

@@ -1212,5 +1212,12 @@ namespace Cprs
             popup.SelectedSurvey = selsurvey;
             popup.Show();
         }
+
+        private void btnWork_EnabledChanged(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
+        }
     }
 }
