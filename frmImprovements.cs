@@ -26,6 +26,12 @@ Revision History:
  Keyword       :  
  Change Request: CR#3943 
  Description   :  Add help for job
+***********************************************************************************
+ Modified Date :  Mar. 6 2024
+ Modified By   :  Christine Zhang
+ Keyword       :  20240306cz
+ Change Request:  
+ Description   :  replace detcode with jobidcode
 ***********************************************************************************/
 
 using System.Linq;
@@ -47,8 +53,8 @@ namespace Cprs
     public partial class frmImprovements : Cprs.frmCprsParent
     {
         /******public properties ********/
-        /*Required */
-        public string Id;
+/*Required */
+public string Id;
         public Form CallingForm = null;
 
         /*Optional */
@@ -266,10 +272,10 @@ namespace Cprs
                     isCurrInterview = false;
             }
 
-            /*setup detcode list for the selected interview */
-            List<string> detcodelist = jobs.GetDetcodelist(cbInterview.SelectedItem.ToString());
-            cbJobcode.DataSource = detcodelist;
-            if (detcodelist.Count > 0)
+            /*setup jobcode list for the selected interview */
+            List<string> jobcodelist = jobs.GetJobcodelist(cbInterview.SelectedItem.ToString());
+            cbJobcode.DataSource = jobcodelist;
+            if (jobcodelist.Count > 0)
                 cbJobcode.SelectedIndex = 0;
             else
             {
@@ -277,17 +283,17 @@ namespace Cprs
                 DisplayJob();
             }
 
-            if (detcodelist.Count() > 1)
+            if (jobcodelist.Count() > 1)
                 lblJobcode.Text = "*JOB CODE";
             else
                 lblJobcode.Text = "JOB CODE";
-            txtNumjobs.Text = detcodelist.Count().ToString();
+            txtNumjobs.Text = jobcodelist.Count().ToString();
             txtValuejobs.Text = jobs.GetJobsValueForInterview(cbInterview.SelectedItem.ToString()).ToString("#,#");
             
 
         }
 
-        /*display a job for selected interview and detcode */
+        /*display a job for selected interview and jobcode */
         private void DisplayJob()
         {
             string selected_interview = cbInterview.SelectedItem.ToString();
@@ -311,11 +317,11 @@ namespace Cprs
 
             if (cbJobcode.Items.Count > 0)
             {
-                string selected_detcode = cbJobcode.SelectedItem.ToString();
-                job = jobs.GetJobForInterviewDetcode(selected_interview, selected_detcode);
+                string selected_jobcode = cbJobcode.SelectedItem.ToString();
+                job = jobs.GetJobForInterviewJobcode(selected_interview, selected_jobcode);
 
                 if (pre_interview != "0")
-                    pjob = jobs.GetJobForInterviewDetcode(pre_interview, selected_detcode);
+                    pjob = jobs.GetJobForInterviewJobcode(pre_interview, selected_jobcode);
                 else
                     pjob = null;
 
@@ -489,7 +495,7 @@ namespace Cprs
                 if (cflags != null && cbJobcode.Text != "")
                 {
                     List<string> desclist = new List<string>();
-                    desclist = cflags.CeflagDescList(job.Detcode);
+                    desclist = cflags.CeflagDescList(job.Jobidcode);
                     if (desclist.Count > 0)
                         listFlag.DataSource = desclist;
                     else
@@ -926,7 +932,7 @@ namespace Cprs
         {
             /*Get audit record from list */
             Ceaudit au = (from Ceaudit j in Ceauditlist
-                          where j.Interview == cbInterview.SelectedItem.ToString() && j.Detcode == cbJobcode.SelectedItem.ToString()
+                          where j.Interview == cbInterview.SelectedItem.ToString() && j.Jobidcode == cbJobcode.SelectedItem.ToString()
                           && j.Varnme == avarnme 
                         select j).SingleOrDefault();
 
@@ -936,7 +942,7 @@ namespace Cprs
                 Ceaudit ca = new Ceaudit();
                 ca.Id = Id;
                 ca.Interview = cbInterview.SelectedItem.ToString();
-                ca.Detcode = cbJobcode.SelectedItem.ToString();
+                ca.Jobidcode = cbJobcode.SelectedItem.ToString();
                 ca.Varnme = avarnme;
                 ca.Oldval = aoldval;
                 ca.Oldflag = aoldflag;
@@ -1292,7 +1298,7 @@ namespace Cprs
                 job.Dflag = Dirty.delete;
 
                 //Delete record in ceauditlist
-                Ceauditlist.RemoveAll(x => ((x.Id == Id) && (x.Interview == cbInterview.SelectedItem.ToString()) && (x.Detcode == cbJobcode.SelectedItem.ToString())));
+                Ceauditlist.RemoveAll(x => ((x.Id == Id) && (x.Interview == cbInterview.SelectedItem.ToString()) && (x.Jobidcode == cbJobcode.SelectedItem.ToString())));
 
                 //Add record to ceauditlist
                 AddCeauditData("CON1", job.Con1, job.Fcon1, 0, "D");
@@ -1646,6 +1652,34 @@ namespace Cprs
             frmCehelpsPopup popup = new frmCehelpsPopup(4);
 
             popup.ShowDialog();
+        }
+
+        private void btnDelete_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnDelete.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnDelete.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnProcess_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnProcess.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnProcess.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnRefresh_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnRefresh.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnRefresh.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
+        }
+
+        private void btnHist_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnHist.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnHist.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }  
 }
