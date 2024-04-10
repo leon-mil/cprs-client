@@ -90,7 +90,7 @@ namespace Cprs
         {
             dgItem.Columns[0].HeaderText = "ID";
             dgItem.Columns[1].HeaderText = "INTERVIEW";
-            dgItem.Columns[2].HeaderText = "DETCODE";
+            dgItem.Columns[2].HeaderText = "JOBCODE";
             dgItem.Columns[3].HeaderText = "VARNME";
             dgItem.Columns[4].HeaderText = "OLDVAL";
             dgItem.Columns[4].DefaultCellStyle.Format = "N0";
