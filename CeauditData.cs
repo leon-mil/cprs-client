@@ -13,12 +13,12 @@ Other:	            Called by: frmImprovement
  
 Revision History:	
 ***************************************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
-****************************************************************************************/
+ Modified Date  :  March 6, 2024
+ Modified By    :  Christine Zhang
+ Keyword        :  20240306cz
+ Change Request :  CR 1434
+ Description    :  replace detcode with jobidcode
+***************************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -37,12 +37,12 @@ namespace CprsDAL
         {
             SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString());
 
-            string isql = "insert dbo.ceaudit (id, interview, detcode, varnme, oldval, oldflag, newval, newflag, usrnme, prgdtm)"
-                            + "Values (@id, @INTERVIEW, @DETCODE, @VARNME, @OLDVAL, @OLDFLAG, @NEWVAL, @NEWFLAG, @USRNME, @PRGDTM)";
+            string isql = "insert dbo.ceaudit (id, interview, jobidcode, varnme, oldval, oldflag, newval, newflag, usrnme, prgdtm)"
+                            + "Values (@id, @INTERVIEW, @JOBIDCODE, @VARNME, @OLDVAL, @OLDFLAG, @NEWVAL, @NEWFLAG, @USRNME, @PRGDTM)";
             SqlCommand insert_command = new SqlCommand(isql, sql_connection);
             insert_command.Parameters.AddWithValue("@id", ca.Id);
             insert_command.Parameters.AddWithValue("@INTERVIEW", ca.Interview);
-            insert_command.Parameters.AddWithValue("@DETCODE", ca.Detcode );
+            insert_command.Parameters.AddWithValue("@JOBIDCODE", ca.Jobidcode );
             insert_command.Parameters.AddWithValue("@VARNME", ca.Varnme);
             insert_command.Parameters.AddWithValue("@OLDVAL", ca.Oldval);
             //if (ca.Oldflag == "B") ca.Oldflag = "";
