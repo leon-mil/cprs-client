@@ -13,11 +13,11 @@ Other:	            Called by: frmImprovement
  
 Revision History:	
 ***************************************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
+ Modified Date :  March 6 2024
+ Modified By   :  Christine Zhang
+ Keyword       :  20240306cz
+ Change Request:  CR 1434
+ Description   :  replace detcode to jobidcode
 ****************************************************************************************/
 
 using System;
@@ -40,18 +40,18 @@ namespace CprsDAL
             SqlConnection connection = new SqlConnection(GeneralData.getConnectionString());
 
             string sql = "SELECT * ";
-            sql = sql + "FROM dbo.Cejobs WHERE ID = " + GeneralData.AddSqlQuotes(id) + " order by interview desc, detcode";
+            sql = sql + "FROM dbo.Cejobs WHERE ID = " + GeneralData.AddSqlQuotes(id) + " order by interview desc, jobidcode";
             SqlCommand command = new SqlCommand(sql, connection);
             List<Cejob> result = new List<Cejob>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-
+              /*  20240306cz change detcode to jobidcode */
                 while (reader.Read())
                 {
                     string inv = reader["INTERVIEW"].ToString();
-                    string dtc = reader["DETCODE"].ToString();
+                    string dtc = reader["JOBIDCODE"].ToString();
 
                     Cejob j = new Cejob(inv, dtc);
                     j.Jobcod = reader["JOBCOD"].ToString();
@@ -121,7 +121,7 @@ namespace CprsDAL
 
             return cj;
         }
-
+        /*  20240306cz change detcode to jobidcode */
         public bool SaveCejobs(Cejobs jobs)
         {
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
@@ -178,12 +178,12 @@ namespace CprsDAL
                                  "FEQP4 = @FEQP4," +
                                  "FEQP5 = @FEQP5," +
                                  "FEQP6 = @FEQP6 " +
-                                 "WHERE ID = @ID AND INTERVIEW = @INTERVIEW AND DETCODE = @DETCODE";
+                                 "WHERE ID = @ID AND INTERVIEW = @INTERVIEW AND JOBIDCODE = @JOBIDCODE";
 
                         SqlCommand update_command = new SqlCommand(usql, sql_connection);
                         update_command.Parameters.AddWithValue("@ID", jobs.Id);
                         update_command.Parameters.AddWithValue("@INTERVIEW", j.Interview);
-                        update_command.Parameters.AddWithValue("@DETCODE", j.Detcode);
+                        update_command.Parameters.AddWithValue("@JOBIDCODE", j.Jobidcode);
                         update_command.Parameters.AddWithValue("@WRKDESC", j.Wrkdesc);
                         update_command.Parameters.AddWithValue("@ADDINFO", j.Addinfo);
                         update_command.Parameters.AddWithValue("@TCOST", j.Tcost);
@@ -245,12 +245,12 @@ namespace CprsDAL
                     else if (j.Dflag  == Dirty.delete)
                     {
                         string usql = "DELETE FROM dbo.Cejobs" +
-                                      " WHERE ID = @ID AND INTERVIEW = @INTERVIEW AND DETCODE = @DETCODE";
+                                      " WHERE ID = @ID AND INTERVIEW = @INTERVIEW AND JOBIDCODE = @JOBIDCODE";
 
                         SqlCommand delete_command = new SqlCommand(usql, sql_connection);
                         delete_command.Parameters.AddWithValue("@ID", jobs.Id);
                         delete_command.Parameters.AddWithValue("@INTERVIEW", j.Interview);
-                        delete_command.Parameters.AddWithValue("@DETCODE", j.Detcode);
+                        delete_command.Parameters.AddWithValue("@JOBIDCODE", j.Jobidcode);
 
                         try
                         {
