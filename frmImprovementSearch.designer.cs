@@ -134,7 +134,7 @@
             this.lblDefSurvDate.AutoSize = true;
             this.lblDefSurvDate.Location = new System.Drawing.Point(108, 226);
             this.lblDefSurvDate.Name = "lblDefSurvDate";
-            this.lblDefSurvDate.Size = new System.Drawing.Size(192, 16);
+            this.lblDefSurvDate.Size = new System.Drawing.Size(191, 16);
             this.lblDefSurvDate.TabIndex = 2;
             this.lblDefSurvDate.Text = "DEFAULT SURVEY DATE:";
             // 
@@ -163,7 +163,7 @@
             this.tableLayoutPanelImprov.ColumnCount = 3;
             this.tableLayoutPanelImprov.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.61518F));
             this.tableLayoutPanelImprov.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.38482F));
-            this.tableLayoutPanelImprov.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 441F));
+            this.tableLayoutPanelImprov.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 442F));
             this.tableLayoutPanelImprov.Controls.Add(this.flowLayoutPanel2Improv, 1, 0);
             this.tableLayoutPanelImprov.Controls.Add(this.flowLayoutPanel4Improv, 0, 1);
             this.tableLayoutPanelImprov.Controls.Add(this.flowLayoutPanel5Improv, 1, 1);
@@ -193,7 +193,7 @@
             this.flowLayoutPanel2Improv.Controls.Add(this.txtSurvDate2);
             this.flowLayoutPanel2Improv.Location = new System.Drawing.Point(284, 3);
             this.flowLayoutPanel2Improv.Name = "flowLayoutPanel2Improv";
-            this.flowLayoutPanel2Improv.Size = new System.Drawing.Size(441, 34);
+            this.flowLayoutPanel2Improv.Size = new System.Drawing.Size(440, 34);
             this.flowLayoutPanel2Improv.TabIndex = 1;
             // 
             // label5Improv
@@ -240,14 +240,14 @@
             this.lblSurvDateTo.AutoSize = true;
             this.lblSurvDateTo.Location = new System.Drawing.Point(314, 7);
             this.lblSurvDateTo.Name = "lblSurvDateTo";
-            this.lblSurvDateTo.Size = new System.Drawing.Size(21, 16);
+            this.lblSurvDateTo.Size = new System.Drawing.Size(20, 16);
             this.lblSurvDateTo.TabIndex = 4;
             this.lblSurvDateTo.Text = "to";
             this.lblSurvDateTo.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // txtSurvDate2
             // 
-            this.txtSurvDate2.Location = new System.Drawing.Point(341, 3);
+            this.txtSurvDate2.Location = new System.Drawing.Point(340, 3);
             this.txtSurvDate2.MaxLength = 6;
             this.txtSurvDate2.Name = "txtSurvDate2";
             this.txtSurvDate2.Size = new System.Drawing.Size(90, 22);
@@ -306,7 +306,7 @@
             this.flowLayoutPanel5Improv.Controls.Add(this.cbYrBuilt2);
             this.flowLayoutPanel5Improv.Location = new System.Drawing.Point(284, 49);
             this.flowLayoutPanel5Improv.Name = "flowLayoutPanel5Improv";
-            this.flowLayoutPanel5Improv.Size = new System.Drawing.Size(441, 33);
+            this.flowLayoutPanel5Improv.Size = new System.Drawing.Size(440, 33);
             this.flowLayoutPanel5Improv.TabIndex = 4;
             // 
             // label6Improv
@@ -356,7 +356,7 @@
             this.lblYrBuiltTo.AutoSize = true;
             this.lblYrBuiltTo.Location = new System.Drawing.Point(317, 7);
             this.lblYrBuiltTo.Name = "lblYrBuiltTo";
-            this.lblYrBuiltTo.Size = new System.Drawing.Size(21, 16);
+            this.lblYrBuiltTo.Size = new System.Drawing.Size(20, 16);
             this.lblYrBuiltTo.TabIndex = 3;
             this.lblYrBuiltTo.Text = "to";
             this.lblYrBuiltTo.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -366,7 +366,7 @@
             this.cbYrBuilt2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbYrBuilt2.DropDownWidth = 125;
             this.cbYrBuilt2.FormattingEnabled = true;
-            this.cbYrBuilt2.Location = new System.Drawing.Point(344, 3);
+            this.cbYrBuilt2.Location = new System.Drawing.Point(343, 3);
             this.cbYrBuilt2.MaxLength = 2;
             this.cbYrBuilt2.Name = "cbYrBuilt2";
             this.cbYrBuilt2.Size = new System.Drawing.Size(90, 24);
@@ -380,7 +380,7 @@
             this.flowLayoutPanel6Improv.Controls.Add(this.txtPropVal1);
             this.flowLayoutPanel6Improv.Controls.Add(this.lblPropValTo);
             this.flowLayoutPanel6Improv.Controls.Add(this.txtPropVal2);
-            this.flowLayoutPanel6Improv.Location = new System.Drawing.Point(731, 49);
+            this.flowLayoutPanel6Improv.Location = new System.Drawing.Point(730, 49);
             this.flowLayoutPanel6Improv.Name = "flowLayoutPanel6Improv";
             this.flowLayoutPanel6Improv.Size = new System.Drawing.Size(422, 33);
             this.flowLayoutPanel6Improv.TabIndex = 5;
@@ -429,14 +429,14 @@
             this.lblPropValTo.AutoSize = true;
             this.lblPropValTo.Location = new System.Drawing.Point(283, 7);
             this.lblPropValTo.Name = "lblPropValTo";
-            this.lblPropValTo.Size = new System.Drawing.Size(21, 16);
+            this.lblPropValTo.Size = new System.Drawing.Size(20, 16);
             this.lblPropValTo.TabIndex = 4;
             this.lblPropValTo.Text = "to";
             this.lblPropValTo.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // txtPropVal2
             // 
-            this.txtPropVal2.Location = new System.Drawing.Point(310, 3);
+            this.txtPropVal2.Location = new System.Drawing.Point(309, 3);
             this.txtPropVal2.MaxLength = 9;
             this.txtPropVal2.Name = "txtPropVal2";
             this.txtPropVal2.Size = new System.Drawing.Size(88, 22);
@@ -459,9 +459,9 @@
             // 
             this.label3Improv.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3Improv.AutoSize = true;
-            this.label3Improv.Location = new System.Drawing.Point(3, 7);
+            this.label3Improv.Location = new System.Drawing.Point(3, 5);
             this.label3Improv.Name = "label3Improv";
-            this.label3Improv.Size = new System.Drawing.Size(79, 16);
+            this.label3Improv.Size = new System.Drawing.Size(78, 16);
             this.label3Improv.TabIndex = 0;
             this.label3Improv.Text = "JOBCODE";
             this.label3Improv.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -472,7 +472,7 @@
             this.cbJCode.FormattingEnabled = true;
             this.cbJCode.Items.AddRange(new object[] {
             "Equals"});
-            this.cbJCode.Location = new System.Drawing.Point(88, 3);
+            this.cbJCode.Location = new System.Drawing.Point(87, 3);
             this.cbJCode.Name = "cbJCode";
             this.cbJCode.Size = new System.Drawing.Size(89, 24);
             this.cbJCode.TabIndex = 1;
@@ -482,7 +482,7 @@
             // 
             this.cbJCodeValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbJCodeValue.FormattingEnabled = true;
-            this.cbJCodeValue.Location = new System.Drawing.Point(183, 3);
+            this.cbJCodeValue.Location = new System.Drawing.Point(182, 3);
             this.cbJCodeValue.Name = "cbJCodeValue";
             this.cbJCodeValue.Size = new System.Drawing.Size(74, 24);
             this.cbJCodeValue.TabIndex = 11;
@@ -538,7 +538,7 @@
             this.flowLayoutPanel9YrBuilt1.Controls.Add(this.txtIncome1);
             this.flowLayoutPanel9YrBuilt1.Controls.Add(this.lblIncomeTo);
             this.flowLayoutPanel9YrBuilt1.Controls.Add(this.txtIncome2);
-            this.flowLayoutPanel9YrBuilt1.Location = new System.Drawing.Point(731, 95);
+            this.flowLayoutPanel9YrBuilt1.Location = new System.Drawing.Point(730, 95);
             this.flowLayoutPanel9YrBuilt1.Name = "flowLayoutPanel9YrBuilt1";
             this.flowLayoutPanel9YrBuilt1.Size = new System.Drawing.Size(422, 33);
             this.flowLayoutPanel9YrBuilt1.TabIndex = 8;
@@ -587,14 +587,14 @@
             this.lblIncomeTo.AutoSize = true;
             this.lblIncomeTo.Location = new System.Drawing.Point(283, 7);
             this.lblIncomeTo.Name = "lblIncomeTo";
-            this.lblIncomeTo.Size = new System.Drawing.Size(21, 16);
+            this.lblIncomeTo.Size = new System.Drawing.Size(20, 16);
             this.lblIncomeTo.TabIndex = 4;
             this.lblIncomeTo.Text = "to";
             this.lblIncomeTo.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // txtIncome2
             // 
-            this.txtIncome2.Location = new System.Drawing.Point(310, 3);
+            this.txtIncome2.Location = new System.Drawing.Point(309, 3);
             this.txtIncome2.MaxLength = 9;
             this.txtIncome2.Name = "txtIncome2";
             this.txtIncome2.Size = new System.Drawing.Size(88, 22);
@@ -610,7 +610,7 @@
             this.flowLayoutPanel1.Controls.Add(this.cbJobsSel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(284, 141);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(441, 33);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 33);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // lblJobs
@@ -656,7 +656,7 @@
             this.flowLayoutPanel3Improv.Controls.Add(this.cbApplianceCode);
             this.flowLayoutPanel3Improv.Location = new System.Drawing.Point(284, 95);
             this.flowLayoutPanel3Improv.Name = "flowLayoutPanel3Improv";
-            this.flowLayoutPanel3Improv.Size = new System.Drawing.Size(441, 34);
+            this.flowLayoutPanel3Improv.Size = new System.Drawing.Size(440, 34);
             this.flowLayoutPanel3Improv.TabIndex = 7;
             // 
             // label13Improv
@@ -703,7 +703,7 @@
             this.flowLayoutPanel8YrBuilt1.Controls.Add(this.txtTCost1);
             this.flowLayoutPanel8YrBuilt1.Controls.Add(this.lblTcostTo);
             this.flowLayoutPanel8YrBuilt1.Controls.Add(this.txtTCost2);
-            this.flowLayoutPanel8YrBuilt1.Location = new System.Drawing.Point(731, 3);
+            this.flowLayoutPanel8YrBuilt1.Location = new System.Drawing.Point(730, 3);
             this.flowLayoutPanel8YrBuilt1.Name = "flowLayoutPanel8YrBuilt1";
             this.flowLayoutPanel8YrBuilt1.Size = new System.Drawing.Size(422, 33);
             this.flowLayoutPanel8YrBuilt1.TabIndex = 2;
@@ -752,14 +752,14 @@
             this.lblTcostTo.AutoSize = true;
             this.lblTcostTo.Location = new System.Drawing.Point(283, 7);
             this.lblTcostTo.Name = "lblTcostTo";
-            this.lblTcostTo.Size = new System.Drawing.Size(21, 16);
+            this.lblTcostTo.Size = new System.Drawing.Size(20, 16);
             this.lblTcostTo.TabIndex = 4;
             this.lblTcostTo.Text = "to";
             this.lblTcostTo.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // txtTCost2
             // 
-            this.txtTCost2.Location = new System.Drawing.Point(310, 3);
+            this.txtTCost2.Location = new System.Drawing.Point(309, 3);
             this.txtTCost2.MaxLength = 10;
             this.txtTCost2.Name = "txtTCost2";
             this.txtTCost2.Size = new System.Drawing.Size(88, 22);
@@ -842,7 +842,7 @@
             // frmImprovementSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1216, 870);
+            this.ClientSize = new System.Drawing.Size(1208, 861);
             this.Controls.Add(this.btnDataImprov);
             this.Controls.Add(this.btnPrintImprovSrch);
             this.Controls.Add(this.lblRecordCount);
