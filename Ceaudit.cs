@@ -1,4 +1,4 @@
-﻿/**************************************************************************************
+﻿/***********************************************************************
 Econ App Name:      CPRS
 Project Name:       CPRS Interactive Screens System
 Program Name:       CprsBLL.Ceaudit.cs	    	
@@ -14,15 +14,14 @@ Detailed Design:    None
 
 Other:	            Called By: frmImprovement
  
-Revision History:	
-*********************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
-********************************************************************* 
-****************************************************************************************/
+Revision History:	See Below
+************************************************************************
+ Modified Date  :  3/6/2024
+ Modified By    :  Christine Zhang
+ Keyword        :  20240306cz
+ Change Request :  CR 1434
+ Description    :  Replace detcode with jobidcode
+***********************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ namespace CprsBLL
 
         public string Id { get; set; }
         public string Interview { get; set; }
-        public string Detcode { get; set; }
+        public string Jobidcode { get; set; }
         public string Varnme { get; set; }
         public int Oldval { get; set; }
         public string Oldflag { get; set; }
