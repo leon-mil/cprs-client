@@ -1,4 +1,4 @@
-﻿/**************************************************************************************
+﻿/**********************************************************************
 Econ App Name:      CPRS
 Project Name:       CPRS Interactive Screens System
 Program Name:       CprsBLL.Ceflags.cs	    	
@@ -14,13 +14,13 @@ Other:	            Called By: frmImprovement
  
 Revision History:	
 *********************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
-********************************************************************* 
-****************************************************************************************/
+ Modified Date  :  3/6/2024
+ Modified By    :  Christine Zhang
+ Keyword        :  20240306cz
+ Change Request :  CR 1434
+ Description    :  Add jobidcode, replace detcode with jobidcode.
+                   Update Setting of Edit flags
+*********************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace CprsBLL
 
 
         /*Method get Flag Description list for a job to use for display flags in improvement screen */
-        public List<string> CeflagDescList(string detcode)
+        public List<string> CeflagDescList(string jobidcode)
         {
             string fd;
             List<string> desclist = new List<string>();
@@ -71,7 +71,7 @@ namespace CprsBLL
             string fflag = String.Empty;
             foreach (Ceflag f in ceflaglist)
 	        {
-	            if (f.detcode == detcode)
+	            if (f.jobidcode == jobidcode)
                 {
                     fflag = f.flagstr;
                     break;
@@ -153,8 +153,11 @@ namespace CprsBLL
                 int tmon3 = j.Con3 + j.Amt3 + j.Ren3;
                 int tmon4 = j.Con4 + j.Amt4 + j.Ren4;
 
-                string det1 = j.Detcode.Substring(0, 1);
-                string det3 = j.Detcode.Substring(0, 3);
+                string job1 = j.Jobidcode.Substring(0, 1);
+                string job3 = j.Jobidcode.Substring(0, 3);
+
+                if (job3=="215" || job3=="220" || job3=="230" || job3=="299" || job3=="316") 
+                    job1 = "B";
 
                 /*Set flags */
                 if (j.Who == 1 && j.Tcon > 0)
@@ -163,38 +166,40 @@ namespace CprsBLL
                 if (j.Teqp > 0 && j.Tcon > 0 && j.Teqp >= j.Tcon)
                     f[1] = '1';
 
-                if ((det1 == "1" || det1 == "3") && (j.Teqp > 0))
+                if ((job1 == "1" || job1 == "B") && (j.Teqp > 0))
                     f[2] = '1';
 
                 if ((j.Eqpcode1.Trim() != "") && (j.Teqp ==0))
                     f[3] = '1';
 
                 /*Set flag - Bad Value for contract expense */
-                if ((det1 == "1") && (det3 != "199") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 40000 || j.Tcon < 200))
+                if ((job1 == "1") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 200))
                     f[9] = '1';
-                else if ((det1 == "2") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 50))
+                else if ((job1 == "2") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 50))
                     f[9] = '1';
-                else if ((det3 == "1") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 50))
+                else if ((job1 == "B") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 50))
                     f[9] = '1';
-                else if ((det1 == "5") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 50))
+                else if ((job1 == "5") && (j.Who == 2 || j.Who == 3) && (j.Tcon > 20000 || j.Tcon < 50))
                     f[9] = '1';
 
                 /*set flag 11 - Bad value for purchased material */
-                if ((det1 == "1") && (det3 != "199") && (j.Who == 2) && (j.Tamt > 0))
+                if ((job1 == "1") && (j.Who == 2) && (j.Tamt > 0))
                     f[10] = '1';
-                else if ((det1 == "2") && (j.Who == 2 || j.Who == 3) && (j.Tamt > 5000))
+                else if ((job1 == "2") && (j.Who == 2 || j.Who == 3) && (j.Tamt > 5000))
                     f[10] = '1';
-                else if ((det1 == "3") && (j.Who == 2 || j.Who == 3) && (j.Tamt > 2000))
+                else if ((job1 == "3") && (j.Who == 2 || j.Who == 3) && (j.Tamt > 2000))
                     f[10] = '1';
-                else if ((det1 == "5") && (j.Who == 2 || j.Who == 3) && (j.Tamt > 4000))
+                else if ((job1 == "5") && (j.Who == 2 || j.Who == 3) && (j.Tamt > 4000))
                     f[10] = '1';
-                else if ((det1 == "1") && (det3 != "199") && (j.Who == 1 || j.Who == 3) && (j.Tamt > 4000 || j.Tamt < 1000))
+                else if ((job1 == "1") && (j.Who == 1) && (j.Tamt > 4000 || j.Tamt < 1000))
                     f[10] = '1';
-                else if (det1 == "2" && j.Who == 1 && j.Tamt > 6000)
+                else if (job1 == "2" && j.Who == 1 && j.Tamt > 6000)
                     f[10] = '1';
-                else if (det1 == "3" && j.Who == 1 && j.Tamt > 5000)
+                else if (job1 == "B" && j.Who == 1 && j.Tamt > 5000)
                     f[10] ='1';
-                else if (det1 == "5" && j.Who == 1 && j.Tamt > 5000)
+                else if (job1 == "5" && j.Who == 1 && j.Tamt > 5000)
+                    f[10] = '1';
+                else if (job1 == "1" && j.Who == 3 && (j.Tamt > 2000 || j.Tamt < 1000 ))
                     f[10] = '1';
 
                 /* set flag12 - Bad value for rented material */
@@ -202,21 +207,23 @@ namespace CprsBLL
                     f[11] = '1';
 
                 /* set flag13 - Bad value for total job*/
-                if ((det1 == "1") && (det3 != "199") && (j.Who == 1) && (j.Tcost > 5000 || j.Tcost < 1000))
+                if ((job1 == "1") && (j.Who == 1) && (j.Tcost > 4000 || j.Tcost < 1000))
                     f[12] = '1';
-                else if ((det1 == "2") && (j.Who == 1) && (j.Tcost > 10000 || j.Tcost < 10))
+                else if ((job1 == "2") && (j.Who == 1) && (j.Tcost > 10000 || j.Tcost < 10))
                     f[12] = '1';
-                else if ((det1 == "3") && (j.Who == 1) && (j.Tcost > 4000 || j.Tcost < 10))
+                else if ((job1 == "3") && (j.Who == 1) && (j.Tcost > 4000 || j.Tcost < 10))
                     f[12] = '1';
-                else if ((det1 == "5") && (j.Who == 1) && (j.Tcost > 6000 || j.Tcost < 5))
+                else if ((job1 == "5") && (j.Who == 1) && (j.Tcost > 6000 || j.Tcost < 5))
                     f[12] = '1';
-                else if ((det1 == "1") && (det3 != "199") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 25000 || j.Tcost < 50))
+                else if ((job1 == "1")  && (j.Who == 2 || j.Who == 3) && (j.Tcost > 25000 || j.Tcost < 50))
                     f[12] = '1';
-                else if ((det1 == "2") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 40000 || j.Tcost < 50))
+                else if ((job1 == "2") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 40000 || j.Tcost < 50))
                     f[12] = '1';
-                else if ((det1 == "3") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 30000 || j.Tcost < 50))
+                else if ((job1 == "B") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 30000 || j.Tcost < 50))
                     f[12] = '1';
-                else if ((det1 == "5") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 25000 || j.Tcost < 10))
+                else if ((job1 == "5") && (j.Who == 2 || j.Who == 3) && (j.Tcost > 25000 || j.Tcost < 10))
+                    f[12] = '1';
+                else if (job3 =="316" && (j.Who == 2 || j.Who == 3) && (j.Tcost > 25000 || j.Tcost < 10))
                     f[12] = '1';
 
                 /* set flag14 - Contract Job with no contract cost */
@@ -224,7 +231,7 @@ namespace CprsBLL
                     f[13] ='1';
 
                 /*set flag15 - New construction may be out of scope */
-                if (det3 == "199" && j.Tcost >= 0)
+                if (job1 == "1" && j.Tcost >= 0)
                     f[14] = '1';
 
                 /*set flag16 - DIY job without material costs */
@@ -241,14 +248,14 @@ namespace CprsBLL
                     f[17] = '1';
 
                 /*set flag19 - May be out of scope */
-                if (det1 == "0")
+                if (job1 == "0")
                     f[18] = '1';
 
-                /*find duplicated detcode between current interview and previous interview*/
+                /*find duplicated Jobidcode between current interview and previous interview*/
                 bool prejob_found = false;
                 if (pjlist.Count() != 0 && j.Tcost > 0)
                 {
-                    if (pjlist.Any(u => u.Detcode == j.Detcode && u.Tcost > 0)) { prejob_found = true; }
+                    if (pjlist.Any(u => u.Jobidcode_collapse == j.Jobidcode_collapse && u.Tcost > 0)) { prejob_found = true; }
 
                 }
 
@@ -257,8 +264,8 @@ namespace CprsBLL
 
                 /*find more case exist */
                 var result = (from n in jlist
-                              where n.Detcode.Substring(0,3) == j.Detcode.Substring(0,3)
-                              select n.Detcode).ToList();
+                              where n.Jobidcode_collapse.Substring(0,3) == j.Jobidcode_collapse.Substring(0,3)
+                              select n.Jobidcode).ToList();
 
                 if (result.Count>1)
                     f[20] = '1';
@@ -274,7 +281,7 @@ namespace CprsBLL
                 }
 
                 Ceflag cf = new Ceflag();
-                cf.detcode = j.Detcode;
+                cf.jobidcode = j.Jobidcode;
                 cf.flagstr = jobflag;
 
                 ceflaglist.Add(cf);
@@ -293,7 +300,7 @@ namespace CprsBLL
         /*private ceflag structure */
         private class Ceflag
         {
-            public string detcode { get; set; }
+            public string jobidcode { get; set; }
             public string flagstr { get; set; }
         }
 
