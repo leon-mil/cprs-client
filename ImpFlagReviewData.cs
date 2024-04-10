@@ -25,11 +25,11 @@ Other:	            Called by: frmImpFlagsReview
  
 Revision History:	
 ***********************************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
+ Modified Date  : 4/3/2024
+ Modified By    : Christine Zhang
+ Keyword        : 20240403cz
+ Change Request : CR 1434
+ Description    : replace detcode with jobidcode 
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -231,7 +231,7 @@ namespace CprsDAL
             {
                 try
                 {
-                    SqlCommand sql_command = new SqlCommand("SELECT ID, SURVDATE, INTERVIEW, PROPVAL, YRBUILT, INCOME, STATE,  FWGT, TCOST, WEIGHTEDCOST, JOBCOD, DETCODE, EDITED	FROM dbo.IMP_FLAGS_REVIEW WHERE SUBSTRING(CURR_FLAG, @LenStart, 1) = 1 ", sql_connection);
+                    SqlCommand sql_command = new SqlCommand("SELECT ID, SURVDATE, INTERVIEW, PROPVAL, YRBUILT, INCOME, STATE,  FWGT, TCOST, WEIGHTEDCOST, JOBCOD, JCODE, EDITED	FROM dbo.IMP_FLAGS_REVIEW WHERE SUBSTRING(CURR_FLAG, @LenStart, 1) = 1 order by id ", sql_connection);
 
                     //Open the connection.
 
