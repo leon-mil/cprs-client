@@ -1,4 +1,4 @@
-﻿/**************************************************************************************
+﻿/**********************************************************************
 Econ App Name:      CPRS
 Project Name:       CPRS Interactive Screens System
 Program Name:       CprsBLL.Cejobs.cs	    	
@@ -15,13 +15,13 @@ Other:	            Called By: frmImprovement
  
 Revision History:	
 *********************************************************************
- Modified Date :  
- Modified By   :  
- Keyword       :  
- Change Request:  
- Description   :  
-********************************************************************* 
-****************************************************************************************/
+ Modified Date  :  3/6/2024
+ Modified By    :  Christine Zhang
+ Keyword        :  20240306cz
+ Change Request :  CR 1434
+ Description    :  Add jobidcode, replace detcode with jobidcode
+*********************************************************************/
+
 
 using System;
 using System.Collections.Generic;
@@ -67,15 +67,16 @@ namespace CprsBLL
             return distinctInterview;
         }
 
-        /*Get detcode list for an interview of the case */
-        public List<string> GetDetcodelist(string interview)
+        /*Get jobcode list for an interview of the case */
+        /*20240306cz change detcode to jobidcode */
+        public List<string> GetJobcodelist(string interview)
         {
-            var detcodelist =
+            var jobcodelist =
             from job in cejoblist
             where job.Interview == interview && job.Dflag != Dirty.delete
-            select job.Detcode;
+            select job.Jobidcode;
 
-            return detcodelist.ToList();
+            return jobcodelist.ToList();
         }
 
 
@@ -106,11 +107,12 @@ namespace CprsBLL
         }
 
         /*Get cejob for the interview and detcode */
-        public Cejob GetJobForInterviewDetcode(string interview, string detcode)
+        /*20240306cz change detcode to jobidcode */
+        public Cejob GetJobForInterviewJobcode(string interview, string jobidcode)
         {
           
             Cejob cj = (from Cejob j in cejoblist
-                        where j.Interview == interview && j.Detcode == detcode
+                        where j.Interview == interview && j.Jobidcode == jobidcode
                         select j).SingleOrDefault();
            
             return cj;
@@ -140,10 +142,19 @@ namespace CprsBLL
     public class Cejob
     {
         /*Construction of Cejob */
-        public Cejob (string passed_interview, string passed_detcode )
+        public Cejob (string passed_interview, string passed_jobidcode )
         {
             interview = passed_interview;
-            detcode = passed_detcode;
+            jobidcode = passed_jobidcode;
+
+            jobidcode_collapse = jobidcode;
+            string jc = jobidcode.Substring(0, 3);
+            if (jc == "111" || jc == "199" || jc == "212" || jc == "215" || jc == "219" || jc == "221" || jc == "230" || jc == "299" || jc == "316")
+                jobidcode_collapse = "GPA9";
+            else if (jc == "416" || jc == "419" || jc == "426" || jc == "430" || jc == "499")
+                jobidcode_collapse = "GPB9";
+            else if (jc == "323" || jc == "326" || jc == "399")
+                jobidcode_collapse = "GPC9";
         }
 
         /*interview property */
@@ -154,10 +165,24 @@ namespace CprsBLL
         }
 
         /*detcode property */
-        private string detcode;
+        private string detcode = null;
         public string Detcode
         {
             get { return detcode; }
+        }
+
+        /*jobidcode property */
+        private string jobidcode;
+        public string Jobidcode
+        {
+            get { return jobidcode; }
+        }
+
+        /*jobidcode property */
+        private string jobidcode_collapse;
+        public string Jobidcode_collapse
+        {
+            get { return jobidcode_collapse;}
         }
 
         /*jobcode property */
