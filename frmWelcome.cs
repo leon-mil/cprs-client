@@ -71,7 +71,7 @@ namespace Cprs
 
             if (UserInfo.GroupCode == EnumGroups.HQTester || (UserInfo.GroupCode == EnumGroups.HQSupport && UserInfo.UserName != "sheck001"))
             {
-                GlobalVars.Databasename = "CPRSTEST";
+                GlobalVars.Databasename = "CPRSDEV";
             }
             else
             {
