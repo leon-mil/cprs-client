@@ -707,6 +707,11 @@ namespace Cprs
                     row["newtc_str"] = "            General";
                     dtt.ImportRow(row);
                 }
+                else if (row["newtc"].ToString().Trim() == "0215")
+                {
+                    row["newtc_str"] = "            Data center";
+                    dtt.ImportRow(row);
+                }
                 else if (row["newtc"].ToString().Trim() == "022")
                 {
                     row["newtc"] = "02CC";
@@ -1123,6 +1128,11 @@ namespace Cprs
                 else if (row["newtc"].ToString().Trim() == "0211")
                 {
                     row["newtc_str"] = "            General";
+                    dtt.ImportRow(row);
+                }
+                else if (row["newtc"].ToString().Trim() == "0215")
+                {
+                    row["newtc_str"] = "            Data center";
                     dtt.ImportRow(row);
                 }
                 else if (row["newtc"].ToString().Trim() == "022")
