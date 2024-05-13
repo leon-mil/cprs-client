@@ -41,6 +41,12 @@
  Keyword       : 
  Change Request: 
  Description   : Bug fix - show changes when survey changed
+ *********************************************************************
+ Modified Date : May 7, 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: 
+ Description   : Bug fix - show change 0 when tc changed
  *********************************************************************/
 
 using System;
@@ -56,6 +62,7 @@ using CprsBLL;
 using DGVPrinterHelper;
 using System.Drawing.Printing;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Cprs
 {
@@ -378,10 +385,11 @@ namespace Cprs
                 if (!double.TryParse(di.Rows[i]["Change"].ToString(), out change)) change = 0;
 
                 string id = di.Rows[i][0].ToString();
-               
+
                 string newtcData = di.Rows[i][1].ToString();
                 if (!double.TryParse(di.Rows[i][8].ToString(), out currwvip)) currwvip = 0;
                 if (!double.TryParse(di.Rows[i][10].ToString(), out prevwvip)) prevwvip = 0;
+               
                 string currtc2 = di.Rows[i][16].ToString();
                 string prevtc2 = di.Rows[i][17].ToString();
                 string currflag = di.Rows[i][9].ToString();
@@ -390,8 +398,8 @@ namespace Cprs
                 string prevsurv = di.Rows[i][21].ToString();
                 string currstatus = di.Rows[i][22].ToString();
                 string prevstatus = di.Rows[i][23].ToString();
+                
 
-               
                 //if tc changed
                 if ((currtc2 == selectedNewtc2) && (prevtc2 != selectedNewtc2))
                 {
@@ -403,11 +411,6 @@ namespace Cprs
                     if (!double.TryParse(di.Rows[i][10].ToString(), out updatedprevwvip)) updatedprevwvip = 0;
                     change = currwvip - updatedprevwvip;
                     di.Rows[i]["Change"] = change;
-
-                    if (change == 0)
-                    {
-                        di.Rows[i].Delete();
-                    }
                 }
 
                 //if tc changed
@@ -421,11 +424,6 @@ namespace Cprs
                     if (!double.TryParse(di.Rows[i][8].ToString(), out updatedcurrwvip)) updatedcurrwvip = 0;
                     change = updatedcurrwvip - prevwvip;
                     di.Rows[i]["Change"] = change;
-
-                    if (change == 0)
-                    {
-                        di.Rows[i].Delete();
-                    }
                 }
 
                 //if owner changed
@@ -439,11 +437,6 @@ namespace Cprs
                     if (!double.TryParse(di.Rows[i][10].ToString(), out updatedprevwvip)) updatedprevwvip = 0;
                     change = currwvip - updatedprevwvip;
                     di.Rows[i]["Change"] = change;
-
-                    if (change == 0)
-                    {
-                        di.Rows[i].Delete();
-                    }
                 }
 
                 //if survey changed
@@ -457,11 +450,6 @@ namespace Cprs
                     if (!double.TryParse(di.Rows[i][8].ToString(), out updatedcurrwvip)) updatedcurrwvip = 0;
                     change = updatedcurrwvip - prevwvip;
                     di.Rows[i]["Change"] = change;
-
-                    if (change == 0)
-                    {
-                        di.Rows[i].Delete();
-                    }
                 }
 
                 //if status changed
@@ -475,11 +463,6 @@ namespace Cprs
                     if (!double.TryParse(di.Rows[i][8].ToString(), out updatedcurrwvip)) updatedcurrwvip = 0;
                     change = updatedcurrwvip - prevwvip;
                     di.Rows[i]["Change"] = change;
-
-                    if (change == 0)
-                    {
-                        di.Rows[i].Delete();
-                    }
                 }
                 
             }
@@ -489,6 +472,7 @@ namespace Cprs
 
             // Create DataView
             DataView view = new DataView(di);
+            view.RowFilter = "change <> 0";
 
             // Sort by Change column in descending order
             view.Sort = "change DESC";
@@ -1011,7 +995,7 @@ namespace Cprs
             UpdateTitles();
 
             dv = new DataView(di);
-            dv.RowFilter = "currstatus <> prevstatus";
+            dv.RowFilter = "(currstatus <> prevstatus) and change <> 0";
             dv.Sort = "change DESC";
 
             //subset filter
@@ -1041,7 +1025,7 @@ namespace Cprs
             UpdateTitles();
 
             dv = new DataView(di);
-            dv.RowFilter = "currsurv <> prevsurv";
+            dv.RowFilter = "(currsurv <> prevsurv) and change <>0";
             dv.Sort = "change DESC";
 
             //subset filter
@@ -1073,7 +1057,7 @@ namespace Cprs
 
             dv = new DataView(di);
 
-            filter = "((currtc2 = '1T' and currtc2x <> prevtc2x) or (currtc2 <> '1T' and currtc2 <> prevtc2))";
+            filter = "(((currtc2 = '1T' and currtc2x <> prevtc2x) or (currtc2 <> '1T' and currtc2 <> prevtc2)) and change <>0)";
            
             dv.RowFilter = filter;
             dv.Sort = "change DESC";
