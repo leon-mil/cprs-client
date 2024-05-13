@@ -18,6 +18,12 @@ Modified By   : Kevin Montgomery
 Keyword       :
 Change Request:
 Description   : Comment out Printing of Ratio Adjust Listings
+***********************************************************************
+*Modified Date : April 15, 2024
+Modified By   : Christine Zhang
+Keyword       : 04152024cz
+Change Request:
+Description   : bug fix - only show four digit tc
 ***********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -97,6 +103,11 @@ namespace Cprs
         {
             data_loading = true;
             DataTable table;
+
+            //04152024cz if the newtc is four digits, get two digits
+            if (newtc.Length > 2)
+                newtc = newtc.Substring(0, 2);
+
             table = data_object.GetVipTotalData(sdate, owner, level, newtc);
 
             int num_row = table.Rows.Count;
@@ -405,6 +416,7 @@ namespace Cprs
                 if (Convert.ToDouble(dgData.SelectedRows[0].Cells[19].Value) == 0 && Convert.ToDouble(dgData.SelectedRows[0].Cells[20].Value) == 0 && Convert.ToDouble(dgData.SelectedRows[0].Cells[21].Value) == 0)
                 {
                     MessageBox.Show("No data exists for this TC.");
+                    
                     return;
                 }
             }
