@@ -23,7 +23,14 @@ Modified By     :  Christine
 Keyword         :  
 Change Request  :  CR 8386
 Description     :  descending the sorting for vg, months
-**************************************************************************************************/
+**************************************************************************************************
+ Modified Date : 5 / 8 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1487
+ Description   : Change value group 10M+ to 10M-99.9M and add the new group for 100M+ 
+                 for Nonres Private (and State and Local) and for Private Multifamily
+ *************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -148,10 +155,10 @@ namespace Cprs
             dgData.Columns[7].DefaultCellStyle.Format = "N0";
             dgData.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgData.Columns[8].HeaderText = "WT Months";
-            dgData.Columns[8].DefaultCellStyle.Format = "N1";
+            dgData.Columns[8].DefaultCellStyle.Format = "N2";
             dgData.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgData.Columns[9].HeaderText = "Fwgt";
-            dgData.Columns[9].DefaultCellStyle.Format = "N1";
+            dgData.Columns[9].DefaultCellStyle.Format = "N2";
             dgData.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgData.Columns[10].HeaderText = "Cum VIP";
             dgData.Columns[10].DefaultCellStyle.Format = "N0";
@@ -188,12 +195,15 @@ namespace Cprs
                 dgMain.Columns[4].HeaderText = "5000 to 9999";
                 dgMain.Columns[4].DefaultCellStyle.Format = "N1";
                 dgMain.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgMain.Columns[5].HeaderText = ">=10000";
+                dgMain.Columns[5].HeaderText = "10000 to 99999";
                 dgMain.Columns[5].DefaultCellStyle.Format = "N1";
                 dgMain.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgMain.Columns[6].HeaderText = "All";
+                dgMain.Columns[6].HeaderText = ">=100000";
                 dgMain.Columns[6].DefaultCellStyle.Format = "N1";
                 dgMain.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgMain.Columns[7].HeaderText = "All";
+                dgMain.Columns[7].DefaultCellStyle.Format = "N1";
+                dgMain.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
             else
             {
@@ -212,12 +222,15 @@ namespace Cprs
                 dgMain.Columns[6].HeaderText = "5000 to 9999";
                 dgMain.Columns[6].DefaultCellStyle.Format = "N1";
                 dgMain.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgMain.Columns[7].HeaderText = ">=10000";
+                dgMain.Columns[7].HeaderText = "10000 to 99999";
                 dgMain.Columns[7].DefaultCellStyle.Format = "N1";
                 dgMain.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgMain.Columns[8].HeaderText = "All";
+                dgMain.Columns[8].HeaderText = ">=100000";
                 dgMain.Columns[8].DefaultCellStyle.Format = "N1";
                 dgMain.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgMain.Columns[9].HeaderText = "All";
+                dgMain.Columns[9].DefaultCellStyle.Format = "N1";
+                dgMain.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
             //make column unsortable
@@ -477,7 +490,7 @@ namespace Cprs
                     return;
                 }
             }
-            else if (colname == "Compdate")
+            else if (colname == "COMPDATE")
             {
                 if (cvalue.Length != 6 || !GeneralFunctions.ValidateDateWithRange(cvalue))
                 {
@@ -489,7 +502,13 @@ namespace Cprs
             }
             else
             {
-                if (Convert.ToInt32(cvalue) < 1 || Convert.ToInt32(cvalue) > 6)
+                int maxvalue = 0;
+                if (SelectedSurvey == "M")
+                    maxvalue = 5;
+                else
+                    maxvalue = 7;
+
+                if (Convert.ToInt32(cvalue) < 1 || Convert.ToInt32(cvalue) > maxvalue)
                 {
                     MessageBox.Show("Invalid VG");
                     txtValueItem.Text = "";
