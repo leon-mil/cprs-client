@@ -64,6 +64,9 @@ namespace Cprs
         private string saveFilename;
         private frmMessageWait waiting;
 
+        public frmSpecManufacturingMon CallingForm = null;
+        private bool call_callingFrom = false;
+
         object misValue = System.Reflection.Missing.Value;
 
         public frmSpecManufacturingHist()
@@ -157,6 +160,10 @@ namespace Cprs
         {
             //add record to cpraccess
             GeneralDataFuctions.AddCpraccessData("TABULATIONS", "EXIT");
+            
+            /*Close the hide form */
+            if (!call_callingFrom)
+                CallingForm.Close();
         }
 
         private void btnTable_Click(object sender, EventArgs e)
@@ -439,6 +446,16 @@ namespace Cprs
         {
             this.Enabled = true;
             MessageBox.Show("Files have been created");
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (CallingForm != null)
+            {
+                CallingForm.Show();
+                call_callingFrom = true;
+            }
+            this.Close();
         }
     }
 }

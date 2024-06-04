@@ -38,6 +38,7 @@ namespace Cprs
             this.btnTable = new System.Windows.Forms.Button();
             this.dgData = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnPrev = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@ namespace Cprs
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(499, 138);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 16);
+            this.label2.Size = new System.Drawing.Size(131, 16);
             this.label2.TabIndex = 72;
             this.label2.Text = "Millions of Dollars";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,7 +80,7 @@ namespace Cprs
             // 
             this.btnTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTable.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnTable.Location = new System.Drawing.Point(502, 763);
+            this.btnTable.Location = new System.Drawing.Point(378, 755);
             this.btnTable.Name = "btnTable";
             this.btnTable.Size = new System.Drawing.Size(133, 23);
             this.btnTable.TabIndex = 76;
@@ -132,11 +133,24 @@ namespace Cprs
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrev.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnPrev.Location = new System.Drawing.Point(573, 755);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(130, 23);
+            this.btnPrev.TabIndex = 109;
+            this.btnPrev.Text = "PREVIOUS";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
             // frmSpecManufacturingHist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 861);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.btnTable);
             this.Controls.Add(this.dgData);
             this.Controls.Add(this.label2);
@@ -150,6 +164,7 @@ namespace Cprs
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.dgData, 0);
             this.Controls.SetChildIndex(this.btnTable, 0);
+            this.Controls.SetChildIndex(this.btnPrev, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,5 +179,6 @@ namespace Cprs
         private System.Windows.Forms.Button btnTable;
         private System.Windows.Forms.DataGridView dgData;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnPrev;
     }
 }
