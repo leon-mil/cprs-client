@@ -15,11 +15,12 @@
                  frmSpecTimeLenDist, frmSpecTimeLenDistCases.cs
  Revisions     : See Below
  *********************************************************************
- Modified Date : 
- Modified By   : 
+ Modified Date : 5 / 8 / 2024
+ Modified By   : Christine Zhang
  Keyword       : 
- Change Request: 
- Description   : 
+ Change Request: CR1487
+ Description   : Change value group 10M+ to 10M-99.9M and add new group
+                 for 100M+ for Nonres, State and Local and Multifamily
  *********************************************************************/
 
 using System;
@@ -103,9 +104,9 @@ namespace CprsDAL
                     andQuery = " and owner = 'M'";
 
                 if (survey != "M")
-                    vgQuery = " vg = case when cumvip < 250 then 1 when cumvip <= 999 then 2 when cumvip <= 2999 then 3  when cumvip >= 3000 and cumvip<= 4999 then 4 when cumvip >= 5000 and cumvip<= 9999 then 5 else 6 end";
+                    vgQuery = " vg = case when cumvip < 250 then 1 when cumvip <= 999 then 2 when cumvip <= 2999 then 3  when cumvip >= 3000 and cumvip<= 4999 then 4 when cumvip >= 5000 and cumvip<= 9999 then 5 when cumvip >= 10000 and cumvip<= 99999 then 6 else 7 end";
                 else
-                    vgQuery = " vg = case  when cumvip < 3000 then 1 when cumvip >=3000 and cumvip<=4999 then 2 when cumvip >=5000 and cumvip<=9999 then 3 else 4 end";
+                    vgQuery = " vg = case  when cumvip < 3000 then 1 when cumvip >=3000 and cumvip<=4999 then 2 when cumvip >=5000 and cumvip<=9999 then 3 when cumvip >= 10000 and cumvip<= 99999 then 4 else 5 end";
 
                 if (!String.Equals(getTc, t1, StringComparison.Ordinal))
                     andQuery = andQuery + " and substring(newtc, 1, 2) ='" + tc.Trim() + "'";
@@ -256,11 +257,11 @@ namespace CprsDAL
             string sQuery = string.Empty;
 
             if (survey == "P")
-                sQuery = "SXXXXLV0, SXXXXLV1,SXXXXLV2,SXXXXLV3,SXXXXLV4,SXXXXLV5,SXXXXLV6,SXXXXLVP,S02XXLV0,S02XXLV1,S02XXLV2,S02XXLV3,S02XXLV4,S02XXLV5,S02XXLV6,S02XXLVP,S05XXLV0,S05XXLV1,S05XXLV2,S05XXLV3,S05XXLV4,S05XXLV5,S05XXLV6,S05XXLVP,S07XXLV0,S07XXLV1,S07XXLV2,S07XXLV3,S07XXLV4,S07XXLV5,S07XXLV6,S07XXLVP,S09XXLV0,S09XXLV1,S09XXLV2,S09XXLV3,S09XXLV4,S09XXLV5,S09XXLV6,S09XXLVP,S08XXLV0,S08XXLV1,S08XXLV2,S08XXLV3,S08XXLV4,S08XXLV5,S08XXLV6,S08XXLVP,S12XXLV0,S12XXLV1,S12XXLV2,S12XXLV3,S12XXLV4,S12XXLV5,S12XXLV6,S12XXLVP,S13XXLV0,S13XXLV1,S13XXLV2,S13XXLV3,S13XXLV4,S13XXLV5,S13XXLV6,S13XXLVP,S14XXLV0,S14XXLV1,S14XXLV2,S14XXLV3,S14XXLV4,S14XXLV5,S14XXLV6,S14XXLVP";
+                sQuery = "SXXXXLV0, SXXXXLV1,SXXXXLV2,SXXXXLV3,SXXXXLV4,SXXXXLV5,SXXXXLV6,SXXXXLV7,SXXXXLVP,S02XXLV0,S02XXLV1,S02XXLV2,S02XXLV3,S02XXLV4,S02XXLV5,S02XXLV6,S02XXLV7,S02XXLVP,S05XXLV0,S05XXLV1,S05XXLV2,S05XXLV3,S05XXLV4,S05XXLV5,S05XXLV6,S05XXLV7,S05XXLVP,S07XXLV0,S07XXLV1,S07XXLV2,S07XXLV3,S07XXLV4,S07XXLV5,S07XXLV6,S07XXLV7,S07XXLVP,S09XXLV0,S09XXLV1,S09XXLV2,S09XXLV3,S09XXLV4,S09XXLV5,S09XXLV6,S09XXLV7,S09XXLVP,S08XXLV0,S08XXLV1,S08XXLV2,S08XXLV3,S08XXLV4,S08XXLV5,S08XXLV6,S08XXLV7,S08XXLVP,S12XXLV0,S12XXLV1,S12XXLV2,S12XXLV3,S12XXLV4,S12XXLV5,S12XXLV6,S12XXLV7,S12XXLVP,S13XXLV0,S13XXLV1,S13XXLV2,S13XXLV3,S13XXLV4,S13XXLV5,S13XXLV6,S13XXLV7,S13XXLVP,S14XXLV0,S14XXLV1,S14XXLV2,S14XXLV3,S14XXLV4,S14XXLV5,S14XXLV6,S14XXLV7,S14XXLVP";
             else if (survey == "N")
-                sQuery = "VXXXXLV0,VXXXXLV1,VXXXXLV2,VXXXXLV3,VXXXXLV4,VXXXXLV5,VXXXXLV6,VXXXXLVP,V02XXLV0,V02XXLV1,V02XXLV2,V02XXLV3,V02XXLV4,V02XXLV5,V02XXLV6,V02XXLVP,V03XXLV0,V03XXLV1,V03XXLV2,V03XXLV3,V03XXLV4,V03XXLV5,V03XXLV6,V03XXLVP,V04XXLV0,V04XXLV1,V04XXLV2,V04XXLV3,V04XXLV4,V04XXLV5,V04XXLV6,V04XXLVP,V05XXLV0,V05XXLV1,V05XXLV2,V05XXLV3,V05XXLV4,V05XXLV5,V05XXLV6,V05XXLVP,V06XXLV0,V06XXLV1,V06XXLV2,V06XXLV3,V06XXLV4,V06XXLV5,V06XXLV6,V06XXLVP,V08XXLV0,V08XXLV1,V08XXLV2,V08XXLV3,V08XXLV4,V08XXLV5,V08XXLV6,V08XXLVP,V1TXXLV0,V1TXXLV1,V1TXXLV2,V1TXXLV3,V1TXXLV4,V1TXXLV5,V1TXXLV6,V1TXXLVP";
+                sQuery = "VXXXXLV0,VXXXXLV1,VXXXXLV2,VXXXXLV3,VXXXXLV4,VXXXXLV5,VXXXXLV6,VXXXXLV7,VXXXXLVP,V02XXLV0,V02XXLV1,V02XXLV2,V02XXLV3,V02XXLV4,V02XXLV5,V02XXLV6,V02XXLV7,V02XXLVP,V03XXLV0,V03XXLV1,V03XXLV2,V03XXLV3,V03XXLV4,V03XXLV5,V03XXLV6,V03XXLV7,V03XXLVP,V04XXLV0,V04XXLV1,V04XXLV2,V04XXLV3,V04XXLV4,V04XXLV5,V04XXLV6,V04XXLV7,V04XXLVP,V05XXLV0,V05XXLV1,V05XXLV2,V05XXLV3,V05XXLV4,V05XXLV5,V05XXLV6,V05XXLV7,V05XXLVP,V06XXLV0,V06XXLV1,V06XXLV2,V06XXLV3,V06XXLV4,V06XXLV5,V06XXLV6,V06XXLV7,V06XXLVP,V08XXLV0,V08XXLV1,V08XXLV2,V08XXLV3,V08XXLV4,V08XXLV5,V08XXLV6,V08XXLV7,V08XXLVP,V1TXXLV0,V1TXXLV1,V1TXXLV2,V1TXXLV3,V1TXXLV4,V1TXXLV5,V1TXXLV6,V1TXXLV7,V1TXXLVP";
             else if (survey == "M")
-                sQuery = "MXXXXLV0,MXXXXLV1,MXXXXLV2,MXXXXLV3,MXXXXLV4,MXXXXLVP,M00XXLV0,M00XXLV1,M00XXLV2,M00XXLV3,M00XXLV4,M00XXLVP";
+                sQuery = "MXXXXLV0,MXXXXLV1,MXXXXLV2,MXXXXLV3,MXXXXLV4,MXXXXLV5,MXXXXLVP,M00XXLV0,M00XXLV1,M00XXLV2,M00XXLV3,M00XXLV4,M00XXLV5,M00XXLVP";
 
             using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
             {
@@ -312,21 +313,21 @@ namespace CprsDAL
             {
                 sQuery = "with t2 as (select v.id,  count(date6) as months, sum(vipdata) as totvip from dbo.sample s, dbo.master m, dbo.MONTHLY_VIP_DATA v where s.masterid = m.masterid and s.id = v.id and status = '1' and compdate between '" +(year-2)+"01' and '"+(year-1)+"12' and owner in ('S', 'L', 'P') group by v.id)";
                 sQuery = sQuery + "select t2.id, newtc, status, seldate, rvitm5c, strtdate, compdate, months, (months * fwgt) as wmoths, fwgt, totvip,";
-                sQuery = sQuery + " vg = case when totvip < 250 then 1 when totvip <= 999 then 2 when totvip <= 2999 then 3 when totvip >= 3000 and totvip<= 4999 then 4 when totvip >= 5000 and totvip<= 9999 then 5 else 6 end, 0 as exclude";
+                sQuery = sQuery + " vg = case when totvip < 250 then 1 when totvip <= 999 then 2 when totvip <= 2999 then 3 when totvip >= 3000 and totvip<= 4999 then 4 when totvip >= 5000 and totvip<= 9999 then 5 when totvip >= 10000 and totvip<= 99999 then 6 else 7 end, 0 as exclude";
                 sQuery = sQuery + " from t2, dbo.sample s, dbo.master m where t2.id = s.id and s.MASTERID = m.MASTERID";
             }
             else if (survey == "N")
             {
                 sQuery = "with t2 as (select v.id,  count(date6) as months, sum(vipdata) as totvip from dbo.sample s, dbo.master m, dbo.MONTHLY_VIP_DATA v where s.masterid = m.masterid and s.id = v.id and status = '1' and compdate between '" + (year - 2) + "01' and '" + (year - 1) + "12'  and owner = 'N' group by v.id)";
                 sQuery = sQuery + "select t2.id, newtc, status, seldate, rvitm5c, strtdate, compdate, months, (months * fwgt) as wmoths, fwgt, totvip,";
-                sQuery = sQuery + " vg = case when totvip < 250 then 1 when totvip <= 999 then 2 when totvip <= 2999 then 3 when totvip >= 3000 and totvip<= 4999 then 4 when totvip >= 5000 and totvip<= 9999 then 5 else 6 end, 0 as exclude";
+                sQuery = sQuery + " vg = case when totvip < 250 then 1 when totvip <= 999 then 2 when totvip <= 2999 then 3 when totvip >= 3000 and totvip<= 4999 then 4 when totvip >= 5000 and totvip<= 9999 then 5 when totvip >= 10000 and totvip<= 99999 then 6 else 7 end, 0 as exclude";
                 sQuery = sQuery + " from t2, dbo.sample s, dbo.master m where t2.id = s.id and s.MASTERID = m.MASTERID";
             }
             else if (survey == "M")
             {
                 sQuery = "with t2 as (select v.id,  count(date6) as months, sum(vipdata) as totvip from dbo.sample s, dbo.master m, dbo.MONTHLY_VIP_DATA v where s.masterid = m.masterid and s.id = v.id and status = '1' and compdate between '" + (year - 2) + "01' and '" + (year - 1) + "12' and owner = 'M' group by v.id)";
                 sQuery = sQuery + "select t2.id, newtc, status, seldate, rvitm5c, strtdate, compdate, months, (months * fwgt) as wmoths, fwgt, totvip,";
-                sQuery = sQuery + " vg = case  when totvip < 3000 then 1 when totvip >=3000 and totvip<=4999 then 2 when totvip >=5000 and totvip<=9999 then 3 else 4 end, 0 as exclude";
+                sQuery = sQuery + " vg = case  when totvip < 3000 then 1 when totvip >=3000 and totvip<=4999 then 2 when totvip >=5000 and totvip<=9999 then 3 when totvip >= 10000 and totvip<= 99999 then 4 else 5 end, 0 as exclude";
                 sQuery = sQuery + " from t2, dbo.sample s, dbo.master m where t2.id = s.id and s.MASTERID = m.MASTERID";
             }
                 
@@ -403,11 +404,11 @@ namespace CprsDAL
                 andQuery = " and owner = 'M'";
 
             if (survey == "P")
-                sQuery = "MONTH,VG0MONSE,VG0CUMSE,VG1MONSE,VG1CUMSE,VG2MONSE,VG2CUMSE,VG3MONSE,VG3CUMSE,VG4MONSE,VG4CUMSE,VG5MONSE,VG5CUMSE,VG6MONSE,VG6CUMSE";
+                sQuery = "MONTH,VG0MONSE,VG0CUMSE,VG1MONSE,VG1CUMSE,VG2MONSE,VG2CUMSE,VG3MONSE,VG3CUMSE,VG4MONSE,VG4CUMSE,VG5MONSE,VG5CUMSE,VG6MONSE,VG6CUMSE,VG7MONSE,VG7CUMSE";
             else if (survey == "N")
-                sQuery = "MONTH,VG0MONSE,VG0CUMSE,VG1MONSE,VG1CUMSE,VG2MONSE,VG2CUMSE,VG3MONSE,VG3CUMSE,VG4MONSE,VG4CUMSE,VG5MONSE,VG5CUMSE,VG6MONSE,VG6CUMSE";
+                sQuery = "MONTH,VG0MONSE,VG0CUMSE,VG1MONSE,VG1CUMSE,VG2MONSE,VG2CUMSE,VG3MONSE,VG3CUMSE,VG4MONSE,VG4CUMSE,VG5MONSE,VG5CUMSE,VG6MONSE,VG6CUMSE,VG7MONSE,VG7CUMSE";
             else if (survey == "M")
-                sQuery = "MONTH,VG0MONSE,VG0CUMSE,VG1MONSE,VG1CUMSE,VG2MONSE,VG2CUMSE,VG3MONSE,VG3CUMSE,VG4MONSE,VG4CUMSE";
+                sQuery = "MONTH,VG0MONSE,VG0CUMSE,VG1MONSE,VG1CUMSE,VG2MONSE,VG2CUMSE,VG3MONSE,VG3CUMSE,VG4MONSE,VG4CUMSE,VG5MONSE,VG5CUMSE";
 
             using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
             {
@@ -432,7 +433,7 @@ namespace CprsDAL
             DataTable dt = new DataTable();
             string sQuery = string.Empty;
 
-            sQuery = "OWNER,QTR,VG0QTRSE,VG0CUMSE,VG1QTRSE,VG1CUMSE,VG2QTRSE,VG2CUMSE,VG3QTRSE,VG3CUMSE,VG4QTRSE,VG4CUMSE,VG5QTRSE,VG5CUMSE,VG6QTRSE,VG6CUMSE";
+            sQuery = "OWNER,QTR,VG0QTRSE,VG0CUMSE,VG1QTRSE,VG1CUMSE,VG2QTRSE,VG2CUMSE,VG3QTRSE,VG3CUMSE,VG4QTRSE,VG4CUMSE,VG5QTRSE,VG5CUMSE,VG6QTRSE,VG6CUMSE,VG7QTRSE,VG7CUMSE";
            
             using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
             {
@@ -457,7 +458,7 @@ namespace CprsDAL
            
             using (SqlConnection connection = new SqlConnection(GeneralData.getConnectionString()))
             {
-                string sql = "SELECT QTR, VG0QTREST,VG0CUMEST,VG1QTREST,VG1CUMEST,VG2QTREST,VG2CUMEST,VG3QTREST,VG3CUMEST,VG4QTREST, VG4CUMEST, VG5QTREST, VG5CUMEST, VG6QTREST,VG6CUMEST from dbo.LOTPDHWY_EST where year ='" + (DateTime.Now.Year - 1).ToString() + "' order by year, qtr";
+                string sql = "SELECT QTR, VG0QTREST,VG0CUMEST,VG1QTREST,VG1CUMEST,VG2QTREST,VG2CUMEST,VG3QTREST,VG3CUMEST,VG4QTREST, VG4CUMEST, VG5QTREST, VG5CUMEST, VG6QTREST,VG6CUMEST,VG7QTREST,VG7CUMEST from dbo.LOTPDHWY_EST where year ='" + (DateTime.Now.Year - 1).ToString() + "' order by year, qtr";
                 SqlCommand command = new SqlCommand(sql, connection);
 
                 connection.Open();
