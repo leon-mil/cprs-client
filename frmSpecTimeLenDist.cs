@@ -23,7 +23,14 @@ Description     :  correct title and column name in excel file
  Keyword       : 
  Change Request: CR885
  Description   : update excel file name from .xls to .xlsx
- *************************************************************************************************/
+ *************************************************************************************************
+ Modified Date : 5 / 8 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1487
+ Description   : Change value group 10M+ to 10M-99.9M and add the new group for 100M+ 
+                 for Nonres Private (and State and Local) and for Private Multifamily
+ ************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,6 +110,7 @@ namespace Cprs
             decimal c4 = 0;
             decimal c5 = 0;
             decimal c6 = 0;
+            decimal c7 = 0;
             decimal c0 = 0;
 
             foreach (DataRow row in dtmonth.Rows)
@@ -112,10 +120,11 @@ namespace Cprs
                 c2 = c2 + Convert.ToDecimal(row["c2"]);
                 c3 = c3 + Convert.ToDecimal(row["c3"]);
                 c4 = c4 + Convert.ToDecimal(row["c4"]);
+                c5 = c5 + Convert.ToDecimal(row["c5"]);
                 if (SelectedSurvey != "M")
                 {
-                    c5 = c5 + Convert.ToDecimal(row["c5"]);
                     c6 = c6 + Convert.ToDecimal(row["c6"]);
+                    c7 = c7 + Convert.ToDecimal(row["c7"]);
                 }
                 c0 = c0 + Convert.ToDecimal(row["c0"]);
                 dr[0] = row[0].ToString();
@@ -123,14 +132,15 @@ namespace Cprs
                 dr[2] = c2;
                 dr[3] = c3;
                 dr[4] = c4;
+                dr[5] = c5;
                 if (SelectedSurvey != "M")
                 {
-                    dr[5] = c5;
                     dr[6] = c6;
-                    dr[7] = c0;
+                    dr[7] = c7;
+                    dr[8] = c0;
                 }
                 else
-                    dr[5] = c0;
+                    dr[6] = c0;
                 dtcum.Rows.Add(dr);
             }
 
@@ -160,12 +170,15 @@ namespace Cprs
                 dgData.Columns[3].HeaderText = "5000 to 9999";
                 dgData.Columns[3].DefaultCellStyle.Format = "0.0\\%";
                 dgData.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[4].HeaderText = ">=10000";
+                dgData.Columns[4].HeaderText = "10000 to 99999";
                 dgData.Columns[4].DefaultCellStyle.Format = "0.0\\%";
                 dgData.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[5].HeaderText = "All";
+                dgData.Columns[5].HeaderText = ">=100000";
                 dgData.Columns[5].DefaultCellStyle.Format = "0.0\\%";
                 dgData.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgData.Columns[6].HeaderText = "All";
+                dgData.Columns[6].DefaultCellStyle.Format = "0.0\\%";
+                dgData.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
             else
             {
@@ -184,12 +197,15 @@ namespace Cprs
                 dgData.Columns[5].HeaderText = "5000 to 9999";
                 dgData.Columns[5].DefaultCellStyle.Format = "0.0\\%"; 
                 dgData.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[6].HeaderText = ">=10000";
+                dgData.Columns[6].HeaderText = "10000 to 99999";
                 dgData.Columns[6].DefaultCellStyle.Format = "0.0\\%"; 
                 dgData.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[7].HeaderText = "All";
+                dgData.Columns[7].HeaderText = ">=100000";
                 dgData.Columns[7].DefaultCellStyle.Format = "0.0\\%";
                 dgData.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgData.Columns[8].HeaderText = "All";
+                dgData.Columns[8].DefaultCellStyle.Format = "0.0\\%";
+                dgData.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
             //make column unsortable
@@ -437,7 +453,7 @@ namespace Cprs
             
             Microsoft.Office.Interop.Excel.Range cellRange;
            
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "Q"]);
 
             cellRange.Font.Bold = true;
             cellRange.WrapText = true;
@@ -449,7 +465,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "Q"]);
             cellRange.Font.Bold = true;
             xlWorkSheet.Cells[2, 1] = title2;
             cellRange.Font.Size = 9;
@@ -459,7 +475,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "Q"]);
             xlWorkSheet.Cells[4, 1] = "(Details may not add to totals due to rounding.)";
             cellRange.Merge(Type.Missing);
 
@@ -472,7 +488,7 @@ namespace Cprs
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[5, 2] = "Value of Project (Thousands of dollars)";
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 15]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 17]);
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 1, 1, 1, 1);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
@@ -481,44 +497,50 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 1], xlWorkSheet.Cells[6, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 2] = "$10,000 or more";
+            xlWorkSheet.Cells[6, 2] = "$100,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
+            xlWorkSheet.Cells[6, 4] = "$10,000 - $99,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
+            xlWorkSheet.Cells[6, 6] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
+            xlWorkSheet.Cells[6, 8] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 10] = "$250 - $999";
+            xlWorkSheet.Cells[6, 10] = "$1,000 - $2,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 12] = "Less than $250";
+            xlWorkSheet.Cells[6, 12] = "$250 - $999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 14] = "All Values";
+            xlWorkSheet.Cells[6, 14] = "Less than $250";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
+            cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            Drawbox(cellRange, 1, 1, 1, 1);
+
+            xlWorkSheet.Cells[6, 16] = "All Values";
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 16], xlWorkSheet.Cells[6, 17]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
@@ -529,7 +551,7 @@ namespace Cprs
             ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            for (int i = 2; i <= 15; i++)
+            for (int i = 2; i <= 17; i++)
             {
                 if (i % 2 == 0)
                     xlWorkSheet.Cells[7, i] = "Monthly";
@@ -561,62 +583,70 @@ namespace Cprs
                 else
                     Drawbox(cellRange1, 1, 1, 0, 0);
 
-                xlWorkSheet.Cells[iRow, 2] = r["c6"].ToString();
+                xlWorkSheet.Cells[iRow, 2] = r["c7"].ToString();
                 Microsoft.Office.Interop.Excel.Range cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 2], xlWorkSheet.Cells[iRow, 2]);
                 SetCellStyle(cellRange2, row_num);
-                
+
                 DataRow rr = dtcum.Rows[row_num];
 
-                xlWorkSheet.Cells[iRow, 3] = rr["c6"].ToString();
+                xlWorkSheet.Cells[iRow, 3] = rr["c7"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 3], xlWorkSheet.Cells[iRow, 3]);
                 SetCellStyle(cellRange2, row_num);
-
-                xlWorkSheet.Cells[iRow, 4] = r["c5"].ToString();
+                
+                xlWorkSheet.Cells[iRow, 4] = r["c6"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 4], xlWorkSheet.Cells[iRow, 4]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 5] = rr["c5"].ToString();
+                xlWorkSheet.Cells[iRow, 5] = rr["c6"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 5], xlWorkSheet.Cells[iRow, 5]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 6] = r["c4"].ToString();
+                xlWorkSheet.Cells[iRow, 6] = r["c5"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 6], xlWorkSheet.Cells[iRow, 6]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 7] = rr["c4"].ToString();
+                xlWorkSheet.Cells[iRow, 7] = rr["c5"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 7], xlWorkSheet.Cells[iRow, 7]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 8] = r["c3"].ToString();
+                xlWorkSheet.Cells[iRow, 8] = r["c4"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 8], xlWorkSheet.Cells[iRow, 8]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 9] = rr["c3"].ToString();
+                xlWorkSheet.Cells[iRow, 9] = rr["c4"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 9], xlWorkSheet.Cells[iRow, 9]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 10] = r["c2"].ToString();
+                xlWorkSheet.Cells[iRow, 10] = r["c3"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 10], xlWorkSheet.Cells[iRow, 10]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 11] = rr["c2"].ToString();
+                xlWorkSheet.Cells[iRow, 11] = rr["c3"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 11], xlWorkSheet.Cells[iRow, 11]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 12] = r["c1"].ToString();
+                xlWorkSheet.Cells[iRow, 12] = r["c2"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 12], xlWorkSheet.Cells[iRow, 12]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 13] = rr["c1"].ToString();
+                xlWorkSheet.Cells[iRow, 13] = rr["c2"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 13], xlWorkSheet.Cells[iRow, 13]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 14] = r["c0"].ToString();
+                xlWorkSheet.Cells[iRow, 14] = r["c1"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 14], xlWorkSheet.Cells[iRow, 14]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 15] = rr["c0"].ToString();
+                xlWorkSheet.Cells[iRow, 15] = rr["c1"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 15], xlWorkSheet.Cells[iRow, 15]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 16] = r["c0"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 16], xlWorkSheet.Cells[iRow, 16]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 17] = rr["c0"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 17], xlWorkSheet.Cells[iRow, 17]);
                 SetCellStyle(cellRange2, row_num);
 
                 row_num++;
@@ -678,9 +708,9 @@ namespace Cprs
 
             Microsoft.Office.Interop.Excel.Range cellRange;
             if (survey != "M")
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "O"]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "Q"]);
             else
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "K"]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "M"]);
 
             cellRange.Font.Bold = true;
             cellRange.WrapText = true;
@@ -693,9 +723,9 @@ namespace Cprs
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
             if (survey != "M")
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "O"]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "Q"]);
             else
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "K"]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "M"]);
             cellRange.Font.Bold = true;
             xlWorkSheet.Cells[2, 1] = title2;
             cellRange.Font.Size = 9;
@@ -706,9 +736,9 @@ namespace Cprs
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
             if (survey != "M")
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "O"]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "Q"]);
             else
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "K"]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "M"]);
             xlWorkSheet.Cells[4, 1] = "(Details may not add to totals due to rounding.)";
             cellRange.Merge(Type.Missing);
 
@@ -722,9 +752,9 @@ namespace Cprs
 
             xlWorkSheet.Cells[5, 2] = "Value of Project (Thousands of dollars)";
             if (survey != "M")
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 15]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 17]);
             else
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 11]);
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 13]);
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 1, 1, 1, 1);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
@@ -733,60 +763,66 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 1], xlWorkSheet.Cells[6, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 2] = "$10,000 or more";
+            xlWorkSheet.Cells[6, 2] = "$100,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
+            xlWorkSheet.Cells[6, 4] = "$10,000 - $99,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
+            xlWorkSheet.Cells[6, 6] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
+            cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            Drawbox(cellRange, 1, 1, 1, 1);
+
+            xlWorkSheet.Cells[6, 8] = "$3,000 - $4,999";
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
             if (survey != "M")
             {
-                xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
-                cellRange.Merge(Type.Missing);
-                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                Drawbox(cellRange, 1, 1, 1, 1);
-
-                xlWorkSheet.Cells[6, 10] = "$250 - $999";
+                xlWorkSheet.Cells[6, 10] = "$1,000 - $2,999";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
                 cellRange.Merge(Type.Missing);
                 cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
-                xlWorkSheet.Cells[6, 12] = "Less than $250";
+                xlWorkSheet.Cells[6, 12] = "$250 - $999";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
                 cellRange.Merge(Type.Missing);
                 cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
-                xlWorkSheet.Cells[6, 14] = "All Values";
+                xlWorkSheet.Cells[6, 14] = "Less than $250";
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
+                cellRange.Merge(Type.Missing);
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                Drawbox(cellRange, 1, 1, 1, 1);
+
+                xlWorkSheet.Cells[6, 16] = "All Values";
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 16], xlWorkSheet.Cells[6, 17]);
                 cellRange.Merge(Type.Missing);
                 cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
             }
             else
             {
-                xlWorkSheet.Cells[6, 8] = "$Less than $3,000";
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
+                xlWorkSheet.Cells[6, 10] = "Less than $3,000";
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
                 cellRange.Merge(Type.Missing);
                 cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
 
-                xlWorkSheet.Cells[6, 10] = "All Values";
-                cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
+                xlWorkSheet.Cells[6, 12] = "All Values";
+                cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
                 cellRange.Merge(Type.Missing);
                 cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 Drawbox(cellRange, 1, 1, 1, 1);
@@ -798,9 +834,9 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[7, 1], xlWorkSheet.Cells[7, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            int num_cols = 15;
+            int num_cols = 17;
             if (survey == "M")
-                num_cols = 11;
+                num_cols = 13;
 
             for (int i = 2; i <= num_cols; i++)
             {
@@ -835,91 +871,105 @@ namespace Cprs
                 SetCellStyle(cellRange1, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 2] = r["VG6MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 2] = r["VG7MONSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 2] = r["VG4MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 2] = r["VG5MONSE"].ToString();
                 Microsoft.Office.Interop.Excel.Range cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 2], xlWorkSheet.Cells[iRow, 2]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 3] = r["VG6CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 3] = r["VG7CUMSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 3] = r["VG4CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 3] = r["VG5CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 3], xlWorkSheet.Cells[iRow, 3]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 4] = r["VG5MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 4] = r["VG6MONSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 4] = r["VG3MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 4] = r["VG4MONSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 4], xlWorkSheet.Cells[iRow, 4]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 5] = r["VG5CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 5] = r["VG6CUMSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 5] = r["VG3CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 5] = r["VG4CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 5], xlWorkSheet.Cells[iRow, 5]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 6] = r["VG4MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 6] = r["VG5MONSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 6] = r["VG2MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 6] = r["VG3MONSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 6], xlWorkSheet.Cells[iRow, 6]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 7] = r["VG4CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 7] = r["VG5CUMSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 7] = r["VG2CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 7] = r["VG3CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 7], xlWorkSheet.Cells[iRow, 7]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 8] = r["VG3MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 8] = r["VG4MONSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 8] = r["VG1MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 8] = r["VG2MONSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 8], xlWorkSheet.Cells[iRow, 8]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 9] = r["VG3CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 9] = r["VG4CUMSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 9] = r["VG1CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 9] = r["VG2CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 9], xlWorkSheet.Cells[iRow, 9]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 10] = r["VG2MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 10] = r["VG3MONSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 10] = r["VG0MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 10] = r["VG1MONSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 10], xlWorkSheet.Cells[iRow, 10]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
-                    xlWorkSheet.Cells[iRow, 11] = r["VG2CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 11] = r["VG3CUMSE"].ToString();
                 else
-                    xlWorkSheet.Cells[iRow, 11] = r["VG0CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 11] = r["VG1CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 11], xlWorkSheet.Cells[iRow, 11]);
                 SetCellStyle(cellRange2, row_num);
 
                 if (survey != "M")
+                    xlWorkSheet.Cells[iRow, 12] = r["VG2MONSE"].ToString();
+                else
+                    xlWorkSheet.Cells[iRow, 12] = r["VG0MONSE"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 12], xlWorkSheet.Cells[iRow, 12]);
+                SetCellStyle(cellRange2, row_num);
+
+                if (survey != "M")
+                    xlWorkSheet.Cells[iRow, 13] = r["VG2CUMSE"].ToString();
+                else
+                    xlWorkSheet.Cells[iRow, 13] = r["VG0CUMSE"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 13], xlWorkSheet.Cells[iRow, 13]);
+                SetCellStyle(cellRange2, row_num);
+
+                if (survey != "M")
                 {
-                    xlWorkSheet.Cells[iRow, 12] = r["VG1MONSE"].ToString();
-                    cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 12], xlWorkSheet.Cells[iRow, 12]);
-                    SetCellStyle(cellRange2, row_num);
-
-                    xlWorkSheet.Cells[iRow, 13] = r["VG1CUMSE"].ToString();
-                    cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 13], xlWorkSheet.Cells[iRow, 13]);
-                    SetCellStyle(cellRange2, row_num);
-
-                    xlWorkSheet.Cells[iRow, 14] = r["VG0MONSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 14] = r["VG1MONSE"].ToString();
                     cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 14], xlWorkSheet.Cells[iRow, 14]);
                     SetCellStyle(cellRange2, row_num);
 
-                    xlWorkSheet.Cells[iRow, 15] = r["VG0CUMSE"].ToString();
+                    xlWorkSheet.Cells[iRow, 15] = r["VG1CUMSE"].ToString();
                     cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 15], xlWorkSheet.Cells[iRow, 15]);
+                    SetCellStyle(cellRange2, row_num);
+
+                    xlWorkSheet.Cells[iRow, 16] = r["VG0MONSE"].ToString();
+                    cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 16], xlWorkSheet.Cells[iRow, 16]);
+                    SetCellStyle(cellRange2, row_num);
+
+                    xlWorkSheet.Cells[iRow, 17] = r["VG0CUMSE"].ToString();
+                    cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 17], xlWorkSheet.Cells[iRow, 17]);
                     SetCellStyle(cellRange2, row_num);
                 }
 
@@ -958,7 +1008,7 @@ namespace Cprs
          
             Microsoft.Office.Interop.Excel.Range cellRange;
            
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "Q"]);
 
             cellRange.Font.Bold = true;
             cellRange.WrapText = true;
@@ -970,7 +1020,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
             
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "Q"]);
             cellRange.Font.Bold = true;
             xlWorkSheet.Cells[2, 1] = title2;
             cellRange.Font.Size = 9;
@@ -980,7 +1030,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "Q"]);
           
             xlWorkSheet.Cells[4, 1] = "(Details may not add to totals due to rounding.)";
             cellRange.Merge(Type.Missing);
@@ -995,7 +1045,7 @@ namespace Cprs
 
             xlWorkSheet.Cells[5, 2] = "Value of Project (Thousands of dollars)";
          
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 15]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 17]);
           
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 1, 1, 1, 1);
@@ -1005,55 +1055,61 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 1], xlWorkSheet.Cells[6, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 2] = "$10,000 or more";
+            xlWorkSheet.Cells[6, 2] = "$100,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
+            xlWorkSheet.Cells[6, 4] = "$10,000 - $99,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
+            xlWorkSheet.Cells[6, 6] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
+            xlWorkSheet.Cells[6, 8] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 10] = "$250 - $999";
+            xlWorkSheet.Cells[6, 10] = "$1,000 - $2,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 12] = "Less than $250";
+            xlWorkSheet.Cells[6, 12] = "$250 - $999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 14] = "All Values";
+            xlWorkSheet.Cells[6, 14] = "Less than $250";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
+            cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            Drawbox(cellRange, 1, 1, 1, 1);
+
+            xlWorkSheet.Cells[6, 16] = "All Values";
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 16], xlWorkSheet.Cells[6, 17]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
            
             xlWorkSheet.Cells[7, 1] = "Quarter after start work put in place";
-            ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).ColumnWidth = 18;
+            ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).ColumnWidth = 20;
             ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[7, 1], xlWorkSheet.Cells[7, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            int num_cols = 15;
+            int num_cols = 17;
 
             for (int i = 2; i <= num_cols; i++)
             {
@@ -1093,55 +1149,62 @@ namespace Cprs
                 Microsoft.Office.Interop.Excel.Range cellRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 1], xlWorkSheet.Cells[iRow, 1]);
                 SetCellStyle(cellRange1, row_num);
 
-                xlWorkSheet.Cells[iRow, 2] = r["VG6QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 2] = r["VG7QTRSE"].ToString();
                 Microsoft.Office.Interop.Excel.Range cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 2], xlWorkSheet.Cells[iRow, 2]);
                 SetCellStyle(cellRange2, row_num);
-                xlWorkSheet.Cells[iRow, 3] = r["VG6CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 3] = r["VG7CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 3], xlWorkSheet.Cells[iRow, 3]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 4] = r["VG5QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 4] = r["VG6QTRSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 4], xlWorkSheet.Cells[iRow, 4]);
                 SetCellStyle(cellRange2, row_num);
-                xlWorkSheet.Cells[iRow, 5] = r["VG5CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 5] = r["VG6CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 5], xlWorkSheet.Cells[iRow, 5]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 6] = r["VG4QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 6] = r["VG5QTRSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 6], xlWorkSheet.Cells[iRow, 6]);
                 SetCellStyle(cellRange2, row_num);
-                xlWorkSheet.Cells[iRow, 7] = r["VG4CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 7] = r["VG5CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 7], xlWorkSheet.Cells[iRow, 7]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 8] = r["VG3QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 8] = r["VG4QTRSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 8], xlWorkSheet.Cells[iRow, 8]);
                 SetCellStyle(cellRange2, row_num);
-                xlWorkSheet.Cells[iRow, 9] = r["VG3CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 9] = r["VG4CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 9], xlWorkSheet.Cells[iRow, 9]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 10] = r["VG2QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 10] = r["VG3QTRSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 10], xlWorkSheet.Cells[iRow, 10]);
                 SetCellStyle(cellRange2, row_num);
-                xlWorkSheet.Cells[iRow, 11] = r["VG2CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 11] = r["VG3CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 11], xlWorkSheet.Cells[iRow, 11]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 12] = r["VG1QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 12] = r["VG2QTRSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 12], xlWorkSheet.Cells[iRow, 12]);
                 SetCellStyle(cellRange2, row_num);
-
-                xlWorkSheet.Cells[iRow, 13] = r["VG1CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 13] = r["VG2CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 13], xlWorkSheet.Cells[iRow, 13]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 14] = r["VG0QTRSE"].ToString();
+                xlWorkSheet.Cells[iRow, 14] = r["VG1QTRSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 14], xlWorkSheet.Cells[iRow, 14]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 15] = r["VG0CUMSE"].ToString();
+                xlWorkSheet.Cells[iRow, 15] = r["VG1CUMSE"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 15], xlWorkSheet.Cells[iRow, 15]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 16] = r["VG0QTRSE"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 16], xlWorkSheet.Cells[iRow, 16]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 17] = r["VG0CUMSE"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 17], xlWorkSheet.Cells[iRow, 17]);
                 SetCellStyle(cellRange2, row_num);
                 
                 row_num++;
@@ -1175,7 +1238,7 @@ namespace Cprs
             xlWorkSheet.Name = "T6";
             
             Microsoft.Office.Interop.Excel.Range cellRange;
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "K"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "M"]);
             cellRange.RowHeight = 10;
             cellRange.Font.Bold = true;
             cellRange.WrapText = true;
@@ -1186,7 +1249,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "K"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "M"]);
             cellRange.Font.Bold = true;
             cellRange.RowHeight = 10;
             cellRange.Font.Size = 9;
@@ -1196,7 +1259,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "K"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "M"]);
             xlWorkSheet.Cells[4, 1] = "(Details may not add to totals due to rounding.)";
             cellRange.Merge(Type.Missing);
 
@@ -1209,7 +1272,7 @@ namespace Cprs
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[5, 2] = "Value of Project (Thousands of dollars)";
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 11]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 13]);
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 1, 1, 1, 1);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
@@ -1218,32 +1281,38 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 1], xlWorkSheet.Cells[6, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 2] = "$10,000 or more";
+            xlWorkSheet.Cells[6, 2] = "$100,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
+            xlWorkSheet.Cells[6, 4] = "$10,000 - $99,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
+            xlWorkSheet.Cells[6, 6] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 8] = "$Less than $3000";
+            xlWorkSheet.Cells[6, 8] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 10] = "All Values";
+            xlWorkSheet.Cells[6, 10] = "Less than $3,000";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
+            cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            Drawbox(cellRange, 1, 1, 1, 1);
+
+            xlWorkSheet.Cells[6, 12] = "All Values";
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
@@ -1254,7 +1323,7 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[7, 1], xlWorkSheet.Cells[7, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            for (int i = 2; i <= 11; i++)
+            for (int i = 2; i <= 13; i++)
             {
                 if (i % 2 == 0)
                     xlWorkSheet.Cells[7, i] = "Monthly";
@@ -1284,46 +1353,54 @@ namespace Cprs
                 Microsoft.Office.Interop.Excel.Range cellRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 1], xlWorkSheet.Cells[iRow, 1]);
                 SetCellStyle(cellRange1, row_num);
 
-                xlWorkSheet.Cells[iRow, 2] = r["c4"].ToString();
+                xlWorkSheet.Cells[iRow, 2] = r["c5"].ToString();
                 Microsoft.Office.Interop.Excel.Range cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 2], xlWorkSheet.Cells[iRow, 2]);
                 SetCellStyle(cellRange2, row_num);
 
                 DataRow rr = dtcum.Rows[row_num];
 
-                xlWorkSheet.Cells[iRow, 3] = rr["c4"].ToString();
+                xlWorkSheet.Cells[iRow, 3] = rr["c5"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 3], xlWorkSheet.Cells[iRow, 3]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 4] = r["c3"].ToString();
+                xlWorkSheet.Cells[iRow, 4] = r["c4"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 4], xlWorkSheet.Cells[iRow, 4]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 5] = rr["c3"].ToString();
+                xlWorkSheet.Cells[iRow, 5] = rr["c4"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 5], xlWorkSheet.Cells[iRow, 5]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 6] = r["c2"].ToString();
+                xlWorkSheet.Cells[iRow, 6] = r["c3"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 6], xlWorkSheet.Cells[iRow, 6]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 7] = rr["c2"].ToString();
+                xlWorkSheet.Cells[iRow, 7] = rr["c3"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 7], xlWorkSheet.Cells[iRow, 7]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 8] = r["c1"].ToString();
+                xlWorkSheet.Cells[iRow, 8] = r["c2"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 8], xlWorkSheet.Cells[iRow, 8]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 9] = rr["c1"].ToString();
+                xlWorkSheet.Cells[iRow, 9] = rr["c2"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 9], xlWorkSheet.Cells[iRow, 9]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 10] = r["c0"].ToString();
+                xlWorkSheet.Cells[iRow, 10] = r["c1"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 10], xlWorkSheet.Cells[iRow, 10]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 11] = rr["c0"].ToString();
+                xlWorkSheet.Cells[iRow, 11] = rr["c1"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 11], xlWorkSheet.Cells[iRow, 11]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 12] = r["c0"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 12], xlWorkSheet.Cells[iRow, 12]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 13] = rr["c0"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 13], xlWorkSheet.Cells[iRow, 13]);
                 SetCellStyle(cellRange2, row_num);
 
                 row_num++;
@@ -1359,7 +1436,7 @@ namespace Cprs
             xlWorkSheet.Name = "H5";
 
             Microsoft.Office.Interop.Excel.Range cellRange;
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[1, "A"], xlWorkSheet.Cells[1, "Q"]);
             cellRange.RowHeight = 10;
             cellRange.Font.Bold = true;
             cellRange.WrapText = true;
@@ -1370,7 +1447,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[2, "A"], xlWorkSheet.Cells[2, "Q"]);
             cellRange.Font.Bold = true;
             cellRange.RowHeight = 10;
             cellRange.Font.Size = 9;
@@ -1380,7 +1457,7 @@ namespace Cprs
             //Alignment the header row horizontally
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
 
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "O"]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[4, "A"], xlWorkSheet.Cells[4, "Q"]);
             xlWorkSheet.Cells[4, 1] = "(Details may not add to totals due to rounding.)";
             cellRange.Merge(Type.Missing);
 
@@ -1393,7 +1470,7 @@ namespace Cprs
             Drawbox(cellRange, 1, 1, 1, 1);
 
             xlWorkSheet.Cells[5, 2] = "Value of Project (Thousands of dollars)";
-            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 15]);
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[5, 2], xlWorkSheet.Cells[5, 17]);
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 1, 1, 1, 1);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
@@ -1402,55 +1479,61 @@ namespace Cprs
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 1], xlWorkSheet.Cells[6, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 2] = "$10,000 or more";
+            xlWorkSheet.Cells[6, 2] = "$100,000 or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 2], xlWorkSheet.Cells[6, 3]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 4] = "$5,000 - $9,999";
+            xlWorkSheet.Cells[6, 4] = "$10,000 - $99,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 4], xlWorkSheet.Cells[6, 5]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 6] = "$3,000 - $4,999";
+            xlWorkSheet.Cells[6, 6] = "$5,000 - $9,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 6], xlWorkSheet.Cells[6, 7]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 8] = "$1,000 - $2,999";
+            xlWorkSheet.Cells[6, 8] = "$3,000 - $4,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 8], xlWorkSheet.Cells[6, 9]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 10] = "$250 - $999";
+            xlWorkSheet.Cells[6, 10] = "$1,000 - $2,999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 10], xlWorkSheet.Cells[6, 11]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 12] = "Less than $250";
+            xlWorkSheet.Cells[6, 12] = "$250 - $999";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[6, 13]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            xlWorkSheet.Cells[6, 14] = "All Values";
+            xlWorkSheet.Cells[6, 14] = "Less than $250";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 14], xlWorkSheet.Cells[6, 15]);
             cellRange.Merge(Type.Missing);
             cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
             Drawbox(cellRange, 1, 1, 1, 1);
 
+            xlWorkSheet.Cells[6, 16] = "All Values";
+            cellRange = xlApp.get_Range(xlWorkSheet.Cells[6, 16], xlWorkSheet.Cells[6, 17]);
+            cellRange.Merge(Type.Missing);
+            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            Drawbox(cellRange, 1, 1, 1, 1);
+
             xlWorkSheet.Cells[7, 1] = "Quarter after start work put in place";
-            ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).ColumnWidth = 18;
+            ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).ColumnWidth = 20;
             ((Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Columns["A", Type.Missing]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[7, 1], xlWorkSheet.Cells[7, 1]);
             Drawbox(cellRange, 1, 1, 1, 1);
 
-            for (int i = 2; i <= 15; i++)
+            for (int i = 2; i <= 17; i++)
             {
                 if (i % 2 == 0)
                     xlWorkSheet.Cells[7, i] = "Quarterly";
@@ -1489,60 +1572,68 @@ namespace Cprs
                 Microsoft.Office.Interop.Excel.Range cellRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 1], xlWorkSheet.Cells[iRow, 1]);
                 SetCellStyle(cellRange1, row_num);
 
-                xlWorkSheet.Cells[iRow, 2] = r["VG6QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 2] = r["VG7QTREST"].ToString();
                 Microsoft.Office.Interop.Excel.Range cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 2], xlWorkSheet.Cells[iRow, 2]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 3] = r["VG6CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 3] = r["VG7CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 3], xlWorkSheet.Cells[iRow, 3]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 4] = r["VG5QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 4] = r["VG6QTREST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 4], xlWorkSheet.Cells[iRow, 4]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 5] = r["VG5CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 5] = r["VG6CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 5], xlWorkSheet.Cells[iRow, 5]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 6] = r["VG4QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 6] = r["VG5QTREST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 6], xlWorkSheet.Cells[iRow, 6]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 7] = r["VG4CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 7] = r["VG5CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 7], xlWorkSheet.Cells[iRow, 7]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 8] = r["VG3QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 8] = r["VG4QTREST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 8], xlWorkSheet.Cells[iRow, 8]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 9] = r["VG3CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 9] = r["VG4CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 9], xlWorkSheet.Cells[iRow, 9]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 10] = r["VG2QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 10] = r["VG3QTREST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 10], xlWorkSheet.Cells[iRow, 10]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 11] = r["VG2CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 11] = r["VG3CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 11], xlWorkSheet.Cells[iRow, 11]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 12] = r["VG1QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 12] = r["VG2QTREST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 12], xlWorkSheet.Cells[iRow, 12]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 13] = r["VG1CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 13] = r["VG2CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 13], xlWorkSheet.Cells[iRow, 13]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 14] = r["VG0QTREST"].ToString();
+                xlWorkSheet.Cells[iRow, 14] = r["VG1QTREST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 14], xlWorkSheet.Cells[iRow, 14]);
                 SetCellStyle(cellRange2, row_num);
 
-                xlWorkSheet.Cells[iRow, 15] = r["VG0CUMEST"].ToString();
+                xlWorkSheet.Cells[iRow, 15] = r["VG1CUMEST"].ToString();
                 cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 15], xlWorkSheet.Cells[iRow, 15]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 16] = r["VG0QTREST"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 16], xlWorkSheet.Cells[iRow, 16]);
+                SetCellStyle(cellRange2, row_num);
+
+                xlWorkSheet.Cells[iRow, 17] = r["VG0CUMEST"].ToString();
+                cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, 17], xlWorkSheet.Cells[iRow, 17]);
                 SetCellStyle(cellRange2, row_num);
 
                 row_num++;
