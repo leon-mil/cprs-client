@@ -249,7 +249,7 @@
             this.rdbMonth.Checked = true;
             this.rdbMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbMonth.ForeColor = System.Drawing.Color.DarkBlue;
-            this.rdbMonth.Location = new System.Drawing.Point(97, 0);
+            this.rdbMonth.Location = new System.Drawing.Point(104, -1);
             this.rdbMonth.Name = "rdbMonth";
             this.rdbMonth.Size = new System.Drawing.Size(137, 20);
             this.rdbMonth.TabIndex = 95;

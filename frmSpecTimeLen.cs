@@ -23,7 +23,14 @@ Description     :  correct titles for excel tables
  Keyword       : 
  Change Request: CR#885
  Description   : update excel file name from .xls to .xlsx
- ***********************************************************************************************/
+ ***********************************************************************************************
+ Modified Date : 5 / 8 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1487
+ Description   : Change value group 10M+ to 10M-99.9M and add the new group for 100M+ 
+                 for Nonres Private (and State and Local) and for Private Multifamily
+ *************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -112,12 +119,15 @@ namespace Cprs
                 dgData.Columns[4].HeaderText = "5000 to 9999";
                 dgData.Columns[4].DefaultCellStyle.Format = "N1";
                 dgData.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[5].HeaderText = ">=10000";
+                dgData.Columns[5].HeaderText = "10000 to 99999";
                 dgData.Columns[5].DefaultCellStyle.Format = "N1";
                 dgData.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[6].HeaderText = "All";
+                dgData.Columns[6].HeaderText = ">=100000";
                 dgData.Columns[6].DefaultCellStyle.Format = "N1";
                 dgData.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgData.Columns[7].HeaderText = "All";
+                dgData.Columns[7].DefaultCellStyle.Format = "N1";
+                dgData.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
             else
             { 
@@ -136,12 +146,15 @@ namespace Cprs
                 dgData.Columns[6].HeaderText = "5000 to 9999";
                 dgData.Columns[6].DefaultCellStyle.Format = "N1";
                 dgData.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[7].HeaderText = ">=10000";
+                dgData.Columns[7].HeaderText = "10000 to 99999";
                 dgData.Columns[7].DefaultCellStyle.Format = "N1";
                 dgData.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgData.Columns[8].HeaderText = "All";
+                dgData.Columns[8].HeaderText = ">=100000";
                 dgData.Columns[8].DefaultCellStyle.Format = "N1";
                 dgData.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgData.Columns[9].HeaderText = "All";
+                dgData.Columns[9].DefaultCellStyle.Format = "N1";
+                dgData.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
             //make column unsortable
@@ -736,8 +749,17 @@ namespace Cprs
                 dr[3] = dr3["C0"];
             dm.Rows.Add(dr);
 
+          
             dr = dm.NewRow();
-            dr[0] = "$10,000 or more";
+            dr[0] = "$100,000 or more";
+            dr[1] = dr1["C7"];
+            dr[2] = dr2["C7"];
+            if (tc3 != null)
+                dr[3] = dr3["C7"];
+            dm.Rows.Add(dr);
+
+            dr = dm.NewRow();
+            dr[0] = "$10,000 - $99,999";
             dr[1] = dr1["C6"];
             dr[2] = dr2["C6"];
             if (tc3 != null)
@@ -805,7 +827,13 @@ namespace Cprs
             dm.Rows.Add(dr);
 
             dr = dm.NewRow();
-            dr[0] = "$10,000 or more";
+            dr[0] = "$100,000 or more";
+            dr[1] = dr1["C5"];
+            dr[2] = dr2["C5"];
+            dm.Rows.Add(dr);
+
+            dr = dm.NewRow();
+            dr[0] = "$10,000 - $99,999";
             dr[1] = dr1["C4"];
             dr[2] = dr2["C4"];
             dm.Rows.Add(dr);
@@ -869,7 +897,15 @@ namespace Cprs
             dm.Rows.Add(dr);
 
             dr = dm.NewRow();
-            dr[0] = "$10,000 or more";
+            dr[0] = "$100,000 or more";
+            dr[1] = dr1[sy + tcstr1 + "LV7"];
+            dr[2] = dr1[sy + tcstr2 + "LV7"];
+            if (tc3 != null)
+                dr[3] = dr1[sy + tcstr3 + "LV7"];
+            dm.Rows.Add(dr);
+
+            dr = dm.NewRow();
+            dr[0] = "$10,000 - $99,999";
             dr[1] = dr1[sy + tcstr1 + "LV6"];
             dr[2] = dr1[sy + tcstr2 + "LV6"];
             if (tc3 != null)
@@ -942,7 +978,13 @@ namespace Cprs
             dm.Rows.Add(dr);
 
             dr = dm.NewRow();
-            dr[0] = "$10,000 or more";
+            dr[0] = "$100,000 or more";
+            dr[1] = dr1["M" + tcstr1 + "LV5"];
+            dr[2] = dr1["M" + tcstr2 + "LV5"];
+            dm.Rows.Add(dr);
+
+            dr = dm.NewRow();
+            dr[0] = "$10,000 - $99,999";
             dr[1] = dr1["M" + tcstr1 + "LV4"];
             dr[2] = dr1["M" + tcstr2 + "LV4"];
             dm.Rows.Add(dr);
@@ -990,33 +1032,33 @@ namespace Cprs
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 0, 0, 0, 1);
 
-            xlWorkSheet.Cells[line_start+1, 1] = "Average Value of Projects\nCosting $10 Million or more";
+            xlWorkSheet.Cells[line_start+1, 1] = "Average Value of Projects\nCosting $100 Million or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start+1, 1], xlWorkSheet.Cells[line_start+1, 1]);
             cellRange.Font.Bold = true;
             cellRange.RowHeight = 32;
             Drawbox(cellRange, 0, 1, 1, 1);
             if (selsurvey == "M")
-                xlWorkSheet.Cells[line_start + 1, 2] = dr1[5];
+                xlWorkSheet.Cells[line_start + 1, 2] = dr1[6];
             else
-                xlWorkSheet.Cells[line_start + 1, 2] = dr1[7];
+                xlWorkSheet.Cells[line_start + 1, 2] = dr1[8];
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 2], xlWorkSheet.Cells[line_start + 1, 2]);
-            cellRange.NumberFormat = "#.0";
+            cellRange.NumberFormat = "#0.0";
             Drawbox(cellRange, 1, 1, 1, 1);
             if (selsurvey == "M")
-                xlWorkSheet.Cells[line_start + 1, 3] = dr2[5];
+                xlWorkSheet.Cells[line_start + 1, 3] = dr2[6];
             else
-                xlWorkSheet.Cells[line_start + 1, 3] = dr2[7];
+                xlWorkSheet.Cells[line_start + 1, 3] = dr2[8];
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 3], xlWorkSheet.Cells[line_start + 1, 3]);
-            cellRange.NumberFormat = "#.0";
+            cellRange.NumberFormat = "#0.0";
             if (tc3 != null)
                 Drawbox(cellRange, 1, 1, 1, 1);
             else
                 Drawbox(cellRange, 1, 0, 1, 1);
             if (tc3 != null)
             {
-                xlWorkSheet.Cells[line_start + 1, 4] = dr3[7];
+                xlWorkSheet.Cells[line_start + 1, 4] = dr3[8];
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 4], xlWorkSheet.Cells[line_start + 1, 4]);
-                cellRange.NumberFormat = "#.0";
+                cellRange.NumberFormat = "#0.0";
                 Drawbox(cellRange, 1, 0, 1, 1);
             }
 
@@ -1055,7 +1097,7 @@ namespace Cprs
             cellRange.Merge(Type.Missing);
             Drawbox(cellRange, 0, 0, 0, 1);
 
-            xlWorkSheet.Cells[line_start + 1, 1] = "Average Value of Projects\nCosting $10 Million or more";
+            xlWorkSheet.Cells[line_start + 1, 1] = "Average Value of Projects\nCosting $100 Million or more";
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 1], xlWorkSheet.Cells[line_start + 1, 1]);
             cellRange.Font.Bold = true;
             cellRange.RowHeight = 32;
@@ -1064,11 +1106,11 @@ namespace Cprs
             xlWorkSheet.Cells[line_start + 1, 2] = dr1[sy + tcstr1 + "LVP"];
             
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 2], xlWorkSheet.Cells[line_start + 1, 2]);
-            cellRange.NumberFormat = "#.0";
+            cellRange.NumberFormat = "#0.0";
             Drawbox(cellRange, 1, 1, 1, 1);
             xlWorkSheet.Cells[line_start + 1, 3] = dr1[sy + tcstr2 + "LVP"];
             cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 3], xlWorkSheet.Cells[line_start + 1, 3]);
-            cellRange.NumberFormat = "#.0";
+            cellRange.NumberFormat = "#0.0";
             if (tc3 != null)
                 Drawbox(cellRange, 1, 1, 1, 1);
             else
@@ -1077,7 +1119,7 @@ namespace Cprs
             {
                 xlWorkSheet.Cells[line_start + 1, 4] = dr1[sy + tcstr3 + "LVP"];
                 cellRange = xlApp.get_Range(xlWorkSheet.Cells[line_start + 1, 4], xlWorkSheet.Cells[line_start + 1, 4]);
-                cellRange.NumberFormat = "#.0";
+                cellRange.NumberFormat = "#0.0";
                 Drawbox(cellRange, 1, 0, 1, 1);
             }
 
