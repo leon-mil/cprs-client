@@ -33,8 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.rdbAll = new System.Windows.Forms.RadioButton();
             this.rdb6 = new System.Windows.Forms.RadioButton();
+            this.rdbAll = new System.Windows.Forms.RadioButton();
+            this.rdb7 = new System.Windows.Forms.RadioButton();
             this.rdb5 = new System.Windows.Forms.RadioButton();
             this.rdb4 = new System.Windows.Forms.RadioButton();
             this.rdb3 = new System.Windows.Forms.RadioButton();
@@ -42,8 +43,9 @@
             this.rdb2 = new System.Windows.Forms.RadioButton();
             this.rdb1 = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.rdbmAll = new System.Windows.Forms.RadioButton();
             this.rdbm4 = new System.Windows.Forms.RadioButton();
+            this.rdbmAll = new System.Windows.Forms.RadioButton();
+            this.rdbm5 = new System.Windows.Forms.RadioButton();
             this.rdbm3 = new System.Windows.Forms.RadioButton();
             this.rdbm2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -73,44 +75,58 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.rdbAll);
             this.panel2.Controls.Add(this.rdb6);
+            this.panel2.Controls.Add(this.rdbAll);
+            this.panel2.Controls.Add(this.rdb7);
             this.panel2.Controls.Add(this.rdb5);
             this.panel2.Controls.Add(this.rdb4);
             this.panel2.Controls.Add(this.rdb3);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.rdb2);
             this.panel2.Controls.Add(this.rdb1);
-            this.panel2.Location = new System.Drawing.Point(209, 161);
+            this.panel2.Location = new System.Drawing.Point(124, 161);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(775, 20);
+            this.panel2.Size = new System.Drawing.Size(958, 20);
             this.panel2.TabIndex = 105;
-            // 
-            // rdbAll
-            // 
-            this.rdbAll.AutoSize = true;
-            this.rdbAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbAll.ForeColor = System.Drawing.Color.DarkBlue;
-            this.rdbAll.Location = new System.Drawing.Point(728, -2);
-            this.rdbAll.Name = "rdbAll";
-            this.rdbAll.Size = new System.Drawing.Size(44, 20);
-            this.rdbAll.TabIndex = 110;
-            this.rdbAll.Text = "All";
-            this.rdbAll.UseVisualStyleBackColor = true;
-            this.rdbAll.CheckedChanged += new System.EventHandler(this.rdbAll_CheckedChanged);
             // 
             // rdb6
             // 
             this.rdb6.AutoSize = true;
             this.rdb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdb6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.rdb6.Location = new System.Drawing.Point(645, -2);
+            this.rdb6.Location = new System.Drawing.Point(649, -2);
             this.rdb6.Name = "rdb6";
-            this.rdb6.Size = new System.Drawing.Size(82, 20);
-            this.rdb6.TabIndex = 109;
-            this.rdb6.Text = ">=10000";
+            this.rdb6.Size = new System.Drawing.Size(126, 20);
+            this.rdb6.TabIndex = 111;
+            this.rdb6.Text = "10000 to 99999";
             this.rdb6.UseVisualStyleBackColor = true;
             this.rdb6.CheckedChanged += new System.EventHandler(this.rdb6_CheckedChanged);
+            // 
+            // rdbAll
+            // 
+            this.rdbAll.AutoSize = true;
+            this.rdbAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAll.ForeColor = System.Drawing.Color.DarkBlue;
+            this.rdbAll.Location = new System.Drawing.Point(876, -2);
+            this.rdbAll.Name = "rdbAll";
+            this.rdbAll.Size = new System.Drawing.Size(43, 20);
+            this.rdbAll.TabIndex = 110;
+            this.rdbAll.Text = "All";
+            this.rdbAll.UseVisualStyleBackColor = true;
+            this.rdbAll.CheckedChanged += new System.EventHandler(this.rdbAll_CheckedChanged);
+            // 
+            // rdb7
+            // 
+            this.rdb7.AutoSize = true;
+            this.rdb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdb7.ForeColor = System.Drawing.Color.DarkBlue;
+            this.rdb7.Location = new System.Drawing.Point(781, 0);
+            this.rdb7.Name = "rdb7";
+            this.rdb7.Size = new System.Drawing.Size(89, 20);
+            this.rdb7.TabIndex = 109;
+            this.rdb7.Text = ">=100000";
+            this.rdb7.UseVisualStyleBackColor = true;
+            this.rdb7.CheckedChanged += new System.EventHandler(this.rdb7_CheckedChanged);
             // 
             // rdb5
             // 
@@ -119,7 +135,7 @@
             this.rdb5.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdb5.Location = new System.Drawing.Point(537, -2);
             this.rdb5.Name = "rdb5";
-            this.rdb5.Size = new System.Drawing.Size(111, 20);
+            this.rdb5.Size = new System.Drawing.Size(110, 20);
             this.rdb5.TabIndex = 108;
             this.rdb5.Text = "5000 to 9999";
             this.rdb5.UseVisualStyleBackColor = true;
@@ -132,7 +148,7 @@
             this.rdb4.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdb4.Location = new System.Drawing.Point(429, -2);
             this.rdb4.Name = "rdb4";
-            this.rdb4.Size = new System.Drawing.Size(111, 20);
+            this.rdb4.Size = new System.Drawing.Size(110, 20);
             this.rdb4.TabIndex = 108;
             this.rdb4.Text = "3000 to 4999";
             this.rdb4.UseVisualStyleBackColor = true;
@@ -145,7 +161,7 @@
             this.rdb3.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdb3.Location = new System.Drawing.Point(312, 0);
             this.rdb3.Name = "rdb3";
-            this.rdb3.Size = new System.Drawing.Size(111, 20);
+            this.rdb3.Size = new System.Drawing.Size(110, 20);
             this.rdb3.TabIndex = 97;
             this.rdb3.Text = "1000 to 2999";
             this.rdb3.UseVisualStyleBackColor = true;
@@ -158,7 +174,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(3, -2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 16);
+            this.label3.Size = new System.Drawing.Size(145, 16);
             this.label3.TabIndex = 94;
             this.label3.Text = "Select Value Group:";
             // 
@@ -169,7 +185,7 @@
             this.rdb2.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdb2.Location = new System.Drawing.Point(219, 0);
             this.rdb2.Name = "rdb2";
-            this.rdb2.Size = new System.Drawing.Size(95, 20);
+            this.rdb2.Size = new System.Drawing.Size(94, 20);
             this.rdb2.TabIndex = 96;
             this.rdb2.Text = "250 to 999";
             this.rdb2.UseVisualStyleBackColor = true;
@@ -183,7 +199,7 @@
             this.rdb1.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdb1.Location = new System.Drawing.Point(155, 1);
             this.rdb1.Name = "rdb1";
-            this.rdb1.Size = new System.Drawing.Size(58, 20);
+            this.rdb1.Size = new System.Drawing.Size(57, 20);
             this.rdb1.TabIndex = 95;
             this.rdb1.TabStop = true;
             this.rdb1.Text = "<250";
@@ -192,42 +208,56 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.rdbmAll);
             this.panel1.Controls.Add(this.rdbm4);
+            this.panel1.Controls.Add(this.rdbmAll);
+            this.panel1.Controls.Add(this.rdbm5);
             this.panel1.Controls.Add(this.rdbm3);
             this.panel1.Controls.Add(this.rdbm2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.rdbm1);
-            this.panel1.Location = new System.Drawing.Point(296, 190);
+            this.panel1.Location = new System.Drawing.Point(183, 190);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(594, 20);
+            this.panel1.Size = new System.Drawing.Size(764, 20);
             this.panel1.TabIndex = 112;
-            // 
-            // rdbmAll
-            // 
-            this.rdbmAll.AutoSize = true;
-            this.rdbmAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbmAll.ForeColor = System.Drawing.Color.DarkBlue;
-            this.rdbmAll.Location = new System.Drawing.Point(544, -3);
-            this.rdbmAll.Name = "rdbmAll";
-            this.rdbmAll.Size = new System.Drawing.Size(44, 20);
-            this.rdbmAll.TabIndex = 110;
-            this.rdbmAll.Text = "All";
-            this.rdbmAll.UseVisualStyleBackColor = true;
-            this.rdbmAll.CheckedChanged += new System.EventHandler(this.rdbmAll_CheckedChanged);
             // 
             // rdbm4
             // 
             this.rdbm4.AutoSize = true;
             this.rdbm4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbm4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.rdbm4.Location = new System.Drawing.Point(456, -3);
+            this.rdbm4.Location = new System.Drawing.Point(460, -2);
             this.rdbm4.Name = "rdbm4";
-            this.rdbm4.Size = new System.Drawing.Size(82, 20);
-            this.rdbm4.TabIndex = 109;
-            this.rdbm4.Text = ">=10000";
+            this.rdbm4.Size = new System.Drawing.Size(126, 20);
+            this.rdbm4.TabIndex = 112;
+            this.rdbm4.Text = "10000 to 99999";
             this.rdbm4.UseVisualStyleBackColor = true;
             this.rdbm4.CheckedChanged += new System.EventHandler(this.rdbm4_CheckedChanged);
+            // 
+            // rdbmAll
+            // 
+            this.rdbmAll.AutoSize = true;
+            this.rdbmAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbmAll.ForeColor = System.Drawing.Color.DarkBlue;
+            this.rdbmAll.Location = new System.Drawing.Point(693, -2);
+            this.rdbmAll.Name = "rdbmAll";
+            this.rdbmAll.Size = new System.Drawing.Size(43, 20);
+            this.rdbmAll.TabIndex = 110;
+            this.rdbmAll.Text = "All";
+            this.rdbmAll.UseVisualStyleBackColor = true;
+            this.rdbmAll.CheckedChanged += new System.EventHandler(this.rdbmAll_CheckedChanged);
+            // 
+            // rdbm5
+            // 
+            this.rdbm5.AutoSize = true;
+            this.rdbm5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbm5.ForeColor = System.Drawing.Color.DarkBlue;
+            this.rdbm5.Location = new System.Drawing.Point(598, -2);
+            this.rdbm5.Name = "rdbm5";
+            this.rdbm5.Size = new System.Drawing.Size(89, 20);
+            this.rdbm5.TabIndex = 109;
+            this.rdbm5.Text = ">=100000";
+            this.rdbm5.UseVisualStyleBackColor = true;
+            this.rdbm5.CheckedChanged += new System.EventHandler(this.rdbm5_CheckedChanged);
             // 
             // rdbm3
             // 
@@ -236,7 +266,7 @@
             this.rdbm3.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdbm3.Location = new System.Drawing.Point(344, -3);
             this.rdbm3.Name = "rdbm3";
-            this.rdbm3.Size = new System.Drawing.Size(111, 20);
+            this.rdbm3.Size = new System.Drawing.Size(110, 20);
             this.rdbm3.TabIndex = 108;
             this.rdbm3.Text = "5000 to 9999";
             this.rdbm3.UseVisualStyleBackColor = true;
@@ -249,7 +279,7 @@
             this.rdbm2.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdbm2.Location = new System.Drawing.Point(227, -3);
             this.rdbm2.Name = "rdbm2";
-            this.rdbm2.Size = new System.Drawing.Size(111, 20);
+            this.rdbm2.Size = new System.Drawing.Size(110, 20);
             this.rdbm2.TabIndex = 108;
             this.rdbm2.Text = "3000 to 4999";
             this.rdbm2.UseVisualStyleBackColor = true;
@@ -262,7 +292,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(3, -2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 16);
+            this.label1.Size = new System.Drawing.Size(145, 16);
             this.label1.TabIndex = 94;
             this.label1.Text = "Select Value Group:";
             // 
@@ -274,7 +304,7 @@
             this.rdbm1.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdbm1.Location = new System.Drawing.Point(155, -3);
             this.rdbm1.Name = "rdbm1";
-            this.rdbm1.Size = new System.Drawing.Size(66, 20);
+            this.rdbm1.Size = new System.Drawing.Size(65, 20);
             this.rdbm1.TabIndex = 95;
             this.rdbm1.TabStop = true;
             this.rdbm1.Text = "<3000";
@@ -288,7 +318,7 @@
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
             this.label4.Location = new System.Drawing.Point(494, 96);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(198, 16);
+            this.label4.Size = new System.Drawing.Size(197, 16);
             this.label4.TabIndex = 106;
             this.label4.Text = "Cases in Value Group < 250";
             // 
@@ -442,19 +472,21 @@
         private System.Windows.Forms.RadioButton rdb5;
         private System.Windows.Forms.RadioButton rdb4;
         private System.Windows.Forms.RadioButton rdb3;
-        private System.Windows.Forms.RadioButton rdb6;
+        private System.Windows.Forms.RadioButton rdb7;
         private System.Windows.Forms.RadioButton rdbAll;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnC700;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rdbmAll;
-        private System.Windows.Forms.RadioButton rdbm4;
+        private System.Windows.Forms.RadioButton rdbm5;
         private System.Windows.Forms.RadioButton rdbm3;
         private System.Windows.Forms.RadioButton rdbm2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rdbm1;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.RadioButton rdb6;
+        private System.Windows.Forms.RadioButton rdbm4;
     }
 }

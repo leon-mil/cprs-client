@@ -12,12 +12,13 @@ Detailed Design : Detailed Design for Time length deistribution display cases
 Other           :	            
 Revision History:	
 **************************************************************************************************
-Modified Date   :  
-Modified By     :  
-Keyword         :  
-Change Request  :  
-Description     :  
-**************************************************************************************************/
+Modified Date : 5 / 8 / 2024
+Modified By   : Christine Zhang
+Keyword       : 
+Change Request: CR1487
+Description   : Change value group 10M+ to 10M-99.9M and add the new group for 100M+ 
+                for Nonres, State and Local and Multifamily
+ ************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +103,8 @@ namespace Cprs
                     vg = 5;
                 else if (rdb6.Checked)
                     vg = 6;
+                else if (rdb7.Checked)
+                    vg = 7;
             }
             else
             {
@@ -113,6 +116,8 @@ namespace Cprs
                     vg = 3;
                 else if (rdbm4.Checked)
                     vg = 4;
+                else if (rdbm5.Checked)
+                    vg = 5;
             }
 
             if (vg == 0)
@@ -219,6 +224,12 @@ namespace Cprs
             label4.Text = "Cases in Value Group " + rdb6.Text;
         }
 
+        private void rdb7_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataByVG();
+            label4.Text = "Cases in Value Group " + rdb7.Text;
+        }
+
         private void rdbAll_CheckedChanged(object sender, EventArgs e)
         {
             SetDataByVG();
@@ -247,6 +258,12 @@ namespace Cprs
         {
             SetDataByVG();
             label4.Text = "Cases in Value Group " + rdbm4.Text;
+        }
+
+        private void rdbm5_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataByVG();
+            label4.Text = "Cases in Value Group " + rdbm5.Text;
         }
 
         private void rdbmAll_CheckedChanged(object sender, EventArgs e)
@@ -350,5 +367,6 @@ namespace Cprs
             GeneralDataFuctions.AddCpraccessData("TABULATIONS", "ENTER");
         }
 
+        
     }
 }
