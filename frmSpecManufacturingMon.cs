@@ -598,6 +598,7 @@ namespace Cprs
         {
             this.Hide();
             frmSpecManufacturingHist fHistory = new frmSpecManufacturingHist();
+            fHistory.CallingForm = this;
             fHistory.Show(); 
            
         }

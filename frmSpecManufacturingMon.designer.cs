@@ -165,7 +165,7 @@ namespace Cprs
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(508, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 16);
+            this.label2.Size = new System.Drawing.Size(131, 16);
             this.label2.TabIndex = 69;
             this.label2.Text = "Millions of Dollars";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -214,7 +214,7 @@ namespace Cprs
             // 
             this.btnHist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHist.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnHist.Location = new System.Drawing.Point(549, 772);
+            this.btnHist.Location = new System.Drawing.Point(608, 772);
             this.btnHist.Name = "btnHist";
             this.btnHist.Size = new System.Drawing.Size(133, 23);
             this.btnHist.TabIndex = 75;
