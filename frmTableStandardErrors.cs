@@ -37,6 +37,12 @@ Description   :get current survey month from SAATOT table instead of VIPSADJ tab
  Keyword       : 
  Change Request: CR#1014
  Description   : update excel file by adding extra footnotes
+ *********************************************************************
+ Modified Date : 6/4/2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1411
+ Description   : add data center
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -535,7 +541,7 @@ namespace Cprs
                 else if (survey_type == "V")
                 {
                     //bold rows (Total of Construction, Total Private Construction, Total Public Construction)
-                    if (iRow == 7 || iRow == 9 || iRow == 13 || iRow == 15 || iRow == 17 || iRow == 21 || iRow == 41 || iRow == 46 || iRow == 56 || iRow == 61 || iRow == 69 || iRow == 73 || iRow == 75 || iRow == 78)
+                    if (iRow == 7 || iRow == 9 || iRow == 13 || iRow == 15 || iRow == 17 || iRow == 22 || iRow == 42 || iRow == 47 || iRow == 57 || iRow == 62 || iRow == 70 || iRow == 74 || iRow == 76 || iRow == 79)
                     {
                         Microsoft.Office.Interop.Excel.Range cellRange = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]);
                         cellRange.Font.Bold = true;
@@ -553,7 +559,7 @@ namespace Cprs
                             Microsoft.Office.Interop.Excel.Range cellRange1 = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]);
                             cellRange1.Characters[32, 1].Font.Superscript = true;
                         }
-                        else if (iRow == 61)
+                        else if (iRow == 62)
                             xlWorkSheet.HPageBreaks.Add(cellRange);
                     }
 
@@ -862,7 +868,7 @@ namespace Cprs
                 else if (survey_type == "V")
                 {
                     //bold rows (Total of Construction, Total Private Construction, Total Public Construction)
-                    if (iRow == 7 || iRow == 9 || iRow == 14 || iRow == 16 || iRow == 18 || iRow == 22 || iRow == 44 || iRow == 49 || iRow == 59 || iRow == 63 ||iRow == 64 || iRow == 66 || iRow == 74 || iRow == 79 || iRow == 81 || iRow == 87 || iRow == 89 || iRow == 91)
+                    if (iRow == 7 || iRow == 9 || iRow == 14 || iRow == 16 || iRow == 18 || iRow == 23 || iRow == 45 || iRow == 50 || iRow == 60 || iRow == 64 ||iRow == 65 || iRow == 67 || iRow == 75 || iRow == 80 || iRow == 82 || iRow == 88 || iRow == 90 || iRow == 92)
                     {
                         Microsoft.Office.Interop.Excel.Range cellRange = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]);
                         cellRange.Font.Bold = true;
@@ -967,6 +973,13 @@ namespace Cprs
 
             //set up backgroundwork to save table
             backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void btnAnnual_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAnnual.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAnnual.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }
 }
