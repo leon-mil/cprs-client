@@ -17,8 +17,13 @@ Revision History:
  Keyword       : 
  Change Request: CR885
  Description   : update excel file name from .xls to .xlsx
-****************************************************************************************/
-
+***************************************************************************************
+Modified Date : 6 / 4 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1411
+ Description   : add data center
+ *************************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -207,7 +212,7 @@ namespace Cprs
 
                     //Setting the High value to red and low value to blue
 
-                    if (row.Cells[j].Value.ToString() == minLavel.ToString())
+                    if (row.Cells[j].Value.ToString() == minLavel.ToString() )
                     {
                         rowIndex = row.Index;
                         dgData.Rows[rowIndex].Cells[j].Style.BackColor = Color.Blue;
@@ -241,7 +246,7 @@ namespace Cprs
                 int rowIndex;
                 foreach (DataGridViewRow row in dgData.Rows)
                 {
-                    //Setting the High value to red and low value to blue
+                    //Setting the Highest value to red and low value to blue
 
                     if (row.Cells[j].Value.ToString() == maxLavel.ToString())
                     {
@@ -250,9 +255,9 @@ namespace Cprs
                         dgData.Rows[rowIndex].Cells[j].Style.ForeColor = Color.White;
                     }
 
-                    //Setting the High value to red and low value to blue
+                    //Setting the min value to red and low value to blue
 
-                    if (row.Cells[j].Value.ToString() == minLavel.ToString())
+                    if (row.Cells[j].Value.ToString() == minLavel.ToString() && row.Cells[j].Value.ToString() != "0.0")
                     {
                         rowIndex = row.Index;
                         dgData.Rows[rowIndex].Cells[j].Style.BackColor = Color.Blue;
@@ -539,7 +544,7 @@ namespace Cprs
                     || i == 92 || i == 94 || i == 96 || i == 98 || i == 100
                     || i == 102 || i == 104 || i == 106 || i == 108 || i == 110
                     || i == 112 || i == 114 || i == 116 || i == 118 || i == 120
-                    || i == 122 || i == 124 || i == 126 || i == 128 || i == 130 || i == 132)
+                    || i == 122 || i == 124 || i == 126 || i == 128 || i == 130 || i == 132 || i == 134)
                         {
                             string value = row[i].ToString();
                             if (value != string.Empty)
@@ -1222,7 +1227,7 @@ namespace Cprs
                             //cellRange.Font.Color = System.Drawing.Color.White;
                             cellRange.Interior.Color = System.Drawing.Color.Red;
                         }
-                        if (Convert.ToDecimal(r[k]) == minLavel)
+                        if ((Convert.ToDecimal(r[k]) == minLavel) && Convert.ToDouble(r[k]) != 0.0)
                         {
                             Microsoft.Office.Interop.Excel.Range cellRange2 = xlApp.get_Range(xlWorkSheet.Cells[iRow, k+1], xlWorkSheet.Cells[iRow, k+1]);
                             //cellRange2.Font.Color = System.Drawing.Color.White;
