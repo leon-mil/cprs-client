@@ -21,7 +21,19 @@
  Keyword       : 
  Change Request: CR885
  Description   : update excel file name from .xls to .xlsx
- *********************************************************************/
+ *********************************************************************
+ *Modified Date : 6 / 4 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1411
+ Description   : add data center
+ **********************************************************************
+ Modified Date : 6 / 24 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1555
+ Description   : update CPRS to export to excel with blanks instead of 0 for the months prior to Jan 2014.
+ **********************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -718,7 +730,18 @@ namespace Cprs
                 foreach (DataColumn c in copydt.Columns)
                 {
                     jColumn++;
-                    xlWorkSheet.Cells[iRow, jColumn] = r[c.ColumnName];
+                    if (tableType == "V" && jColumn == 10)
+                    {
+                        if (Convert.ToDouble(r[c.ColumnName]) == 0.0)
+                        {
+                            xlApp.get_Range(xlWorkSheet.Cells[iRow, jColumn], xlWorkSheet.Cells[iRow, jColumn]).NumberFormat = "@";
+                            xlWorkSheet.Cells[iRow, jColumn] = string.Empty;
+                        }
+                        else
+                            xlWorkSheet.Cells[iRow, jColumn] = r[c.ColumnName];
+                    }
+                    else
+                        xlWorkSheet.Cells[iRow, jColumn] = r[c.ColumnName];
                 }
 
                 //set up superscripts Total of Construction,
