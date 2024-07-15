@@ -785,6 +785,12 @@ namespace Cprs
 
         private void frmProjectAudit_FormClosing(object sender, FormClosingEventArgs e)
         {
+            /*release memory*/
+            dataObject = null;
+            dtItem = null;
+            dtVip = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "EXIT");
         }
 
