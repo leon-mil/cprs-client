@@ -25,6 +25,12 @@ Description   :get current survey month from SAATOT table instead of VIPSADJ tab
  Keyword       : 
  Change Request: CR#885
  Description   : update excel file name from .xls to .xlsx
+ *********************************************************************
+ Modified Date : 6/4/2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1411
+ Description   : add data center
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -499,7 +505,7 @@ namespace Cprs
                 }
                 else if (survey_type == "V")
                 {
-                    if (iRow == 7 || iRow == 9|| iRow == 13 || iRow == 15 || iRow ==17 || iRow ==21 || iRow == 41 || iRow ==46 || iRow ==56 || iRow ==61 || iRow ==69 ||iRow ==73 ||iRow==75 ||iRow ==78 )
+                    if (iRow == 7 || iRow == 9|| iRow == 13 || iRow == 15 || iRow ==17 || iRow ==22 || iRow == 42 || iRow ==47 || iRow ==57 || iRow ==62 || iRow ==70 ||iRow ==74 ||iRow==76 ||iRow ==79 )
                     {
                         cellRange = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]);
                         cellRange.Font.Bold = true;
