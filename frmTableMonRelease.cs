@@ -49,6 +49,12 @@ Description   :create annual table from 2012 instead of 2009
  Keyword       : 
  Change Request: CR885
  Description   : update excel file name from .xls to .xlsx
+ *********************************************************************
+ Modified Date : 6/4/2024
+ Modified By   : Christine Zhang
+ Keyword       : 
+ Change Request: CR1411
+ Description   : add data center
  *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -1097,14 +1103,14 @@ namespace Cprs
                 }
 
                 //make row smaller
-                if (iRow == 5 || iRow == 7 || iRow == 11 || iRow == 13 || iRow == 15 || iRow == 19 || iRow == 39 || iRow == 44 || iRow == 54 || iRow == 59 || iRow == 67 || iRow == 71 || iRow == 73 || iRow == 76)
+                if (iRow == 5 || iRow == 7 || iRow == 11 || iRow == 13 || iRow == 15 || iRow == 20 || iRow == 40 || iRow == 45 || iRow == 55 || iRow == 60 || iRow == 68 || iRow == 72 || iRow == 74 || iRow == 77)
                 {
                     cellRange = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "I"]);
                     cellRange.RowHeight = 9;
                 }
 
                 //bold rows (Total of Construction, Total Private Construction, Total Public Construction)
-                if (iRow == 6 || iRow == 8 || iRow == 12 || iRow ==14 || iRow == 16 || iRow ==20 || iRow ==40 || iRow == 45 || iRow ==55 ||iRow ==60 || iRow == 68 || iRow == 72 || iRow == 74 || iRow == 77)
+                if (iRow == 6 || iRow == 8 || iRow == 12 || iRow ==14 || iRow == 16 || iRow ==21 || iRow ==41 || iRow == 46 || iRow ==56 ||iRow ==61 || iRow == 69 || iRow == 73 || iRow == 75 || iRow == 78)
                 {
                     cellRange = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]);
                     cellRange.Font.Bold = true;
@@ -1122,7 +1128,7 @@ namespace Cprs
                         cellRange.RowHeight = 12;
                         cellRange.Characters[32, 1].Font.Superscript = true;
                     }
-                    else if (iRow == 45)
+                    else if (iRow == 46)
                     {
                         xlWorkSheet.HPageBreaks.Add(cellRange);
                     }
@@ -2145,7 +2151,7 @@ namespace Cprs
                 }
                 else if (survey_type == "V")
                 {
-                    if ((int)r["seq"] == 2 || (int)r["seq"] == 6 || (int)r["seq"] == 7 || (int)r["seq"] == 8 || (int)r["seq"] == 11 || (int)r["seq"] == 36 || (int)r["seq"] == 45 || (int)r["seq"] == 49 || (int)r["seq"] == 50 || (int)r["seq"] == 57||(int)r["seq"] == 61 || (int)r["seq"] == 66 || (int)r["seq"] == 67 || (int)r["seq"] == 68)
+                    if ((int)r["seq"] == 2 || (int)r["seq"] == 6 || (int)r["seq"] == 7 || (int)r["seq"] == 8 || (int)r["seq"] == 12 || (int)r["seq"] == 37 || (int)r["seq"] == 46 || (int)r["seq"] == 50 || (int)r["seq"] == 51 || (int)r["seq"] == 58||(int)r["seq"] == 62 || (int)r["seq"] == 67 || (int)r["seq"] == 68 || (int)r["seq"] == 69)
                         iRow++;
                 }
                 else if (survey_type == "P")
@@ -2176,7 +2182,7 @@ namespace Cprs
                         {
                             if (survey_type == "V")
                             {
-                                if ((iCol >= 2 && (int)r["seq"] == 73) || (iCol >= 2 && (int)r["seq"] == 83))
+                                if ((iCol >= 2 && (int)r["seq"] == 74) || (iCol >= 2 && (int)r["seq"] == 84) || (iCol >= 2 && (int)r["seq"] == 10 && (Convert.ToDouble(r[c.ColumnName]) == 0.0)))
                                 {
                                     xlWorkSheet.Cells[iRow, iCol] = "X";
                                     xlApp.get_Range(xlWorkSheet.Cells[iRow, iCol], xlWorkSheet.Cells[iRow, iCol]).NumberFormat = "@";
@@ -2221,7 +2227,7 @@ namespace Cprs
                 else if (survey_type == "V")
                 {
                     //bold rows (Total of Construction, Total Private Construction, Total Public Construction)
-                    if ((int)r["seq"] == 1 || (int)r["seq"] == 2 || (int)r["seq"] == 6 || (int)r["seq"] == 7 || (int)r["seq"] == 8 || (int)r["seq"] == 11 || (int)r["seq"] == 32 || (int)r["seq"] == 36 || (int)r["seq"] == 45 || (int)r["seq"] == 49 || (int)r["seq"] == 50 || (int)r["seq"] == 57 || (int)r["seq"] == 61 || (int)r["seq"] == 62 || (int)r["seq"] == 66 || (int)r["seq"] == 67 || (int)r["seq"] == 68)
+                    if ((int)r["seq"] == 1 || (int)r["seq"] == 2 || (int)r["seq"] == 6 || (int)r["seq"] == 7 || (int)r["seq"] == 8 || (int)r["seq"] == 12 || (int)r["seq"] == 33 || (int)r["seq"] == 37 || (int)r["seq"] == 46 || (int)r["seq"] == 50 || (int)r["seq"] == 51 || (int)r["seq"] == 58 || (int)r["seq"] == 62 || (int)r["seq"] == 63 || (int)r["seq"] == 67 || (int)r["seq"] == 68 || (int)r["seq"] == 69)
                     {
                         Microsoft.Office.Interop.Excel.Range cellRange = xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]);
                         cellRange.Font.Bold = true;
@@ -2241,27 +2247,32 @@ namespace Cprs
                         xlWorkSheet.Cells[iRow, 1] = "            Improvements2";
                         xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[25, 1].Font.Superscript = true;
                     }
-                    else if ((int)r["seq"] == 70)
+                    else if ((int)r["seq"] == 10)
                     {
-                        xlWorkSheet.Cells[iRow, 1] = "            Textile/apparel/leather/furniture3";
-                        xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[46, 1].Font.Superscript = true;
+                        xlWorkSheet.Cells[iRow, 1] = "            Data center3";
+                        xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[24, 1].Font.Superscript = true;
                     }
-                    else if ((int)r["seq"] == 72)
+                    else if ((int)r["seq"] == 71)
                     {
-                        xlWorkSheet.Cells[iRow, 1] = "            Paper/Print/Publishing4";
-                        xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[35, 1].Font.Superscript = true;
+                        xlWorkSheet.Cells[iRow, 1] = "            Textile/apparel/leather/furniture4";
+                        xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[46, 1].Font.Superscript = true;
                     }
                     else if ((int)r["seq"] == 73)
                     {
-                        xlWorkSheet.Cells[iRow, 1] = "            Print/Publishing4";
+                        xlWorkSheet.Cells[iRow, 1] = "            Paper/Print/Publishing5";
+                        xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[35, 1].Font.Superscript = true;
+                    }
+                    else if ((int)r["seq"] == 74)
+                    {
+                        xlWorkSheet.Cells[iRow, 1] = "            Print/Publishing5";
                         xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[29, 1].Font.Superscript = true;
                     }
-                    else if ((int)r["seq"] == 83)
+                    else if ((int)r["seq"] == 84)
                     {
-                        xlWorkSheet.Cells[iRow, 1] = "            Furniture3";
+                        xlWorkSheet.Cells[iRow, 1] = "            Furniture4";
                         xlApp.get_Range(xlWorkSheet.Cells[iRow, "A"], xlWorkSheet.Cells[iRow, "A"]).Characters[22, 1].Font.Superscript = true;
                     }
-                    else if ((int)r["seq"] == 31 )
+                    else if ((int)r["seq"] == 32 )
                         xlWorkSheet.HPageBreaks.Add(xlApp.get_Range(xlWorkSheet.Cells[iRow+1, "A"], xlWorkSheet.Cells[iRow+1, "A"]));
 
                 }
@@ -2360,19 +2371,24 @@ namespace Cprs
                 xlWorkSheet.Cells[iRow + 6, 1] = "2Private residential improvements does not include expenditures to rental, vacant, or seasonal properties.";
                 footRange4.Characters[1, 1].Font.Superscript = true;
 
-                Microsoft.Office.Interop.Excel.Range footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 7, "A"], xlWorkSheet.Cells[iRow + 7, num_diff + 1]);
-                footRange5.Merge(Type.Missing);
-                xlWorkSheet.Cells[iRow + 7, 1] = "3As of 2009, furniture is in textile/apparel/leather/furniture.";
-                footRange5.Characters[1, 1].Font.Superscript = true;
+                Microsoft.Office.Interop.Excel.Range footRange9 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 7, "A"], xlWorkSheet.Cells[iRow + 7, num_diff + 1]);
+                footRange9.Merge(Type.Missing);
+                xlWorkSheet.Cells[iRow + 7, 1] = "3Prior to 2014, expenditures for data center were included as part of general office.";
+                footRange9.Characters[1, 1].Font.Superscript = true;
 
-                footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 8, "A"], xlWorkSheet.Cells[iRow + 8, num_diff + 1]);
+                Microsoft.Office.Interop.Excel.Range footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 8, "A"], xlWorkSheet.Cells[iRow + 8, num_diff + 1]);
                 footRange5.Merge(Type.Missing);
-                xlWorkSheet.Cells[iRow + 8, 1] = "4As of 2010, print/publishing is in paper/print/publishing.";
+                xlWorkSheet.Cells[iRow + 8, 1] = "4As of 2009, furniture is in textile/apparel/leather/furniture.";
                 footRange5.Characters[1, 1].Font.Superscript = true;
 
                 footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 9, "A"], xlWorkSheet.Cells[iRow + 9, num_diff + 1]);
                 footRange5.Merge(Type.Missing);
-                xlWorkSheet.Cells[iRow + 9, 1] = "X Estimates are not applicable/not available.";
+                xlWorkSheet.Cells[iRow + 9, 1] = "5As of 2010, print/publishing is in paper/print/publishing.";
+                footRange5.Characters[1, 1].Font.Superscript = true;
+
+                footRange5 = xlApp.get_Range(xlWorkSheet.Cells[iRow + 10, "A"], xlWorkSheet.Cells[iRow + 10, num_diff + 1]);
+                footRange5.Merge(Type.Missing);
+                xlWorkSheet.Cells[iRow + 10, 1] = "X Estimates are not applicable/not available.";
 
             }
             else if (survey_type == "P")
@@ -2449,6 +2465,13 @@ namespace Cprs
                 GeneralFunctions.releaseObject(xlApp);
             }
 
+        }
+
+        private void btnAnnual_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            btnAnnual.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
+            btnAnnual.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
     }
 }

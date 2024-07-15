@@ -97,7 +97,7 @@
             this.rdv.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdv.Location = new System.Drawing.Point(466, 12);
             this.rdv.Name = "rdv";
-            this.rdv.Size = new System.Drawing.Size(75, 20);
+            this.rdv.Size = new System.Drawing.Size(74, 20);
             this.rdv.TabIndex = 25;
             this.rdv.Text = "Private";
             this.rdv.UseVisualStyleBackColor = true;
@@ -110,7 +110,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(262, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 16);
+            this.label3.Size = new System.Drawing.Size(107, 16);
             this.label3.TabIndex = 41;
             this.label3.Text = "Select Survey:";
             // 
@@ -122,7 +122,7 @@
             this.rdt.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdt.Location = new System.Drawing.Point(394, 12);
             this.rdt.Name = "rdt";
-            this.rdt.Size = new System.Drawing.Size(62, 20);
+            this.rdt.Size = new System.Drawing.Size(61, 20);
             this.rdt.TabIndex = 23;
             this.rdt.TabStop = true;
             this.rdt.Text = "Total";
@@ -191,7 +191,7 @@
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
             this.label4.Location = new System.Drawing.Point(27, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 16);
+            this.label4.Size = new System.Drawing.Size(95, 16);
             this.label4.TabIndex = 42;
             this.label4.Text = "Select Type:";
             // 
@@ -224,7 +224,7 @@
             this.rdf.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdf.Location = new System.Drawing.Point(798, 12);
             this.rdf.Name = "rdf";
-            this.rdf.Size = new System.Drawing.Size(80, 20);
+            this.rdf.Size = new System.Drawing.Size(79, 20);
             this.rdf.TabIndex = 37;
             this.rdf.Text = "Federal";
             this.rdf.UseVisualStyleBackColor = true;
@@ -237,7 +237,7 @@
             this.rds.ForeColor = System.Drawing.Color.DarkBlue;
             this.rds.Location = new System.Drawing.Point(645, 12);
             this.rds.Name = "rds";
-            this.rds.Size = new System.Drawing.Size(134, 20);
+            this.rds.Size = new System.Drawing.Size(133, 20);
             this.rds.TabIndex = 35;
             this.rds.Text = "State and Local";
             this.rds.UseVisualStyleBackColor = true;
@@ -250,7 +250,7 @@
             this.rdp.ForeColor = System.Drawing.Color.DarkBlue;
             this.rdp.Location = new System.Drawing.Point(556, 12);
             this.rdp.Name = "rdp";
-            this.rdp.Size = new System.Drawing.Size(69, 20);
+            this.rdp.Size = new System.Drawing.Size(68, 20);
             this.rdp.TabIndex = 33;
             this.rdp.Text = "Public";
             this.rdp.UseVisualStyleBackColor = true;
@@ -336,13 +336,14 @@
             this.btnAnnual.TabStop = false;
             this.btnAnnual.Text = "ANNUAL TABLES";
             this.btnAnnual.UseVisualStyleBackColor = true;
+            this.btnAnnual.EnabledChanged += new System.EventHandler(this.btnAnnual_EnabledChanged);
             this.btnAnnual.Click += new System.EventHandler(this.btnAnnual_Click);
             // 
             // frmTableMonRelease
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 853);
+            this.ClientSize = new System.Drawing.Size(1208, 853);
             this.Controls.Add(this.btnAnnual);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnTable);
