@@ -61,6 +61,12 @@ Modified Date :  07/22/2020
  Keyword       :  
  Change Request: CR#579
  Description   : add chip field
+***********************************************************************************
+ Modified Date :  6/10/2024
+ Modified By   :  Christine
+ Keyword       :  
+ Change Request: CR#1543
+ Description   : don't allow NPC users edit Owner field
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -376,6 +382,7 @@ namespace Cprs
                 Respid = txtRespid.Text;
             }
 
+            
             gbListCount.Visible = false;
             btnPrevCase.Visible = false;
             btnNextCase.Visible = false;
@@ -390,11 +397,6 @@ namespace Cprs
 
             GeneralDataFuctions.AddCpraccessData(access_code, "ENTER");
             GeneralDataFuctions.UpdateCurrentUsersData(access_code);
-
-            if (!String.IsNullOrEmpty(txtRespid.Text.Trim()))
-                { btnAudit.Enabled = true; }
-            else
-                { btnAudit.Enabled = false; }
 
             btnNextInitial.Text = "PREVIOUS";
             resetfields();
@@ -422,13 +424,13 @@ namespace Cprs
 
             btnRestore.Enabled = true;
             cbStatCode.Enabled = true;
-            cboSurvey.Enabled = true;
-            cboSurvey.BackColor = Color.White;
+            
             chkComplete.Enabled = true;
             if (UserInfo.GroupCode == EnumGroups.NPCManager || UserInfo.GroupCode == EnumGroups.NPCLead || UserInfo.GroupCode == EnumGroups.NPCInterviewer)
             {
                 txtNewtc.Visible = true;
                 txtNewtc.Enabled = false;
+                cboSurvey.Enabled = false; 
                 
                 cbStatCode.Enabled = false;
                 if (dodgeinitial.Worked == "0")
@@ -482,6 +484,9 @@ namespace Cprs
                 txtNewtc.Enabled = true;
                 btnNewtc.Visible = true;
                 btnNewtc.Enabled = true;
+                cboSurvey.Enabled = true;
+                cboSurvey.BackColor = Color.White;
+
                 if (dodgeinitial.HQWorked == "0" )
                 {
                     chkNeedFurRev.Visible = true;
@@ -2676,10 +2681,16 @@ namespace Cprs
          private void btnAudit_Click(object sender, EventArgs e)
          {
              Respid = txtRespid.Text;
-             if (txtRespid.Text == "")
-             { Respid = txtId.Text; }
-             frmRspAuditPopup fRspAuditPopup = new frmRspAuditPopup(Respid);
-             fRspAuditPopup.ShowDialog();  //show child
+            if (txtRespid.Text == "")
+            {
+                MessageBox.Show("There are no audit records.");
+                return;
+            }
+            else
+            {
+                frmRspAuditPopup fRspAuditPopup = new frmRspAuditPopup(Respid);
+                fRspAuditPopup.ShowDialog();  //show child
+            }
          }
 
          Bitmap memoryImage;
