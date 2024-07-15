@@ -280,6 +280,7 @@
     <Compile Include="UserInfoData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Vip1UnitData.cs" />
     <Compile Include="VipBenchmarkAnnData.cs" />
     <Compile Include="VipBenchmarkExportData.cs" />
     <Compile Include="VipBenchmarkOutputData.cs" />
