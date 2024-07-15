@@ -97,6 +97,7 @@
             this.mnuVipReview = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVipMonth = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVipAnnual = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVip1Unit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTabMonth = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTabAnnual = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTabAnnualBea = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,7 +195,7 @@
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(180, 26);
+            this.mnuExit.Size = new System.Drawing.Size(124, 26);
             this.mnuExit.Text = "Exit ";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
@@ -209,7 +210,7 @@
             this.mnuSpecialEvents,
             this.mnuRobocalls});
             this.mnuSetup.Name = "mnuSetup";
-            this.mnuSetup.Size = new System.Drawing.Size(180, 26);
+            this.mnuSetup.Size = new System.Drawing.Size(124, 26);
             this.mnuSetup.Text = "Setup";
             // 
             // mnuCcmail
@@ -711,7 +712,8 @@
             // 
             this.mnuVipReview.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuVipMonth,
-            this.mnuVipAnnual});
+            this.mnuVipAnnual,
+            this.mnuVip1Unit});
             this.mnuVipReview.Name = "mnuVipReview";
             this.mnuVipReview.Size = new System.Drawing.Size(180, 26);
             this.mnuVipReview.Text = "VIP Review";
@@ -719,16 +721,23 @@
             // mnuVipMonth
             // 
             this.mnuVipMonth.Name = "mnuVipMonth";
-            this.mnuVipMonth.Size = new System.Drawing.Size(145, 26);
+            this.mnuVipMonth.Size = new System.Drawing.Size(180, 26);
             this.mnuVipMonth.Text = "Monthly";
             this.mnuVipMonth.Click += new System.EventHandler(this.mnuVipMonth_Click);
             // 
             // mnuVipAnnual
             // 
             this.mnuVipAnnual.Name = "mnuVipAnnual";
-            this.mnuVipAnnual.Size = new System.Drawing.Size(145, 26);
+            this.mnuVipAnnual.Size = new System.Drawing.Size(180, 26);
             this.mnuVipAnnual.Text = "Annual";
             this.mnuVipAnnual.Click += new System.EventHandler(this.mnuVipAnnual_Click);
+            // 
+            // mnuVip1Unit
+            // 
+            this.mnuVip1Unit.Name = "mnuVip1Unit";
+            this.mnuVip1Unit.Size = new System.Drawing.Size(180, 26);
+            this.mnuVip1Unit.Text = "VIP 1 Unit";
+            this.mnuVip1Unit.Click += new System.EventHandler(this.mnuVip1Unit_Click);
             // 
             // mnuTabMonth
             // 
@@ -950,35 +959,35 @@
             // mnuTrenderData
             // 
             this.mnuTrenderData.Name = "mnuTrenderData";
-            this.mnuTrenderData.Size = new System.Drawing.Size(178, 26);
+            this.mnuTrenderData.Size = new System.Drawing.Size(180, 26);
             this.mnuTrenderData.Text = "Trender Data";
             this.mnuTrenderData.Click += new System.EventHandler(this.mnuTrenderData_Click);
             // 
             // mnuAnnualData
             // 
             this.mnuAnnualData.Name = "mnuAnnualData";
-            this.mnuAnnualData.Size = new System.Drawing.Size(178, 26);
+            this.mnuAnnualData.Size = new System.Drawing.Size(180, 26);
             this.mnuAnnualData.Text = "Annual Data";
             this.mnuAnnualData.Click += new System.EventHandler(this.mnuAnnualData_Click);
             // 
             // mnuExportData
             // 
             this.mnuExportData.Name = "mnuExportData";
-            this.mnuExportData.Size = new System.Drawing.Size(178, 26);
+            this.mnuExportData.Size = new System.Drawing.Size(180, 26);
             this.mnuExportData.Text = "Export Data";
             this.mnuExportData.Click += new System.EventHandler(this.mnuExportData_Click);
             // 
             // mnuRunBCF
             // 
             this.mnuRunBCF.Name = "mnuRunBCF";
-            this.mnuRunBCF.Size = new System.Drawing.Size(178, 26);
+            this.mnuRunBCF.Size = new System.Drawing.Size(180, 26);
             this.mnuRunBCF.Text = "Processing";
             this.mnuRunBCF.Click += new System.EventHandler(this.mnuRunBCF_Click);
             // 
             // mnuOutputData
             // 
             this.mnuOutputData.Name = "mnuOutputData";
-            this.mnuOutputData.Size = new System.Drawing.Size(178, 26);
+            this.mnuOutputData.Size = new System.Drawing.Size(180, 26);
             this.mnuOutputData.Text = "Output Data";
             this.mnuOutputData.Click += new System.EventHandler(this.mnuOutputData_Click);
             // 
@@ -1213,7 +1222,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1224, 900);
-            this.MinimumSize = new System.Drawing.Size(1182, 726);
+            this.MinimumSize = new System.Drawing.Size(1182, 670);
             this.Name = "frmCprsParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Value of Construction Put in Place";
@@ -1357,5 +1366,6 @@
         private System.Windows.Forms.ToolStripMenuItem annualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuSpecialEvents;
         private System.Windows.Forms.ToolStripMenuItem mnuRobocalls;
+        private System.Windows.Forms.ToolStripMenuItem mnuVip1Unit;
     }
 }

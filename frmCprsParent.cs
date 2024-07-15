@@ -1428,5 +1428,16 @@ namespace Cprs
                 fp.Show();
             }
         }
+
+        private void mnuVip1Unit_Click(object sender, EventArgs e)
+        {
+            if (VerifyFormClosing())
+            {
+                this.Close();
+                frmVip1Unit fp = new frmVip1Unit();
+
+                fp.Show();
+            }
+        }
     }
 }
