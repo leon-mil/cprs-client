@@ -145,7 +145,7 @@ namespace CprsDAL
             using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
             {
                 string sqlQuery = @"select LSFNO, LSF
-                     from dbo.LSFTAB where owner = @OWNER and newtc = @NEWTC";
+                     from dbo.LSFTAB where owner = @OWNER and newtc = @NEWTC order by LSFNO";
 
                 using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
                 {
@@ -166,7 +166,7 @@ namespace CprsDAL
             {
                 string sqlQuery = @"select LSFNO, LSF
                      from dbo.LSFANN where owner = @OWNER and newtc = @NEWTC
-                     order by OWNER, NEWTC, LSFNO";
+                     order by LSFNO";
 
                 using (SqlCommand cmd = new SqlCommand(sqlQuery, sql_connection))
                 {
