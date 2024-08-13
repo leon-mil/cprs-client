@@ -33,7 +33,16 @@
  Keyword       : 
  Change Request: CR1555
  Description   : update CPRS to export to excel with blanks instead of 0 for the months prior to Jan 2014.
+ **********************************************************************
+ Modified Date : 8 / 7 / 2024
+ Modified By   : Christine Zhang
+ Keyword       : cz20240807
+ Change Request: CR1603
+ Description   : When Creating the excel files,
+                 Export 3 months of data during regular month and 
+                 Export 7 years, 5 months (89 months) in May Survey month.
  **********************************************************************/
+
 
 using System;
 using System.Collections.Generic;
@@ -126,6 +135,8 @@ namespace Cprs
         //Sets up datagrid for screens
         private void SetUpGrid()
         {
+            //refresh datagrid before binding data
+            dgData.DataSource = null;
             dgData.DataSource = dt;
 
             dgData.ReadOnly = true;
@@ -416,7 +427,9 @@ namespace Cprs
             //Creates Total Seasonally Adjusted Excel File
             tableType = "T";
             seasonal = "SAA";
+            
             dt = dtTSAA;
+           
             stitle = "Value of Construction Put in Place - Seasonally Adjusted Annual Rate";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "AW";
@@ -431,7 +444,9 @@ namespace Cprs
             //Creates Total Not Seasonally Adjusted Excel File
             tableType = "T";
             seasonal = "UNA";
+            
             dt = dtTUNA;
+            
             stitle = "Value of Construction Put in Place - Not Seasonally Adjusted";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "AW";
@@ -446,7 +461,9 @@ namespace Cprs
             //Creates Private Seasonally Adjusted Excel File
             tableType = "V";
             seasonal = "SAA";
+            
             dt = dtVSAA;
+           
             stitle = "Value of Private Construction Put in Place - Seasonally Adjusted Annual Rate";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "BO";
@@ -463,7 +480,9 @@ namespace Cprs
             //Creates Private Not Seasonally Adjusted Excel File
             tableType = "V";
             seasonal = "UNA";
-            dt = dtVUNA;
+            
+            dt = dtVUNA ;
+            
             stitle = "Value of Private Construction Put in Place - Not Seasonally Adjusted";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "BO";
@@ -480,7 +499,9 @@ namespace Cprs
             //Creates Public Seasonally Adjusted Excel File
             tableType = "P";
             seasonal = "SAA";
-            dt = dtPSAA;
+              
+            dt = dtPSAA ;
+           
             stitle = "Value of Public Construction Put in Place - Seasonally Adjusted Annual Rate";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "AR";
@@ -495,7 +516,9 @@ namespace Cprs
             //Creates Public Not Seasonally Adjusted Excel File
             tableType = "P";
             seasonal = "UNA";
+            
             dt = dtPUNA;
+            
             stitle = "Value of Public Construction Put in Place - Not Seasonally Adjusted";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "AR";
@@ -510,7 +533,9 @@ namespace Cprs
             //Creates State and Local Seasonally Adjusted Excel File
             tableType = "S";
             seasonal = "SAA";
+            
             dt = dtSSAA;
+            
             stitle = "Value of State and Local Construction Put in Place - Seasonally Adjusted Annual Rate";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "BO";
@@ -527,7 +552,9 @@ namespace Cprs
             //Creates State and Local Not Seasonally Adjusted Excel File
             tableType = "S";
             seasonal = "UNA";
+            
             dt = dtSUNA;
+           
             stitle = "Value of State and Local Construction Put in Place - Not Seasonally Adjusted";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "BO";
@@ -544,7 +571,9 @@ namespace Cprs
             //Creates Federal Seasonally Adjusted Excel File
             tableType = "F";
             seasonal = "SAA";
+            
             dt = dtFSAA;
+           
             stitle = "Value of Federal Construction Put in Place - Seasonally Adjusted Annual Rate";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "N";
@@ -557,7 +586,9 @@ namespace Cprs
             //Creates Federal Not Seasonally Adjusted Excel File
             tableType = "F";
             seasonal = "UNA";
+            
             dt = dtFUNA;
+            
             stitle = "Value of Federal Construction Put in Place - Not Seasonally Adjusted";
             stitle1 = "(Millions of dollars. Details may not add to totals due to rounding.)";
             last_col = "N";
@@ -567,7 +598,6 @@ namespace Cprs
             ssheetname = "Fed NSA";
             ExportToExcel(sfilename, dt, stitle, stitle1, last_col, ssheetname);
 
-            
             /*close message wait form, abort thread */
             waiting.ExternalClose();
             t.Abort();
@@ -582,12 +612,31 @@ namespace Cprs
         private void ExportToExcel(string sfilename, DataTable dt, string stitle, string stitle1, string last_col, string ssheetname)
         {
             DataTable copydt;
+            DataTable dt1;
             copydt = dt.Copy();
 
-            foreach (DataRow row in copydt.Rows)
+            //cz20240807
+            int cur_mon = Convert.ToInt16(sdate.Substring(4, 2));
+            if (cur_mon == 5)
             {
-                for (int i = 1; i < copydt.Columns.Count; i++)
-                    copydt.AsEnumerable().ToList().ForEach(p => p.SetField<Decimal>(i, Math.Round(p.Field<Decimal>(i), 0, MidpointRounding.AwayFromZero)));
+                //get only 89 month (7 years) data
+                dt1 = copydt.AsEnumerable().Take(89).CopyToDataTable();
+            }
+            else
+            {   //get only three month data
+                dt1 = copydt.AsEnumerable().Take(3).CopyToDataTable();
+
+            }
+            //get captions
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                dt1.Columns[i].Caption = dt.Columns[i].Caption;
+            }
+
+            foreach (DataRow row in dt1.Rows)
+            {
+                for (int i = 1; i < dt1.Columns.Count; i++)
+                    dt1.AsEnumerable().ToList().ForEach(p => p.SetField<Decimal>(i, Math.Round(p.Field<Decimal>(i), 0, MidpointRounding.AwayFromZero)));
             }
 
             //delete existing file
@@ -661,7 +710,7 @@ namespace Cprs
             //Setup the column header row 
             Microsoft.Office.Interop.Excel.Range headerRange = xlApp.get_Range(xlWorkSheet.Cells[5, "A"], xlWorkSheet.Cells[5, last_col]);
             int j = 0;
-            foreach (DataColumn c in copydt.Columns)
+            foreach (DataColumn c in dt1.Columns)
             {
                 j++;
                 xlWorkSheet.Cells[5, j] = c.Caption;
@@ -722,12 +771,12 @@ namespace Cprs
             int iRow = 5;
             int jColumn = 0;
 
-            foreach (DataRow r in copydt.Rows)
+            foreach (DataRow r in dt1.Rows)
             {
                 iRow++;
                 jColumn = 0;
                 
-                foreach (DataColumn c in copydt.Columns)
+                foreach (DataColumn c in dt1.Columns)
                 {
                     jColumn++;
                     if (tableType == "V" && jColumn == 10)
