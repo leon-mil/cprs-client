@@ -24,11 +24,18 @@ Modified By   :  Christine Zhang
 Keyword       :  
 Change Request:  CR#3573
 Description   :  add real month to groupbox text
-***********************************************************************************/
+***********************************************************************************
+Modified Date : Aug. 16, 2024
+Modified By   : Christine Zhang
+Keyword       :
+Change Request:CR#1611  
+Description   :Ability to export replace print function
+*********************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -757,11 +764,200 @@ namespace Cprs
         Bitmap memoryImage;
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            printDocument1.PrinterSettings.PrinterName = @UserInfo.PrinterQ;
-            printDocument1.DefaultPageSettings.Landscape = true;
-            memoryImage = GeneralFunctions.CaptureScreen(this);
-            printDocument1.Print();
+            ExportData1();
+        }
+        private void btnExport2_Click(object sender, EventArgs e)
+        {
+            ExportData2();
+        }
+        private void ExportData1()
+        {
+            // Displays a SaveFileDialog save file
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text file|*.csv";
+            saveFileDialog1.FileName = "wrksheet1";
+            saveFileDialog1.Title = "Save a File";
+            var result = saveFileDialog1.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            string fpath = System.IO.Path.GetDirectoryName(saveFileDialog1.FileName);
+            
+            dgTot.MultiSelect = true;
+
+            // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+            dgTot.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+
+            // Select all the cells
+            dgTot.SelectAll();
+
+            // Copy (set clipboard)
+            Clipboard.SetDataObject(dgTot.GetClipboardContent());
+            
+            // Paste (get the clipboard and serialize it to a file)
+            System.IO.File.WriteAllText(saveFileDialog1.FileNames[0], Clipboard.GetText(TextDataFormat.CommaSeparatedValue));
+
+            dgTot.ClearSelection();
+
+            dgTot.Rows[0].Selected = true;
+            dgTot.MultiSelect = false;
+
+            MessageBox.Show("File has been created.");
+        }
+        private void ExportData2()
+        {
+            // Displays a SaveFileDialog save file
+
+            if (dgCur.RowCount > 0 || dgRev1.RowCount > 0 || dgRev2.RowCount > 0 || dgRev3.RowCount > 0 || dgRev4.RowCount > 0)
+            { 
+               SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+               saveFileDialog1.Filter = "Text file|*.csv";
+               saveFileDialog1.FileName = "wrksheet2";
+               saveFileDialog1.Title = "Save a File";
+               var result = saveFileDialog1.ShowDialog();
+
+               if (result != DialogResult.OK)
+                  return;
+
+               export_changes(saveFileDialog1.FileNames[0]);
+               MessageBox.Show("File has been created.");
+            }
+            else
+                MessageBox.Show("No changes to export, File not created.");
+        }
+
+
+        //export changes table
+
+        void export_changes(string file)
+        {
+            using (StreamWriter csv = new StreamWriter(file, false))
+            {
+                int totalcolms = 0;
+                string data = "";
+
+                csv.Write("Revmn" + ',');
+                foreach (DataGridViewColumn colm in dgCur.Columns) csv.Write(colm.HeaderText + ',');
+                csv.Write('\n');
+
+                if (dgCur.RowCount > 0)
+                {
+                    totalcolms = dgCur.ColumnCount;
+
+                    data = "";
+                    foreach (DataGridViewRow row in dgCur.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        data = "CM_0,";
+                        for (int i = 0; i < totalcolms; i++)
+                        {
+                            data += (row.Cells[i].Value ?? "").ToString() + ',';
+                        }
+                        if (data != string.Empty) csv.WriteLine(data);
+                    }
+                }
+
+                if (dgRev1.RowCount > 0)
+                {
+                    totalcolms = dgRev1.ColumnCount;
+                    
+                    data = "";
+                    foreach (DataGridViewRow row in dgRev1.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        data = "CM_1,";
+                        for (int i = 0; i < totalcolms; i++)
+                        {
+                            data += (row.Cells[i].Value ?? "").ToString() + ',';
+                        }
+                        if (data != string.Empty) csv.WriteLine(data);
+                    }
+                 
+                }
+
+                if (dgRev2.RowCount > 0)
+                {
+                    totalcolms = dgRev2.ColumnCount;
+                   
+                    data = "";
+                    foreach (DataGridViewRow row in dgRev2.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        data = "CM_2,";
+                        for (int i = 0; i < totalcolms; i++)
+                        {
+                            data += (row.Cells[i].Value ?? "").ToString() + ',';
+                        }
+                        if (data != string.Empty) csv.WriteLine(data);
+                    }
+                }
+
+                if (dgRev3.RowCount > 0)
+                {
+                    totalcolms = dgRev3.ColumnCount;
+                    
+                    data = "";
+                    foreach (DataGridViewRow row in dgRev3.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        data = "CM_3,";
+                        for (int i = 0; i < totalcolms; i++)
+                        {
+                            data += (row.Cells[i].Value ?? "").ToString() + ',';
+                        }
+                        if (data != string.Empty) csv.WriteLine(data);
+                    }
+                   
+                }
+
+                if (dgRev4.RowCount > 0)
+                {
+                    totalcolms = dgRev4.ColumnCount;
+                    
+                    data = "";
+                    foreach (DataGridViewRow row in dgRev4.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        data = "CM_4,";
+                        for (int i = 0; i < totalcolms; i++)
+                        {
+                            data += (row.Cells[i].Value ?? "").ToString() + ',';
+                        }
+                        if (data != string.Empty) csv.WriteLine(data);
+                    }
+                }
+
+                csv.Close();
+            }
+
+        }
+
+        private string getGriddata(DataGridView dg)
+        {
+            //get data from dgCur
+            dg.MultiSelect = true;
+
+            // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+            dg.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+
+            // Select all the cells
+            dg.SelectAll();
+
+            // Copy (set clipboard)
+            Clipboard.SetDataObject(dg.GetClipboardContent());
+
+            string clip_str = Clipboard.GetText(TextDataFormat.CommaSeparatedValue);
+
+            clip_str.Replace("@", "@" + System.Environment.NewLine);
+            clip_str.Replace("@", "@" + System.Environment.NewLine);
+
+            dg.ClearSelection();
+
+            dg.Rows[0].Selected = true;
+            dg.MultiSelect = false;
+
+            return clip_str ;
         }
 
         private void printDocument1_PrintPage(System.Object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -1984,5 +2180,7 @@ namespace Cprs
             btn.ForeColor = btn.Enabled == false ? Color.LightGray : Color.DarkBlue;
             btn.BackColor = btn.Enabled == false ? Color.LightGray : Color.White;
         }
+
+
     }
 }
