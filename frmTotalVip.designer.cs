@@ -349,7 +349,7 @@
             this.btnPrint.Size = new System.Drawing.Size(133, 23);
             this.btnPrint.TabIndex = 29;
             this.btnPrint.TabStop = false;
-            this.btnPrint.Text = "PRINT";
+            this.btnPrint.Text = "EXPORT";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 

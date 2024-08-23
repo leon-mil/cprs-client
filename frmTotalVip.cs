@@ -19,12 +19,13 @@ Keyword       :
 Change Request:
 Description   : Comment out Printing of Ratio Adjust Listings
 ***********************************************************************
-*Modified Date : April 15, 2024
+Modified Date : Aug. 16, 2024
 Modified By   : Christine Zhang
-Keyword       : 04152024cz
-Change Request:
-Description   : bug fix - only show four digit tc
-***********************************************************************/
+Keyword       :
+Change Request:CR1611  
+Description   :Ability to export from Monthly Tabulations screen
+**********************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,11 +104,6 @@ namespace Cprs
         {
             data_loading = true;
             DataTable table;
-
-            //04152024cz if the newtc is four digits, get two digits
-            if (newtc.Length > 2)
-                newtc = newtc.Substring(0, 2);
-
             table = data_object.GetVipTotalData(sdate, owner, level, newtc);
 
             int num_row = table.Rows.Count;
@@ -416,7 +412,6 @@ namespace Cprs
                 if (Convert.ToDouble(dgData.SelectedRows[0].Cells[19].Value) == 0 && Convert.ToDouble(dgData.SelectedRows[0].Cells[20].Value) == 0 && Convert.ToDouble(dgData.SelectedRows[0].Cells[21].Value) == 0)
                 {
                     MessageBox.Show("No data exists for this TC.");
-                    
                     return;
                 }
             }
@@ -550,10 +545,47 @@ namespace Cprs
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            PrintData(1);
-            PrintData(2);
-            Cursor.Current = Cursors.Default;
+            /* Cursor.Current = Cursors.WaitCursor;
+             PrintData(1);
+             PrintData(2);
+             Cursor.Current = Cursors.Default;*/
+
+            //create a file with current display data
+            ExportData();
+
+        }
+
+        private void ExportData()
+        {
+            // Displays a SaveFileDialog save file
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text file|*.csv";
+            saveFileDialog1.FileName = "maintab";
+            saveFileDialog1.Title = "Save an File";
+            var result = saveFileDialog1.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+            data_loading = true;
+            dgData.MultiSelect = true;
+            
+            // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
+            dgData.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
+            // Select all the cells
+            dgData.SelectAll();
+            // Copy (set clipboard)
+            Clipboard.SetDataObject(dgData.GetClipboardContent());
+            // Paste (get the clipboard and serialize it to a file)
+            System.IO.File.WriteAllText(saveFileDialog1.FileName, Clipboard.GetText(TextDataFormat.CommaSeparatedValue));
+
+            dgData.ClearSelection();
+            
+            dgData.Rows[0].Selected = true;
+            dgData.MultiSelect = false;
+            data_loading = false;
+            
+            MessageBox.Show("File has been created.");
+
         }
 
         private void PrintData(int num)
