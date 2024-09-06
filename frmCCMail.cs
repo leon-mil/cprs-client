@@ -307,7 +307,7 @@ namespace Cprs
         {
             frmAddCCMailPopup ARpopup = new frmAddCCMailPopup();
             ARpopup.ShowDialog();
-
+            cbJobFlag.SelectedIndex = -1;
             LoadTables();
         }
 
