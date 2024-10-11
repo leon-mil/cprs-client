@@ -26,6 +26,13 @@ Modified By     :   Christine Zhang
 Keyword         :   
 Change Request  :   CR 
 Description     :   Special vip run column
+*********************************************************************
+Modified Date   :   10/7/2024
+Modified By     :   Christine Zhang
+Keyword         :   
+Change Request  :    
+Description     :   get rid of two buttons for 
+                    run daily process and centurion process
 *********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -61,8 +68,6 @@ namespace Cprs
             GetMonProcessing();
             if ( GlobalVars.Databasename == "CPRSTEST")
             {
-                btnCenturion.Enabled = false;
-                btnDaily.Enabled = false;
                 btnMonthly.Enabled = false;
             }
         }
@@ -166,38 +171,7 @@ namespace Cprs
                 return false;
         }
 
-        private void btnDaily_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to run the process?", "Question", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (!CheckOtherUsersExist())
-                {
-
-                    string bat_file1 = "start_daily.bat";
-
-                    Process proc1 = null;
-
-                    try
-                    {
-                        proc1 = new Process();
-                        proc1.StartInfo.FileName = GlobalVars.BatchDir + bat_file1;
-
-                        proc1.StartInfo.UseShellExecute = false;
-                        proc1.StartInfo.CreateNoWindow = true;
-                        proc1.Start();
-                        proc1.WaitForExit();
-                        proc1.Close();
-
-                        MessageBox.Show("Daily Processing has been submitted. Do not close any popup windows. !");
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                }
-            }
-        }
+       
 
         private void dgMonProc_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -220,71 +194,13 @@ namespace Cprs
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "EXIT");
         }
 
-        private void btnCenturion_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to run the process?", "Question", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (!CheckOtherUsersExist())
-                {
-                    string fileName = string.Empty;
-
-                    // Show the dialog and get result.
-
-                    openFileDialog1.Filter = "Data file|*.dat";
-                    openFileDialog1.Title = "Select an File";
-                    openFileDialog1.InitialDirectory = GlobalVars.CenturionDir;
-                    openFileDialog1.FileName = "";
-                    DialogResult result = openFileDialog1.ShowDialog();
-
-                    if (result != DialogResult.OK)
-                        return;
-
-                    fileName = openFileDialog1.FileName;
-
-                    string bat_file2 = "start_centurion.bat";
-
-                    Process proc2 = null;
-                    try
-                    {
-                        proc2 = new Process();
-                        proc2.StartInfo.FileName = GlobalVars.BatchDir + bat_file2;
-                        proc2.StartInfo.Arguments = fileName;
-                        proc2.StartInfo.UseShellExecute = false;
-                        proc2.StartInfo.CreateNoWindow = true;
-                        proc2.Start();
-                        proc2.WaitForExit();
-                        proc2.Close();
-
-                        MessageBox.Show("Centurion Processing has been submitted. Do not close any popup windows !");
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-
-        private void btnDaily_EnabledChanged(object sender, EventArgs e)
-        {
-            Button currentButton = (Button)sender;
-            btnDaily.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
-            btnDaily.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
-        }
-
-        private void btnCenturion_EnabledChanged(object sender, EventArgs e)
-        {
-            Button currentButton = (Button)sender;
-            btnCenturion.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
-            btnCenturion.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
-        }
-
         private void btnMonthly_EnabledChanged(object sender, EventArgs e)
         {
             Button currentButton = (Button)sender;
             btnMonthly.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
             btnMonthly.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
         }
+
+     
     }
 }
