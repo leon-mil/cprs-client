@@ -311,9 +311,9 @@ namespace Cprs
                    MessageBox.Show("Please select a grade");
                    cbGrade.Focus();
                  }
-                else if ((icount == 0) || (ccount == 0))
+                else if ((icount == 0) && (ccount == 0))
                 {
-                   MessageBox.Show("Please select at least one initial survey and at least one continue survey");
+                   MessageBox.Show("Please select at least one initial survey or at least one continue survey");
                 }
                 else
                 {
