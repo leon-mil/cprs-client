@@ -55,7 +55,16 @@ Description   :create annual table from 2012 instead of 2009
  Keyword       : 
  Change Request: CR1411
  Description   : add data center
- *********************************************************************/
+ *********************************************************************
+ *********************************************************************
+ Modified Date : 2/7/2025 
+ Modified By   : Leon Mil, Christine Zhang 
+ Keyword       :  
+ Change Request: N/A  
+ Description   : The `ExtractYearFromSDate` method extracts the four-digit year from a 6-character "yyyymm" string, validating input and throwing an `ArgumentException` if invalid. 
+                 Added to GeneralFunctions.cs for standardized year extraction and **frmTableMonRelease.cs** to improve `start_year` handling, enhancing readability, accuracy, and consistency.
+****************************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -584,10 +593,11 @@ namespace Cprs
                 ExportToExcelF(sfilename, dtab, stitle, subtitle, "NSA", ssheetname);
             }
             else
-            {
-                //  string start_year = "2008";
-                //change start year from 2009 to 2012
-                string start_year = "2012";
+            {               
+                int yearSpan = 11;
+                int surveryProcessingYear = GeneralFunctions.ExtractYearFromSDate(sdate);
+                string start_year = (surveryProcessingYear - yearSpan).ToString();
+
                 int month2 = Convert.ToInt32(sdate.Substring(4,2));
                 string end_year;
                 if (month2 == 12)

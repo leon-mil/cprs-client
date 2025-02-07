@@ -14,11 +14,12 @@ Other:
  
 Revision History:	
 *********************************************************************
- Modified Date :  
- Modified By   :  
+ Modified Date : 2/7/2025 
+ Modified By   : Leon Mil, Christine Zhang 
  Keyword       :  
- Change Request:  
- Description   :  
+ Change Request: N/A  
+ Description   : The `ExtractYearFromSDate` method extracts the four-digit year from a 6-character "yyyymm" string, validating input and throwing an `ArgumentException` if invalid. 
+                 Added to GeneralFunctions.cs for standardized year extraction and **frmTableMonRelease.cs** to improve `start_year` handling, enhancing readability, accuracy, and consistency.
 ****************************************************************************************/
 
 using System;
@@ -161,6 +162,21 @@ namespace Cprs
             string currentYear = DateTime.Now.Year.ToString();
             string CurYearMon = currentYear + currentMonth;
             return CurYearMon;
+        }
+
+        /* The ExtractYearFromSDate method extracts the year from a 6-character "yyyymm" string, 
+         * ensuring valid input. It standardizes year extraction and improves `start_year` 
+         * handling for accuracy and consistency.      
+         */
+        public static int ExtractYearFromSDate(string sdate)
+        {
+            if (string.IsNullOrWhiteSpace(sdate))
+                throw new ArgumentException("sdate cannot be null, empty, or whitespace.");
+
+            if (sdate.Length != 6 || !int.TryParse(sdate.Substring(0, 4), out int year))
+                throw new ArgumentException("sdate must be in 'yyyymm' format");
+
+            return year;
         }
 
         /*text box enter event */
