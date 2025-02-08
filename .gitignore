@@ -1,0 +1,41 @@
+# Ignore Visual Studio cache and build files
+.vs/
+*.suo
+*.user
+*.cache
+*.csproj.user
+*.dbmdl
+*.pdb
+*.obj/
+*.bin/
+
+# Ignore Debug and Release build folders
+Debug/
+Release/
+
+# Ignore log files
+*.log
+*.tlog
+
+# Ignore auto-generated files from Visual Studio
+*.g.*
+*.g.cs
+*.g.i.cs
+Generated_Code/
+
+# Ignore temporary files
+*_ReSharper.*
+*.ncb
+*.sdf
+*.sln.docstates
+
+# Ignore all auto-generated form designer .resx files
+*/*.Designer.resx
+
+# Allow manually created .resx files
+!Properties/Resources.resx
+!UI/*.resx
+
+# Ignore all DLL files except manually added ones
+*.dll
+!libs/*.dll

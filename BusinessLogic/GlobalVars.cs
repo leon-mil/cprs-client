@@ -8,6 +8,8 @@ namespace CprsBLL
     public static class GlobalVars
     {
         static string databasename = "CPRSPROD";
+        //static string databasename = "CPRSTEST";
+        
         static int session = 0;
         static string help_dir = @"\\esmpd002fs\cprs\CPRS II\Help\";
         static string batch_dir = @"\\esmpd002fs\cprs\PROD\BATCH\";

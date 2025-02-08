@@ -1855,11 +1855,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CprsBLL\CprsBLL.csproj">
+    <ProjectReference Include="..\BusinessLogic\CprsBLL.csproj">
       <Project>{5FBD22CE-D7E7-4725-88AC-19DCD41D09DA}</Project>
       <Name>CprsBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CprsDAL\CprsDAL.csproj">
+    <ProjectReference Include="..\DataAccess\CprsDAL.csproj">
       <Project>{4023C53E-F99F-4816-8A8B-2B1DEFF2F2C3}</Project>
       <Name>CprsDAL</Name>
     </ProjectReference>

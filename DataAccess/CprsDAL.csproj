@@ -292,7 +292,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CprsBLL\CprsBLL.csproj">
+    <ProjectReference Include="..\BusinessLogic\CprsBLL.csproj">
       <Project>{5FBD22CE-D7E7-4725-88AC-19DCD41D09DA}</Project>
       <Name>CprsBLL</Name>
     </ProjectReference>
