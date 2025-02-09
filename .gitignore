@@ -2,6 +2,9 @@
 packages/
 MigrationBackup/
 
+# Ignore GitLab SSL certificate
+gitlab-cert.pem
+
 # Ignore Visual Studio cache and build files
 .vs/
 *.suo
@@ -43,4 +46,3 @@ Generated_Code/
 # Ignore all DLL files except manually added ones
 *.dll
 !libs/*.dll
-gitlab-cert.pem
