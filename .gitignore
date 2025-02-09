@@ -1,3 +1,6 @@
+# Ignore NuGet packages folder
+packages/
+
 # Ignore Visual Studio cache and build files
 .vs/
 *.suo
