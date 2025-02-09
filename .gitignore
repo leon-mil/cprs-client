@@ -43,3 +43,4 @@ Generated_Code/
 # Ignore all DLL files except manually added ones
 *.dll
 !libs/*.dll
+gitlab-cert.pem
