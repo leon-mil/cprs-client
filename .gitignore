@@ -1,5 +1,6 @@
 # Ignore NuGet packages folder
 packages/
+MigrationBackup/
 
 # Ignore Visual Studio cache and build files
 .vs/
