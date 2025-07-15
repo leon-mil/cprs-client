@@ -69,6 +69,23 @@ namespace Cprs
                 return;
             }
 
+            if (GeneralData.IsNpcAccessControlEnabled())
+            {
+                if (UserInfo.GroupCode == EnumGroups.NPCManager ||
+                    UserInfo.GroupCode == EnumGroups.NPCLead ||
+                    UserInfo.GroupCode == EnumGroups.NPCInterviewer)
+                {
+                    TimeSpan start = GeneralData.GetNpcAccessStartTime();
+                    if (DateTime.Now.TimeOfDay < start)
+                    {
+                        string display = DateTime.Today.Add(start).ToString("h tt");
+                        MessageBox.Show($"This application is locked for NPC users until {display}.");
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
+
             if (UserInfo.GroupCode == EnumGroups.HQTester || (UserInfo.GroupCode == EnumGroups.HQSupport && UserInfo.UserName != "sheck001"))
             {
                 GlobalVars.Databasename = "CPRSDEV";

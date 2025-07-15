@@ -74,6 +74,28 @@ namespace CprsDAL
             return conn_str;
         }
 
+        // Indicates whether NPC access restrictions are enabled
+        public static bool IsNpcAccessControlEnabled()
+        {
+            string setting = ConfigurationManager.AppSettings["NpcAccessControlEnabled"];
+            if (!bool.TryParse(setting, out bool enabled))
+            {
+                enabled = false;
+            }
+            return enabled;
+        }
+
+        // Returns the time of day NPC users may begin using the application
+        public static TimeSpan GetNpcAccessStartTime()
+        {
+            string setting = ConfigurationManager.AppSettings["NpcAccessStartTime"];
+            if (!TimeSpan.TryParse(setting, out TimeSpan start))
+            {
+                start = new TimeSpan(8, 0, 0);
+            }
+            return start;
+        }
+
         /* convert empty string to null */
 
         public static string NullIfEmpty(string value)
