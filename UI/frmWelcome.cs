@@ -69,6 +69,29 @@ namespace Cprs
                 return;
             }
 
+            if (UserInfo.GroupCode == EnumGroups.HQTester || (UserInfo.GroupCode == EnumGroups.HQSupport && UserInfo.UserName != "sheck001"))
+            {
+                GlobalVars.Databasename = "CPRSDEV";
+            }
+            else
+            {
+                frmDatabaseSelectionPopup popup = new frmDatabaseSelectionPopup();
+                popup.StartPosition = FormStartPosition.CenterParent;
+                popup.ShowDialog();
+                GlobalVars.Databasename = popup.SelectedDatabase;
+            }
+
+            //refresh user info
+            data_object.GetUserInfo();
+
+            //Check SysStatus table
+            if (!data_object.CheckUserAvailable(UserInfo.GroupCode))
+            {
+                MessageBox.Show("    The System is not available.");
+                Application.Exit();
+                return;
+            }
+
             if (GeneralData.IsNpcAccessControlEnabled())
             {
                 if (UserInfo.GroupCode == EnumGroups.NPCManager ||
@@ -86,26 +109,6 @@ namespace Cprs
                 }
             }
 
-            if (UserInfo.GroupCode == EnumGroups.HQTester || (UserInfo.GroupCode == EnumGroups.HQSupport && UserInfo.UserName != "sheck001"))
-            {
-                GlobalVars.Databasename = "CPRSDEV";
-            }
-            else
-            {
-                frmDatabaseSelectionPopup popup = new frmDatabaseSelectionPopup();
-                popup.StartPosition = FormStartPosition.CenterParent;
-                popup.ShowDialog();
-                GlobalVars.Databasename = popup.SelectedDatabase;
-            }
-
-            //Check SysStatus table
-            if (!data_object.CheckUserAvailable(UserInfo.GroupCode))
-            {
-                MessageBox.Show("    The System is not available.");
-                Application.Exit();
-                return;
-            }
-
             CurrentUsersData cuData = new CurrentUsersData();
             int cprSession = cuData.GetSessionInfo();
             if (cprSession > 2)
@@ -119,9 +122,6 @@ namespace Cprs
                 GlobalVars.Session = cprSession;
                 cuData.AddCurrentUsersData("SYSTEM");
             }
-
-            //refresh user info
-            data_object.GetUserInfo();
 
             //add record to cpraccess
             GeneralDataFuctions.AddCpraccessData("SYSTEM", "ENTER");
