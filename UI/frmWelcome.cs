@@ -81,12 +81,32 @@ namespace Cprs
                 GlobalVars.Databasename = popup.SelectedDatabase;
             }
 
+            //refresh user info
+            data_object.GetUserInfo();
+
             //Check SysStatus table
             if (!data_object.CheckUserAvailable(UserInfo.GroupCode))
             {
                 MessageBox.Show("    The System is not available.");
                 Application.Exit();
                 return;
+            }
+
+            if (GeneralData.IsNpcAccessControlEnabled())
+            {
+                if (UserInfo.GroupCode == EnumGroups.NPCManager ||
+                    UserInfo.GroupCode == EnumGroups.NPCLead ||
+                    UserInfo.GroupCode == EnumGroups.NPCInterviewer)
+                {
+                    TimeSpan start = GeneralData.GetNpcAccessStartTime();
+                    if (DateTime.Now.TimeOfDay < start)
+                    {
+                        string display = DateTime.Today.Add(start).ToString("h:mm tt");
+                        MessageBox.Show($"This application is locked for NPC users until {display}.");
+                        Application.Exit();
+                        return;
+                    }
+                }
             }
 
             CurrentUsersData cuData = new CurrentUsersData();
@@ -102,9 +122,6 @@ namespace Cprs
                 GlobalVars.Session = cprSession;
                 cuData.AddCurrentUsersData("SYSTEM");
             }
-
-            //refresh user info
-            data_object.GetUserInfo();
 
             //add record to cpraccess
             GeneralDataFuctions.AddCpraccessData("SYSTEM", "ENTER");
