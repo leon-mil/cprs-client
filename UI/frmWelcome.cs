@@ -101,7 +101,7 @@ namespace Cprs
                     TimeSpan start = GeneralData.GetNpcAccessStartTime();
                     if (DateTime.Now.TimeOfDay < start)
                     {
-                        string display = DateTime.Today.Add(start).ToString("h tt");
+                        string display = DateTime.Today.Add(start).ToString("h:mm tt");
                         MessageBox.Show($"This application is locked for NPC users until {display}.");
                         Application.Exit();
                         return;
