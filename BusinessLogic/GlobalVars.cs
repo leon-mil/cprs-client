@@ -7,13 +7,12 @@ namespace CprsBLL
 {
     public static class GlobalVars
     {
-        //static string databasename = "CPRSPROD";
-        static string databasename = "CPRSTEST";
+        static string databasename = "CPRSPROD";
         
         static int session = 0;
         static string help_dir = @"\\esmpd002fs\cprs\CPRS II\Help\";
-        static string batch_dir = @"\\esmpd002fs\cprs\DEV\BATCH\";
-        static string centurion_dir = @"\\esmpd002fs\cprs\DEV\DATA\CENTURION\NIGHTLY";
+        static string batch_dir = @"\\esmpd002fs\cprs\PROD\BATCH\";
+        static string centurion_dir = @"\\esmpd002fs\cprs\PROD\DATA\CENTURION\NIGHTLY";
         
         /// <summary>
         /// Access routine for global variable.
