@@ -33,32 +33,41 @@ Keyword         :
 Change Request  :    
 Description     :   get rid of two buttons for 
                     run daily process and centurion process
+*********************************************************************
+Modified Date   :   11/20/2024
+Modified By     :   Leon Mil
+Keyword         :   20241120-stat-period
+Change Request  :   Configurable statistical period selection
+Description     :   Documented configuration-driven statistical period flow
+                    and popup launch behavior.
 *********************************************************************/
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Data.SqlClient;
-using System.Windows.Forms;
 using CprsBLL;
 using CprsDAL;
-using System.Drawing.Printing;
-using System.IO;
-using System.Collections;
-using System.Diagnostics;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Cprs
 {
+    /// <summary>
+    /// Main monthly processing form that initializes processing context and launches the popup for task execution.
+    /// </summary>
     public partial class frmMonthlyProcess: frmCprsParent
     {
+        private readonly MonthlyProcessingContext processingContext;
+
+        /// <summary>
+        /// Initializes the monthly process form and captures the configured statistical period.
+        /// </summary>
         public frmMonthlyProcess()
         {
             InitializeComponent();
+            processingContext = MonthlyProcessingSelector.GetCurrentContext();
         }
-        private string sStatp = DateTime.Now.ToString("yyyyMM");
-
+        
+        /// <summary>
+        /// Handles form load by recording user access, refreshing data, and disabling processing in test environments.
+        /// </summary>
         private void frmMonthlyProcess_Load(object sender, EventArgs e)
         {
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "ENTER");
@@ -71,11 +80,15 @@ namespace Cprs
                 btnMonthly.Enabled = false;
             }
         }
-
-        //get monthly processing data from data table
+        
+        /// <summary>
+        /// Retrieves the monthly processing dataset, ensures the current month exists, and configures the grid display.
+        /// </summary>
         private void GetMonProcessing()
         {
-            string currMonth = DateTime.Now.ToString("yyyyMM");
+            //string currMonth = DateTime.Now.ToString("yyyyMM");
+
+            string currMonth = processingContext.StatisticalPeriod;
 
             MonthlyProcessData dataObject = new MonthlyProcessData();
             if (!dataObject.CheckMonthExists(currMonth))
@@ -150,15 +163,23 @@ namespace Cprs
             dgMonProc.Columns[24].HeaderText = "STATUS";
         }
 
+        /// <summary>
+        /// Opens the monthly processing popup for the selected period and refreshes the grid afterward.
+        /// </summary>
         private void btnMonthly_Click(object sender, EventArgs e)
-        {
-            frmMonthlyProcessPopup fM = new frmMonthlyProcessPopup();
-
-            fM.ShowDialog();  //show history screen
+        {            
+            using (frmMonthlyProcessPopup fM = new frmMonthlyProcessPopup(processingContext))
+            {
+                fM.ShowDialog();  //show history screen
+            }
 
             GetMonProcessing();
         }
 
+        /// <summary>
+        /// Checks whether other users are currently in the system, showing a warning message if so.
+        /// </summary>
+        /// <returns>True when other users are present; otherwise false.</returns>
         private bool CheckOtherUsersExist()
         {
             CurrentUsersData cd = new CurrentUsersData();
@@ -171,8 +192,9 @@ namespace Cprs
                 return false;
         }
 
-       
-
+        /// <summary>
+        /// Formats status codes in the grid to human-readable strings.
+        /// </summary>
         private void dgMonProc_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.Value.ToString() == "1")
@@ -189,18 +211,22 @@ namespace Cprs
             }
         }
 
+        /// <summary>
+        /// Logs an exit event when the form is closing.
+        /// </summary>
         private void frmMonthlyProcess_FormClosing(object sender, FormClosingEventArgs e)
         {
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "EXIT");
         }
 
+        /// <summary>
+        /// Adjusts the appearance of the Monthly button when its enabled state changes.
+        /// </summary>
         private void btnMonthly_EnabledChanged(object sender, EventArgs e)
         {
             Button currentButton = (Button)sender;
             btnMonthly.ForeColor = currentButton.Enabled == false ? Color.LightGray : Color.DarkBlue;
             btnMonthly.BackColor = currentButton.Enabled == false ? Color.LightGray : Color.White;
-        }
-
-     
+        }     
     }
 }

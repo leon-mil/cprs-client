@@ -26,25 +26,32 @@ Modified Date  :  11/18/2019
  Keyword       :  
  Change Request:  CR 3751
  Description   :  add special vip load button
-*********************************************************************/
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+*********************************************************************
+Modified Date   :   11/20/2024
+Modified By     :   Leon Mil
+Keyword         :   20241120-stat-period
+Change Request  :   Configurable statistical period selection
+Description     :   Documented the statistical-period handoff and batch
+                    argument flow for monthly processing tasks.
+**********************************************************************/
 using CprsBLL;
 using CprsDAL;
+using System;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Cprs
 {
+    /// <summary>
+    /// Popup form that orchestrates monthly processing tasks for a selected statistical period.
+    /// </summary>
     public partial class frmMonthlyProcessPopup : Form
     {
         private const int CP_NOCLOSE_BUTTON = 0x200;
 
+        /// <summary>
+        /// Prevents the close button from appearing on the form's title bar.
+        /// </summary>
         protected override CreateParams CreateParams
         {
             get
@@ -54,22 +61,46 @@ namespace Cprs
                 return myCp;
             }
         }
+        
+        private readonly MonthlyProcessingContext processingContext;
+        private readonly string currMonth;
+        private readonly string currMonDate;
 
-        private string currMonth = DateTime.Now.ToString("yyyyMM");
-        private string currMonDate = DateTime.Today.ToString("dd-MMM-yyyy").ToUpper();
         private MonthlyProcessData dataObject;
         private CurrentUsersData cd;
-
+        
+        /// <summary>
+        /// Initializes the popup form using the configured statistical period.
+        /// </summary>
         public frmMonthlyProcessPopup()
+           : this(MonthlyProcessingSelector.GetCurrentContext())
         {
+        }
+
+        /// <summary>
+        /// Initializes the popup form with the supplied statistical period.
+        /// </summary>
+        /// <param name="statisticalPeriod">The yyyyMM period to process.</param>
+        /// <exception cref="ArgumentException">Thrown when no period is provided.</exception>
+        public frmMonthlyProcessPopup(MonthlyProcessingContext processingContext)
+        {
+            this.processingContext = processingContext ?? throw new ArgumentNullException(nameof(processingContext));
+            currMonth = this.processingContext.StatisticalPeriod;            
+            currMonDate = DateTime.Today.ToString("dd-MMM-yyyy").ToUpper();
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Closes the popup window.
+        /// </summary>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Loads the current processing data for the selected month and initializes UI elements.
+        /// </summary>
         private void frmMonthlyProcessPopup_Load(object sender, EventArgs e)
         {
             
@@ -79,12 +110,13 @@ namespace Cprs
 
             LoadForm();
         }
-
-        //load form
+        
+        /// <summary>
+        /// Retrieves processing data for the current month and updates control states accordingly.
+        /// </summary>
         private void LoadForm()
         {
-             //Get current month data
-           
+            // Get current month data           
             MonthlyProcessRec mp = dataObject.GetProcessingForMonth(currMonth);
 
             //set textbox
@@ -141,8 +173,12 @@ namespace Cprs
             btnClose.Focus();
 
         }
-
-        //convert status to string
+        
+        /// <summary>
+        /// Converts stored status codes into human-readable text for display.
+        /// </summary>
+        /// <param name="s">The raw status code value.</param>
+        /// <returns>A descriptive status string.</returns>
         private string ConvertStatus(string s)
         {
             if (s == "1")
@@ -155,7 +191,10 @@ namespace Cprs
                 return "";
         }
 
-        //Check other users eixsts in system
+        /// <summary>
+        /// Determines whether other users are present in the system before running a batch task.
+        /// </summary>
+        /// <returns>True when other users exist; otherwise false.</returns>
         private bool CheckOtherUsersExist()
         {
             CurrentUsersData cd = new CurrentUsersData();
@@ -168,13 +207,21 @@ namespace Cprs
                 return false;
         }
 
+        /// <summary>
+        /// Refreshes the screen by reloading processing data for the active month.
+        /// </summary>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadForm();
         }
 
-        /*Run batch file based on job */
-        private bool RunBatchFile(int job)
+        /// <summary>
+        /// Executes the corresponding batch file for a process number while supplying the statistical period argument.
+        /// </summary>
+        /// <param name="job">The process identifier to run.</param>
+        /// <param name="statisticalPeriod">The yyyyMM period passed into the batch script.</param>
+        /// <returns>True when the batch file starts successfully; otherwise false.</returns>
+        private bool RunBatchFile(int job, string statisticalPeriod)
         {
             string bat_file = "start_job" + job.ToString("00") + ".bat";
             Process proc = null;
@@ -183,6 +230,7 @@ namespace Cprs
                 proc = new Process();
 
                 proc.StartInfo.FileName = GlobalVars.BatchDir + bat_file;
+                proc.StartInfo.Arguments = statisticalPeriod;
                 proc.StartInfo.UseShellExecute = false;
                 proc.StartInfo.CreateNoWindow = true;
 
@@ -198,6 +246,10 @@ namespace Cprs
             }
         }
 
+        /// <summary>
+        /// Handles confirmation and execution logic for each monthly processing task.
+        /// </summary>
+        /// <param name="processno">The process number selected by the user.</param>
         private void RunProcess(int processno)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to run the process?", "Question", MessageBoxButtons.YesNo);
@@ -213,7 +265,8 @@ namespace Cprs
                         txtR1.Text = currMonDate;
                         txtS1.Text = "SUBMITTED";
                         btnT01.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -225,7 +278,8 @@ namespace Cprs
                     txtR2.Text = currMonDate;
                     txtS2.Text = "SUBMITTED";
                     btnT02.Enabled = false;
-                    RunBatchFile(processno);
+                    //RunBatchFile(processno);
+                    RunBatchFile(processno, currMonth);
 
                     MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
 
@@ -239,7 +293,8 @@ namespace Cprs
                         txtR3.Text = currMonDate;
                         txtS3.Text = "SUBMITTED";
                         btnT03.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -253,7 +308,8 @@ namespace Cprs
                         txtR4.Text = currMonDate;
                         txtS4.Text = "SUBMITTED";
                         btnT04.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -267,7 +323,8 @@ namespace Cprs
                         txtR5.Text = currMonDate;
                         txtS5.Text = "SUBMITTED";
                         btnT05.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
 
@@ -282,7 +339,8 @@ namespace Cprs
                         txtR6.Text = currMonDate;
                         txtS6.Text = "SUBMITTED";
                         btnT06.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -296,7 +354,8 @@ namespace Cprs
                         txtR7.Text = currMonDate;
                         txtS7.Text = "SUBMITTED";
                         btnT07.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -310,8 +369,9 @@ namespace Cprs
                     btnT08.Enabled = false;
                     if (btnT09.Enabled)
                         btnT09.Enabled = false;
-                    RunBatchFile(processno);
-                    
+                    //RunBatchFile(processno);
+                    RunBatchFile(processno, currMonth);
+
                 }
                 // RUN FINAL TABS
                 else if (processno == 9)
@@ -324,7 +384,8 @@ namespace Cprs
                         btnT09.Enabled = false;
                         btnT08.Enabled = false;
                         btnT07.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -336,9 +397,10 @@ namespace Cprs
                         txtR10.Text = currMonDate;
                         txtS10.Text = "SUBMITTED";
                         btnT10.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
-                        MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
+                    MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                 }
                 //PRINT CONTINUING C700 FORMS
                 else if (processno == 11)
@@ -350,7 +412,8 @@ namespace Cprs
                         txtS11.Text = "SUBMITTED";
                         btnT11.Enabled = false;
                         btnT10.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -364,7 +427,8 @@ namespace Cprs
                         txtR12.Text = currMonDate;
                         txtS12.Text = "SUBMITTED";
                         btnT12.Enabled = false;
-                        RunBatchFile(processno);
+                        //RunBatchFile(processno);
+                        RunBatchFile(processno, currMonth);
 
                         MessageBox.Show("Processing has been submitted. Do not close any popup windows !");
                     }
@@ -372,65 +436,100 @@ namespace Cprs
             }  
         }
 
+        /// <summary>
+        /// Triggers task 1 processing.
+        /// </summary>
         private void btnT01_Click(object sender, EventArgs e)
         {
             RunProcess(1);  
         }
 
+        /// <summary>
+        /// Triggers task 2 processing.
+        /// </summary>
         private void btnT02_Click(object sender, EventArgs e)
         {
            RunProcess(2);
         }
 
+        /// <summary>
+        /// Triggers task 3 processing.
+        /// </summary>
         private void btnT03_Click(object sender, EventArgs e)
         {
             RunProcess(3);
         }
 
+        /// <summary>
+        /// Triggers task 4 processing.
+        /// </summary>
         private void btnT04_Click(object sender, EventArgs e)
         {
             RunProcess(4);
         }
 
+        /// <summary>
+        /// Triggers task 5 processing.
+        /// </summary>
         private void btnT05_Click(object sender, EventArgs e)
         {
             RunProcess(5);    
         }
 
+        /// <summary>
+        /// Triggers task 6 processing.
+        /// </summary>
         private void btnT06_Click(object sender, EventArgs e)
         {
             RunProcess(6);      
         }
 
+        /// <summary>
+        /// Triggers task 7 processing.
+        /// </summary>
         private void btnT07_Click(object sender, EventArgs e)
         {
             RunProcess(7);
         }
+
+        /// <summary>
+        /// Triggers task 8 processing.
+        /// </summary>
         private void btnT08_Click(object sender, EventArgs e)
         {
             RunProcess(8);
         }
 
+        /// <summary>
+        /// Triggers task 9 processing.
+        /// </summary>
         private void btnT9_Click(object sender, EventArgs e)
         {
             RunProcess(9);
         }
 
+        /// <summary>
+        /// Triggers task 10 processing.
+        /// </summary>
         private void btnT10_Click(object sender, EventArgs e)
         {
             RunProcess(10);
         }
 
+        /// <summary>
+        /// Triggers task 11 processing.
+        /// </summary>
         private void btnT11_Click(object sender, EventArgs e)
         {
             RunProcess(11);
         }
 
+        /// <summary>
+        /// Triggers task 12 processing.
+        /// </summary>
         private void btnT12_Click(object sender, EventArgs e)
         {
             RunProcess(12);
         }
-
-
     }
 }
