@@ -26,41 +26,44 @@ Other:	            Called from:
  
 Revision History:	
 *********************************************************************
-Modified Date   :  
-Modified By     :  
-Keyword         :  
-Change Request  :  
-Description     :
+Modified Date   :   11/20/2024
+Modified By     :   Leon Mil
+Keyword         :   20241120-stat-period
+Change Request  :   Configurable statistical period selection
+Description     :   Documented configuration-driven statistical period flow
+                    and popup launch behavior.
 *********************************************************************/
+using CprsBLL;
+using CprsDAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using CprsBLL;
-using CprsDAL;
+using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
-using System.Collections;
-using System.Diagnostics;
+using System.Text;
+using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 
 namespace Cprs
 {
     public partial class frmImpMonthProc : Cprs.frmCprsParent
     {
-        //set and format the current stat period
+        private readonly MonthlyProcessingContext processingContext;
 
-        public string sStatp = DateTime.Now.ToString("yyyyMM");
+        private string sStatp;
 
         private ImpMonProcessData dataObject;
 
         public frmImpMonthProc()
         {
             InitializeComponent();
+            processingContext = MonthlyProcessingSelector.GetCurrentContext();
         }
 
         private void frmImpMonthProc_Load(object sender, EventArgs e)
@@ -70,8 +73,10 @@ namespace Cprs
 
             dataObject = new ImpMonProcessData();
 
-            //display the table
+            //set and format the current stat period
+            sStatp = processingContext.StatisticalPeriod;
 
+            //display the table
             GetMonProcessing();
 
             //initially disable buttons
@@ -280,6 +285,7 @@ namespace Cprs
 
                 proc.StartInfo.FileName = GlobalVars.BatchDir + bat_file;
                 proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.Arguments = sStatp;
                 proc.StartInfo.CreateNoWindow = true;
 
                 proc.Start();
