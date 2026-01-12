@@ -31,7 +31,13 @@
  Keyword       : 
  Change Request: 
  Description   : 
- *********************************************************************/
+ *********************************************************************
+ Modified Date  :  1/12/2026
+ Modified By    :  Christine Zhang
+ Keyword        :  
+ Change Request :  CR#???
+ Description    :  use configuration-driven statistical period insteat of current month if it exist
+****************************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -51,6 +57,7 @@ namespace Cprs
 {
     public partial class frmNPCAttempts : frmCprsParent
     {
+        private readonly MonthlyProcessingContext processingContext;
         DataTable table = new DataTable();
         NPCAttemptsData npc = new NPCAttemptsData();
         Object selectedStatp;
@@ -64,7 +71,8 @@ namespace Cprs
 
         public frmNPCAttempts()
         {
-            InitializeComponent();     
+            InitializeComponent();
+            processingContext = MonthlyProcessingSelector.GetCurrentContext();
         }
 
         //load form 
@@ -73,20 +81,21 @@ namespace Cprs
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "ENTER");
             GeneralDataFuctions.UpdateCurrentUsersData("ADMINISTRATIVE");
 
-            GetMonthsList();
+            //current month
+            currMonth = processingContext.StatisticalPeriod;
+
+            GetMonthsList(currMonth);
  
             cbStatp.DataSource = dy;
             cbStatp.SelectedIndex = 0;
             tabs.SelectedIndex = 0;
         }
 
-        string CurrMonth = string.Empty;
+        string currMonth = string.Empty;
 
         //calculate stat periods for dropdown combobox 
-        private void GetMonthsList()
+        private void GetMonthsList(string statp)
         {
-            DateTime today = DateTime.Now;
-
             string currYearMon1 = string.Empty;
             string currYearMon2 = string.Empty;
             string currYearMon3 = string.Empty;
@@ -100,24 +109,23 @@ namespace Cprs
             string currYearMon11 = string.Empty;
             string currYearMon12 = string.Empty;
 
-            //current month
-            CurrMonth = (GeneralFunctions.CurrentYearMon());
-            //get the last 12 months 
-            DateTime.Now.ToString("yyyyMM");
-            currYearMon1  = DateTime.Now.AddMonths(-1).ToString("yyyyMM");
-            currYearMon2  = DateTime.Now.AddMonths(-2).ToString("yyyyMM");
-            currYearMon3  = DateTime.Now.AddMonths(-3).ToString("yyyyMM");
-            currYearMon4  = DateTime.Now.AddMonths(-4).ToString("yyyyMM");
-            currYearMon5  = DateTime.Now.AddMonths(-5).ToString("yyyyMM");
-            currYearMon6  = DateTime.Now.AddMonths(-6).ToString("yyyyMM");
-            currYearMon7  = DateTime.Now.AddMonths(-7).ToString("yyyyMM");
-            currYearMon8  = DateTime.Now.AddMonths(-8).ToString("yyyyMM");
-            currYearMon9  = DateTime.Now.AddMonths(-9).ToString("yyyyMM");
-            currYearMon10 = DateTime.Now.AddMonths(-10).ToString("yyyyMM");
-            currYearMon11 = DateTime.Now.AddMonths(-11).ToString("yyyyMM");
-            currYearMon12 = DateTime.Now.AddMonths(-12).ToString("yyyyMM");
 
-            dy.Add(CurrMonth);
+            //get the last 12 months 
+            DateTime date = DateTime.ParseExact(statp, "yyyyMM", null);
+            currYearMon1 = date.AddMonths(-1).ToString("yyyyMM");
+            currYearMon2 = date.AddMonths(-2).ToString("yyyyMM");
+            currYearMon3 = date.AddMonths(-3).ToString("yyyyMM");
+            currYearMon4 = date.AddMonths(-4).ToString("yyyyMM");
+            currYearMon5 = date.AddMonths(-5).ToString("yyyyMM");
+            currYearMon6 = date.AddMonths(-6).ToString("yyyyMM");
+            currYearMon7 = date.AddMonths(-7).ToString("yyyyMM");
+            currYearMon8 = date.AddMonths(-8).ToString("yyyyMM");
+            currYearMon9 = date.AddMonths(-9).ToString("yyyyMM");
+            currYearMon10 = date.AddMonths(-10).ToString("yyyyMM");
+            currYearMon11 = date.AddMonths(-11).ToString("yyyyMM");
+            currYearMon12 = date.AddMonths(-12).ToString("yyyyMM");
+
+            dy.Add(currMonth);
             dy.Add(currYearMon1);
             dy.Add(currYearMon2);
             dy.Add(currYearMon3);
@@ -136,7 +144,7 @@ namespace Cprs
         private void GetT1()
         {
             //if not current month
-            if (selectedStatp.ToString() != CurrMonth)
+            if (selectedStatp.ToString() != currMonth)
             {
                 dtt1 = npc.GetNPCAttemptsDay(selectedStatp, "0000");
                 dgt1.DataSource = dtt1;
@@ -156,7 +164,7 @@ namespace Cprs
         private void GetT2()
         {
             //if not current month
-            if (selectedStatp.ToString() != CurrMonth)
+            if (selectedStatp.ToString() != currMonth)
             {
                 //Update the project grid to reflect changes to the selection
                 dtt2 = npc.GetNPCAttemptsPastInterviewer(selectedStatp, selected_user);
@@ -222,7 +230,7 @@ namespace Cprs
                 selected_user = dgt1.SelectedRows[0].Cells[0].Value.ToString();
 
                 //if selected is not current month
-                if (selectedStatp.ToString() != CurrMonth)
+                if (selectedStatp.ToString() != currMonth)
                 {
                     dtb1 = npc.GetNPCAttemptsPastInterviewer(selectedStatp, selected_user);
                     dgb1.DataSource = dtb1;
@@ -267,7 +275,7 @@ namespace Cprs
                 display_selected_date = dgt2.SelectedRows[0].Cells[0].FormattedValue.ToString();
 
                 //if selection is not current month
-                if (selectedStatp.ToString() != CurrMonth)
+                if (selectedStatp.ToString() != currMonth)
                 {
                     if (selected_date != "total")
                     {
@@ -457,7 +465,7 @@ namespace Cprs
             //Column header has index -1; don't want it selectable
             if (e.RowIndex != -1)
             {
-                if (selectedStatp.ToString() == CurrMonth)
+                if (selectedStatp.ToString() == currMonth)
                 {
                     if (e.ColumnIndex == 0 || e.ColumnIndex == 14 || e.ColumnIndex == 16 || e.ColumnIndex == 17)
                         return;
@@ -490,7 +498,7 @@ namespace Cprs
             //Column header has index -1; don't want it selectable
             if (e.RowIndex != -1)
             {
-                if (selectedStatp.ToString() == CurrMonth)
+                if (selectedStatp.ToString() == currMonth)
                 {
                     if (e.ColumnIndex == 0 || e.ColumnIndex == 14 || e.ColumnIndex == 16 || e.ColumnIndex == 17)
                         return;

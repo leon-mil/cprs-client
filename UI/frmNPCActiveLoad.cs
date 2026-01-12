@@ -23,6 +23,12 @@ Revision History:
  Change Request:  
  Description   :  Updated  Vip Satisfied  to  Callstat = V
                   Updated Centurion Accescde from W to C
+****************************************************************************************
+Modified Date  :  1/12/2026
+Modified By    :  Christine Zhang
+Keyword        :  
+Change Request :  CR#???
+Description    :  use configuration-driven statistical period insteat of current month if it exist
 ****************************************************************************************/
 
 using System;
@@ -45,8 +51,10 @@ namespace Cprs
 {
     public partial class frmNPCActiveLoad : frmCprsParent
     {
+        private readonly MonthlyProcessingContext processingContext;
+
         private NPCActiveLoadData dataObject;
-        string CurrMonth = string.Empty;
+        string currMonth = string.Empty;
         string currYearMon1 = string.Empty;
         string currYearMon2 = string.Empty;
         string currYearMon3 = string.Empty;
@@ -77,6 +85,7 @@ namespace Cprs
             InitializeComponent();
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "ENTER");
             GeneralDataFuctions.UpdateCurrentUsersData("ADMINISTRATIVE");
+            processingContext = MonthlyProcessingSelector.GetCurrentContext();
         }
 
         private void frmNPCActiveLoad_Load(object sender, EventArgs e)
@@ -89,11 +98,13 @@ namespace Cprs
              form_loading = true;
 
             dataObject = new NPCActiveLoadData();
+           
+            currMonth = processingContext.StatisticalPeriod;
 
             //create instance of data object
-            GetMonthsList();
+            GetMonthsList(currMonth);
             List<string> dy = new List<string>();
-            dy.Add(CurrMonth);
+            dy.Add(currMonth);
             dy.Add(currYearMon1);
             dy.Add(currYearMon2);
             dy.Add(currYearMon3);
@@ -121,25 +132,22 @@ namespace Cprs
             SetButtonTxt();
         }
 
-        private void GetMonthsList()
+        private void GetMonthsList(string statp)
         {
-            DateTime today = DateTime.Now;
-            //current month
-            CurrMonth = (GeneralFunctions.CurrentYearMon());
             //get the last 12 months 
-            DateTime.Now.ToString("yyyyMM");
-            currYearMon1 = DateTime.Now.AddMonths(-1).ToString("yyyyMM");
-            currYearMon2 = DateTime.Now.AddMonths(-2).ToString("yyyyMM");
-            currYearMon3 = DateTime.Now.AddMonths(-3).ToString("yyyyMM");
-            currYearMon4 = DateTime.Now.AddMonths(-4).ToString("yyyyMM");
-            currYearMon5 = DateTime.Now.AddMonths(-5).ToString("yyyyMM");
-            currYearMon6 = DateTime.Now.AddMonths(-6).ToString("yyyyMM");
-            currYearMon7 = DateTime.Now.AddMonths(-7).ToString("yyyyMM");
-            currYearMon8 = DateTime.Now.AddMonths(-8).ToString("yyyyMM");
-            currYearMon9 = DateTime.Now.AddMonths(-9).ToString("yyyyMM");
-            currYearMon10 = DateTime.Now.AddMonths(-10).ToString("yyyyMM");
-            currYearMon11 = DateTime.Now.AddMonths(-11).ToString("yyyyMM");
-            currYearMon12 = DateTime.Now.AddMonths(-12).ToString("yyyyMM");
+            DateTime date = DateTime.ParseExact(statp, "yyyyMM", null);
+            currYearMon1 = date.AddMonths(-1).ToString("yyyyMM");
+            currYearMon2 = date.AddMonths(-2).ToString("yyyyMM");
+            currYearMon3 = date.AddMonths(-3).ToString("yyyyMM");
+            currYearMon4 = date.AddMonths(-4).ToString("yyyyMM");
+            currYearMon5 = date.AddMonths(-5).ToString("yyyyMM");
+            currYearMon6 = date.AddMonths(-6).ToString("yyyyMM");
+            currYearMon7 = date.AddMonths(-7).ToString("yyyyMM");
+            currYearMon8 = date.AddMonths(-8).ToString("yyyyMM");
+            currYearMon9 = date.AddMonths(-9).ToString("yyyyMM");
+            currYearMon10 = date.AddMonths(-10).ToString("yyyyMM");
+            currYearMon11 = date.AddMonths(-11).ToString("yyyyMM");
+            currYearMon12 = date.AddMonths(-12).ToString("yyyyMM");
         }
 
         private void ChkOwnerValColF()
@@ -267,7 +275,7 @@ namespace Cprs
                 DataGridViewRow selectedRow = dgNum.Rows[selectedrowindex];
                 string selRowshow = selectedrowindex.ToString();
                 
-                if (cbStatp.Text == CurrMonth)
+                if (cbStatp.Text == currMonth)
                 {
                     if (pgNam == tabPage7)
                     {
@@ -558,7 +566,7 @@ namespace Cprs
             if (tabs.SelectedIndex == Selindex)
             {
                 //If selection equal to current month
-                if (cbStatp.Text == CurrMonth)
+                if (cbStatp.Text == currMonth)
                 {
                     //Call the stored procedure
                     dataGridNumb.DataSource = dataObject.GetFirstMonthData(coltecVal);
@@ -713,7 +721,7 @@ namespace Cprs
             this.Cursor = Cursors.WaitCursor;
             
             setColumnHeaders();
-            if (cbStatp.Text == CurrMonth)
+            if (cbStatp.Text == currMonth)
             {
                 populateTheLowerGrid(tabs.SelectedTab);
             }
@@ -876,7 +884,7 @@ namespace Cprs
         {
             Cursor.Current = Cursors.WaitCursor;
             dgPrint.DataSource = null;
-            if (cbStatp.Text == CurrMonth)
+            if (cbStatp.Text == currMonth)
                 dgPrint.DataSource = dataObject.GetFirstMonthData(coltecVal);
             else
             {
@@ -921,7 +929,7 @@ namespace Cprs
             else
                 setColumnHeaders();
 
-            if (cbStatp.Text == CurrMonth)
+            if (cbStatp.Text == currMonth)
             {
                 btnC700.Enabled = true;
                 btnName.Enabled = true;

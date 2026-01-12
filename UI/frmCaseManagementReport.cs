@@ -30,6 +30,18 @@ Modified By    :  Christine Zhang
 Keyword        :  
 Change Request :  CR#???
 Description    :  print screen instead print grid
+****************************************************************************************
+Modified Date  :  8/6/2019
+Modified By    :  Christine Zhang
+Keyword        :  
+Change Request :  CR#???
+Description    :  print screen instead print grid
+****************************************************************************************
+Modified Date  :  1/12/2026
+Modified By    :  Christine Zhang
+Keyword        :  
+Change Request :  CR#???
+Description    :  use configuration-driven statistical period insteat of current month if it exist
 ****************************************************************************************/
 
 using System;
@@ -52,8 +64,10 @@ namespace Cprs
 
     public partial class frmCaseManagementReport : frmCprsParent
     {
+        private readonly MonthlyProcessingContext processingContext;
+
         private CaseMgmtRprtData dataObject;
-        string CurrMonth = string.Empty;
+        string currMonth = string.Empty;
         string currYearMon1 = string.Empty;
         string currYearMon2 = string.Empty;
         string currYearMon3 = string.Empty;
@@ -76,16 +90,18 @@ namespace Cprs
             InitializeComponent();
             GeneralDataFuctions.AddCpraccessData("ADMINISTRATIVE", "ENTER");
             GeneralDataFuctions.UpdateCurrentUsersData("ADMINISTRATIVE");
+            processingContext = MonthlyProcessingSelector.GetCurrentContext();
         }
 
         private void frmCaseManagementReport_Load(object sender, EventArgs e)
         {
             form_loading = true;
+            currMonth = processingContext.StatisticalPeriod;
 
-            GetMonthsList();
+            GetMonthsList(currMonth);
             //create instance of data object
             List<string> dy = new List<string>();
-            dy.Add(CurrMonth);
+            dy.Add(currMonth);
             dy.Add(currYearMon1);
             dy.Add(currYearMon2);
             dy.Add(currYearMon3);
@@ -116,7 +132,7 @@ namespace Cprs
         private void ShowMessage()
         {
             /*show message if no data exist */
-            MessageBox.Show("Data hasn't been loaded. Cannot show the report.");
+MessageBox.Show("Data hasn't been loaded. Cannot show the report.");
             this.Close();
             frmHome fH = new frmHome();
             fH.Show();
@@ -136,7 +152,7 @@ namespace Cprs
 
             if (tabs.SelectedTab == tabPage2)
             {
-                if (cbStatp.Text != CurrMonth)
+                if (cbStatp.Text != currMonth)
                 {
                     DataTable table2 = new DataTable();
                     dgt2.DataSource = table2;
@@ -155,7 +171,7 @@ namespace Cprs
             if (tabs.SelectedTab == tabPage3)
             {
                 
-                if (cbStatp.Text != CurrMonth)
+                if (cbStatp.Text != currMonth)
                 {
                     DataTable table3 = new DataTable();
                     dgt3.DataSource = table3;
@@ -290,25 +306,24 @@ namespace Cprs
             dataGridname.Rows[14].Cells[0].Value = "THIS MONTH'S UNCOMPLETED CASES";
         }
 
-        private void GetMonthsList()
+        private void GetMonthsList(string statp)
         {
-            DateTime today = DateTime.Now;
-            //current month
-            CurrMonth = (GeneralFunctions.CurrentYearMon());
+            
             //get the last 12 months 
-            DateTime.Now.ToString("yyyyMM");
-            currYearMon1 = DateTime.Now.AddMonths(-1).ToString("yyyyMM");
-            currYearMon2 = DateTime.Now.AddMonths(-2).ToString("yyyyMM");
-            currYearMon3 = DateTime.Now.AddMonths(-3).ToString("yyyyMM");
-            currYearMon4 = DateTime.Now.AddMonths(-4).ToString("yyyyMM");
-            currYearMon5 = DateTime.Now.AddMonths(-5).ToString("yyyyMM");
-            currYearMon6 = DateTime.Now.AddMonths(-6).ToString("yyyyMM");
-            currYearMon7 = DateTime.Now.AddMonths(-7).ToString("yyyyMM");
-            currYearMon8 = DateTime.Now.AddMonths(-8).ToString("yyyyMM");
-            currYearMon9 = DateTime.Now.AddMonths(-9).ToString("yyyyMM");
-            currYearMon10 = DateTime.Now.AddMonths(-10).ToString("yyyyMM");
-            currYearMon11 = DateTime.Now.AddMonths(-11).ToString("yyyyMM");
-            currYearMon12 = DateTime.Now.AddMonths(-12).ToString("yyyyMM");
+            DateTime date = DateTime.ParseExact(statp, "yyyyMM", null);
+            currYearMon1 = date.AddMonths(-1).ToString("yyyyMM");
+            currYearMon2 = date.AddMonths(-2).ToString("yyyyMM");
+            currYearMon3 = date.AddMonths(-3).ToString("yyyyMM");
+            currYearMon4 = date.AddMonths(-4).ToString("yyyyMM");
+            currYearMon5 = date.AddMonths(-5).ToString("yyyyMM");
+            currYearMon6 = date.AddMonths(-6).ToString("yyyyMM");
+            currYearMon7 = date.AddMonths(-7).ToString("yyyyMM");
+            currYearMon8 = date.AddMonths(-8).ToString("yyyyMM");
+            currYearMon9 = date.AddMonths(-9).ToString("yyyyMM");
+            currYearMon10 = date.AddMonths(-10).ToString("yyyyMM");
+            currYearMon11 = date.AddMonths(-11).ToString("yyyyMM");
+            currYearMon12 = date.AddMonths(-12).ToString("yyyyMM");
+            
         }
 
        
@@ -356,7 +371,7 @@ namespace Cprs
 
         private void PopulateTabInitial(string statp)
         {
-            if (cbStatp.Text == CurrMonth)
+            if (cbStatp.Text == currMonth)
             {
                 dgt2.DataSource = dataObject.GetInitialtab();
                 UpdateFirstColumn2(dgt2);
@@ -372,7 +387,7 @@ namespace Cprs
 
         private void PopulateTabCurrent(string SelMon)
         {
-            if (cbStatp.Text == CurrMonth)
+            if (cbStatp.Text == currMonth)
             {
                 dgt3.DataSource = dataObject.GetCurrenttab(cbStatp.Text);
                 UpdateFirstColumn3(dgt3);
