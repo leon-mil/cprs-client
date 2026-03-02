@@ -1561,7 +1561,7 @@ namespace Cprs
             }
             else
             {
-                xlWorkSheet.Cells[iRow + 2, 1] = "NA Not applicable rPreliminary";
+                xlWorkSheet.Cells[iRow + 2, 1] = "NA Not applicable pPreliminary";
             }
             footRange1.Characters[19, 1].Font.Superscript = true;
 
