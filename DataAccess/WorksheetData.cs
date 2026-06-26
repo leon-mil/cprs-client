@@ -34,7 +34,7 @@ using System.Linq;
 using System.Data.SqlClient;
 using CprsBLL;
 using System.Globalization;
-
+using CprsDAL.Exceptions;
 
 namespace CprsDAL
 {
@@ -106,6 +106,18 @@ namespace CprsDAL
             {
                 //get proior month bst
                 List<string> bstlist = GetFedBstFromSave(sdate, newtc);
+
+                // LM 2026-06-26:
+                // Federal worksheets require 4 historical BST values (previous
+                // four survey months). If any of these records are missing from
+                // BSTSAV, accessing bstlist[0] through bstlist[3] would result in
+                // an ArgumentOutOfRangeException. Throw a business-specific
+                // exception so the UI can display a meaningful message and exit
+                // the worksheet gracefully.
+                if (bstlist.Count < 4)
+                {
+                    throw new MissingBstDataException(owner, newtc, sdate, bstlist.Count);
+                }
 
                 using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
                 {

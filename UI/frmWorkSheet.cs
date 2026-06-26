@@ -46,6 +46,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using DGVPrinterHelper;
 using System.Drawing.Printing;
+using CprsDAL.Exceptions;
 
 namespace Cprs
 {
@@ -116,7 +117,19 @@ namespace Cprs
             
             //Get all data
             GetTopData();
-            GetMainData();
+
+            // LM 2026-06-26:
+            // Stop loading the worksheet if the main data could not be retrieved.
+            // This prevents subsequent methods from accessing uninitialized DataGridViews
+            // and throwing ArgumentOutOfRangeException when required historical BST data
+            // is missing.
+            if (!GetMainData())
+            {
+                btnSave.Enabled = false;
+                btnApply.Enabled = false;
+                return;
+            }            
+
             GetCaseData();
 
             //Get changed data
@@ -300,13 +313,36 @@ namespace Cprs
         }
 
         //get monthly vip calculation 
-        private void GetMainData()
+        private bool GetMainData()
         {
-            DataTable table = work_data.GetMainData(sdate, Survey, Newtc);
-            dgTot.DataSource = null;
-            dgTot.DataSource = table;
+            try
+            {
+                DataTable table = work_data.GetMainData(sdate, Survey, Newtc);
+                dgTot.DataSource = null;
+                dgTot.DataSource = table;
 
-            setMainColumnHeader();
+                setMainColumnHeader();
+            }
+            // LM 2026-06-26:
+            // Handle missing historical BSTSAV data gracefully. The data access layer
+            // throws a MissingBstDataException when fewer than four prior-month BST
+            // records are found. Display a user-friendly message, close the worksheet,
+            // and return false so the form load process terminates without attempting
+            // to access uninitialized controls.
+            catch (MissingBstDataException ex)
+            {
+                MessageBox.Show(ex.Message, "Missing Historical Data",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+
+                // LM 2026-06-26:
+                // Do not continue loading the worksheet. The caller will stop the
+                // remaining initialization, leaving the form open so the user can
+                // acknowledge the error and choose another TC or action.
+                return false;
+            }
+
+            return true;
         }
 
         private void setMainColumnHeader()
@@ -390,6 +426,24 @@ namespace Cprs
 
         private void setItemColumnHeader()
         {
+            // LM 2026-06-26:
+            // Defensive check to prevent an ArgumentOutOfRangeException when the worksheet
+            // fails to load required data (for example, missing historical BSTSAV records).
+            // In this scenario, dgData is never populated, so attempting to access
+            // dgData.Columns[0] through dgData.Columns[22] would throw an exception.
+            // Display a user-friendly message and close the worksheet gracefully.
+            if (dgData.Columns.Count < 23)
+            {
+                MessageBox.Show(
+                    "Case data could not be loaded. The worksheet does not contain the expected columns.",
+                    "Missing Case Data",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                Close();
+                return;
+            }
+
             var dt = DateTime.ParseExact(sdate, "yyyyMM", CultureInfo.InvariantCulture);
             string mon = sdate.Substring(4); //mon = "05";
             //get month name
@@ -1168,7 +1222,19 @@ namespace Cprs
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             GetTopData();
-            GetMainData();
+
+            if (!GetMainData())
+            {
+                btnSave.Enabled = false;
+                btnApply.Enabled = false;
+                return;
+            }
+            else
+            {
+                btnSave.Enabled = true;
+                btnApply.Enabled = true;
+            }
+
             GetCaseData();
 
             GetCurData();

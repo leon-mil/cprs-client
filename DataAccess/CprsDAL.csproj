@@ -115,6 +115,7 @@
     <Compile Include="DodgeSlipData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exceptions\MissingBstDataException.cs" />
     <Compile Include="FedRatioCalData.cs">
       <SubType>Code</SubType>
     </Compile>
