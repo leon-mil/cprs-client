@@ -230,13 +230,20 @@ namespace Cprs
 
             label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
 
-            //load and display form
-            LoadForm();
+            // LM 2026-06-26:
+            // Only display the C700 screen if all required data loads successfully.
+            // If loading fails, close the form to prevent a partially initialized screen.
+            if (!LoadForm())
+            {
+                Close();
+                return;
+            }
+
             DisplayForm();
         }
 
         /*load form from database*/
-        private void LoadForm(bool from_refresh = false)
+        private bool LoadForm(bool from_refresh = false)
         {
             //inital flags
             status_changed = false;
@@ -246,8 +253,24 @@ namespace Cprs
             /*Sample */
             sampdata = new SampleData();
 
-            dbsource = sampdata.GetDatabaseSource(Id);
+            dbsource = sampdata.GetDatabaseSource(Id);            
             samp = sampdata.GetSampleData(Id);
+
+            // LM 2026-06-26:
+            // Validate that sample data was successfully loaded before continuing.
+            // If the case cannot be retrieved, the C700 screen cannot be initialized.
+            // Display an error and stop loading to prevent null reference exceptions.
+            if (samp == null)
+            {
+                MessageBox.Show(
+                    "C700 cannot be opened because sample data could not be found for ID " + Id + ".",
+                    "Missing Sample Data",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
             old_fwgt = samp.Fwgt;
 
             /*Master */
@@ -356,6 +379,8 @@ namespace Cprs
             GeneralDataFuctions.AddCpraccessData("SEARCH/REVIEW", "ENTER");
 
             data_saved = false;
+
+            return true;
         }
 
 

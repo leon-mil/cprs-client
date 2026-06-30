@@ -1351,6 +1351,21 @@ namespace Cprs
                 val1 = dgRev4["ID", index].Value.ToString();
             }
 
+            // LM 2026-06-26:
+            // Prevent opening the C700 screen when no case ID is available.
+            // This can occur when the worksheet cannot be fully loaded (for example,
+            // required historical BST data is missing), leaving the selected ID blank.
+            if (string.IsNullOrWhiteSpace(val1))
+            {
+                MessageBox.Show(
+                    "C700 cannot be opened because no valid case ID was selected.",
+                    "Missing Case ID",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             this.Hide();
 
             frmC700 fC700 = new frmC700();
