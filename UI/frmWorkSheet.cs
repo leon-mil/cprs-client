@@ -330,10 +330,12 @@ namespace Cprs
             // and return false so the form load process terminates without attempting
             // to access uninitialized controls.
             catch (MissingBstDataException ex)
-            {
-                MessageBox.Show(ex.Message, "Missing Historical Data",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+            {                
+                frmCprsMessageBox.Show(
+                    this,
+                    BuildMissingBstMessage(ex),
+                    "Unable to Open Worksheet",
+                    MessageBoxIcon.Error);
 
                 // LM 2026-06-26:
                 // Do not continue loading the worksheet. The caller will stop the
@@ -345,6 +347,27 @@ namespace Cprs
             return true;
         }
 
+        // LM 2026-06-26:
+        // Build a detailed user-facing message for missing historical BST data.
+        // The exception contains the diagnostic information (owner, TC, survey
+        // month, and record count), while this method formats that information
+        // for display in the CPRS message dialog. Keeping the formatting in the
+        // UI layer allows the exception to remain focused on transporting data
+        // rather than presentation.
+
+        private string BuildMissingBstMessage(MissingBstDataException ex)
+        {
+            return
+                ex.Message +
+                Environment.NewLine + Environment.NewLine +
+                "Expected Records: " + ex.ExpectedRecordCount +
+                "    Found: " + ex.ActualRecordCount +
+                Environment.NewLine +
+                "Owner: " + ex.Owner +
+                "    NEWTC: " + ex.Newtc +
+                "    Survey Month: " + ex.SurveyMonth;
+        }
+        
         private void setMainColumnHeader()
         {
             dgTot.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1356,11 +1379,11 @@ namespace Cprs
             // This can occur when the worksheet cannot be fully loaded (for example,
             // required historical BST data is missing), leaving the selected ID blank.
             if (string.IsNullOrWhiteSpace(val1))
-            {
-                MessageBox.Show(
+            {              
+                frmCprsMessageBox.Show(
+                    this,
                     "C700 cannot be opened because no valid case ID was selected.",
-                    "Missing Case ID",
-                    MessageBoxButtons.OK,
+                    "Unable to Open C700",
                     MessageBoxIcon.Warning);
 
                 return;

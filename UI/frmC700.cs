@@ -224,8 +224,17 @@ namespace Cprs
             /*check required properties are set */
             if (String.IsNullOrEmpty(Id) || (CallingForm == null))
             {
-                MessageBox.Show("Id, CallingForm are required properties for showing C700 form.");
-                this.Dispose();
+                //MessageBox.Show("Id, CallingForm are required properties for showing C700 form.");
+                //this.Dispose();
+
+                frmCprsMessageBox.Show(
+                   this,
+                   "Id and CallingForm are required properties for showing the C700 form.",
+                   "Unable to Open C700",
+                   MessageBoxIcon.Error);
+
+                Close();
+                return;
             }
 
             label55.Text = "CUI//SP-CENS" + "\n" + "DISCLOSURE PROHIBITED: TITLE 13 USC";
@@ -261,11 +270,11 @@ namespace Cprs
             // If the case cannot be retrieved, the C700 screen cannot be initialized.
             // Display an error and stop loading to prevent null reference exceptions.
             if (samp == null)
-            {
-                MessageBox.Show(
+            {               
+                frmCprsMessageBox.Show(
+                    this,
                     "C700 cannot be opened because sample data could not be found for ID " + Id + ".",
-                    "Missing Sample Data",
-                    MessageBoxButtons.OK,
+                    "Sample Data Not Found",
                     MessageBoxIcon.Error);
 
                 return false;

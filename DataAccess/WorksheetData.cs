@@ -115,7 +115,7 @@ namespace CprsDAL
                 // exception so the UI can display a meaningful message and exit
                 // the worksheet gracefully.
                 if (bstlist.Count < 4)
-                {
+                {                    
                     throw new MissingBstDataException(owner, newtc, sdate, bstlist.Count);
                 }
 
