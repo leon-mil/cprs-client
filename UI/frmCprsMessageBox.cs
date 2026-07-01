@@ -29,6 +29,16 @@ Description   :  Added reusable CPRS-themed message dialog to provide a
                  warning, informational, and error messages. Supports
                  MessageBox.Show()-style overloads to simplify migration
                  from the standard Windows Forms message box.
+***********************************************************************************
+Modified Date : 07/01/2026
+Modified By   : Leon Mil
+Keyword       : CPRS Message Dialog
+Change Request:
+Description   : Enhanced the CPRS message dialog to support an optional
+                callback after user acknowledgement, allowing calling
+                forms to perform post-message actions (such as returning
+                to the previous screen) while keeping the dialog reusable
+                and independent of application-specific logic.
 ***********************************************************************************/
 
 using System;
@@ -38,6 +48,8 @@ namespace Cprs
 {
     public partial class frmCprsMessageBox : Form
     {
+        private readonly Action _onClose;
+
         public frmCprsMessageBox()
         {
             InitializeComponent();
@@ -52,9 +64,12 @@ namespace Cprs
             Form owner,
             string message,
             string title,
-            MessageBoxIcon icon)
+            MessageBoxIcon icon,
+            Action onClose = null)
             : this()
-        {            
+        {
+            _onClose = onClose;
+
             lblTitle.Text = title;
             lblMessage.Text = message;
             lblIcon.Text = GetIconText(icon);
@@ -127,6 +142,36 @@ namespace Cprs
             string title)
         {
             return Show(null, message, title, MessageBoxIcon.Information);
+        }
+
+        // LM 2026-06-30:
+        // Displays the CPRS message dialog and executes the optional callback
+        // after the user acknowledges the message.
+        public static DialogResult Show(
+            Form owner,
+            string message,
+            string title,
+            MessageBoxIcon icon,
+            Action onClose)
+        {
+            using (frmCprsMessageBox popup =
+                new frmCprsMessageBox(owner, message, title, icon, onClose))
+            {
+                return popup.ShowDialog(owner);
+            }
+        }
+
+        // LM 2026-06-30:
+        // Handles the OK button click for the CPRS message dialog. If the caller
+        // supplied an optional callback when the dialog was displayed, that method
+        // is invoked before the dialog closes. This allows the calling form to
+        // execute additional logic (such as returning to the previous screen)
+        // only after the user acknowledges the message, while keeping the message
+        // dialog independent of application-specific business logic.
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            _onClose?.Invoke();
+            Close();
         }
     }
 }

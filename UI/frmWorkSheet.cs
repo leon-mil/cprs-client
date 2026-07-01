@@ -335,7 +335,8 @@ namespace Cprs
                     this,
                     BuildMissingBstMessage(ex),
                     "Unable to Open Worksheet",
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Error,
+                    ReturnToCallingForm);
 
                 // LM 2026-06-26:
                 // Do not continue loading the worksheet. The caller will stop the
@@ -345,6 +346,28 @@ namespace Cprs
             }
 
             return true;
+        }
+
+        // LM 2026-07-01:
+        // Return the user to the calling form when the worksheet cannot continue.
+        // Releases the worksheet lock (if held), restores the calling form, refreshes
+        // its data, and closes the current worksheet to prevent the user from
+        // remaining on an invalid or partially initialized screen.
+        private void ReturnToCallingForm()
+        {
+            if (Editable && lock_data != null && !string.IsNullOrEmpty(tc2))
+            {
+                lock_data.UpdateTabLock(tc2, false);
+            }
+
+            if (CallingForm != null)
+            {
+                CallingForm.Show();
+                CallingForm.RefreshForm(true);
+                call_callingFrom = true;
+            }
+
+            Close();
         }
 
         // LM 2026-06-26:
