@@ -111,15 +111,12 @@ namespace CprsDAL
             if (owner == "F")
             {
                 /* cz07072026 if newtc greater than 20, use "1T" value*/
-                string tc;
-                if (int.Parse(newtc) >= 20)
-                    tc = "1T";
-                else
-                    tc = newtc;
+                // Use "1T" for Federal transaction codes 20 and above.
+                string tc = int.Parse(newtc) >= 20 ? "1T" : newtc;
 
-                //get proior month bst
-                List<string> bstlist = GetFedBstFromSave(sdate, newtc);
-
+                // Get prior month BST.
+                List<string> bstlist = GetFedBstFromSave(sdate, tc);
+                
                 // LM 2026-06-26:
                 // Federal worksheets require 4 historical BST values (previous
                 // four survey months). If any of these records are missing from
