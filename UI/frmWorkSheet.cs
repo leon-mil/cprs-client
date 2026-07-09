@@ -46,6 +46,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using DGVPrinterHelper;
 using System.Drawing.Printing;
+using CprsDAL.Exceptions;
 
 namespace Cprs
 {
@@ -116,7 +117,19 @@ namespace Cprs
             
             //Get all data
             GetTopData();
-            GetMainData();
+
+            // LM 2026-06-26:
+            // Stop loading the worksheet if the main data could not be retrieved.
+            // This prevents subsequent methods from accessing uninitialized DataGridViews
+            // and throwing ArgumentOutOfRangeException when required historical BST data
+            // is missing.
+            if (!GetMainData())
+            {
+                btnSave.Enabled = false;
+                btnApply.Enabled = false;
+                return;
+            }            
+
             GetCaseData();
 
             //Get changed data
@@ -300,15 +313,84 @@ namespace Cprs
         }
 
         //get monthly vip calculation 
-        private void GetMainData()
+        private bool GetMainData()
         {
-            DataTable table = work_data.GetMainData(sdate, Survey, Newtc);
-            dgTot.DataSource = null;
-            dgTot.DataSource = table;
+            try
+            {
+                DataTable table = work_data.GetMainData(sdate, Survey, Newtc);
+                dgTot.DataSource = null;
+                dgTot.DataSource = table;
 
-            setMainColumnHeader();
+                setMainColumnHeader();
+            }
+            // LM 2026-06-26:
+            // Handle missing historical BSTSAV data gracefully. The data access layer
+            // throws a MissingBstDataException when fewer than four prior-month BST
+            // records are found. Display a user-friendly message, close the worksheet,
+            // and return false so the form load process terminates without attempting
+            // to access uninitialized controls.
+            catch (MissingBstDataException ex)
+            {                
+                frmCprsMessageBox.Show(
+                    this,
+                    BuildMissingBstMessage(ex),
+                    "Unable to Open Worksheet",
+                    MessageBoxIcon.Error,
+                    ReturnToCallingForm);
+
+                // LM 2026-06-26:
+                // Do not continue loading the worksheet. The caller will stop the
+                // remaining initialization, leaving the form open so the user can
+                // acknowledge the error and choose another TC or action.
+                return false;
+            }
+
+            return true;
         }
 
+        // LM 2026-07-01:
+        // Return the user to the calling form when the worksheet cannot continue.
+        // Releases the worksheet lock (if held), restores the calling form, refreshes
+        // its data, and closes the current worksheet to prevent the user from
+        // remaining on an invalid or partially initialized screen.
+        private void ReturnToCallingForm()
+        {
+            if (Editable && lock_data != null && !string.IsNullOrEmpty(tc2))
+            {
+                lock_data.UpdateTabLock(tc2, false);
+            }
+
+            if (CallingForm != null)
+            {
+                CallingForm.Show();
+                CallingForm.RefreshForm(true);
+                call_callingFrom = true;
+            }
+
+            Close();
+        }
+
+        // LM 2026-06-26:
+        // Build a detailed user-facing message for missing historical BST data.
+        // The exception contains the diagnostic information (owner, TC, survey
+        // month, and record count), while this method formats that information
+        // for display in the CPRS message dialog. Keeping the formatting in the
+        // UI layer allows the exception to remain focused on transporting data
+        // rather than presentation.
+
+        private string BuildMissingBstMessage(MissingBstDataException ex)
+        {
+            return
+                ex.Message +
+                Environment.NewLine + Environment.NewLine +
+                "Expected Records: " + ex.ExpectedRecordCount +
+                "    Found: " + ex.ActualRecordCount +
+                Environment.NewLine +
+                "Owner: " + ex.Owner +
+                "    NEWTC: " + ex.Newtc +
+                "    Survey Month: " + ex.SurveyMonth;
+        }
+        
         private void setMainColumnHeader()
         {
             dgTot.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -390,6 +472,24 @@ namespace Cprs
 
         private void setItemColumnHeader()
         {
+            // LM 2026-06-26:
+            // Defensive check to prevent an ArgumentOutOfRangeException when the worksheet
+            // fails to load required data (for example, missing historical BSTSAV records).
+            // In this scenario, dgData is never populated, so attempting to access
+            // dgData.Columns[0] through dgData.Columns[22] would throw an exception.
+            // Display a user-friendly message and close the worksheet gracefully.
+            if (dgData.Columns.Count < 23)
+            {
+                MessageBox.Show(
+                    "Case data could not be loaded. The worksheet does not contain the expected columns.",
+                    "Missing Case Data",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                Close();
+                return;
+            }
+
             var dt = DateTime.ParseExact(sdate, "yyyyMM", CultureInfo.InvariantCulture);
             string mon = sdate.Substring(4); //mon = "05";
             //get month name
@@ -1168,7 +1268,19 @@ namespace Cprs
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             GetTopData();
-            GetMainData();
+
+            if (!GetMainData())
+            {
+                btnSave.Enabled = false;
+                btnApply.Enabled = false;
+                return;
+            }
+            else
+            {
+                btnSave.Enabled = true;
+                btnApply.Enabled = true;
+            }
+
             GetCaseData();
 
             GetCurData();
@@ -1283,6 +1395,21 @@ namespace Cprs
                 }
                 index = rows[0].RowIndex;
                 val1 = dgRev4["ID", index].Value.ToString();
+            }
+
+            // LM 2026-06-26:
+            // Prevent opening the C700 screen when no case ID is available.
+            // This can occur when the worksheet cannot be fully loaded (for example,
+            // required historical BST data is missing), leaving the selected ID blank.
+            if (string.IsNullOrWhiteSpace(val1))
+            {              
+                frmCprsMessageBox.Show(
+                    this,
+                    "C700 cannot be opened because no valid case ID was selected.",
+                    "Unable to Open C700",
+                    MessageBoxIcon.Warning);
+
+                return;
             }
 
             this.Hide();

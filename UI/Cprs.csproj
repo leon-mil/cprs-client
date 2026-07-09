@@ -345,6 +345,12 @@
     <Compile Include="frmChangeRespidPopup.Designer.cs">
       <DependentUpon>frmChangeRespidPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCprsMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCprsMessageBox.Designer.cs">
+      <DependentUpon>frmCprsMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCprsParent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1378,6 +1384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChangeRespidPopup.resx">
       <DependentUpon>frmChangeRespidPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCprsMessageBox.resx">
+      <DependentUpon>frmCprsMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCprsParent.resx">
       <DependentUpon>frmCprsParent.cs</DependentUpon>

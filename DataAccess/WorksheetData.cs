@@ -24,6 +24,12 @@ Revision History:	See Below
  Keyword       :  cz01162024
  Change Request:  
  Description   :  bug fix - for displaying federal four digits newtc, create errors
+****************************************************************************************
+ Modified Date :  07/7/2026
+ Modified By   :  Christine zhang
+ Keyword       :  cz07072026
+ Change Request:  
+ Description   :  bug fix - for displaying federal 20-39 newtc, create errors
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -34,7 +40,7 @@ using System.Linq;
 using System.Data.SqlClient;
 using CprsBLL;
 using System.Globalization;
-
+using CprsDAL.Exceptions;
 
 namespace CprsDAL
 {
@@ -104,8 +110,27 @@ namespace CprsDAL
 
             if (owner == "F")
             {
+                /* cz07072026 if newtc greater than 20, use "1T" value*/
+                string tc;
+                if (int.Parse(newtc) >= 20)
+                    tc = "1T";
+                else
+                    tc = newtc;
+
                 //get proior month bst
                 List<string> bstlist = GetFedBstFromSave(sdate, newtc);
+
+                // LM 2026-06-26:
+                // Federal worksheets require 4 historical BST values (previous
+                // four survey months). If any of these records are missing from
+                // BSTSAV, accessing bstlist[0] through bstlist[3] would result in
+                // an ArgumentOutOfRangeException. Throw a business-specific
+                // exception so the UI can display a meaningful message and exit
+                // the worksheet gracefully.
+                if (bstlist.Count < 4)
+                {                    
+                    throw new MissingBstDataException(owner, newtc, sdate, bstlist.Count);
+                }
 
                 using (SqlConnection sql_connection = new SqlConnection(GeneralData.getConnectionString()))
                 {
