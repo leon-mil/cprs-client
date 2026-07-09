@@ -24,6 +24,12 @@ Revision History:	See Below
  Keyword       :  cz01162024
  Change Request:  
  Description   :  bug fix - for displaying federal four digits newtc, create errors
+****************************************************************************************
+ Modified Date :  07/7/2026
+ Modified By   :  Christine zhang
+ Keyword       :  cz07072026
+ Change Request:  
+ Description   :  bug fix - for displaying federal 20-39 newtc, create errors
 ****************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -104,6 +110,13 @@ namespace CprsDAL
 
             if (owner == "F")
             {
+                /* cz07072026 if newtc greater than 20, use "1T" value*/
+                string tc;
+                if (int.Parse(newtc) >= 20)
+                    tc = "1T";
+                else
+                    tc = newtc;
+
                 //get proior month bst
                 List<string> bstlist = GetFedBstFromSave(sdate, newtc);
 
